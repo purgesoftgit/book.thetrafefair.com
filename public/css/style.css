@@ -438,6 +438,7 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 .account-form .form-check{font-size:14px;}
 
 .passcode-wrapper input{width:36px; height:36px; line-height:36px; border-radius:22px; text-align: center; font-size:16px; color:#000; border:1px solid #d9d9d9;}
+.passcode-wrapper input:focus{outline: none;}
 /*Login & Sign page Css End*/
 
 /*Rooms Page Css Start*/
@@ -471,7 +472,7 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 .direct-sub-name{font-size:17px; color:#090910; font-weight:800; font-family: 'Plus Jakarta Sans', sans-serif; text-transform: uppercase; margin:3px 0;}
 .direct-sub-number{font-size:16px; color:#00b542; font-weight:500;}
 
-.reservation-form{background:#090910; border-radius:15px; padding:30px; margin-bottom:50px;}
+.reservation-form{background:#090910; color:#fff; border-radius:15px; padding:30px; margin-bottom:50px;}
 .reservation-form .form-label{font-family: 'Plus Jakarta Sans', sans-serif; font-size:14px; font-weight:700; text-transform: uppercase; color:#fff;}
 .reservation-form .form-control, .reservation-form .form-select, .rooms_guests{height:45px; border-radius:0; border:0; font-size:14px; color:#646464; padding-left:18px;}
 .reservation-form textarea.form-control{height:auto; padding-top:12px; resize:none;}
@@ -479,7 +480,7 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 .rooms_guests{line-height:45px; background-color:#fff; cursor: pointer; position: relative;}
 .rooms_guests:after{position: absolute; top: 50%; right: 8px; font-size: 19px; font-weight:400; content: "\f107"; color: #555; padding: 0 5px; font-family: FontAwesome; transform: translateY(-50%);}
 .reservation-btn{height:45px; line-height:34px; border-radius:0; padding:5px;}
-.rooms_guests_list{height: auto; border: 1px solid rgba(255,255,255,0.3); padding:15px 15px; background:#fff; margin-top:3px;}
+.rooms_guests_list{height: auto; border: 1px solid rgba(255,255,255,0.3); padding:15px 15px; background:#fff; margin-top:3px; color:#000;}
 .added-rooms-list{background:#f0f0f0; padding: 10px 20px; border-radius: 10px; margin-bottom:10px;}
 .added-rooms-action{display: flex; gap:10px; justify-content: space-between;}
 .added-rooms-action a{margin-left:10px; cursor: pointer;}
@@ -524,6 +525,239 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 .term-inbox .ligap > li::marker {font-size:22px; text-transform: capitalize; font-weight:normal; text-align: left; letter-spacing:0;}
 /*Terms & Conditions Page End*/
 
+/*Room Detail Page Css Start*/
+#progressbar{width:100%; height: 3px; margin-top: -3px; border-radius: 2px; background-color:#f00;
+	-moz-transition: all 0.7s ease;
+	-webkit-transition: all 0.7s ease;
+	-o-transition: all 0.7s ease;
+	transition: all 0.7s ease;
+}
+
+#gallery-con{width:100%; height:auto; margin: 0 auto 0; padding: 0; border: 1px solid transparent; position: relative;}
+#gallery-con #gallery-main{margin: 0; padding: 0; position:relative; z-index: -1;}
+#gallery-con #gallery-main img{max-width:100%;}
+#gallery-con #gallery-hidden{margin: 0; padding: 0; position:relative; display: none; z-index: -1;}
+#gallery-con #thumbnails{position: relative; width:100%; height: 132px; padding:0 24px; z-index: 10;
+	-moz-transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+#gallery-con #thumbnails:hover{opacity: 1;
+	-moz-transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+#gallery-con #thumbnails #thumbcon{width:100%; height: 120px; display: inline-block; margin: 0; overflow: hidden; white-space: nowrap; float: left;}
+#gallery-con #thumbnails #thumbcon .thumb{width: 190px; height: auto; display: inline; margin: 12px 5px; opacity: 0.2; cursor: pointer; position: relative;
+	-moz-transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+#gallery-con #thumbnails #thumbcon .thumb:before{content:''; position: absolute; top:0; right:0; bottom:0; left:0; background:#f00;}
+#gallery-con #thumbnails #thumbcon .thumb:hover{opacity: 1;
+	-moz-transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	-moz-box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 2px;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 2px;
+	-o-box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 2px;
+	box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 2px;
+}
+#gallery-con #thumbnails #thumbcon .selected{opacity: 1;
+	-moz-transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	-moz-box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 2px;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 2px;
+	-o-box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 2px;
+	box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 2px;
+}
+#gallery-con #thumbnails .ui-button{width:15px; height:24px; padding:0; opacity: 0.60;
+	-moz-transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+#gallery-con #thumbnails .ui-button:hover {
+	-moz-transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	opacity: 1;
+}
+#gallery-con #thumbnails .ui-button{position:absolute; top:50%; transform:translateY(-50%);}
+#gallery-con #thumbnails #left-arrow{left:0;}
+#gallery-con #thumbnails #right-arrow{right:0;}
+#gallery-con #thumbnails .icon{display: inline-block; width:15px; height:24px; background-image: url(img/sprites.png); background-repeat: no-repeat; cursor: pointer; z-index: 22;
+	-moz-transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+#gallery-con #thumbnails .icon-play{background-position: 0 0;
+	-moz-transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+#gallery-con #thumbnails .icon-pause{background-position: -32px 0;
+	-moz-transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+#gallery-con #thumbnails .icon-arrow-right{background-position:-64px 50%;
+	-moz-transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+#gallery-con #thumbnails .icon-arrow-left{background-position:-97px 50%;
+	-moz-transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+
+.rooms-detail-page-section{padding:85px 0;}
+.rooms-detail-row{display: flex;}
+.rooms-detail-col{max-width:64.8%; padding-right:40px;}
+.rooms-detail-col-side{max-width:35.2%;}
+#gallery-con .web-logo{margin-top:-60px;}
+.room-detail-top{display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #d9d9d9; padding-bottom: 12px; margin-bottom: 15px;}
+.room-detail-title{font-size:26px; font-weight:800; color:#020228; letter-spacing:1px; text-transform: uppercase; font-family: 'Plus Jakarta Sans', sans-serif;}
+.room-detail-rating .fa{font-size:22px; color:#ff0000; margin-left:6px;}
+.room-detail-rate{display: flex; align-items: center; margin-bottom:15px;}
+.room-detail-rate big{font-size:30px; line-height:38px; color:#00b542; font-weight:500;}
+.room-detail-rate s{font-size:20px; color:#b0b0b0; margin-left:12px; font-weight:300;}
+.room-detail{margin-top:10px;}
+.room-detail p{font-size:16px; color:#57576d;}
+.enjoy-meals-during{border: 1px solid #d9d9d9; padding: 13px; border-radius: 12px; margin-bottom:20px;}
+.enjoy-meals-during .btn-primary{border-radius:0; padding-top:8px; padding-bottom:8px;}
+.enjoy-meals-during .btn-primary.disabled, .enjoy-meals-during .btn-primary:disabled{color: #000; background-color: #ececec; border-color: #ececec; opacity: 1;}
+.enjoy-meals-during p{font-size:14px; color:#020228; font-weight:500;}
+.enjoy-meals-title{font-size:20px; font-weight:800; color:#00b542; letter-spacing:1px; text-transform: uppercase; font-family: 'Plus Jakarta Sans', sans-serif;}
+.select-rs{background: #000; color: #fff; padding: 0 14px; width: 100%; height: 40px; border: 0; line-height: 38px; font-size: 14px; box-shadow:none; outline: none;}
+.enjoy-meals-img{margin-bottom:12px;}
+.enjoy-meals-img img{border-radius:10px;}
+
+.detail-list{padding:30px; border-radius:15px; box-shadow:0 10px 30px 0 rgba(0,0,0,0.1); margin-top:30px;}
+.checkin-checkout{background:#00b542; color:#fff; text-transform: uppercase; font-size:16px; padding:6px 20px; list-style: none; display: inline-block; margin:10px 0 15px;}
+.checkin-checkout li{display: inline-block;}
+.ul-style{list-style: none; padding:0; margin:0 0 20px;}
+.ul-style li{padding-left:30px; background:url(../img/check-icon.png) no-repeat 0 3px; margin-bottom:8px;}
+.facility-list{}
+.badge{border:1px solid #d9d9d9; color:#5d5d5e; padding:8px 20px; border-radius:20px; font-size:13px; text-transform: uppercase; font-weight:400; margin:0 8px 10px 0;}
+.related-rooms-list{padding: 14px; display: flex; background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(240,240,240,1) 100%); margin-bottom: 14px; gap: 16px; text-decoration: none;}
+.related-rooms-img{max-width: 100px; height: 80px; border-radius: 10px; overflow: hidden;}
+.related-rooms-img img{object-fit: cover; height: 100%; -webkit-transition: .5s ease-in-out; -moz-transition: .5s ease-in-out; -o-transition: .5s ease-in-out; transition: .5s ease-in-out}
+.related-rooms-inner{width: 100%; padding-right: 48px; position: relative;}
+.related-rooms-btn{position: absolute; top:0; right:0; bottom:0; width:38px; background:#00b542; display: flex; align-items: center; justify-content: center; font-size:24px; color:#fff; font-family: 'Plus Jakarta Sans', sans-serif;}
+.related-rooms-title{font-size: 18px; color: #020228; font-weight: 500; margin:6px 0 3px;}
+.related-rooms-price{font-size: 25px; font-weight: 700; color: #020228;}
+.related-rooms-list:hover, .related-rooms-list:focus{background: linear-gradient(to bottom,  rgba(240,240,240,1) 0%,rgba(255,255,255,1) 100%); text-decoration: none;}
+.related-rooms-list:hover .related-rooms-title{color:#00b542;}
+.related-rooms-list:hover .related-rooms-img img{
+	-webkit-transform:scale(1.1);
+	-ms-transform:scale(1.1);
+	-o-transform:scale(1.1);
+	-moz-transform:scale(1.1);
+	transform:scale(1.1);
+}
+.related-rooms-list:hover .related-rooms-btn{background:#020228;}
+
+.guest-info-form-maintitle{text-align: center; font-size: 20px; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; padding: 0 10px 20px;}
+.guest-info-form-title{background: #00b542; margin: 0 -30px 15px; padding: 7px 30px; text-align: center; position: relative; color: #000; font-weight: 800; text-transform: uppercase; font-size: 16px; font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 1px;}
+.guest-info-form-title:after{content:''; border:42px solid transparent; border-top-color:#000; border-left:0; border-right-width: 15px; left: 100%; position: absolute; top: 0; bottom: 0;}
+.guest-info-form-title:before{content:''; border:42px solid transparent; border-top-color:#000; border-right:0; border-left-width: 15px; right: 100%; position: absolute; top: 0; bottom: 0;}
+.guest-info-form-subtitle{text-align: center; font-size: 16px; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom:25px;}
+.form-check input[type="radio"].form-check-input{background: transparent; border: 1px solid rgb(255 255 255 / 35%); cursor: pointer;}
+.form-check input[type="radio"].form-check-input:checked{background: #00b542; box-shadow: none;}
+.form-check input[type="checkbox"].form-check-input:checked{background-color: #00b542; border-color: #00b542;}
+.form-check .form-check-label{ cursor: pointer; color:rgba(255,255,255,0.5)}
+.guest-info-form .passcode-wrapper input{background: transparent; border-color: rgba(255,255,255,0.4); color: #fff;}
+
+.facility-box{background:#020228; border-radius:12px; margin-bottom:10px;}
+.facility-box .col-xl-3{position: relative;}
+.facility-box .col-xl-3:after{content:''; position: absolute; top:0; bottom:0; right:0; opacity:0.4; width:1px; background: linear-gradient(to bottom,  rgba(255,255,255,0) 14%,rgba(255,255,255,0.03) 15%,rgba(255,255,255,1) 50%,rgba(255,255,255,0.97) 51%,rgba(255,255,255,0) 85%);}
+.facility-box-list{padding:20px 0; text-align: center; color:#fff; font-size:14px; text-transform: uppercase;}
+.facility-box-list span{display:block;}
+.facility-box-icon{width:42px; height:42px; line-height:42px; border-radius:50%; margin:0 auto 12px; background:#fff;}
+.facility-label{font-size: 18px; color: #020228; font-weight: 600; margin: 16px 0 10px;}
+
+.accordion-style{margin:50px 0 80px;}
+.accordion-style .accordion-body{padding: 12px 0 0; font-size:14px; color:#000033; line-height:24px;}
+.accordion-style .accordion-body p{font-size:14px; color:#000033; line-height:24px;}
+.accordion-style .accordion-item{border: 0; margin: 0 0 12px;}
+.accordion-style .accordion-button{color: #393940; font-size:16px; font-weight: 700; padding:15px 24px; background:#f1f1f1; outline: 0; box-shadow: none;
+    -webkit-transition: .3s ease-in-out;
+    -moz-transition: .3s ease-in-out;
+    -o-transition: .3s ease-in-out;
+    transition: .3s ease-in-out
+}
+.accordion-style .accordion-button::after{
+    -webkit-transition: .3s ease-in-out;
+    -moz-transition: .3s ease-in-out;
+    -o-transition: .3s ease-in-out
+}
+.accordion-style .accordion-button::after{background-image: none; content: '+'; font-size: 29px; font-weight: 300; position: absolute; top: 50%; right: 16px; width: 20px; height: 20px; line-height: 14px; text-align: center; margin-top: -12px; color: #676767; transition: .3s ease-in-out;}
+.accordion-style .accordion-button:not(.collapsed){background:#00b542; color: #fff;}
+.accordion-style .accordion-button:not(.collapsed)::after {background-image: none; content: '-'; color:#fff;}
+
+.room-detail-review{position: relative; padding:75px 0 0;}
+.room-detail-review .container{position: relative; z-index:0;}
+.room-detail-review:before{content:''; position: absolute; top:0; left:0; right:0; height:212px; background:#00b542; z-index:-1}
+.room-detail-review .room-detail-title{text-align:center; color:#fff;}
+.review-intro{text-align: center; color:#fff;}
+.makeFlex{text-align: center; list-style: none; margin:35px 0 0; padding:0;}
+.makeFlex li{display: inline-block; margin:0 5px 10px;}
+.makeFlex-column{border:1px solid #00b542; border-radius:12px; padding:12px 27px; background:#fff;}
+.makeFlex-column a{color:#00b542; font-size:14px; font-weight:500; text-decoration: none;}
+.box-title{display:block; font-size:17px; color:#020228; font-weight:800; text-transform: uppercase; font-family: 'Plus Jakarta Sans', sans-serif;}
+
+.whatgstLv__content--features{list-style: none; padding: 24px 30px; margin: 20px auto 0px; box-shadow: 0 3px 15px 0 rgba(0,0,0,0.15); border-radius: 15px; display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; font-size: 15px; color: #0f1015; border: 1px solid #eaeaea; max-width: 80%;}
+.whatgstLv__content--features li .fa {color: #57ce82;font-size: 22px;margin-right: 5px;}
+
+.overall-rating-div{background:#f4f4f4; padding:15px;}
+.overall-rating-left{text-align: center;}
+.overall-rating-inner-title{font-size:16px; color:#0f1015; text-transform: uppercase;}
+.overall-rating-left big{font-size:45px; line-height:55px; color:#0f1015; font-weight: 600;}
+.overall-rating .fa{color:#00b542; font-size:24px; margin:0 1px;}
+.overall-rating-right{background:#fff; padding:12px 25px;}
+.progress-list{padding:8px 0;}
+.progress-title {font-weight: 600; font-size: 16px; margin: 0 0 5px;}
+.progress-list .progress{height: 8px;}
+.progress-list .progress-bar{background: #00b542;}
+.flex-tabs{margin: 80px 0 0;}
+.flex-tabs .flex-column{width: 314px; min-width: 314px; background: #020228; padding: 30px 0;}
+.flex-tabs .nav-pills .nav-link{text-align: left; border-radius: 0; padding: 10px 25px; color: #fff; position: relative;}
+.flex-tabs .nav-pills .nav-link:after{content: '';position: absolute;left: 100%;top: 0;bottom: 0;border: 0 solid transparent;border-left-color: #00b542; 
+	-webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    -o-transition: .5s ease-in-out;
+    transition: .5s ease-in-out}
+.flex-tabs .nav-pills .nav-link.active{background: #00b542;}
+.flex-tabs .nav-pills .nav-link.active:after{border-width: 22px;}
+
+.flex-tabs .tab-content {width: 100%; padding-left: 20px;}
+.review-tabs-title-div{display: flex; gap: 20px; align-items: center; justify-content: space-between; border-bottom:1px solid #d9d9d9; padding-bottom:20px; margin-bottom:10px;}
+.review-tabs-title{font-size:22px; font-weight:700; color:#020228; text-transform: uppercase; font-family: 'Plus Jakarta Sans', sans-serif;}
+.col-form-label{font-size:14px; font-weight:700; color:#020228; text-transform: uppercase; font-family: 'Plus Jakarta Sans', sans-serif; margin-right:10px;}
+.sorting-firsts{border:0; background-color:#020228; color:#fff; font-size:14px; height:37px; border-radius:5px; letter-spacing:1px; padding-left:20px; padding-right:35px; background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");}
+
+.review-list{border-bottom:1px solid #d9d9d9; padding:24px 0;}
+.review-list p{font-size:14px; color:#000033; margin-bottom:0;}
+.review-list-title{font-size:20px; color:#000033; text-transform: uppercase; font-weight:700; font-family: 'Plus Jakarta Sans', sans-serif; margin:5px 0 7px;}
+.review-list-date{font-size:17px; color:#000033; font-weight:500; font-style:italic; margin-bottom:10px;}
+.review-rating .fa{color:#00cc33; margin-right:5px; font-size:24px;}
+/*Room Detail Page Css End*/
+
+
 /*Responsive Css Start///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 @media (max-width:1450px){
 	.banner-title{font-size:56px;}
@@ -547,6 +781,10 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 	.hotel-service-box p, .art-artefacts-section p, .verdance-box p{font-size:14px; line-height:24px;}
 	.art-artefacts-section{padding:30px;}
 	.art-artefacts-text{padding: 30px 0 0 10px;}
+
+	/*.rooms-detail-row{display:block;}
+	.rooms-detail-col{max-width: 100%; padding-right: 0;}*/
+	.whatgstLv__content--features{grid-template-columns: repeat(2,1fr);}
 }
 
 @media (max-width:991px){
@@ -580,6 +818,7 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 	.art-artefacts-section .owl-carousel .owl-nav button.owl-prev{left:10px; right: auto;}
 	.slider-text{padding:60px 0;}
 	.banner-title{line-height:66px;}
+	.whatgstLv__content--features{grid-template-columns: repeat(1,1fr);}
 }
 
 @media (max-width:767px){

@@ -324,19 +324,25 @@ class PageController extends Controller
     
       }
 
-
-    
       public function roomDetail($slug)
       {
-          $room_detail = RoomCategory::where('slug', $slug)->first();
-          $related_room = RoomCategory::where('slug','!=', $slug)->get();
-        
-          $room = response()->json($room_detail);
-  
-          $data = $room->original;
-          // dd($data);
-          return view('room-detail', ['data' => $data, "related_room" => $related_room]);
+        $room_detail = RoomCategory::where('slug', $slug)->first();
+        $related_room = RoomCategory::where('slug','!=', $slug)->get();
+        return view('room-detail', ['room' => $room_detail, "related_room" => $related_room]);
       }
+
+    
+    //   public function roomDetail($slug)
+    //   {
+    //       $room_detail = RoomCategory::where('slug', $slug)->first();
+    //       $related_room = RoomCategory::where('slug','!=', $slug)->get();
+        
+    //       $room = response()->json($room_detail);
+  
+    //       $data = $room->original;
+         
+    //       return view('room-detail', ['data' => $data, "related_room" => $related_room]);
+    //   }
 
     public function Logout()
     {

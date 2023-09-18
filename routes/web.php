@@ -50,7 +50,7 @@ Route::get('register/is_verify_type','PageController@isVerify');
 Route::get('rooms','PageController@rooms');
 Route::post('get-room-ajax','PageController@getRoomsAjax');
 Route::get('get-avails-room/{id}/{checkin}','PageController@getAvailsRooms');
-Route::get('/room-detail/{slug}', 'PageController@roomDetail');
+Route::get('/room/{slug}', 'PageController@roomDetail');
 
 
 
