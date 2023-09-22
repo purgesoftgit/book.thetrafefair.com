@@ -67,26 +67,26 @@
                 </a>
                 <ul class="navbar-nav me-auto ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('home') }}">Home</a>
+                        <a class="nav-link  {{Request::is('/') ? 'active' : ''}}" href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('about-us') }}">About Us</a>
+                        <a class="nav-link  {{Request::is('about-us') ? 'active' : ''}}" href="{{ url('about-us') }}">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://saatfera.in/" target="_blank">Wedding Hall</a>
+                        <a class="nav-link" href="{{ url('wedding') }}">Wedding Hall</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('event') }}">our Events</a>
+                        <a class="nav-link  {{Request::is('event') ? 'active' : ''}}" href="{{ url('event') }}">our Events</a>
                     </li>
                     <li class="blogo-space"></li>
                     <li class="nav-item">
                         <a class="nav-link" href="https://www.thetradebite.com/" target="_blank">Our Restaurants</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('gallery') }}">Gallery</a>
+                        <a class="nav-link  {{Request::is('gallery') ? 'active' : ''}}" href="{{ url('gallery') }}">Gallery</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('contact') }}">Contact Us</a>
+                        <a class="nav-link  {{Request::is('contact-us') ? 'active' : ''}}" href="{{ route('contact') }}">Contact Us</a>
                     </li>
                     <li class="nav-item d-none d-lg-block">
                         <a class="btn btn-primary" href="{{ url('rooms') }}">Book Now</a>

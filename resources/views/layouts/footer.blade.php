@@ -10,7 +10,7 @@
             {{-- <li><a href="aboutus.html">About us</a></li> --}}
             <li><a href="{{route('about')}}">About us</a></li>
             <li><a href="javascript:void(0)">Management</a></li>
-            <li><a href="javascript:void(0)">Corporate information</a></li>
+            <li><a href="{{ url('corporte-meeting-halls') }}">Corporate Meeting</a></li>
             <li><a href="javascript:void(0)">Vision, mission & values</a></li>
             <li><a href="javascript:void(0)">Why book with us directly</a></li>
             <li><a href="javascript:void(0)">Award</a></li>
@@ -27,9 +27,9 @@
           <div class="footer-title">BOOKINGS</div>
           <ul>
             <li><a href="{{env('HOTEL_URL')}}" target="_blank">OUR HOTELS</a></li>
-            <li><a href="{{ env('WEDDING_URL') }}" target="_blank">OUR WEDDING HALLS</a></li>
+            <li><a href="{{ url('wedding') }}" >OUR WEDDING HALLS</a></li>
             <li><a href="{{ env('RESTAURANT_URL')}}" target="_blank">OUR RESTAURANTS</a></li>
-            <li><a href="javascript:void(0)">OUR SPA</a></li>
+            <li><a href="{{ route('spa') }}">OUR SPA</a></li>
             <li><a href="{{url('event')}}">OUR EVENTS</a></li>
             <li><a href="{{ route('contact')}}">CONTACT US</a></li>
           </ul>
@@ -65,8 +65,10 @@
             <img src="{{asset('img/call-icon2.png')}}">
             <div class="footer-contact-detail">
               <div class="footer-contact-title">Phone</div>
-                <a href="tel:{{ $settings['tradefair_contact_number'] ?? '' }}" class="footer-contact-detail">{{ $settings['tradefair_contact_number'] ?? ''}}</a>
-                {{-- <a href="tel:(+91) 987 654 3210"><img src="img/call-icon.png" alt="Call Icon"> <span><b>Phone: </b>(+91) 987 654 3210</span></a> --}}
+                <a href="tel:{{ $settings['tradefair_contact_number'] ?? '' }}" class="footer-contact-detail">
+                
+                {{ $settings['tradefair_contact_number'] ?? ''}}</a>
+               
               
             </div>
           </div>
@@ -78,8 +80,7 @@
             <div class="footer-contact-detail">
               <div class="footer-contact-title">Email</div>
                 <a href="mailto:{{ $settings['tradefair_email'] ?? ''}}" class="footer-contact-detail">{{ $settings['tradefair_email'] ?? '' }}</a>
-                {{-- <a href="mailto:thetradefair@gmail.com" class="footer-contact-detail">thetradefair@gmail.com</a> --}}
-             
+               
             </div>
           </div>
           <!-- 1 -->
@@ -89,7 +90,7 @@
             <img src="{{asset('img/location-icon.png')}}">
             <div class="footer-contact-detail">
               <div class="footer-contact-title">Location</div>
-              <address class="footer-contact-detail">Shalimar Bagh, Ajmer Rd, Jaipur</address>
+              <address class="footer-contact-detail">{{ $settings['address'] ?? '' }}</address>
             </div>
           </div>
           <!-- 1 -->

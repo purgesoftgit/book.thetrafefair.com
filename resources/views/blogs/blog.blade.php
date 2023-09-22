@@ -18,9 +18,10 @@
                     <div class="col-xl-8 col-lg-8">
                         @if($blogs->isEmpty())
                         <div class="blog-title text-center" style="padding-top: 20%;">
-                            <div class="shadow-lg p-3 mb-5 bg-body rounded w-75">
-                                <h2 class="page-title text-dark fs-4">No blog found for this category</h2>
-                            </div>
+                            <!-- <div class="shadow-lg p-3 mb-5 bg-body rounded w-75"> -->
+                                <img src="{{ asset('img/no-search.png') }}" alt="Not found">
+                                <!-- <h2 class="page-title text-dark fs-4">No blog found for this category</h2> -->
+                            <!-- </div> -->
                         </div>
                         @else
                         @foreach ($blogs as $blog)
@@ -59,7 +60,7 @@
                         <div class="blog-sidebar">
                             <div class="sidebar-box-list">
                                 <div class="sidebar-heading">Latest Blog</div>
-                                @foreach ($blogs as $item)
+                                @foreach ($latest_blog as $item)
                                     @if ($item->type == 1)
                                         <div class="latest-blog-list">
                                             <div class="latest-blog-img">
@@ -87,13 +88,13 @@
                             <div class="sidebar-box-list">
                                 <div class="sidebar-heading">Categories
                                 @if(request()->has('category'))
-                                <span><a href="{{url('blog')}}"><i class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Reset Category Filter"></i>
+                                <span ><a href="{{url('blog')}}"><i class="fa fa-trash" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Reset Category Filter"></i>
                                 </a></span>
                                 @endif
                             </div>
-                                <div>
+                                <div class="blog-categories">
                                     @foreach ($categories as $item)
-                                        <a href="{{ route('blog',['category' => $item->slug])}}" class="categories-list">{{ $item->category }}</a>
+                                        <a href="{{ route('blog',['category' => $item->slug])}}" data-category="{{$item->slug}}" class="categories-list">{{ $item->category }}</a>
                                     @endforeach   
                                 </div>
                             </div>
@@ -109,4 +110,16 @@
 
 
     @include('layouts.footer')
+    <script>
+        $(document).ready(function(){
+            var current_url = window.location.href;
+
+            $('.blog-categories a').each(function(key,value){
+                if($(value).data("category") == current_url.split('category=')[1]){
+                    $(value).addClass("active")
+                }
+            });
+            
+        })
+    </script>
 @endsection

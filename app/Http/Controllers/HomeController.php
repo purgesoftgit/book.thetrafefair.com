@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Home;
+use App\Review;
 use App\ContactUs;
 use App\Event;
 use App\Artefact;
@@ -13,38 +13,12 @@ use App\EventRequest;
 class HomeController extends Controller
 {
     public function index(){
-        $data = Home::all();
+        $data = Review::all();
         $artefact = Artefact::all();
         return view('index',compact('data','artefact'));
     }
 
-    public function contactStore(Request $request){
-       
-        
-        $validator = Validator::make($request->all(), [
-            'name' => ['required','regex:/^[a-zA-Z\s]+$/','min:3'],
-            'email' => ['required','email','regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/'],
-            'phone' => ['required','numeric'],
-            'message' => ['required'],
-            'g-recaptcha-response' => 'required',
-        ]);
- 
-        if( $validator->fails()){
-            return redirect()->back()->withError($validator);    
-        }
-      
-        $data = new ContactUs;
-        $data->selected_website = 1; //1 for thetradefair
-        $data->name = $request->name;
-        $data->email = $request->email;
-        $data->phone = $request->phone;
-        $data->message = $request->message;
-        $data->status = 'Unread';
-        $data->save();
- 
-        return redirect('/')->with(['status'=>200,'message'=>"Your request is in processing."]);
-        // return response()->json(['message' => 'Data saved successfully']);
-    }
+   
 
     public function event(){
 
@@ -83,7 +57,8 @@ class HomeController extends Controller
         $bookEvent->email = $request->email;
         $bookEvent->save();
 
-        return redirect('/')->with(['status'=>200,'message'=>"Your request for booking has been sent."]);
+        return redirect('thankyou');
+        // return redirect('/')->with(['status'=>200,'message'=>"Your request for booking has been sent."]);
     }
 
     public function eventDetail($slug) {

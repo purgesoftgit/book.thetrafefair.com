@@ -73,5 +73,6 @@
     <p class="no_room_avail_error_msg_filter d-none"><span id="selected_room_category"></span> Room
         is not availible right now</p>
 </section>
-
+<!-- room filter js -->
+<script type="text/javascript" src="{{asset('js/room-filter.js')}}"></script>
 

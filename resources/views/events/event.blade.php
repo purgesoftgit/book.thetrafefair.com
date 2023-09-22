@@ -150,7 +150,7 @@
                                         <div class="col-sm-6 mb-4">
                                             <label for="sdate-field" class="form-label">Event Start Date
                                                 <sup>*</sup></label>
-                                            <input type="date" class="form-control" id="sdate-field" name=start_date>
+                                            <input type="datetime-local" class="form-control sdate" id="sdate-field" name=start_date min="<?php echo date('Y-m-d'); ?>" onkeydown="return false" value="<?php echo date('Y-m-d'); ?>">
                                             @if ($errors->has('start_date'))
                                                 <span class="text-danger"> {{ $errors->first('start_date') }} </span>
                                             @endif
@@ -159,7 +159,7 @@
                                         <div class="col-sm-6 mb-4">
                                             <label for="edate-field" class="form-label">Event End Date
                                                 <sup>*</sup></label>
-                                            <input type="date" class="form-control" id="edate-field" name="end_date">
+                                            <input type="datetime-local" class="form-control edate" id="edate-field" name="end_date" min="<?php echo date('Y-m-d'); ?>" onkeydown="return false" value="<?php echo date('Y-m-d'); ?>">
                                             @if ($errors->has('end_date'))
                                                 <span class="text-danger">{{ $errors->first('end_date') }}</span>
                                             @endif
@@ -267,12 +267,12 @@
     <script src="{{ asset('js/custom.js') }}"></script>
     <script>
         $(document).ready(function() {
-            var currentDate = new Date().toISOString().split('T')[0];
-
-            document.getElementById("sdate-field").min = currentDate;
-            document.getElementById("edate-field").min = currentDate;
-
-
+            //update end date
+            // $('.sdate').on('change',function(){
+            //     startdate = $(this).val() 
+            //     $('.edate').val(moment(startdate).add(1, 'days').format("YYYY-MM-DD"))
+            //     $('.edate').attr("min",moment(startdate).add(1, 'days').format("YYYY-MM-DD"));
+            // });
             $("#eventRequest").validate({
                 rules: {
                     event_name: {
@@ -334,10 +334,10 @@
                         timerProgressBar: true,
                         showConfirmButton: false
                     }).then(function () {
-                        
+                        form.submit();
                     });
 
-                    form.submit();
+                    
 
                 } 
             });

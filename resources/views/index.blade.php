@@ -362,11 +362,11 @@
 </main>
 
 
+@include('messages')
 @include('layouts.footer')
 
 
 <script>
-
     $(document).ready(function() {
         var success_contact = "<?php if (Session::has('message')) {
                                     echo Session::get('message');
@@ -374,18 +374,15 @@
                                     echo 'no';
                                 } ?>";
 
-                                console.log(success_contact);
         if (success_contact != "no") {
-
-            // setTimeout(function() {
-                Swal.fire({
-                    title: 'Success!',
-                    text: success_contact,
-                    icon: 'success',
-                    timer: 3000, 
-                });
-            // }, 3000);
+            Swal.fire({
+                title: 'Success!',
+                text: success_contact,
+                icon: 'success',
+                timer: 3000,
+            });
         }
+
     })
 </script>
 

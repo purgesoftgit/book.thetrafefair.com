@@ -350,6 +350,58 @@ $(document).ready(function () {
         }
     })
 
+    $('#exp-tim-wed-slider').owlCarousel({
+        loop:true,
+        margin:30,
+        autoplayHoverPause:true,
+        nav: true,
+        navText : ['<?xml version="1.0" ?><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;}</style></defs><title/><g data-name="Layer 2" id="Layer_2"><path d="M13,26a1,1,0,0,1-.71-.29l-9-9a1,1,0,0,1,0-1.42l9-9a1,1,0,1,1,1.42,1.42L5.41,16l8.3,8.29a1,1,0,0,1,0,1.42A1,1,0,0,1,13,26Z"/><path d="M28,17H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z"/></g><g id="frame"><rect class="cls-1" height="32" width="32"/></g></svg>','<?xml version="1.0" ?><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;}</style></defs><title/><g data-name="Layer 2" id="Layer_2"><path d="M19,26a1,1,0,0,1-.71-.29,1,1,0,0,1,0-1.42L26.59,16l-8.3-8.29a1,1,0,0,1,1.42-1.42l9,9a1,1,0,0,1,0,1.42l-9,9A1,1,0,0,1,19,26Z"/><path d="M28,17H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z"/></g><g id="frame"><rect class="cls-1" height="32" width="32"/></g></svg>'],
+        dots: false,
+        items:3,
+        autoplay:true,
+        smartSpeed:2000,
+        autoplayTimeout:5000,
+        responsiveClass: true,
+        responsive: {
+         0: {
+          items: 1
+        },
+        768: {
+          items: 2
+        },
+        1280: {
+          items: 3
+        }
+      }
+    })
+  
+  
+       $('#venue-finder-slider').owlCarousel({
+        loop:true,
+        margin:30,
+        autoplayHoverPause:true,
+        nav: true,
+        navText : ['<?xml version="1.0" ?><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;}</style></defs><title/><g data-name="Layer 2" id="Layer_2"><path d="M13,26a1,1,0,0,1-.71-.29l-9-9a1,1,0,0,1,0-1.42l9-9a1,1,0,1,1,1.42,1.42L5.41,16l8.3,8.29a1,1,0,0,1,0,1.42A1,1,0,0,1,13,26Z"/><path d="M28,17H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z"/></g><g id="frame"><rect class="cls-1" height="32" width="32"/></g></svg>','<?xml version="1.0" ?><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;}</style></defs><title/><g data-name="Layer 2" id="Layer_2"><path d="M19,26a1,1,0,0,1-.71-.29,1,1,0,0,1,0-1.42L26.59,16l-8.3-8.29a1,1,0,0,1,1.42-1.42l9,9a1,1,0,0,1,0,1.42l-9,9A1,1,0,0,1,19,26Z"/><path d="M28,17H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z"/></g><g id="frame"><rect class="cls-1" height="32" width="32"/></g></svg>'],
+        dots: false,
+        items:3,
+        autoplay:true,
+        smartSpeed:2000,
+        autoplayTimeout:5000,
+        responsiveClass: true,
+        responsive: {
+         0: {
+          items: 1
+        },
+        768: {
+          items: 2
+        },
+        1280: {
+          items: 3
+        }
+      }
+    })
+    
+
     //Read More and Less
     $('.read-more-content').addClass('hide_content')
     $('.read-more-show, .read-more-hide').removeClass('hide_content')
@@ -367,167 +419,6 @@ $(document).ready(function () {
         e.preventDefault();
     });
 
-    //contact us
-
-    var nameValue, emailValue, phoneValue, messageValue, recaptchaValue;
-    $("#name").on("input", function () {
-        validateName();
-    });
-
-    $("#email").on("input", function () {
-        validateEmail();
-    });
-
-    $("#phone").on("input", function () {
-        validatePhone();
-    });
-
-    $("#message").on("input", function () {
-        validateMessage();
-    });
-
-
-    $("#contact_btn").click(function (e) {
-        e.preventDefault();
-        validateName();
-        validateEmail();
-        validatePhone();
-        validateMessage();
-        validateRecaptcha();
-        if (isValidName(nameValue) && isValidEmail(emailValue) && isValidPhone(phoneValue) && isValidMessage(messageValue) && recaptchaValue) {
-            Swal.fire({
-                title: 'Request Processing',
-                text: 'Your request is in processing.',
-                icon: 'info',
-                timer: 3000, // Show this message for 3 seconds
-                timerProgressBar: true,
-                showConfirmButton: false
-            }).then(function () {
-                // After the first message, show the "Request submitted successfully" message
-                $("#contact_form").submit();
-                // Redirect to the desired URL after showing both messages
-                setTimeout(function () {
-                    window.location.href = '/thetradefair/public';
-                }, 1000);
-
-            });
-
-        }
-    });
-
-    function validateName() {
-        nameValue = $("#name").val().trim();
-        var nameErrorElement = $("#nameError");
-
-        if (nameValue === "") {
-            setError(nameErrorElement, "please enter the name");
-        } else if (!isValidName(nameValue)) {
-            setError(nameErrorElement, "Invalid Name");
-        } else {
-            setSuccess(nameErrorElement);
-        }
-    }
-
-    function validateEmail() {
-        emailValue = $("#email").val().trim();
-        var emailErrorElement = $("#emailError");
-
-        if (emailValue === "") {
-            setError(emailErrorElement, "please enter the email");
-        } else if (!isValidEmail(emailValue)) {
-            setError(emailErrorElement, "Please enter a valid Email Address!");
-        } else {
-            setSuccess(emailErrorElement);
-        }
-    }
-
-    function validatePhone() {
-        phoneValue = $("#phone").val().trim();
-        var phoneErrorElement = $("#phoneError");
-
-        if (phoneValue === "") {
-            setError(phoneErrorElement, "please enter the phone number");
-        } else if (!isValidPhone(phoneValue)) {
-            setError(
-                phoneErrorElement,
-                "Enter a valid phone number"
-            );
-        } else {
-            setSuccess(phoneErrorElement);
-        }
-    }
-
-    function validateMessage() {
-        messageValue = $("#message").val().trim();
-        var messageErrorElement = $("#messageError");
-
-        if (messageValue === "") {
-            setError(messageErrorElement, "plase enter the any message");
-        } else {
-            setSuccess(messageErrorElement);
-        }
-    }
-
-    function validateRecaptcha() {
-        recaptchaValue = grecaptcha.getResponse();
-        var recaptchaErrorElement = $("#recaptchaError");
-
-        if (recaptchaValue == "") {
-            setError(recaptchaErrorElement, "Please confirm that you are not a robot.");
-        } else {
-            setSuccess(recaptchaErrorElement);
-        }
-    }
-
-    function setError(element, message) {
-        element.text(message);
-        element.siblings("input").addClass("error").removeClass("success");
-    }
-
-    function setSuccess(element) {
-        element.text("");
-        element.siblings("input").removeClass("error").addClass("success");
-    }
-
-    function isValidName(nameValue) {
-        return /^[a-zA-Z\s]{3,}$/.test(nameValue);
-    }
-
-    function isValidEmail(emailValue) {
-        return /^[a-zA-Z0-9][a-zA-Z0-9._%\-]+@[a-zA-Z0-9_.-]{2,}\.[a-zA-Z]{2,}$/.test(emailValue);
-    }
-
-    function isValidPhone(phoneValue) {
-        return /^\d{10}$/.test(phoneValue);
-    }
-
-    function isValidMessage(messageValue) {
-        return messageValue !== "";
-        // return messageValue.trim().split(/\s+/).length >= 10;
-    }
-
-    function isValidRecaptcha(recaptchaValue) {
-        return recaptchaValue !== "";
-    }
-
-    // $(".ttf_form").submit(function(e){
-    //     e.preventDefault(); // Prevent the default form submission
-    //     // Show a "Request is in processing" message
-    //     Swal.fire({
-    //         title: 'Request Processing',
-    //         text: 'Your request is in processing.',
-    //         icon: 'info',
-    //         timer: 3000, // Show this message for 3 seconds
-    //         timerProgressBar: true,
-    //         showConfirmButton: false
-    //     }).then(function () {
-    //         // After the first message, show the "Request submitted successfully" message
-
-    //         // Redirect to the desired URL after showing both messages
-    //         window.location.href = '/thetradefair/public';
-
-    //     });
-    //    })
 });
 
 function showSuccess(message) {

@@ -60,7 +60,9 @@
               <a href="{{ url('room',$value->slug) }}"><img src="{{env('BACKEND_URL').'show-images/'. json_decode($value->image)[0]  }}" alt="Image" class="img-fluid"></a>
               <div class="web-logo"><img src="{{asset('img/logo-blog.png')}}" alt="Logo"></div>
               <div class="room-offers">
-                <big>{{ $value->off_percentage }}<sup>%</sup></big>
+                <big>
+               
+                {{ (isset($room['new_off_percentage']) && !empty($room['new_off_percentage'])) ? $room->new_off_percentage : $value->off_percentage }}<sup>%</sup></big>
                 <span>Off</span>
               </div>
             </div>

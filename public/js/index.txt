@@ -1,4 +1,0 @@
-*****trade fair******
-1. created user profile updated form
-2. testing of aboutus,blog,event page.
-3. find problem in room file some problem is solved & some panding

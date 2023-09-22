@@ -1,52 +1,49 @@
-var total_room = "{{ $rooms }}";
-var limit = 5;
-var is_first = 'yes';
+// var total_room = $('.no_of_rooms').val();
+// var limit = 5;
+// var is_first = 'yes';
 
-function getRoom(is_first) {
+// function getRoom(is_first) {
 
-    if ((localStorage.getItem("index-filter") != null && localStorage.getItem("index-filter") == "true" ||
-            localStorage.getItem("index-filter") == true) && localStorage.getItem("check-in") != null &&
-        localStorage.getItem("check-out") != null && localStorage.getItem("room-guest") != null && localStorage
-        .getItem("category")) {
-        $('#datepicker').val(localStorage.getItem("check-in"));
-        $('#checkout').val(localStorage.getItem("check-out"));
-        $('#room_category_filter').val(localStorage.getItem("category"));
-        $('.rooms_guests p').text(localStorage.getItem("room-guest"));
-        is_first = 'no';
-    }
+//     if ((localStorage.getItem("index-filter") != null && localStorage.getItem("index-filter") == "true" ||
+//             localStorage.getItem("index-filter") == true) && localStorage.getItem("check-in") != null &&
+//         localStorage.getItem("check-out") != null && localStorage.getItem("room-guest") != null && localStorage
+//         .getItem("category")) {
+//         $('#datepicker').val(localStorage.getItem("check-in"));
+//         $('#checkout').val(localStorage.getItem("check-out"));
+//         $('#room_category_filter').val(localStorage.getItem("category"));
+//         $('.rooms_guests p').text(localStorage.getItem("room-guest"));
+//         is_first = 'no';
+//     }
 
-    $.ajax({
-        'url': "{{ url('get-room-ajax') }}",
-        'type': 'POST',
-        'data': {
-            'checkin': $('#datepicker').val(),
-            'checkout': $('#checkout').val(),
-            'room_category_filter': $('#room_category_filter').val(),
-            'room_guest': $('.rooms_guests p').text(),
-            "limit": limit,
-            "_token": "{{ csrf_token() }}",
-            'is_first': is_first
-        },
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        success: function(res) {
-            $('#room_data').html(res);
-            limit = limit + 5;
-            if ($('#current_count').val() == $('#total_records').val()) {
-                $('.load-more').hide();
-            } else {
-                $('.load-more').show();
-            }
-        }
-    })
+//     $.ajax({
+//         'url': "{{ url('get-room-ajax') }}",
+//         'type': 'POST',
+//         'data': {
+//             'checkin': $('#datepicker').val(),
+//             'checkout': $('#checkout').val(),
+//             'room_category_filter': $('#room_category_filter').val(),
+//             'room_guest': $('.rooms_guests p').text(),
+//             "limit": limit,
+//             "_token": "{{ csrf_token() }}",
+//             'is_first': is_first
+//         },
+//         headers: {
+//             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//         },
+//         success: function(res) {
+//             $('#room_data').html(res);
+//             limit = limit + 5;
+//             if ($('#current_count').val() == $('#total_records').val()) {
+//                 $('.load-more').hide();
+//             } else {
+//                 $('.load-more').show();
+//             }
+//         }
+//     })
 
-}
+// }
 $(document).ready(function() {
-
   //  getRoom(is_first);
-
-
     $(document).on('click', '.search-room', function() {
 
         getAvailsRooms($('.check-in').val(), $('#room_category_filter option:selected').attr(
@@ -57,14 +54,11 @@ $(document).ready(function() {
         localStorage.setItem("room-guest", $('.rooms_guests p').text());
         localStorage.setItem("category", $('.category').val());
 
-
     })
 
-    $(document).on('click', '.load-more', function() {
-        getRoom(is_first);
-    })
-
-
+    // $(document).on('click', '.load-more', function() {
+    //     getRoom(is_first);
+    // })
 
     $('#selected_room_category').text(localStorage.getItem("category").replace('_', ' '));
 
@@ -189,10 +183,7 @@ $(document).ready(function() {
         child = (child == '') ? 0 : child;
 
         ++i;
-
-        //<a class="edit-rooms" onclick="editRooms('+i+')" style="text-decoration:none;font-size: 14px;font-weight: 600;cursor:pointer;">Edit</a>
-        //<a class="chnageRoomandAdults" onclick="chnageRoomandAdults('+i+')" style="cursor:pointer;display:none;text-decoration:none;font-size: 14px;font-weight: 600;">Update</a>
-
+ 
         html += '<div class="roomRow' + i + '"><strong>Room ' + i +
             '</strong><div class="editDiv"><p>' + adults +
             ' Adults</p><div class="room-guest-edit-remove"><a class="edit-rooms" onclick="editRooms(' +
