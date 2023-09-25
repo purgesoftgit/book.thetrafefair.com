@@ -66,24 +66,31 @@
                     </svg>
                 </a>
                 <ul class="navbar-nav me-auto ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
+                    {{--<li class="nav-item">
                         <a class="nav-link  {{Request::is('/') ? 'active' : ''}}" href="{{ route('home') }}">Home</a>
-                    </li>
+                    </li>--}}
                     <li class="nav-item">
-                        <a class="nav-link  {{Request::is('about-us') ? 'active' : ''}}" href="{{ url('about-us') }}">About Us</a>
+                        <a class="nav-link  {{Request::is('about-us') ? 'active' : ''}}" href="{{ url('about-us') }}">About </a>
                     </li>
+                  
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('wedding') }}">Wedding Hall</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link  {{Request::is('event') ? 'active' : ''}}" href="{{ url('event') }}">our Events</a>
+                        <a class="nav-link  {{Request::is('event') ? 'active' : ''}}" href="{{ url('event') }}">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.thetradebite.com/" target="_blank">Restaurants</a>
                     </li>
                     <li class="blogo-space"></li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://www.thetradebite.com/" target="_blank">Our Restaurants</a>
+                        <a class="nav-link" href="{{ url('spa') }}">Spa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link  {{Request::is('gallery') ? 'active' : ''}}" href="{{ url('gallery') }}">Gallery</a>
+                        <a class="nav-link  {{Request::is('corporte-meeting-halls') ? 'active' : ''}}" href="{{ url('corporte-meeting-halls') }}">Meeting</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link {{Request::is('banquet') ? 'active' : ''}}" href="{{ url('banquet') }}">Banquet Hall</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link  {{Request::is('contact-us') ? 'active' : ''}}" href="{{ route('contact') }}">Contact Us</a>

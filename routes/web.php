@@ -40,6 +40,9 @@ Route::post('save-wedding-enquiry','PageController@saveWeddingEnquiry');
 Route::get('corporte-meeting-halls','PageController@meetingpage');
 Route::post('save-meeting-data','PageController@storeMeetingData');
 
+Route::get('banquet','PageController@banquet');
+Route::post('banquet-store','PageController@saveBanquetRequest')->name('banquet-store');
+
 //login routes
 Route::get('login','PageController@login');
 Route::get('login/number','PageController@loginWithNumber');

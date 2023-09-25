@@ -397,7 +397,7 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 .latest-blog-list:hover .latest-blog-title,.latest-blog-list:focus .latest-blog-title{color: #00b542; text-decoration: none}
 
 .categories-list{display: flex; margin:16px 0; text-decoration: none; font-size: 16px; color: #282828}
-.categories-list:hover, .blog-categories .active {color: #00b542}
+.categories-list:hover, .categories-list .active{color: #00b542}
 
 .tags-list{display: inline-block; vertical-align: top; padding:5px 12px; background:#505d65; color:#fff; text-decoration:none; border-radius:15px; font-size:13px; font-style:italic; margin:0 5px 10px 0;}
 .tags-list:hover, .tags-list:focus{background:#00b542; color:#fff;}
@@ -533,9 +533,6 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 	transition: all 0.7s ease;
 }
 
-#progressbar #step1,.img-left,.leftalign-custom,.room_date_wise_price.price-section{text-align:left}
-
-
 #gallery-con{width:100%; height:auto; margin: 0 auto 0; padding: 0; border: 1px solid transparent; position: relative;}
 #gallery-con #gallery-main{margin: 0; padding: 0; position:relative; z-index: -1;}
 #gallery-con #gallery-main img{max-width:100%;}
@@ -641,8 +638,8 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 .room-detail{margin-top:10px;}
 .room-detail p{font-size:16px; color:#57576d;}
 .enjoy-meals-during{border: 1px solid #d9d9d9; padding: 13px; border-radius: 12px; margin-bottom:20px;}
-.enjoy-meals-during .btn-primary,.enjoy-meals-during .btn-light{border-radius:0; padding-top:8px; padding-bottom:8px;}
-.enjoy-meals-during .btn-primary.disabled, .enjoy-meals-during .btn-primary:disabled, .enjoy-meals-during .btn-light.disabled, .enjoy-meals-during .btn-light:disabled{color: #000; background-color: #ececec; border-color: #ececec; opacity: 1;}
+.enjoy-meals-during .btn-primary{border-radius:0; padding-top:8px; padding-bottom:8px;}
+.enjoy-meals-during .btn-primary.disabled, .enjoy-meals-during .btn-primary:disabled{color: #000; background-color: #ececec; border-color: #ececec; opacity: 1;}
 .enjoy-meals-during p{font-size:14px; color:#020228; font-weight:500;}
 .enjoy-meals-title{font-size:20px; font-weight:800; color:#00b542; letter-spacing:1px; text-transform: uppercase; font-family: 'Plus Jakarta Sans', sans-serif;}
 .select-rs{background: #000; color: #fff; padding: 0 14px; width: 100%; height: 40px; border: 0; line-height: 38px; font-size: 14px; box-shadow:none; outline: none;}
@@ -893,7 +890,7 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 .sub-total-box dl dt.grand-totle, .sub-total-box dl dd.grand-totle{border-top:1px solid #fff; padding:10px 0 0 0; margin-top:10px; font-size:18px; font-weight:600;}
 
 
-.ordering-for{display: flex; justify-content: space-between; background:#fae17c; border-radius:12px; padding:24px 20px 20px;}
+.ordering-for{display: flex; justify-content: space-between; background:#fff; border-radius:12px; padding:24px 20px 20px;}
 .ordering-for h6{font-size:14px; text-transform:uppercase; color:#383838; font-weight:600; font-family: 'Plus Jakarta Sans', sans-serif;}
 .ordering-for p{font-size:16px; color:#171717; margin-bottom:0;}
 .change-link{color:#000; display: inline-block; margin-top:10px; text-transform:uppercase; font-size:14px;}
@@ -908,6 +905,99 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 .number-counter-inner input{width:35px; height:32px; line-height:32px; padding:0; text-align: center; background:#f6eaec; border:0; border-radius:0; outline: none; box-shadow: none;}
 .number-counter-inner .minus-btn, .number-counter-inner .plus-btn{width:27px; height:32px; line-height:30px; text-align: center; cursor: pointer; color:#ed596b; display: block; font-size:18px; font-weight:600;}
 /*Checkout Page Css End*/
+
+.wedding-banner{background-repeat: no-repeat; background-position: center top; background-size: cover; min-height:calc(100vh - 119px); margin-top:-30px; display: flex; align-items: center; position: relative;}
+.wedding-banner:before{content:''; position: absolute; top:0; right:0; bottom:0; left:0; background: linear-gradient(355.85deg, rgba(0, 0, 0, 0.75) 13.42%, rgba(0, 0, 0, 0) 82.56%);}
+.wedding-banner-title{font-weight: 600; font-size: 100px; line-height: 117px; text-transform: capitalize; color: rgba(250, 225, 124, 0.93); position: relative; padding-bottom:20px;}
+.wedding-banner-title:before{content:''; position: absolute; top:100%; left:0; width:202px; height:3px; background-color: rgba(250, 225, 124, 0.93);}
+.about-wedding{background:rgb(243 255 247); padding:100px 0; text-align: center;}
+.about-wedding p{font-size: 17px; line-height: 150%; text-align: center; color: #878788; margin:0 auto 70px; max-width:1000px;}
+.about-wedding iframe{height:620px;}
+.about-wedding-title{font-weight: 600; font-size: 40px; line-height: 47px; text-transform: capitalize; margin-bottom:15px;}
+
+.wedding-gallery{padding:80px 0 100px; text-align: center;}
+.wedding-gallery-list{position: relative; text-align: left;}
+.wedding-gallery-list + .wedding-gallery-list{margin-top:2%;}
+.wedding-gallery-list p, .exp-tim-wed-section p{font-style: normal; font-weight:500; font-size: 16px; color:#878788;}
+.wedding-gallery-list span{position: absolute; bottom:0; left:0; right:0; background:rgba(255,255,255,0.65); padding:10px 20px;  font-size:18px; text-transform: capitalize; color: #000000; font-weight: 500;}
+.wedding-gallery-title{font-weight: 600; font-size: 40px; line-height: 47px; color: #242424; margin-bottom:20px;}
+.height50per{height:49%;}
+.height50per img{height:100%;}
+.wedding-gallery-button{height:49%; margin-top:2%; display: flex; align-items: center; padding:10px 12%;}
+.wedding-gallery-button .btn-primary{font-weight: 400; font-size: 24px; line-height: 28px; text-transform: capitalize; padding:12px;}
+.wd-g-link a{color:#878788; text-decoration: none;}
+.wd-g-link a:hover, .wd-g-link a:focus{color:#FFCD01; text-decoration: none;}
+
+.exp-tim-wed-slider{background:rgb(243 255 247); padding:40px 0 60px;}
+.exp-tim-wed-section{text-align: center;}
+.exp-tim-wed-text-btn{display: flex; gap:12px;}
+.exp-tim-wed-inner{text-align: left; padding:20px; background-color:#fff;}
+.exp-tim-wed-title{font-weight: 500; font-size: 22px; line-height: 28px; text-transform: capitalize; color: #000000; margin-bottom:15px; position: relative; padding-bottom:6px;}
+.exp-tim-wed-title:before{content:''; position: absolute; top:100%; left:0; width:150px; height:2px; background-color:rgb(0 181 66);}
+.exp-tim-wed-inner p{font-weight: 400; font-size: 15px; line-height:20px; text-transform: capitalize; color: #000000;}
+
+.exp-tim-wed-slider .owl-carousel .owl-nav button.owl-prev, .exp-tim-wed-slider .owl-carousel .owl-nav button.owl-next, .venue-finder-section .owl-carousel .owl-nav button.owl-prev, .venue-finder-section .owl-carousel .owl-nav button.owl-next{width:50px; height:50px; border-radius:40px; background: linear-gradient(249.61deg, rgba(250, 225, 124, 0.93) -51.52%, rgba(207, 207, 207, 0) 107.91%); -webkit-transition: all 0.5s ease-in-out; -moz-transition: all 0.5s ease-in-out;  -o-transition: all 0.5s ease-in-out;  transition: all 0.5s ease-in-out;}
+.exp-tim-wed-slider .owl-carousel .owl-nav button.owl-prev:hover, .exp-tim-wed-slider .owl-carousel .owl-nav button.owl-prev:focus, .exp-tim-wed-slider .owl-carousel .owl-nav button.owl-next:hover, .exp-tim-wed-slider .owl-carousel .owl-nav button.owl-next:focus, .venue-finder-section .owl-carousel .owl-nav button.owl-prev:hover, .venue-finder-section .owl-carousel .owl-nav button.owl-prev:focus, .venue-finder-section .owl-carousel .owl-nav button.owl-next:hover, .venue-finder-section .owl-carousel .owl-nav button.owl-next:focus{background:#fff;}
+.exp-tim-wed-slider .owl-carousel .owl-nav button.owl-prev, .venue-finder-section .owl-carousel .owl-nav button.owl-prev{left:-30px;} 
+.exp-tim-wed-slider .owl-carousel .owl-nav button.owl-next, .venue-finder-section .owl-carousel .owl-nav button.owl-next{right:-30px;}
+.exp-tim-wed-slider .owl-carousel .owl-nav button.owl-prev svg, .exp-tim-wed-slider .owl-carousel .owl-nav button.owl-next svg, .venue-finder-section .owl-carousel .owl-nav button.owl-prev svg, .venue-finder-section .owl-carousel .owl-nav button.owl-next svg{width:30px; height:30px;}
+
+.venue-finder-section{padding:100px 0;}
+.venue-finder-section p{font-weight: 500; font-size:17px; line-height:25px; color:#878788;;}
+.venue-finder-title{font-weight: 600; font-size: 40px; line-height: 47px; text-transform: capitalize; color: #242424; position: relative; padding-bottom:20px; margin-bottom:35px;}
+.venue-finder-title:before{content:''; position: absolute; top:100%; left:0; width:80%; height:2px; background-color: rgb(0 181 66);}
+.venue-finder-subtitle{font-weight: 500; font-size: 16px; line-height: 19px; text-transform: lowercase; color: #242424; margin:20px 0;}
+
+.venue-finder-left{padding-right:30px;}
+
+.reachout-form{box-shadow:4px 4px 37px rgba(0, 0, 0, 0.1); background:#fff; padding:40px 40px 0; margin:0 0 100px;}
+.reachout-form form{margin-bottom:40px; padding-left:70px;}
+.reachout-form .form-floating>.form-control, .reachout-form .form-floating>.form-select{border:0; border-bottom:1px solid #888; border-radius:0;}
+.reachout-form p{font-weight: 500; font-size: 17px; color: #878788;}
+.mb-m5{margin-bottom:-50px; animation: MoveUpDown2 10s linear infinite;}
+
+.reachout-title{font-weight: 500; font-size: 32px; color: #1C1C1D;}
+
+/*Corporate*/
+.event-section{padding:60px 0;}
+.event-list{height: 370px; width: 100%; position: relative; background-size: cover; display: flex; align-items: center; text-align: center; color: #fff;}
+.event-list:before{content:''; position: absolute; top: 15px; right: 15px; bottom: 15px; left: 15px; background: rgba(0,0,0,.88);}
+.event-list-inner{position: relative; z-index: 2; padding: 0 40px; width: 100%;}
+.event-list-title{font-size: 21px; font-weight: 600;}
+.event-list strong{display: block; font-size: 15px;}
+.event-list small{display: block; font-size: 18px;}
+
+.custom-meeting {text-align: center;padding: 50px 0}
+.custom-meeting:nth-child(odd) .custom-meeting-inner {padding-right: 20px}
+.custom-meeting:nth-child(2n) .custom-meeting-inner {padding-left: 20px;padding-right: 0}
+.custom-meeting h2 {font-size: 32px;color: #222;margin: 20px 0 30px;text-transform: capitalize}
+
+.activities-section,.contactus-section,.events-section {padding: 70px 0}
+.activities-list img{max-height: 65px}
+.activities-list h3{margin: 15px 0 10px; font-size: 18px; color: #222; font-weight: 700}
+.activities-list h3.facilitiesh3{font-size: 1.5rem; font-weight: 400; color: #212529; text-transform: capitalize;}
+.activities-list p{font-size:15px; line-height:22px; font-weight:normal; color: #878788;}
+
+.contact-section{margin: 60px 0 100px}
+.contact-box{background-repeat: no-repeat; background-size: cover; border-radius: 20px; box-shadow: 0 5px 15px 0 rgba(0,0,0,.15);}
+.contact-box-inner{width: 100%; padding: 30px 30px 35px;}
+.contact-list-title{font-size: 20px; color: #222; margin: 0 0 8px; font-weight: 700}
+.contact-list{background: rgba(255,255,255,.77); padding: 22px 30px; border-left: 5px solid #fff; margin-top: 10px}
+.contact-list p{color: #000; margin: 2px 0 0; font-weight: 600}
+
+.meeting-contact-form{position: relative; padding:80px 0;}
+.meeting-contact-form:after{content:''; position: absolute; top:0; left:0; right:0; height:245px; background:#00b542; z-index:-1;}
+.meeting-contact-form form{max-width:900px; margin:0 auto; background:#fff; border-radius:30px; padding:45px 30px 30px; border:1px solid #d9d9d9;}
+.con-form-title{font-size:26px; color:#000; font-weight:800; text-align: center; text-transform: uppercase;  font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom:45px;}
+.form-style .form-label{font-size:16px; color:#545454;}
+.form-style .form-label sup{color:#f00; top:-1px; font-weight:800;}
+.form-style .form-control, .form-style .form-select{height:55px; border:1px solid #d9d9d9; border-radius:6px; padding-left:24px;}
+.form-style textarea.form-control{height: auto; resize: none; padding-top:15px;}
+
+
+
+
+
 
 /*Responsive Css Start///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 @media (max-width:1450px){

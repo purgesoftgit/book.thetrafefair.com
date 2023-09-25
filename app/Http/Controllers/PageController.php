@@ -92,6 +92,7 @@ class PageController extends Controller
         $data->phone = $request->phone;
         $data->message = $request->message;
         $data->status = 'Unread';
+        $data->subject = "contact-us";
         $data->save();
 
         return redirect('thankyou');
@@ -184,6 +185,51 @@ class PageController extends Controller
         return view('blogs.blog', compact('blogs', 'categories', 'categoryFilter', 'latest_blog'));
     }
 
+    public function banquet(){
+        $data = Review::all();
+        return view('banquet',compact('data'));
+    }
+
+
+    public function saveBanquetRequest(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => ['required'],
+            'userlastName' => ['required'],
+            'city' => ['required'],
+            'dateofevent' => ['required'],
+            'email' => ['required', 'email', 'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/'],
+            'phone' => ['required', 'numeric'],
+            'numberofguest' => ['required'],
+            'company' => ['required'],
+            'booking_purpose' => ['required'],
+            'message' => ['required'],
+            'g-recaptcha-response' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back();
+        }
+
+        $contact = new ContactUs;
+        $contact->selected_website = 1; //1 for thetradefair
+        $contact->name = ucwords($request->name);
+        $contact->email = $request->email;
+        $contact->phone = '+91' . $request->phone;
+        $contact->userlastName = $request->userlastName;
+        $contact->city = $request->city;
+        $contact->dateofevent = $request->dateofevent;
+        $contact->numberofguest = $request->numberofguest;
+        $contact->compny = $request->company;
+        $contact->message = $request->message;
+        $contact->booking_purpose = $request->booking_purpose;
+       
+        $contact->status = 'Unread';
+        $contact->save();
+
+        return redirect('thankyou');
+    }
+    
     public function blogDetail($slug)
     {
         $blog_detail = Blog::where('slug', $slug)->first();

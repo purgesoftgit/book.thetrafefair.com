@@ -250,7 +250,7 @@ $txnid = substr(hash('sha256', mt_rand() . microtime()), 0, 20);
                                     @if(array_key_exists('extra_charges',$form_data))
                                     <div class="additional_persons_charges">
                                         <dt style="border-top:1px solid #c0c0c0; margin-top:1rem">Additional Charges
-                                            <div class="additional_amount_stmt"><small>(<?php if (array_key_exists('extra_charges', $form_data)) echo $form_data['extra_charges']; ?>)</small></div>
+                                            <div class="additional_amount_stmt"><small class="text-danger">(<?php if (array_key_exists('extra_charges', $form_data)) echo $form_data['extra_charges']; ?>)</small></div>
                                         </dt>
                                         <dd style="border-top:1px solid #c0c0c0; margin-top:1rem" class="additional_charges <?php if (array_key_exists('minus_peoples_amount', $form_data)) {
                                                                                                                                 echo "minus_amount";

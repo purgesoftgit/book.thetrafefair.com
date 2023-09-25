@@ -11,6 +11,7 @@
             <li><a href="{{route('about')}}">About us</a></li>
             <li><a href="javascript:void(0)">Management</a></li>
             <li><a href="{{ url('corporte-meeting-halls') }}">Corporate Meeting</a></li>
+            <li><a href="{{ url('banquet') }}">Banquet Hall</a></li>
             <li><a href="javascript:void(0)">Vision, mission & values</a></li>
             <li><a href="javascript:void(0)">Why book with us directly</a></li>
             <li><a href="javascript:void(0)">Award</a></li>

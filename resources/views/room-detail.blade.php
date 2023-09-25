@@ -85,23 +85,14 @@
     <div class="room-detail">
         <div class="room-detail-top">
             <div class="room-detail-title category-title">{{$room->title ?? ''}}</div>
-            <!-- <div class="room-detail-rating">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                            </div> -->
         </div>
         <div class="room-detail-rate">
-
 
             <big>₹<small class="per_person_price"><?php echo isset($room->final_price) && !empty($room->final_price) ? $room->final_price : $room->price; ?></small></big>
 
             <s>₹<?php echo isset($room->new_old_price) && !empty($room->new_old_price) ? $room->new_old_price : $room->old_price; ?></s>
         </div>
         <p>{!! $room->description !!}</p>
-
 
     </div>
 

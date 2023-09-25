@@ -38,32 +38,32 @@
             <div class="destinations-inner">
                 <article>
                     <a href="javascript:void(0)">
-                        <img src="{{asset('img/destinations-img.jpg')}}" alt="Image" class="img-fluid">
-                        <span>Guwahati</span>
+                        <img src="{{asset('img/destinations-img.webp')}}" alt="Image" class="img-fluid">
+                        <span>Hawa Mahal</span>
                     </a>
                 </article>
 
                 <article>
                     <a href="javascript:void(0)">
-                        <img src="{{ asset('img/destinations-img2.jpg')}}" alt="Image" class="img-fluid">
-                        <span>Kalimpong</span>
+                        <img src="{{ asset('img/destinations-img2.webp')}}" alt="Image" class="img-fluid">
+                        <span>Jal Mahal</span>
                     </a>
                 </article>
 
                 <article>
                     <a href="javascript:void(0)">
-                        <img src="{{ asset('img/destinations-img3.jpg')}}" alt="Image" class="img-fluid">
-                        <span>Raipur</span>
+                        <img src="{{ asset('img/destinations-img3.webp')}}" alt="Image" class="img-fluid">
+                        <span>Albert Hall Museum</span>
                     </a>
                 </article>
 
                 <article>
                     <a href="javascript:void(0)">
-                        <img src="{{ asset('img/destinations-img4.jpg')}}" alt="Image" class="img-fluid">
-                        <span>Gangtok</span>
+                        <img src="{{ asset('img/destinations-img4.webp')}}" alt="Image" class="img-fluid">
+                        <span>Amer Fort</span>
                     </a>
                 </article>
-
+<!-- 
                 <article>
                     <a href="javascript:void(0)">
                         <img src="{{ asset('img/destinations-img5.jpg')}}" alt="Image" class="img-fluid">
@@ -90,7 +90,7 @@
                         <img src="{{ asset('img/destinations-img8.jpg')}}" alt="Image" class="img-fluid">
                         <span>Lagoon Bhubaneswar</span>
                     </a>
-                </article>
+                </article> -->
             </div>
 
         </div>
@@ -125,7 +125,7 @@
                                 and unmatched privacy and plush comfort. Rooms are appointed keeping in mind the needs
                                 of the modern day traveller and luxury that our guests have always been accustomed to.
                             </p>
-                            <a href="{{env('HOTEL_URL')}}" target="_blank" class="btn btn-primary">View More</a>
+                            <a href="{{ url('rooms') }}"  class="btn btn-primary">View More</a>
                         </div>
                     </div>
                 </div>
@@ -189,7 +189,7 @@
                                 beautifully detailed convention spaces, banquet halls, conference rooms and meeting
                                 lounges speak of sophistication and attention to detail to ensure each event planned
                                 with us is a success at every stage.</p>
-                            <a href="{{ env('MEETING_URL') }}" target="_blank" class="btn btn-primary">View More</a>
+                            <a href="{{ url('corporte-meeting-halls') }}" class="btn btn-primary">View More</a>
                         </div>
                     </div>
                 </div>
@@ -220,7 +220,7 @@
                             <p>The soothing ambience at each of the The Trade Fair Spas will transport you to a world of
                                 calm and peace as you relax and have our expert therapists heal, balance and restore
                                 your energy.</p>
-                            <button type="button" class="btn btn-primary">View More</button>
+                            <a href="{{ url('spa') }}" class="btn btn-primary">View More</a>
                         </div>
                     </div>
                 </div>
@@ -250,7 +250,7 @@
                             <div class="hotel-service-title">Wedding Hall</div>
                             <p>Holiday Inn Jaipur City center is a 5-star property located in the Pink City of India.
                                 Just few minutes drive to Railway Station, Bus Stand and Airport.</p>
-                            <a href="{{ env('WEDDING_URL') }}" target="_blank" class="btn btn-primary">View More</a>
+                            <a href="{{ url('wedding') }}" class="btn btn-primary">View More</a>
                         </div>
                     </div>
                 </div>

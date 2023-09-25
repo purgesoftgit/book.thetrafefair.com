@@ -8,7 +8,7 @@
   <div class="confirm-page">
     <div class="container">
 
-      <ul id="progressbar">
+      <ul id="progressbar-new">
         <li class="active" id="step1">
           <strong>SELECT A ROOM</strong>
         </li>
@@ -60,10 +60,7 @@
         <img src="{{asset('img/success-check.png')}}">
         <h3>Thanks {{$checkout_form_data['customerName'] ?? ''}}, your booking is confirmed</h3>
         <p><strong>Confirmation Number:</strong>{{$transaction_data->txnid ?? ''}}</p>
-        {{--<a href="{{url('downloadTicket',$transaction_data->txnid ?? '')}}" class="btn btn-dark">Print Invoice</a>
-        <a href="{{ url('rooms') }}" class="btn btn-primary">Book another room</a>--}}
-
-        <a class="view-invoice btn btn-dark" type="button" data-toggle="modal" data-target="#staticBackdrop">View Invoice</a>
+        <a class="view-invoice btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">View Invoice</a>
         <a href="{{url('downloadTicket',$transaction_data->txnid ?? '')}}/downl_invoice" class="btn btn-dark">Download Invoice</a>
 
 
@@ -85,7 +82,7 @@
 
 
   <!-- Modal -->
-  <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal fade" id="staticBackdrop"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">

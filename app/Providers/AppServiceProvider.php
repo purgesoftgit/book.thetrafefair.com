@@ -34,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
 
         //share meta data to all blade file 
         if (isset($_SERVER['REQUEST_URI'])) {
+           
             $request = parse_url($_SERVER['REQUEST_URI']);
             $result = $request['path'];
             $meta_datas = MetaData::where('type', 1)->where('route', $result)->first();

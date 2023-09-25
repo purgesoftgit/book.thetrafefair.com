@@ -397,7 +397,7 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 .latest-blog-list:hover .latest-blog-title,.latest-blog-list:focus .latest-blog-title{color: #00b542; text-decoration: none}
 
 .categories-list{display: flex; margin:16px 0; text-decoration: none; font-size: 16px; color: #282828}
-.categories-list:hover, .categories-list .active{color: #00b542}
+.categories-list:hover{color: #00b542}
 
 .tags-list{display: inline-block; vertical-align: top; padding:5px 12px; background:#505d65; color:#fff; text-decoration:none; border-radius:15px; font-size:13px; font-style:italic; margin:0 5px 10px 0;}
 .tags-list:hover, .tags-list:focus{background:#00b542; color:#fff;}
@@ -958,14 +958,14 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 
 .reachout-title{font-weight: 500; font-size: 32px; color: #1C1C1D;}
 
-/*Corporate*/
+/*Corporate Page Css Start*/
 .event-section{padding:60px 0;}
-.event-list{height: 370px; width: 100%; position: relative; background-size: cover; display: flex; align-items: center; text-align: center; color: #fff;}
-.event-list:before{content:''; position: absolute; top: 15px; right: 15px; bottom: 15px; left: 15px; background: rgba(0,0,0,.88);}
-.event-list-inner{position: relative; z-index: 2; padding: 0 40px; width: 100%;}
-.event-list-title{font-size: 21px; font-weight: 600;}
-.event-list strong{display: block; font-size: 15px;}
-.event-list small{display: block; font-size: 18px;}
+.event-section .event-list{height: 370px; width: 100%; position: relative; background-size: cover; display: flex; align-items: center; text-align: center; color: #fff;}
+.event-section .event-list:before{content:''; position: absolute; top: 15px; right: 15px; bottom: 15px; left: 15px; background: rgba(0,0,0,.88);}
+.event-section .event-list-inner{position: relative; z-index: 2; padding: 0 40px; width: 100%;}
+.event-section .event-list-title{font-size: 21px; font-weight: 600;}
+.event-section .event-list strong{display: block; font-size: 15px;}
+.event-section .event-list small{display: block; font-size: 18px;}
 
 .custom-meeting {text-align: center;padding: 50px 0}
 .custom-meeting:nth-child(odd) .custom-meeting-inner {padding-right: 20px}
@@ -993,7 +993,36 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 .form-style .form-label sup{color:#f00; top:-1px; font-weight:800;}
 .form-style .form-control, .form-style .form-select{height:55px; border:1px solid #d9d9d9; border-radius:6px; padding-left:24px;}
 .form-style textarea.form-control{height: auto; resize: none; padding-top:15px;}
+/*Corporate Page Css End*/
 
+
+/*Banquet Page Css Start*/
+.banquet-service-section{padding:85px 0;}
+.banquet-service-list{position: relative; border-radius:15px; overflow: hidden;}
+.banquet-service-inner{position: absolute; bottom:22px; left:10px; right:10px;}
+.banquet-service-inner span{background:#03051f; color:#fff; font-size:16px; padding:2px 10px;}
+.banquet-service-list-title{margin-bottom:6px;}
+.banquet-service-list-title strong{background:#03051f; color:#fff; font-size:24px; line-height:24px; font-weight:800; font-family: 'Plus Jakarta Sans', sans-serif; padding:2px 10px;}
+.col-grid{display: grid; align-content: space-between; height:100%}
+
+.banquet-service-detail-section{padding:50px 0 85px 0;}
+.banquet-service-detail-section .col-xl-6:nth-child(2){background:#00b542;}
+.banquet-service-detail-section .col-xl-6:nth-child(3){background:#03051f;}
+.banq-service-det-list{padding:50px 40px;}
+.banq-service-det-list p{font-size:15px; color:#03051f; line-height:26px; }
+.banq-service-det-list-title{font-size:32px; color:#03051f; margin:0 0 14px; font-weight:800; font-family: 'Plus Jakarta Sans', sans-serif; text-transform: uppercase;}
+.banq-service-det-list-icon{background:url(../img/banq-polygon-bg.png) no-repeat center; width:113px; height:122px; line-height:122px; text-align: center; margin:0 0 22px}
+.banquet-service-detail-section .col-xl-6:nth-child(2) .banq-service-det-list-icon, .banquet-service-detail-section .col-xl-6:nth-child(3) .banq-service-det-list-icon{background:url(../img/banq-polygon-bg2.png) no-repeat center;}
+.banquet-service-detail-section .col-xl-6:nth-child(1) .banq-service-det-list-title, .banquet-service-detail-section .col-xl-6:nth-child(3) .banq-service-det-list-title{color:#00b542;}
+.banquet-service-detail-section .col-xl-6:nth-child(3) p{color:#fff;}
+
+.banquet-offers-section{padding:85px 0;}
+.banquet-offers-list{text-align: center; background:url(../img/banq-offer-bgblue.jpg) no-repeat center; padding:15px; border-radius:30px; height:100%;}
+.banquet-offers-bg2{background:url(../img/banq-offer-bggreen.jpg) no-repeat center;}
+.banquet-offers-bg3{background:url(../img/banq-offer-bgred.jpg) no-repeat center;}
+.banquet-offers-list .img-fluid{border-radius:30px; border:1px solid rgba(255,255,255,0.3); box-shadow:0 4px 15px 0 rgba(0,0,0,0.4);}
+.banquet-offers-list-title{padding:20px 0; color:#fff; font-size:24px; font-weight:600; font-family: 'Plus Jakarta Sans', sans-serif;}
+/*Banquet Page Css End*/
 
 /*Responsive Css Start///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 @media (max-width:1450px){

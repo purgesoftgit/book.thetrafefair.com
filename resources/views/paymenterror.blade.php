@@ -4,7 +4,7 @@
 @include('layouts.header')    
 <!-- Header Section End -->
 <!-- Mid Section Start -->
-<div class="mid-section">
+<main class="web-main">
     <!-- 404 Start -->
     <div class="failure-page">
       <div class="container">
@@ -27,7 +27,7 @@
     </div>
     <!-- 404 End -->
     
-</div>
+</main>
 <!-- Footer Section Start -->
 @include('layouts.footer')
 @endsection
