@@ -29,7 +29,7 @@
                                     <span class="input-group-text" id="basic-addon1">
                                         <img src="https://www.thetradeinternational.com/public//img/india-flag.png" alt="India Flag Image">&nbsp; +91
                                     </span>
-                                    <input type="text" class="form-control phone_number" style="width: 30%;" name="phone_number" id="Phone-Number" placeholder="Phone Number*" value="{{ old('phone_number') }}">
+                                    <input type="text" class="form-control phone_number phone" minlength="10" maxlength="10" style="width: 30%;" name="phone_number" id="Phone-Number" placeholder="Phone Number*" value="{{ old('phone_number') }}">
                                     <label class="error p_err"></label>
 
                                     @error('phone_number')

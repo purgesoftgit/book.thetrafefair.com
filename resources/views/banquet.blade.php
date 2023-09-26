@@ -282,8 +282,7 @@
                 <span class="input-group-text" id="basic-addon1">
                   <img src="{{ asset('img/india-flag.jpg')}}" alt="India Flag Image">&nbsp; +91
                 </span>
-                
-                <input type="number" class="form-control phone-num validate[required,phone,maxSize[10],minSize[10]]" placeholder="" maxlength="10" minlength="10" name="phone" id="myTextBox">
+                <input type="text" name="phone" id="phone" minlength="10" maxlength="10" class="form-control phone validate[required,maxSize[10],minSize[10]]"  />
                 
                 <!-- <div class="input-group-append edit-input-group-append">
                   <span toggle="#password-field" class="input-group-text field-icon"><i class="fa fa-pencil"></i></span>

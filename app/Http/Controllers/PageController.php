@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use App\{Blog, Category, PhoneVerification, User, Job, RoomCategory, Wallet, NotificationPreferece, RoomAdditionalData, Review, ContactUs, SpaReservation, WeddingEnquiry};
+use App\{Blog, Category, PhoneVerification, User, Job, RoomCategory, Wallet, NotificationPreferece, RoomAdditionalData, Review, ContactUs, SpaReservation, WeddingEnquiry, CMSPage};
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 // use Illuminate\Validation\ValidationException;
@@ -116,6 +116,7 @@ class PageController extends Controller
         $data = new SpaReservation;
         $data->name = $request->name;
         $data->email = $request->email;
+        $data->phone = $request->phone;
         $data->start_date = $request->start_date;
         $data->end_date = $request->end_date;
         $data->start_time = $request->start_time;
@@ -510,7 +511,13 @@ class PageController extends Controller
 
         $related_room = $this->fetchAllAdditionalRoomData($slug);
 
-        return view('room-detail', ['room' => $room_detail, "related_room" => $related_room]);
+        $about_TTF_city_center = CMSPage::where('slug','about-ttf-city-center')->first();
+        $facility_TTF_city_center = CMSPage::where('slug','facility-ttf-city-center')->first();
+
+        $total_rating = Review::where('item_id',$room_detail->id)->where('item_type','room')->sum('rating');
+        $total_reviews = Review::where('item_id',$room_detail->id)->where('item_type','room')->count();
+
+        return view('room-detail', ['room' => $room_detail, "related_room" => $related_room, "about_TTF_city_center" => $about_TTF_city_center, "facility_TTF_city_center" =>$facility_TTF_city_center, "total_rating"=>$total_rating, "total_reviews"=>$total_reviews]);
     }
 
     public function fetchSingleAdditionalRoomData($room_detail)

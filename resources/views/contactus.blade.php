@@ -32,7 +32,7 @@
           @csrf
           <div class="mb-4">
             <label for="name">Name<span aria-label="required" class="text-danger">*</span></label>
-            <input type="text" name="name" id="name" class="form-control validate[required,minSize[2],maxSize[50]]" />
+            <input type="text" name="name" id="name" class="form-control validate[required,minSize[2],maxSize[50],custom[onlyLetterNumber]]" />
             @if ($errors->has('name'))
             <span class="text-danger"> {{ $errors->first('name') }} </span>
             @endif
@@ -46,16 +46,22 @@
             @endif
           </div>
 
-          <div class="mb-4">
+           <div class="mb-4">
             <label for="phone">Your Phone<span aria-label="required" class="text-danger">*</span></label>
-
-            <input type="number" name="phone" id="phone" class="form-control validate[required,phone,maxSize[10],minSize[10]]"  />
-            
+            <div class="mb-3 input-group banquet-contact">
+            <span class="input-group-text" id="basic-addon1">
+              <img src="{{ asset('img/india-flag.jpg')}}" alt="India Flag Image">&nbsp; +91
+            </span>
+            <input type="text" name="phone" id="phone" minlength="10" maxlength="10" class="form-control phone validate[required,maxSize[10],minSize[10]]" />
+            {{-- <button type="button" id="verifyButton" class="btn btn-primary btn-sm">Verify</button> --}}
             <span class="text-error" id="phoneError"></span>
+            </div>
             @if ($errors->has('phone'))
             <span class="text-danger"> {{ $errors->first('phone') }} </span>
             @endif
-          </div>
+          </div> 
+
+               
 
           <div class="mb-5">
             <label for="message-field" class="form-label">Message<span aria-label="required" class="text-danger">*</span></label>
@@ -179,9 +185,8 @@
         }).then(function() {
           $('#contact_form_us').submit();
         });
-
       } 
     });
-  });
+});
 </script>
 @endsection

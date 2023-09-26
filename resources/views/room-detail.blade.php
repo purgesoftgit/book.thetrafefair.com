@@ -172,7 +172,7 @@
 
 
     <div class="detail-list">
-        <div class="room-detail-title">About Hotel The Trade Fair</div>
+        {{-- <div class="room-detail-title">About Hotel The Trade Fair</div>
 
         <ul class="checkin-checkout">
             <li>CHECK IN 12 PM</li>
@@ -194,7 +194,8 @@
             <span class="badge">Property Highlights</span>
             <span class="badge">Room Details &amp; Amenities</span>
             <span class="badge">Activities &amp; Nearby Attractions</span>
-        </div>
+        </div> --}}
+        @if(isset($about_TTF_city_center)) {!! $about_TTF_city_center->description !!} @endif
     </div>
 
 
@@ -425,193 +426,9 @@
 
     </div>
 
-
-    <div class="room-detail-title mt-5 mb-3">Facilities at Hotel The Trade Fair</div>
-
-    <div class="facility-box">
-        <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
-                <div class="facility-box-list">
-                    <div class="facility-box-icon"><img src="{{asset('img/lounge-icon.png')}}"></div>
-                    <span>Lounge</span>
-                </div>
-            </div>
-
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
-                <div class="facility-box-list">
-                    <div class="facility-box-icon"><img src="{{asset('img/parking-icon.png')}}"></div>
-                    <span>Free Parking</span>
-                </div>
-            </div>
-
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
-                <div class="facility-box-list">
-                    <div class="facility-box-icon"><img src="{{asset('img/briefcase-icon.png')}}"></div>
-                    <span>Business Centre</span>
-                </div>
-            </div>
-
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
-                <div class="facility-box-list">
-                    <div class="facility-box-icon"><img src="{{asset('img/conference-room-icon.png')}}"></div>
-                    <span>Conference Room</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-
-        <!-- Col Start -->
-        <div class="col-xl-4 col-lg-4 col-md-6">
-            <div class="facility-label">Transfers</div>
-
-            <div class="facility-list">
-                <span class="badge">Paid Pickup/Drop</span>
-                <span class="badge">Paid Shuttle Service</span>
-                <span class="badge">Paid Railway Station Transfers</span>
-                <span class="badge">Paid Airport Transfers</span>
-                <span class="badge">Paid Bus Station Transfers</span>
-            </div>
-
-            <div class="facility-label">Business center and conferences</div>
-
-            <div class="facility-list">
-                <span class="badge">Business Centre</span>
-                <span class="badge">Printer</span>
-                <span class="badge">Banquet</span>
-                <span class="badge">Conference Room</span>
-                <span class="badge">Photocopying</span>
-                <span class="badge">Business Services</span>
-            </div>
-        </div>
-        <!-- Col End -->
-
-
-        <!-- Col Start -->
-        <div class="col-xl-4 col-lg-4 col-md-6">
-            <div class="facility-label">Common area</div>
-
-            <div class="facility-list">
-                <span class="badge">Lounge</span>
-                <span class="badge">Lawn</span>
-                <span class="badge">Reception</span>
-                <span class="badge">Seating Area</span>
-            </div>
-
-            <div class="facility-label">Outdoor activities and sports</div>
-
-            <div class="facility-list">
-                <span class="badge">Vehicle Rentals</span>
-            </div>
-
-            <div class="facility-label">Payment services</div>
-
-            <div class="facility-list">
-                <span class="badge">Currency Exchange</span>
-            </div>
-
-            <div class="facility-label">Family and kids</div>
-
-            <div class="facility-list">
-                <span class="badge">Childcare Services</span>
-            </div>
-        </div>
-        <!-- Col End -->
-
-
-        <!-- Col Start -->
-        <div class="col-xl-4 col-lg-4 col-md-6">
-            <div class="facility-label">Media and technology</div>
-
-            <div class="facility-list">
-                <span class="badge">Electrical Adapters</span>
-                <span class="badge">TV</span>
-                <span class="badge">Electrical Chargers</span>
-            </div>
-
-            <div class="facility-label">Health and wellness</div>
-
-            <div class="facility-list">
-                <span class="badge">First-aid Services</span>
-            </div>
-
-            <div class="facility-label">Entertainment</div>
-
-            <div class="facility-list">
-                <span class="badge">Night Club</span>
-            </div>
-        </div>
-        <!-- Col End -->
-
-    </div>
-
-    <div class="accordion accordion-style" id="accordionExample">
-        <div class="row">
-
-            <!-- col Start -->
-            <div class="col-lg-6">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-safetyhygiene" aria-expanded="false" aria-controls="collapse-safetyhygiene">Safety and hygiene</button>
-                    </h2>
-                    <div id="collapse-safetyhygiene" class="accordion-collapse collapse" aria-labelledby="heading-safetyhygiene" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-basic-facilities" aria-expanded="false" aria-controls="collapse-basic-facilities">Basic facilities</button>
-                    </h2>
-                    <div id="collapse-basic-facilities" class="accordion-collapse collapse" aria-labelledby="heading-basic-facilities" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsefood-drinks" aria-expanded="false" aria-controls="collapsefood-drinks">Food and drinks</button>
-                    </h2>
-                    <div id="collapsefood-drinks" class="accordion-collapse collapse" aria-labelledby="headingfood-drinks" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- col End -->
-
-            <!-- col Start -->
-            <div class="col-lg-6">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-safetysecurity" aria-expanded="false" aria-controls="collapse-safetysecurity">Safety and security</button>
-                    </h2>
-                    <div id="collapse-safetysecurity" class="accordion-collapse collapse" aria-labelledby="heading-safetysecurity" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-general-services" aria-expanded="false" aria-controls="collapse-general-services">General services</button>
-                    </h2>
-                    <div id="collapse-general-services" class="accordion-collapse collapse" aria-labelledby="heading-general-services" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- col End -->
-
-        </div>
-    </div>
-
+    <div class="detail-list">
+        @if(isset($facility_TTF_city_center)) {!! $facility_TTF_city_center->description !!} @endif
+     </div>
     </div>
 
     <div class="room-detail-review">

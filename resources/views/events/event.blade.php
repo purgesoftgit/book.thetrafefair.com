@@ -139,7 +139,7 @@
                                     <div class="mb-4">
                                         <label for="number-guest-field" class="form-label">Number of Guest
                                             <sup>*</sup></label>
-                                        <input type="text" class="form-control" id="number-guest-field"
+                                        <input type="text" class="form-control phone" id="number-guest-field"
                                             name="guest_number">
                                         @if ($errors->has('guest_number'))
                                             <span class="text-danger"> {{ $errors->first('guest_number') }} </span>
@@ -230,7 +230,12 @@
 
                                     <div class="mb-4">
                                         <label for="phone-field" class="form-label">Phone <sup>*</sup></label>
-                                        <input type="text" class="form-control" id="phone-field" name="phone">
+                                        <div class="mb-3 input-group banquet-contact">
+                                            <span class="input-group-text" id="basic-addon1">
+                                              <img src="{{ asset('img/india-flag.jpg')}}" alt="India Flag Image">&nbsp; +91
+                                            </span>
+                                        <input type="text" name="phone" id="phone-field" minlength="10" maxlength="10" class="form-control phone"  />
+                                        </div>
                                         @if ($errors->has('phone'))
                                             <span class="text-danger">{{ $errors->first('phone') }}</span>
                                         @endif

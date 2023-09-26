@@ -255,7 +255,8 @@
                             <div class="row">
                                 <div class="mb-5 col-xl-6">
                                     <div class="form-floating">
-                                        <input type="number" class="form-control phone-num validate[required,phone,maxSize[10],minSize[10]]" id="mobile-number " maxlength="10" minlength="10" name="phone" placeholder="Mobile Number">
+                                        <input type="text" name="phone" id="phone" minlength="10" maxlength="10" class="form-control phone validate[required,maxSize[10],minSize[10]]"  />
+                                        {{-- <input type="number" class="form-control phone-num validate[required,phone,maxSize[10],minSize[10]]" id="mobile-number " maxlength="10" minlength="10" name="phone" placeholder="Mobile Number"> --}}
                                         <label for="mobile-number">Mobile Number<span aria-label="required" class="text-danger">*</span></label>
                                     </div>
                                 </div>

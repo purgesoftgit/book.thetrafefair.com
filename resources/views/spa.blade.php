@@ -213,6 +213,19 @@
               @endif
             </div>
 
+            <div class="mb-4">
+              <label for="your-email-field" class="form-label">Phone<sup>*</sup></label>
+              <div class="mb-3 input-group banquet-contact">
+                <span class="input-group-text" id="basic-addon1">
+                  <img src="{{ asset('img/india-flag.jpg')}}" alt="India Flag Image">&nbsp; +91
+                </span>
+              <input type="text" name="phone" id="phone" minlength="10" maxlength="10" class="form-control phone validate[required,maxSize[10],minSize[10]]" />
+              </div>
+              @if ($errors->has('phone'))
+              <span class="text-danger"> {{ $errors->first('phone') }} </span>
+              @endif
+            </div>
+
             <div class="row">
               <div class="mb-4 col-md-6 col-sm-6">
                 <label class="form-label" for="start-date">Start Date<sup>*</sup></label>

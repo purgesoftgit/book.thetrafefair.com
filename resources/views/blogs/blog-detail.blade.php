@@ -6,14 +6,13 @@
 <main class="web-main">
 
   <!-- Page Title Section Start -->
-  <section class="page-title-section" style="background-image:url({{asset("img/blog-banner-img.jpg")}});">
-    <div class="container">
-      @if($blog_detail)
-      <div class="page-title">{{$blog_detail->title}}</div>
-      @endif
-
-    </div>
-  </section>
+    @if($blog_detail)
+    <section class="page-title-section" style="background-image :url({{ env('BACKEND_URL') . 'show-images/' . $blog_detail->image }})">
+      <div class="container">
+        <div class="page-title">{{$blog_detail->title}}</div>
+      </div>
+    </section>
+    @endif
   <!-- Page Title Section End -->
 
   <!-- Blog Page Start -->

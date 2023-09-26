@@ -74,7 +74,7 @@
                     </li>
                   
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('wedding') }}">Wedding Hall</a>
+                        <a class="nav-link {{Request::is('wedding') ? 'active' : ''}}" href="{{ url('wedding') }}">Wedding Hall</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link  {{Request::is('event') ? 'active' : ''}}" href="{{ url('event') }}">Events</a>
@@ -84,7 +84,7 @@
                     </li>
                     <li class="blogo-space"></li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('spa') }}">Spa</a>
+                        <a class="nav-link  {{Request::is('spa') ? 'active' : ''}}" href="{{ url('spa') }}">Spa</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link  {{Request::is('corporte-meeting-halls') ? 'active' : ''}}" href="{{ url('corporte-meeting-halls') }}">Meeting</a>

@@ -30,6 +30,7 @@ function onFocusEvent(e) {
 }
 
 $(document).ready(function () {
+    
     var isSubmit = true;
     var isVerify = false;
 
@@ -100,12 +101,14 @@ $(document).ready(function () {
                                         $('#verifyButton').hide()
                                         $(".passcode-wrapper").hide();
                                         $('.valid_otp').text("Verification Successfully...");
+                                        $('#Phone-Number').prop("readonly", true);
                                         setTimeout(function () {
                                             $(".valid_otp")
                                                 .hide();
                                         }, 3000);
                                         $('#btn_register').prop(
                                             "disabled", false);
+                                       
                                     }
                                 }
                             });
@@ -206,7 +209,12 @@ $(document).ready(function () {
             $('.p_err').hide();
         }
     })
-
+    
+    $('.phone').on('keypress keyup',function(e){
+        var charCode = (e.which) ? e.which : event.keyCode    
+        if (String.fromCharCode(charCode).match(/[^0-9]/g))    
+         return false;
+     });
 
 
 
