@@ -30,99 +30,364 @@ function onFocusEvent(e) {
 }
 
 $(document).ready(function () {
-    
+
     var isSubmit = true;
     var isVerify = false;
 
-    var current_url =  window.location.href;
-    if(current_url.split('/').pop() == "login")
-        var url_str = "login"
-    else
-        var url_str = "register"
+    localStorage.setItem('isVerify', isVerify);
+    localStorage.setItem("resent_otp", false)
 
-    $('#submitButton').click(function () {
-        if ($('#Phone-Number').val().length == 0) {
-            $('.p_err').text("Please enter phone number").css({
-                'display': 'block'
-            });
-        } else if ($('#Phone-Number').val().length != 10) {
-            $('.p_err').text("Please enter valid phone number").css({
-                'display': 'block'
-            });
+    var current_url = window.location.href;
+
+    var url_str = current_url.split('/').pop()
+
+    // function sendOTPVerify(){
+
+    //         console.log("sendOTPVerify");
+    //     localStorage.setItem("resent_otp", true)
+
+    //     $.ajax({
+    //         url: "register/data",
+    //         type: 'get',
+    //         data: {
+    //             data: $('#Phone-Number').val(),
+    //             url_str: url_str
+    //         },
+    //         success: function (response) {
+
+    //             if (response.status == 500) {
+    //                 $('#invalid_otp').text(response['error']);
+    //                 $('#invalid_otp').show();
+    //             } else {
+
+
+    //                 showSuccess('OTP sent successfully...');
+    //                 // $('.first-verify-btn').hide();
+    //                 $(".resend-otp").show();
+    //                 $(".passcode-wrapper").show();
+    //                 //var varifiyButton = $('#verifyButton').show()
+
+    //                 $('.otp-input .passcode-wrapper input').val("");
+    //                 $('.resend-otp-btn').hide()
+    //                 $('.countdown').removeClass("d-none");
+    //                 // $('.first-verify-btn').show()
+    //                 $('#verifyButton').hide()
+
+
+
+    //                 // $('#verifyButton').click(function () {
+    //                 //     var codeBox1 = $("#codeBox1").val(),
+    //                 //         codeBox2 = $("#codeBox2").val(),
+    //                 //         codeBox3 = $("#codeBox3").val(),
+    //                 //         codeBox4 = $("#codeBox4").val();
+    //                 //     var codeBox = codeBox1 + codeBox2 + codeBox3 + codeBox4;
+    //                 //     $.ajax({
+    //                 //         url: "register/data/otp",
+    //                 //         type: 'get',
+    //                 //         data: {
+    //                 //             codeBox: codeBox,
+    //                 //             number: $('#Phone-Number').val()
+    //                 //         },
+    //                 //         success: function (response) {
+    //                 //             if (response['status'] == 500) {
+    //                 //                 isSubmit = false
+    //                 //                 isVerify = false
+
+    //                 //                 $('#invalid_otp').text(response['error']);
+    //                 //                 $('#invalid_otp').show();
+    //                 //                 setTimeout(function () {
+    //                 //                     $("#invalid_otp")
+    //                 //                         .hide();
+    //                 //                 }, 3000);
+    //                 //             } else {
+    //                 //                 isSubmit = true
+    //                 //                 isVerify = true;
+
+    //                 //                 localStorage.setItem('isVerify', isVerify);
+
+    //                 //                 $('#verifyButton').hide()
+    //                 //                 $('.first-verify-btn').show()
+    //                 //                 $(".passcode-wrapper").hide();
+    //                 //                 $('.valid_otp').text("Verification Successfully...");
+    //                 //                 $('#Phone-Number').prop("readonly", true);
+    //                 //                 // $('.resend-url-link').hide();
+    //                 //                 $('.resend-otp').hide();
+    //                 //                 setTimeout(function () {
+    //                 //                     $(".valid_otp")
+    //                 //                         .hide();
+    //                 //                 }, 3000);
+    //                 //                 $('#btn_register').prop(
+    //                 //                     "disabled", false);
+
+    //                 //             }
+    //                 //         }
+    //                 //     });
+
+
+    //                 // });
+    //             }
+    //         }
+    //     });
+
+    // }
+
+    // $('.resend-otp-btn').click(function (evt) {
+    //     sendOTPVerify()
+    //     $('#invalid_otp').text("Successfully send new OTP.").css({ 'display': 'block', 'font-size': '13px', 'color': 'green' }).delay(3000).fadeOut();
+
+    //     // localStorage.setItem("resent_otp", true)
+    //     // $('.resend-spinner-border').show();
+    //     // setTimeout(() => {
+    //     //     $('.resend-spinner-border').hide();
+    //     //     $('.passcode-wrapper').show();
+    //     //     $('.otp-input .passcode-wrapper input').val("");
+    //     //     $('.resend-otp-btn').hide()
+    //     //     $('.countdown').removeClass("d-none");
+    //     //     // $('.first-verify-btn').show()
+    //     //     $('#verifyButton').hide()
+
+    //     //     $.ajax({
+    //     //         url: $(".resend-url-link").data("url") + $('.phone').val(),
+    //     //         type: "get",
+    //     //         success: function () { },
+    //     //     });
+
+    //     //     $('#invalid_otp').text("Successfully send new OTP.").css({ 'display': 'block', 'font-size': '13px', 'color': 'green' }).delay(3000).fadeOut();
+
+    //     // }, 1000);
+
+    // });
+
+    // $('#submitButton').click(function () {
+    //     // $('.otp-input .passcode-wrapper input').val("");
+
+    //     if ($('#Phone-Number').val().length == 0) {
+    //         $('.p_err').text("Please enter phone number").css({
+    //             'display': 'block'
+    //         });
+    //     } else if ($('#Phone-Number').val().length != 10) {
+    //         $('.p_err').text("Please enter valid phone number").css({
+    //             'display': 'block'
+    //         });
+    //     } else {
+    //         $('.p_err').hide();
+    //         $('#invalid_otp').hide();
+
+    //         sendOTPVerify()
+    //         // localStorage.setItem("resent_otp", true)
+
+    //         // $.ajax({
+    //         //     url: "register/data",
+    //         //     type: 'get',
+    //         //     data: {
+    //         //         data: $('#Phone-Number').val(),
+    //         //         url_str: url_str
+    //         //     },
+    //         //     success: function (response) {
+
+    //         //         if (response.status == 500) {
+    //         //             $('#invalid_otp').text(response['error']);
+    //         //             $('#invalid_otp').show();
+    //         //         } else {
+    //         //             localStorage.setItem("resent_otp", true)
+
+    //         //             showSuccess('OTP sent successfully...');
+    //         //             $('.first-verify-btn').hide();
+    //         //             $(".resend-otp").show();
+    //         //             $(".passcode-wrapper").show();
+    //         //             var varifiyButton = $('#verifyButton').show()
+
+
+    //         //             // $('#verifyButton').click(function () {
+    //         //             //     var codeBox1 = $("#codeBox1").val(),
+    //         //             //         codeBox2 = $("#codeBox2").val(),
+    //         //             //         codeBox3 = $("#codeBox3").val(),
+    //         //             //         codeBox4 = $("#codeBox4").val();
+    //         //             //     var codeBox = codeBox1 + codeBox2 + codeBox3 + codeBox4;
+    //         //             //     $.ajax({
+    //         //             //         url: "register/data/otp",
+    //         //             //         type: 'get',
+    //         //             //         data: {
+    //         //             //             codeBox: codeBox,
+    //         //             //             number: $('#Phone-Number').val()
+    //         //             //         },
+    //         //             //         success: function (response) {
+    //         //             //             if (response['status'] == 500) {
+    //         //             //                 isSubmit = false
+    //         //             //                 isVerify = false
+
+    //         //             //                 $('#invalid_otp').text(response['error']);
+    //         //             //                 $('#invalid_otp').show();
+    //         //             //                 setTimeout(function () {
+    //         //             //                     $("#invalid_otp")
+    //         //             //                         .hide();
+    //         //             //                 }, 3000);
+    //         //             //             } else {
+    //         //             //                 isSubmit = true
+    //         //             //                 isVerify = true;
+
+    //         //             //                 localStorage.setItem('isVerify', isVerify);
+
+    //         //             //                 $('#verifyButton').hide()
+    //         //             //                 $('.first-verify-btn').show()
+    //         //             //                 $(".passcode-wrapper").hide();
+    //         //             //                 $('.valid_otp').text("Verification Successfully...");
+    //         //             //                 $('#Phone-Number').prop("readonly", true);
+    //         //             //                 // $('.resend-url-link').hide();
+    //         //             //                 $('.resend-otp').hide();
+    //         //             //                 setTimeout(function () {
+    //         //             //                     $(".valid_otp")
+    //         //             //                         .hide();
+    //         //             //                 }, 3000);
+    //         //             //                 $('#btn_register').prop(
+    //         //             //                     "disabled", false);
+
+    //         //             //             }
+    //         //             //         }
+    //         //             //     });
+
+
+    //         //             // });
+    //         //         }
+    //         //     }
+    //         // });
+    //     }
+    // });
+
+    $('.resend-otp-btn').hide();
+
+
+    $('.verify-btn button').click(function () {
+        sendOTPFunction();
+    });
+
+    $('.resend-otp-btn').click(function (evt) {
+
+        $('.resend-spinner-border').show();
+        setTimeout(() => {
+            $('.resend-spinner-border').hide();
+            $('.otp-input .passcode-wrapper input').val("");
+            $('.resend-otp-btn').hide();
+            $('.countdown').removeClass("d-none");
+            localStorage.setItem("resent_otp", true)
+            sendOTPFunction();
+
+            $('#invalid_otp').text("Successfully send new OTP.").css({ 'display': 'block', 'font-size': '13px', 'color': 'green' }).delay(3000).fadeOut();
+        }, 1000);
+
+    });
+
+    function sendOTPFunction() {
+        var phone_number = $('#Phone-Number').val();
+        if (phone_number.length == 0) {
+            $('.p_err').text("Phone Number is required.").css({ 'display': 'block', 'color': 'red', 'font-size': '13px', 'position': 'absolute', 'top': '50px' }).delay(2000).fadeOut();
+        } else if (phone_number.length < 10 || phone_number.length != 10) {
+            $('.p_err').html("Enter Valid Phone Number.").css({ 'display': 'block', 'color': 'red', 'font-size': '13px' }).delay(2000).fadeOut();
         } else {
 
-            $('#invalid_otp').hide();
-            
             $.ajax({
                 url: "register/data",
                 type: 'get',
                 data: {
                     data: $('#Phone-Number').val(),
-                    url_str : url_str
+                    url_str: url_str
                 },
                 success: function (response) {
-                  
-                    if (response.status == 500) {
+                    if (response['status'] == 500) {
+                        isSubmit = false
+                        isVerify = false
+
                         $('#invalid_otp').text(response['error']);
                         $('#invalid_otp').show();
+                        setTimeout(function () {
+                            $("#invalid_otp")
+                                .hide();
+                        }, 3000);
                     } else {
-                        showSuccess('OTP sent successfully...');
-                        $('.first-verify-btn').hide();
+                        // $('.first-verify-btn').hide();
                         $(".resend-otp").show();
                         $(".passcode-wrapper").show();
-                        var varifiyButton = $('#verifyButton').show()
-                        $('#verifyButton').click(function () {
-                            var codeBox1 = $("#codeBox1").val(),
-                                codeBox2 = $("#codeBox2").val(),
-                                codeBox3 = $("#codeBox3").val(),
-                                codeBox4 = $("#codeBox4").val();
-                            var codeBox = codeBox1 + codeBox2 + codeBox3 + codeBox4;
-                            $.ajax({
-                                url: "register/data/otp",
-                                type: 'get',
-                                data: {
-                                    codeBox: codeBox,
-                                    number: $('#Phone-Number').val()
-                                },
-                                success: function (response) {
-                                    if (response['status'] == 500) {
-                                        isSubmit = false
-                                        isVerify = false
 
-                                        $('#invalid_otp').text(response['error']);
-                                        $('#invalid_otp').show();
-                                        setTimeout(function () {
-                                            $("#invalid_otp")
-                                                .hide();
-                                        }, 3000);
-                                    } else {
-                                        isSubmit = true
-                                        isVerify = true
-                                        $('#verifyButton').hide()
-                                        $(".passcode-wrapper").hide();
-                                        $('.valid_otp').text("Verification Successfully...");
-                                        $('#Phone-Number').prop("readonly", true);
-                                        setTimeout(function () {
-                                            $(".valid_otp")
-                                                .hide();
-                                        }, 3000);
-                                        $('#btn_register').prop(
-                                            "disabled", false);
-                                       
-                                    }
-                                }
-                            });
+                        //  /$('.passcode-wrapper')
+                        // $('.edit-input-group-append').show();
+                        document.getElementById("Phone-Number").readOnly = true;
+                        $('.otp-input').show()
+                        $('.second-verify-btn').show()
 
-
-                        });
+                        $('.verify-btn button').hide();
+                        localStorage.setItem("resent_otp", true)
                     }
                 }
-            });
+            })
         }
+    }
+
+
+    $('.edit-input-group-append').click(function () {
+        document.getElementById("Phone-Number").readOnly = false;
+        $('.verify-btn button').show();
+        $('.second-verify-btn').hide();
+        $('.otp-input').hide();
+        $('.otp-input .passcode-wrapper input').val("");
+        $('.resend-otp-btn').hide();
+        localStorage.setItem("resent_otp", false)
+        $("#ten-countdown").remove();
     });
+
+    $('.second-verify-btn .verify-btn').click(function () {
+        console.log("second verify btn");
+        $('.verify-spinner-border').show();
+        setTimeout(() => {
+            var otp = $('#codeBox1').val() + $('#codeBox2').val() + $('#codeBox3').val() + $('#codeBox4').val()
+            if (otp.length == 4) {
+                console.log("second verify btn");
+                $.ajax({
+                    url: "register/data/otp",
+                    type: 'get',
+                    data: {
+                        codeBox: otp,
+                        number: $('#Phone-Number').val()
+                    },
+                    success: function (response) {
+                        console.log("second verify btn");
+                        if (response.is_verify == 1) {
+                            $('.otp-input').hide()
+                            $('.second-verify-btn').hide()
+                            $('.resend-otp').hide();
+                            $('.verify-btn button').show();
+                            $('.verify-btn button').prop('disabled', true);
+                            $('.verify-btn button').text('verified');
+                            $('.verify-btn').parent().addClass("mb-3");
+                            $('.edit-input-group-append').hide();
+                            document.getElementById("Phone-Number").readOnly = true;
+                            isVerify = true;
+                            localStorage.setItem('isVerify', isVerify);
+
+
+                            $("#ten-countdown").remove();
+                        } else {
+                            isVerify = false;
+                            localStorage.setItem('isVerify', isVerify);
+
+                            $('#invalid_otp').text("Invalid OTP.").css({ 'display': 'block', 'font-size': '13px', 'color': 'red' }).delay(3000).fadeOut();
+                        }
+                    }
+                });
+            } else {
+                isVerify = false;
+                localStorage.setItem('isVerify', isVerify);
+
+                $('#invalid_otp').text("Invalid OTP or Please resend OTP.").css({ 'display': 'block', 'font-size': '13px', 'color': 'red' }).delay(2000).fadeOut();
+            }
+            $('.verify-spinner-border').hide();
+        }, 2000);
+    })
+
 
     $("#btn_register").click(function () {
         var eml_reglx = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+
+        console.log("dfgfdjk");
 
         console.log($('#Phone-Number').val().length);
 
@@ -169,7 +434,11 @@ $(document).ready(function () {
             });
         }
 
+       
+
         if ($('#first-name-field').val().length != 0 && $('#last-name-field').val().length != 10 && $('#email').val().length != 0 && $('#email').val().match(eml_reglx) && isSubmit == true && $('#flexCheckDefault').prop('checked') == true) {
+
+            console.log(isSubmit,isVerify);
 
             if (isVerify == false) {
                 $('#unsuccess-popups .errormessage').text('Please Verify Your Phone Number');
@@ -209,12 +478,12 @@ $(document).ready(function () {
             $('.p_err').hide();
         }
     })
-    
-    $('.phone').on('keypress keyup',function(e){
-        var charCode = (e.which) ? e.which : event.keyCode    
-        if (String.fromCharCode(charCode).match(/[^0-9]/g))    
-         return false;
-     });
+
+    $('.phone').on('keypress keyup', function (e) {
+        var charCode = (e.which) ? e.which : event.keyCode
+        if (String.fromCharCode(charCode).match(/[^0-9]/g))
+            return false;
+    });
 
 
 
@@ -359,56 +628,56 @@ $(document).ready(function () {
     })
 
     $('#exp-tim-wed-slider').owlCarousel({
-        loop:true,
-        margin:30,
-        autoplayHoverPause:true,
+        loop: true,
+        margin: 30,
+        autoplayHoverPause: true,
         nav: true,
-        navText : ['<?xml version="1.0" ?><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;}</style></defs><title/><g data-name="Layer 2" id="Layer_2"><path d="M13,26a1,1,0,0,1-.71-.29l-9-9a1,1,0,0,1,0-1.42l9-9a1,1,0,1,1,1.42,1.42L5.41,16l8.3,8.29a1,1,0,0,1,0,1.42A1,1,0,0,1,13,26Z"/><path d="M28,17H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z"/></g><g id="frame"><rect class="cls-1" height="32" width="32"/></g></svg>','<?xml version="1.0" ?><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;}</style></defs><title/><g data-name="Layer 2" id="Layer_2"><path d="M19,26a1,1,0,0,1-.71-.29,1,1,0,0,1,0-1.42L26.59,16l-8.3-8.29a1,1,0,0,1,1.42-1.42l9,9a1,1,0,0,1,0,1.42l-9,9A1,1,0,0,1,19,26Z"/><path d="M28,17H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z"/></g><g id="frame"><rect class="cls-1" height="32" width="32"/></g></svg>'],
+        navText: ['<?xml version="1.0" ?><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;}</style></defs><title/><g data-name="Layer 2" id="Layer_2"><path d="M13,26a1,1,0,0,1-.71-.29l-9-9a1,1,0,0,1,0-1.42l9-9a1,1,0,1,1,1.42,1.42L5.41,16l8.3,8.29a1,1,0,0,1,0,1.42A1,1,0,0,1,13,26Z"/><path d="M28,17H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z"/></g><g id="frame"><rect class="cls-1" height="32" width="32"/></g></svg>', '<?xml version="1.0" ?><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;}</style></defs><title/><g data-name="Layer 2" id="Layer_2"><path d="M19,26a1,1,0,0,1-.71-.29,1,1,0,0,1,0-1.42L26.59,16l-8.3-8.29a1,1,0,0,1,1.42-1.42l9,9a1,1,0,0,1,0,1.42l-9,9A1,1,0,0,1,19,26Z"/><path d="M28,17H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z"/></g><g id="frame"><rect class="cls-1" height="32" width="32"/></g></svg>'],
         dots: false,
-        items:3,
-        autoplay:true,
-        smartSpeed:2000,
-        autoplayTimeout:5000,
+        items: 3,
+        autoplay: true,
+        smartSpeed: 2000,
+        autoplayTimeout: 5000,
         responsiveClass: true,
         responsive: {
-         0: {
-          items: 1
-        },
-        768: {
-          items: 2
-        },
-        1280: {
-          items: 3
+            0: {
+                items: 1
+            },
+            768: {
+                items: 2
+            },
+            1280: {
+                items: 3
+            }
         }
-      }
     })
-  
-  
-       $('#venue-finder-slider').owlCarousel({
-        loop:true,
-        margin:30,
-        autoplayHoverPause:true,
+
+
+    $('#venue-finder-slider').owlCarousel({
+        loop: true,
+        margin: 30,
+        autoplayHoverPause: true,
         nav: true,
-        navText : ['<?xml version="1.0" ?><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;}</style></defs><title/><g data-name="Layer 2" id="Layer_2"><path d="M13,26a1,1,0,0,1-.71-.29l-9-9a1,1,0,0,1,0-1.42l9-9a1,1,0,1,1,1.42,1.42L5.41,16l8.3,8.29a1,1,0,0,1,0,1.42A1,1,0,0,1,13,26Z"/><path d="M28,17H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z"/></g><g id="frame"><rect class="cls-1" height="32" width="32"/></g></svg>','<?xml version="1.0" ?><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;}</style></defs><title/><g data-name="Layer 2" id="Layer_2"><path d="M19,26a1,1,0,0,1-.71-.29,1,1,0,0,1,0-1.42L26.59,16l-8.3-8.29a1,1,0,0,1,1.42-1.42l9,9a1,1,0,0,1,0,1.42l-9,9A1,1,0,0,1,19,26Z"/><path d="M28,17H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z"/></g><g id="frame"><rect class="cls-1" height="32" width="32"/></g></svg>'],
+        navText: ['<?xml version="1.0" ?><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;}</style></defs><title/><g data-name="Layer 2" id="Layer_2"><path d="M13,26a1,1,0,0,1-.71-.29l-9-9a1,1,0,0,1,0-1.42l9-9a1,1,0,1,1,1.42,1.42L5.41,16l8.3,8.29a1,1,0,0,1,0,1.42A1,1,0,0,1,13,26Z"/><path d="M28,17H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z"/></g><g id="frame"><rect class="cls-1" height="32" width="32"/></g></svg>', '<?xml version="1.0" ?><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;}</style></defs><title/><g data-name="Layer 2" id="Layer_2"><path d="M19,26a1,1,0,0,1-.71-.29,1,1,0,0,1,0-1.42L26.59,16l-8.3-8.29a1,1,0,0,1,1.42-1.42l9,9a1,1,0,0,1,0,1.42l-9,9A1,1,0,0,1,19,26Z"/><path d="M28,17H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z"/></g><g id="frame"><rect class="cls-1" height="32" width="32"/></g></svg>'],
         dots: false,
-        items:3,
-        autoplay:true,
-        smartSpeed:2000,
-        autoplayTimeout:5000,
+        items: 3,
+        autoplay: true,
+        smartSpeed: 2000,
+        autoplayTimeout: 5000,
         responsiveClass: true,
         responsive: {
-         0: {
-          items: 1
-        },
-        768: {
-          items: 2
-        },
-        1280: {
-          items: 3
+            0: {
+                items: 1
+            },
+            768: {
+                items: 2
+            },
+            1280: {
+                items: 3
+            }
         }
-      }
     })
-    
+
 
     //Read More and Less
     $('.read-more-content').addClass('hide_content')

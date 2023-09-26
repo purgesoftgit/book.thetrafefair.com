@@ -255,10 +255,15 @@
                             <div class="row">
                                 <div class="mb-5 col-xl-6">
                                     <div class="form-floating">
-                                        <input type="text" name="phone" id="phone" minlength="10" maxlength="10" class="form-control phone validate[required,maxSize[10],minSize[10]]"  />
+                                        <input type="text" name="phone" id="Phone-Number" minlength="10" maxlength="10" class="form-control phone validate[required,maxSize[10],minSize[10]]" />
                                         {{-- <input type="number" class="form-control phone-num validate[required,phone,maxSize[10],minSize[10]]" id="mobile-number " maxlength="10" minlength="10" name="phone" placeholder="Mobile Number"> --}}
                                         <label for="mobile-number">Mobile Number<span aria-label="required" class="text-danger">*</span></label>
+                                        <label class="error p_err"></label>
                                     </div>
+
+                                    <!-- OTP code -->
+                                    @include('otp')
+                                    <!-- OTP code -->
                                 </div>
 
                                 <div class="mb-5 col-xl-6">
@@ -301,15 +306,20 @@
     </main>
 
 
+    @include('messages')
     @include('layouts.footer')
     <script>
         $(document).ready(function() {
             $("#wedding-enquiry-btn").click(function(e) {
 
                 var is_validate = $('#wedding-form').validationEngine('validate');
+                var is_phone_verified = localStorage.getItem("isVerify") ? localStorage.getItem("isVerify") : false;
 
                 if (is_validate === false || is_validate == "false") {} else if (grecaptcha.getResponse().length == 0) {
                     $('.captcha_err').text('Please complete the reCAPTCHA challenge.')
+                } else if (is_phone_verified == false || is_phone_verified == "false") {
+                    $('#unsuccess-popups .errormessage').text('Please Verify Your Phone Number');
+                    $('#unsuccess-popups').modal('show');
                 } else if (is_validate === true) {
                     Swal.fire({
                         title: '',

@@ -239,9 +239,15 @@
               <span class="input-group-text" id="basic-addon1">
                 <img src="{{asset('img/india-flag.jpg')}}" alt="India Flag Image">&nbsp; +91
               </span>
-              <input type="text" name="phone" id="phone" minlength="10" maxlength="10" class="form-control phone validate[required,maxSize[10],minSize[10]]"  />
+              <input type="text" name="phone" id="Phone-Number" minlength="10" maxlength="10" class="form-control phone validate[required,maxSize[10],minSize[10]]" />
+              <label class="error p_err"></label>
             </div>
           </div>
+
+          <!-- OTP code -->
+          @include('otp')
+          <!-- OTP code -->
+
 
           <div class="col-lg-6">
             <div class="mb-3">
@@ -335,16 +341,20 @@
 
 </main>
 
-
+@include('messages')
 @include('layouts.footer')
 <script>
   $(document).ready(function() {
     $("#submit-banquet-form").click(function(e) {
 
       var is_validate = $('#meeting-form').validationEngine('validate');
- 
+      var is_phone_verified = localStorage.getItem("isVerify") ? localStorage.getItem("isVerify") : false;
+
       if (is_validate === false || is_validate == "false") {} else if (grecaptcha.getResponse().length == 0) {
         $('.captcha_err').text('Please complete the reCAPTCHA challenge.')
+      }else if (is_phone_verified == false || is_phone_verified == "false") {
+        $('#unsuccess-popups .errormessage').text('Please Verify Your Phone Number');
+        $('#unsuccess-popups').modal('show');
       } else if (is_validate === true) {
         Swal.fire({
           title: '',

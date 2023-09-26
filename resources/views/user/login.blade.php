@@ -37,16 +37,22 @@
                                         {{ $message }}
                                     </span>
                                     @enderror
-                                    <div class="input-group-append edit-input-group-append" style="display: none;">
+                                    <!-- <div class="input-group-append edit-input-group-append" style="display: none;">
                                         <span toggle="#password-field" class="input-group-text field-icon" style="height: 100%;color: #fff;background: #00b542;border-color: #00b542;">
                                             <i class="fa fa-pencil"></i>
                                         </span>
                                     </div>
-                                    <label for="" id="error"></label>
+                                    <label for="" id="error"></label> -->
                                 </div>
                                 <label for="" class="successMassage"></label>
 
-                                <div class="row align-items-center mb-3">
+                                <!-- OTP code -->
+                                @include('otp')
+                                <!-- OTP code -->
+
+
+
+                                <!-- <div class="row align-items-center mb-3">
                                     <div class="col-lg-6 otp-input">
                                         <div class="passcode-wrapper" style="display: none">
                                             <input id="codeBox1" type="text" maxlength="1" onkeyup="onKeyUpEvent(1, event)" onfocus="onFocusEvent(1)">
@@ -59,15 +65,15 @@
                                     </div>
 
                                     <div class="col-lg-6 first-verify-btn otp-input text-end" style="">
-                                        <a href="javascript:void(0);" id="submitButton" class="btn btn-primary btn-sm verify-btn">verify</a>
+                                        <a href="javascript:void(0);" id="submitButton" class="btn btn-primary btn-sm login-verify-btn">verify</a>
 
                                     </div>
                                     <div class="col-lg-6 verify-btn  text-end" id="verifyButton" style="display: none;">
                                         <a href="javascript:void(0);" class="btn btn-primary btn-sm verify-btn">verify</a>
                                     </div>
-                                </div>
+                                </div> -->
 
-                                <div class="resend-otp" style="display: none;">
+                                <!-- <div class="resend-otp" style="display: none;">
                                     <div class="row mt-2 mb-3 align-items-center">
 
                                         <div class="col-md-6" id="resend-otp-block">
@@ -80,7 +86,8 @@
                                         </div>
 
                                     </div>
-                                </div>
+                                </div> -->
+
                             </div>
 
                             <!-- Phone Verification Field End -->
@@ -106,60 +113,77 @@
 </section>
 <script>
     $(document).ready(function() {
-        var isVerify = false;
-        $('.verify-btn').click(function(){
-            var codeBox1 = $("#codeBox1").val();
-            var codeBox2 = $("#codeBox2").val();
-            var codeBox3 = $("#codeBox3").val();
-            var codeBox4 = $("#codeBox4").val();
-            var codeBox = codeBox1 + codeBox2 + codeBox3 +codeBox4;
-            $.ajax({
-                url: "{{ url('register/data/otp') }}",
-                type: 'get',
-                data: {
-                    codeBox: codeBox,
-                    number: $('#Phone-Number').val()
-                },
-                success: function(response) {
-                    if (response['status'] == 500) {
-                        isVerify = false
-                    } else {
+        // var isVerify = false;
+        // $('.login-verify-btn').click(function() {
+        //     if ($('#Phone-Number').val().length == 0) {
+        //         $('.p_err').text("Please enter phone number").css({
+        //             'display': 'block'
+        //         });
+        //     } else if ($('#Phone-Number').val().length != 10) {
+        //         $('.p_err').text("Please enter valid phone number").css({
+        //             'display': 'block'
+        //         });
+        //     } else {
+        //         var codeBox1 = $("#codeBox1").val();
+        //         var codeBox2 = $("#codeBox2").val();
+        //         var codeBox3 = $("#codeBox3").val();
+        //         var codeBox4 = $("#codeBox4").val();
+        //         var codeBox = codeBox1 + codeBox2 + codeBox3 + codeBox4;
+        //         $.ajax({
+        //             url: "{{ url('register/data/otp') }}",
+        //             type: 'get',
+        //             data: {
+        //                 codeBox: codeBox,
+        //                 number: $('#Phone-Number').val()
+        //             },
+        //             success: function(response) {
+        //                 if (response['status'] == 500) {
+        //                     isVerify = false
+        //                 } else {
 
-                        isVerify = true
+        //                     isVerify = true
 
-                        $('#verifyButton').hide()
-                        $(".passcode-wrapper")
-                            .hide();
-                        $('#ten-countdown').hide();
-                        $('.valid_otp').text(
-                            "Verification Successfully..."
-                        );
-                        // $('.valid_otp').show();
-                        setTimeout(function() {
-                            $(".valid_otp")
-                                .hide();
-                        }, 3000);
-                        $('#btn_register').prop(
-                            "disabled", false);
-                    }
-                }
-            });
-        })
+        //                     $('#verifyButton').hide()
+        //                     $(".passcode-wrapper")
+        //                         .hide();
+        //                     $('#ten-countdown').hide();
+        //                     $('.valid_otp').text(
+        //                         "Verification Successfully..."
+        //                     );
+        //                     // $('.valid_otp').show();
+        //                     setTimeout(function() {
+        //                         $(".valid_otp")
+        //                             .hide();
+        //                     }, 3000);
+        //                     $('#btn_register').prop(
+        //                         "disabled", false);
+        //                 }
+        //             }
+        //         });
+        //     }
 
+        // })
+        var is_phone_verified = localStorage.getItem("isVerify") ? localStorage.getItem("isVerify") : false;
+ 
         $("#btn-login").click(function() {
-            console.log("click");
-            if ($('#Phone-Number').val().length == 0) {
-                $('.p_err').text("Please enter phone number").css({'display': 'block' });
-            } else if ($('#Phone-Number').val().length != 10) {
-                $('.p_err').text("Please enter valid phone number").css({ 'display': 'block'});
-            } else {
-                if (isVerify == false) {
+           
+            // console.log("click");
+            // if ($('#Phone-Number').val().length == 0) {
+            //     $('.p_err').text("Please enter phone number").css({
+            //         'display': 'block'
+            //     });
+            // } else if ($('#Phone-Number').val().length != 10) {
+            //     $('.p_err').text("Please enter valid phone number").css({
+            //         'display': 'block'
+            //     });
+            // } else {
+                if (is_phone_verified == false) {
                     $('#unsuccess-popups .errormessage').text('Please Verify Your Phone Number');
                     $('#unsuccess-popups').modal('show');
                 } else {
                     $('#loginForm').submit();
                 }
-            }
+            // }
         })
     });
 </script>

@@ -263,15 +263,16 @@ class PageController extends Controller
             } else {
                 $this->updateInsertVerification($request->data);
             }
-        } else if ($request->url_str == "room") {
-            $this->updateInsertVerification($request->data);
-        } else {
+        } else if ($request->url_str == "login") {
             $user = User::where('phone_number', '+91' . $request->data)->count();
             if ($user == 0) {
                 return response()->json(['status' => 500, 'error' => 'Not a registered user. Please Register to continue.']);
             } else {
                 $this->updateInsertVerification($request->data);
             }
+        } else {
+            $this->updateInsertVerification($request->data);
+           
         }
     }
 
@@ -294,12 +295,13 @@ class PageController extends Controller
 
     public function otp(Request $request)
     {
+        
         $number = '+91' . $request->number;
         $otp = $request->codeBox;
-
+       
         $phoneVerification = PhoneVerification::where('phone', $number)->first();
-
-        if ($phoneVerification['otp'] != $otp) {
+      
+        if (!empty($phoneVerification) && $phoneVerification['otp'] != $otp) {
             return response()->json(["status" => 500, "error" => "Invalid OTP", "is_verify" => 0]);
         } else {
             $phoneVerification = PhoneVerification::where('phone', $number)->first();
@@ -517,6 +519,7 @@ class PageController extends Controller
         $total_rating = Review::where('item_id',$room_detail->id)->where('item_type','room')->sum('rating');
         $total_reviews = Review::where('item_id',$room_detail->id)->where('item_type','room')->count();
 
+          
         return view('room-detail', ['room' => $room_detail, "related_room" => $related_room, "about_TTF_city_center" => $about_TTF_city_center, "facility_TTF_city_center" =>$facility_TTF_city_center, "total_rating"=>$total_rating, "total_reviews"=>$total_reviews]);
     }
 

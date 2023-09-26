@@ -12,6 +12,9 @@
       $('#subtotal_taxes').val(total_tax_amt.toFixed(2));
       $('#total_taxes').html('<i class="fa fa-rupee"></i>'+ total_tax_amt.toFixed(2));
       
+      var meal_tax =  $('#subtotal_meal_tax').val()
+      $('#meal_tax').html('<i class="fa fa-rupee"></i>'+ parseFloat(meal_tax).toFixed(2));
+      
       $('.calculate_grand_total_amount').each(function(index){
         net_total += parseFloat($(this).val());
       })

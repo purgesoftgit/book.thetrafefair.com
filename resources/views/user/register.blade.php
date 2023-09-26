@@ -68,16 +68,21 @@
                                         {{ $message }}
                                     </span>
                                     @enderror
-                                    <div class="input-group-append edit-input-group-append" style="display: none;">
+                                    <!-- <div class="input-group-append edit-input-group-append" style="display: none;">
                                         <span toggle="#password-field" class="input-group-text field-icon" style="height: 100%;color: #fff;background: #00b542;border-color: #00b542;">
                                             <i class="fa fa-pencil"></i>
                                         </span>
-                                    </div>
-                                    <label for="" id="error"></label>
+                                    </div> -->
+                                    <!-- <label for="" id="error"></label> -->
                                 </div>
                                 <label for="" class="successMassage"></label>
+                                
+                                <!-- OTP code -->
+                                @include('otp')
+                                <!-- OTP code -->
 
-                                <div class="row align-items-center mb-3">
+
+                                <!-- <div class="row align-items-center mb-3">
                                     <div class="col-lg-6 otp-input">
                                         <div class="passcode-wrapper" style="display: none">
                                             <input id="codeBox1" type="text" maxlength="1" onkeyup="onKeyUpEvent(1, event)" onfocus="onFocusEvent(1)">
@@ -111,7 +116,7 @@
                                         </div>
 
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
 
                             <!-- Phone Verification Field End -->

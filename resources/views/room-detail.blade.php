@@ -309,13 +309,13 @@
                         <span class="input-group-text" id="basic-addon1">
                             <img src="{{asset('img/india-flag.jpg')}}" alt="India Flag Image">&nbsp; +91
                         </span>
-                        <input type="number" class="form-control phone phone-num validate[required,maxSize[10],minSize[10]]" id="checkout-phone" name="phone" maxlength="10" minlength="10" placeholder="Phone" value="{{ (Auth::check() && Auth::user()->role_id == 0) ? preg_replace('/^\+?91|\|1|\D/', '', (Auth::user()->phone_number)) : '' }}">
+                        <input type="text" class="form-control phone phone-num validate[required,maxSize[10],minSize[10]]" id="checkout-phone" name="phone" maxlength="10" minlength="10" placeholder="Phone" value="{{ (Auth::check() && Auth::user()->role_id == 0) ? preg_replace('/^\+?91|\|1|\D/', '', (Auth::user()->phone_number)) : '' }}">
 
-                        <div class="input-group-append edit-input-group-append" style="display: none;">
+                        <!-- <div class="input-group-append edit-input-group-append" style="display: none;">
                             <span toggle="#password-field" class="input-group-text field-icon" style="height: 100%;color: #fff;background: #00b542;border-color: #00b542;">
                                 <i class="fa fa-pencil"></i>
                             </span>
-                        </div>
+                        </div> -->
 
                         <span class="phone_error"></span>
 
@@ -353,8 +353,8 @@
                             <div class="countdown" id="ten-countdown"></div>
                         </div>
 
-                        <div class="col-md-6 text-end">
-                            <a class="resend-otp-btn" data-url="{{ url('resend-otp') }}/" style="display:block;">Resend OTP</a>
+                        <div class="col-md-6 text-end resend-url-link" data-url="{{ url('resend-otp') }}/">
+                            <a class="resend-otp-btn" href="javascript:void(0)" style="display:block;">Resend OTP</a>
                             <span class="spinner-border resend-spinner-border spinner-border-sm" style="display:none; margin-left: auto;"></span>
                         </div>
 
@@ -479,6 +479,7 @@
                     <div class="col-xl-3 col-lg-3 col-md-3">
                         <div class="overall-rating-left">
                             <div class="overall-rating-inner-title">Overall Rating</div>
+                          {{-- @if(isset($total_rating)) {{number_format($total_rating,1)}} @endif --}}
                             <big>4.9</big>
                             <div class="overall-rating">
                                 <i class="fa fa-star" aria-hidden="true"></i>

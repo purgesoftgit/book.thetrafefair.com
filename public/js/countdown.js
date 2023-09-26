@@ -21,15 +21,14 @@ function countdown( elementName, minutes, seconds )
             localStorage.setItem("resent_otp", false);
             $(".resend-otp a").show();
             $(".countdown").addClass("d-none");
-            // $('.edit-input-group-append').show()
-            // $('.otp-input').hide()
-            // $('.second-verify-btn').hide()
+            $('.edit-input-group-append').show()
             $.ajax({
-                url: $(".resend-otp-btn").data("url") + $('#checkout-phone').val(),
+                url: $(".resend-otp-btn").data("url") + $(".phone-num").val(),
                 type: "get",
                 success: function () {},
             });
-           element.innerHTML = "4:60";
+           //element.innerHTML = "4:60";
+           element.innerHTML = "0:10";
            
         }else {
             time = new Date( msLeft );
@@ -52,7 +51,8 @@ $(document).on("click",".resend-otp-btn, .verify-btn button",function(){
         if((localStorage.getItem("resent_otp") == true || localStorage.getItem("resent_otp") == "true")){
             $('.edit-input-group-append').hide()
             $('#ten-countdown').length <= 0 ? $("#resend-otp-block").html('<div class="countdown" id="ten-countdown"></div>') : '' ;
-            countdown( "ten-countdown",4,60 );
+            //countdown( "ten-countdown",4,60 );
+            countdown( "ten-countdown",0,10 );
         }
     }, 2000);
 })

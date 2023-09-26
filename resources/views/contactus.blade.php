@@ -40,32 +40,34 @@
 
           <div class="mb-4">
             <label for="email">Email<span aria-label="required" class="text-danger">*</span></label>
-            <input type="email" name="email" id="email" class="form-control validate[required,custom[email]]"/>
+            <input type="email" name="email" id="email" class="form-control validate[required,custom[email]]" />
             @if ($errors->has('email'))
             <span class="text-danger"> {{ $errors->first('email') }} </span>
             @endif
           </div>
 
-           <div class="mb-4">
+          <div class="mb-4">
             <label for="phone">Your Phone<span aria-label="required" class="text-danger">*</span></label>
             <div class="mb-3 input-group banquet-contact">
-            <span class="input-group-text" id="basic-addon1">
-              <img src="{{ asset('img/india-flag.jpg')}}" alt="India Flag Image">&nbsp; +91
-            </span>
-            <input type="text" name="phone" id="phone" minlength="10" maxlength="10" class="form-control phone validate[required,maxSize[10],minSize[10]]" />
-            {{-- <button type="button" id="verifyButton" class="btn btn-primary btn-sm">Verify</button> --}}
-            <span class="text-error" id="phoneError"></span>
+              <span class="input-group-text" id="basic-addon1">
+                <img src="{{ asset('img/india-flag.jpg')}}" alt="India Flag Image">&nbsp; +91
+              </span>
+              <input type="text" name="phone" id="Phone-Number" minlength="10" maxlength="10" class="form-control phone validate[required,maxSize[10],minSize[10]]" />
+              <label class="error p_err"></label>
             </div>
             @if ($errors->has('phone'))
             <span class="text-danger"> {{ $errors->first('phone') }} </span>
             @endif
-          </div> 
+          </div>
 
-               
+          <!-- OTP code -->
+          @include('otp')
+          <!-- OTP code -->
+
 
           <div class="mb-5">
             <label for="message-field" class="form-label">Message<span aria-label="required" class="text-danger">*</span></label>
-            <textarea name="message" id="message" class="form-control validate[required,maxSize[200]]"  rows="6" cols="50"></textarea>
+            <textarea name="message" id="message" class="form-control validate[required,maxSize[200]]" rows="6" cols="50"></textarea>
             <span class="text-error" id="messageError"></span>
             @if ($errors->has('message'))
             <span class="text-danger"> {{ $errors->first('message') }} </span>
@@ -164,17 +166,23 @@
   </section>
 
 </main>
+@include('messages')
 @include('layouts.footer')
+
 <script>
   $(document).ready(function() {
+
     $("#contact_btn").click(function(e) {
-     
-     var is_validate = $('#contact_form_us').validationEngine('validate');
+
+      var is_validate = $('#contact_form_us').validationEngine('validate');
+      var is_phone_verified = localStorage.getItem("isVerify") ? localStorage.getItem("isVerify") : false;
  
-      if(is_validate === false || is_validate == "false"){
-      }else if(grecaptcha.getResponse().length == 0){
+      if (is_validate === false || is_validate == "false") {} else if (grecaptcha.getResponse().length == 0) {
         $('.captcha_err').text('Please complete the reCAPTCHA challenge.')
-      }else if (is_validate === true) {
+      } else if (is_phone_verified == false || is_phone_verified == "false") {
+        $('#unsuccess-popups .errormessage').text('Please Verify Your Phone Number');
+        $('#unsuccess-popups').modal('show');
+      } else if (is_validate === true) {
         Swal.fire({
           title: '',
           text: 'Please wait while processing...',
@@ -185,8 +193,8 @@
         }).then(function() {
           $('#contact_form_us').submit();
         });
-      } 
+      }
     });
-});
+  });
 </script>
 @endsection

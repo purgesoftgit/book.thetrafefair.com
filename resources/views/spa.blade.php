@@ -205,25 +205,33 @@
               @endif
             </div>
 
-            <div class="mb-4">
-              <label for="your-email-field" class="form-label">Your Email<sup>*</sup></label>
-              <input type="email" name="email" id="email" class="form-control validate[required,custom[email]]" />
-              @if ($errors->has('email'))
-              <span class="text-danger"> {{ $errors->first('email') }} </span>
-              @endif
-            </div>
+            <div class="row">
 
-            <div class="mb-4">
-              <label for="your-email-field" class="form-label">Phone<sup>*</sup></label>
-              <div class="mb-3 input-group banquet-contact">
-                <span class="input-group-text" id="basic-addon1">
-                  <img src="{{ asset('img/india-flag.jpg')}}" alt="India Flag Image">&nbsp; +91
-                </span>
-              <input type="text" name="phone" id="phone" minlength="10" maxlength="10" class="form-control phone validate[required,maxSize[10],minSize[10]]" />
+              <div class="col-md-6 col-sm-6">
+                <label for="your-email-field" class="form-label">Your Email<sup>*</sup></label>
+                <input type="email" name="email" id="email" class="form-control validate[required,custom[email]]" />
+                @if ($errors->has('email'))
+                <span class="text-danger"> {{ $errors->first('email') }} </span>
+                @endif
               </div>
-              @if ($errors->has('phone'))
-              <span class="text-danger"> {{ $errors->first('phone') }} </span>
-              @endif
+
+              <div class="col-md-6 col-sm-6">
+                <label for="your-email-field" class="form-label">Phone<sup>*</sup></label>
+                <div class="mb-3 input-group banquet-contact">
+                  <span class="input-group-text" id="basic-addon1">
+                    <img src="{{ asset('img/india-flag.jpg')}}" alt="India Flag Image">&nbsp; +91
+                  </span>
+                  <input type="text" name="phone" id="Phone-Number" minlength="10" maxlength="10" class="form-control phone validate[required,maxSize[10],minSize[10]]" />
+                  <label class="error p_err"></label>
+                </div>
+                @if ($errors->has('phone'))
+                <span class="text-danger"> {{ $errors->first('phone') }} </span>
+                @endif
+              </div>
+
+              <!-- OTP code -->
+              @include('otp')
+              <!-- OTP code -->
             </div>
 
             <div class="row">
@@ -254,7 +262,7 @@
                 <div class="timepicker-field">
                   <input type="time" name="start_time" class="form-control stime" min="<?php date_default_timezone_set('Asia/Kolkata');
                                                                                         echo date('H:i'); ?>" value="<?php date_default_timezone_set('Asia/Kolkata');
-                                                                                                                                                                      echo date('H:i'); ?>" id="start-time">
+                                                                                                                      echo date('H:i'); ?>" id="start-time">
                   @if ($errors->has('start_time'))
                   <span class="text-danger">{{ $errors->first('start_time') }}</span>
                   @endif
@@ -266,7 +274,7 @@
                 <div class="timepicker-field">
                   <input type="time" name="end_time" class="form-control etime" min="<?php date_default_timezone_set('Asia/Kolkata');
                                                                                       echo date('H:i'); ?>" value="<?php date_default_timezone_set('Asia/Kolkata');
-                                                                                                                                                                    echo date('H:i', time() + 3600); ?>" id="end-time">
+                                                                                                                    echo date('H:i', time() + 3600); ?>" id="end-time">
                   @if ($errors->has('end_time'))
                   <span class="text-danger">{{ $errors->first('end_time') }}</span>
                   @endif
@@ -303,7 +311,7 @@
 
             <div class="mb-5">
               <label for="message-field" class="form-label">Special Requests<sup>*</sup></label>
-              <textarea name="request_message" id="message-field" class="form-control validate[required]" rows="6" ></textarea>
+              <textarea name="request_message" id="message-field" class="form-control validate[required]" rows="6"></textarea>
 
               @if ($errors->has('request_message'))
               <span class="text-danger">{{ $errors->first('request_message') }}</span>
@@ -547,6 +555,7 @@
 
 </main>
 
+@include('messages')
 @include('layouts.footer')
 <script type="text/javascript" src="{{asset('js/owl.carousel.min.js')}}"></script>
 <script type="text/javascript">
@@ -599,12 +608,6 @@
       $('.edate').attr("min", moment(startdate).format("YYYY-MM-DD"));
     });
 
-    // $('.stime').on('change',function(){
-    //     starttime = $(this).val() 
-    //     console.log(starttime);
-    //     $('.etime').val(moment(starttime).add({hours: 1}).format("HH:mm"))
-    //     $('.etime').attr("min",moment(starttime).add({hours: 1}).format("HH:mm"));
-    // });
 
     let selectedPeople = 1;
 
@@ -647,13 +650,15 @@
 
 
     $("#submit_btn").click(function(e) {
-      var is_Validate  = $('#spa_form').validationEngine('validate');
+      var is_Validate = $('#spa_form').validationEngine('validate');
+      var is_phone_verified = localStorage.getItem("isVerify") ? localStorage.getItem("isVerify") : false;
 
-      console.log(is_Validate);
-      if(is_Validate === false){
-      }else if (grecaptcha.getResponse().length == 0) {
+      if (is_Validate === false) {} else if (grecaptcha.getResponse().length == 0) {
         $('.captcha_err').text('Please complete the reCAPTCHA challenge.')
-      }else if (is_Validate === true) {
+      } else if (is_phone_verified == false || is_phone_verified == "false") {
+        $('#unsuccess-popups .errormessage').text('Please Verify Your Phone Number');
+        $('#unsuccess-popups').modal('show');
+      } else if (is_Validate === true) {
         Swal.fire({
           title: '',
           text: 'Please wait while processing...',
