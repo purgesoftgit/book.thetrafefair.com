@@ -76,7 +76,7 @@
                 <p>Royal Orchid & Regenta Hotels is one of India's fastest-growing hospitality brands, managing a portfolio of over 90+ properties across the country. Founded in 2001 by industry veteran Mr. Chander K Baljee, Royal Orchid & Regenta Hotels is a renowned and trusted brand with a growth plan to reach 100 hotels by 2023.</p>
 
                 <p>We cater to business and leisure travellers who value comfort, great cuisine, distinctly warm Indian hospitality, and value for money. Our modern and fully equipped hotels, resorts, long-stay suites,</p>
-                <button type="button" class="btn btn-primary">Learn More</button>
+                <!-- <button type="button" class="btn btn-primary">Learn More</button> -->
               </div>
             </div>
           </div>
@@ -97,7 +97,7 @@
                 <p>Royal Orchid & Regenta Hotels is one of India's fastest-growing hospitality brands, managing a portfolio of over 90+ properties across the country. Founded in 2001 by industry veteran Mr. Chander K Baljee, Royal Orchid & Regenta Hotels is a renowned and trusted brand with a growth plan to reach 100 hotels by 2023.</p>
 
                 <p>We cater to business and leisure travellers who value comfort, great cuisine, distinctly warm Indian hospitality, and value for money. Our modern and fully equipped hotels, resorts, long-stay suites,</p>
-                <button type="button" class="btn btn-primary">Learn More</button>
+                <!-- <button type="button" class="btn btn-primary">Learn More</button> -->
               </div>
             </div>
           </div>

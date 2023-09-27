@@ -7,7 +7,7 @@
 
   <!-- Page Banner Section Start -->
   <section class="spa-banner">
-    <img src="img/spa-banner.jpg" alt="SPA" class="img-fluid">
+    <img src="{{asset('img/spa-banner.jpg')}}" alt="SPA" class="img-fluid">
   </section>
   <!-- Page Banner Section End -->
 
@@ -20,7 +20,7 @@
         <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
           <a class="spa-category-list">
             <div class="spa-category-icon">
-              <img src="img/stone-massage-icon.png" alt="Image">
+              <img src="{{asset('img/stone-massage-icon.png')}}" alt="Image">
             </div>
             <div class="spa-category-name">Stone Massage</div>
           </a>
@@ -31,7 +31,7 @@
         <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
           <a class="spa-category-list">
             <div class="spa-category-icon">
-              <img src="img/aromatherapy-massage-icon.png" alt="Image">
+              <img src="{{asset('img/aromatherapy-massage-icon.png')}}" alt="Image">
             </div>
             <div class="spa-category-name">Aromatherapy Massage</div>
           </a>
@@ -42,7 +42,7 @@
         <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
           <a class="spa-category-list">
             <div class="spa-category-icon">
-              <img src="img/oil-cream-massage-icon.png" alt="Image">
+              <img src="{{asset('img/oil-cream-massage-icon.png')}}" alt="Image">
             </div>
             <div class="spa-category-name">Oil & Cream Massage</div>
           </a>
@@ -53,7 +53,7 @@
         <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
           <a class="spa-category-list">
             <div class="spa-category-icon">
-              <img src="img/finnish-sauna-massage-icon.png" alt="Image">
+              <img src="{{asset('img/finnish-sauna-massage-icon.png')}}" alt="Image">
             </div>
             <div class="spa-category-name">Finnish Sauna Massage</div>
           </a>
@@ -73,22 +73,22 @@
 
       <div class="row" id="my-gallery-container">
         <div class="item" data-order="1">
-          <img src="img/spa-gallery-img.jpg" alt="">
+          <img src="{{asset('img/spa-gallery-img.jpg')}}" alt="">
         </div>
         <div class="item" data-order="2">
-          <img src="img/spa-gallery-img3.jpg" alt="">
+          <img src="{{asset('img/spa-gallery-img3.jpg')}}" alt="">
         </div>
         <div class="item" data-order="3">
-          <img src="img/spa-gallery-img4.jpg" alt="">
+          <img src="{{asset('img/spa-gallery-img4.jpg')}}" alt="">
         </div>
         <div class="item" data-order="4">
-          <img src="img/spa-gallery-img2.jpg" alt="">
+          <img src="{{asset('img/spa-gallery-img2.jpg')}}" alt="">
         </div>
         <div class="item" data-order="5">
-          <img src="img/spa-gallery-img5.jpg" alt="">
+          <img src="{{asset('img/spa-gallery-img5.jpg')}}" alt="">
         </div>
         <div class="item" data-order="6">
-          <img src="img/spa-gallery-img6.jpg" alt="">
+          <img src="{{asset('img/spa-gallery-img6.jpg')}}" alt="">
         </div>
       </div>
       {{--
@@ -186,8 +186,7 @@
 
         <div class="col-xl-5 col-lg-5">
           <div class="spa-video-box">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/M80Fi6Mf-H4?si=UQT3A8wnXTmdSsCj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" allowfullscreen></iframe>
-
+            <img src="{{ url('img/spa-form-img2.webp') }}" alt="spa Image" class="img-fluid">
           </div>
         </div>
 
@@ -227,11 +226,14 @@
                 @if ($errors->has('phone'))
                 <span class="text-danger"> {{ $errors->first('phone') }} </span>
                 @endif
+
+                <!-- OTP code -->
+                @include('otp')
+                <!-- OTP code -->
+
               </div>
 
-              <!-- OTP code -->
-              @include('otp')
-              <!-- OTP code -->
+
             </div>
 
             <div class="row">
@@ -326,13 +328,13 @@
               <span class="captcha_err"></span>
             </div>
 
+            <div class="text-center">
+              <button id="submit_btn" type="button" class="btn btn-primary">Make Reservation</button>
+            </div>
+
+          </form>
         </div>
 
-        <div class="text-center">
-          <button id="submit_btn" type="button" class="btn btn-primary">Make Reservation</button>
-        </div>
-
-        </form>
       </div>
 
     </div>
@@ -428,7 +430,7 @@
             <!-- col Start -->
             <div class="col-xl-6 col-lg-6">
               <div class="spa-menu-photo">
-                <img src="img/spa-menu-img.jpg" alt="Image" class="img-fluid">
+                <img src="{{asset('img/spa-menu-img.jpg')}}" alt="Image" class="img-fluid">
               </div>
             </div>
             <!-- col End -->
@@ -459,7 +461,7 @@
             <!-- col Start -->
             <div class="col-xl-6 col-lg-6 order-lg-last">
               <div class="spa-menu-photo">
-                <img src="img/spa-menu-img2.jpg" alt="Image" class="img-fluid">
+                <img src="{{asset('img/spa-menu-img2.jpg')}}" alt="Image" class="img-fluid">
               </div>
             </div>
             <!-- col End -->
@@ -491,7 +493,7 @@
             <!-- col Start -->
             <div class="col-xl-6 col-lg-6">
               <div class="spa-menu-photo">
-                <img src="img/spa-menu-img3.jpg" alt="Image" class="img-fluid">
+                <img src="{{asset('img/spa-menu-img3.jpg')}}" alt="Image" class="img-fluid">
               </div>
             </div>
             <!-- col End -->
@@ -522,7 +524,7 @@
             <!-- col Start -->
             <div class="col-xl-6 col-lg-6 order-lg-last">
               <div class="spa-menu-photo">
-                <img src="img/spa-menu-img4.jpg" alt="Image" class="img-fluid">
+                <img src="{{asset('img/spa-menu-img4.jpg')}}" alt="Image" class="img-fluid">
               </div>
             </div>
             <!-- col End -->

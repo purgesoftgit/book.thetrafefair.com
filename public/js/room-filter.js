@@ -60,7 +60,7 @@ $(document).ready(function() {
     //     getRoom(is_first);
     // })
 
-    $('#selected_room_category').text(localStorage.getItem("category").replace('_', ' '));
+    $('#selected_room_category').text(localStorage.getItem("category") ? localStorage.getItem("category").replace('_', ' ') : "");
 
 
     var i = 0;
@@ -104,9 +104,14 @@ $(document).ready(function() {
         }
     });
 
+
+    console.log("it working");
     //room abd guest start
     $(document).on('click', '.rooms_guests', function(e) {
+        console.log("clicked before ");
+       
         e.stopPropagation();
+        console.log("clicked after ");
         $('.rooms_guests_list').toggle();
     });
     $(document).on('click', '.rooms_guests_list', function(event) {
@@ -188,12 +193,12 @@ $(document).ready(function() {
             '</strong><div class="editDiv"><p>' + adults +
             ' Adults</p><div class="room-guest-edit-remove"><a class="edit-rooms" onclick="editRooms(' +
             i +
-            ')" style="text-decoration:none;font-size: 14px;font-weight: 600;cursor:pointer;">Edit</a><a class="removeButton" onclick="removeRow(' +
+            ')" style="text-decoration:none;font-size: 14px;font-weight: 600;cursor:pointer;"><i class="fa fa-edit"></i></a><a class="removeButton" onclick="removeRow(' +
             i +
-            ')" style="font-size: 14px; padding-left: 10px; font-weight: 600;">Remove</a></div></div><div class="editDetail" style="display:none;"><p>ADULTS (12y +)</p><div class="new_guest_list"><div class="row room_number room_number_adults"><ul><li onclick="editRoomAdults(1,' +
+            ')" style="font-size: 14px; padding-left: 10px; font-weight: 600;"><i class="fa fa-trash"></i></a></div></div><div class="editDetail" style="display:none;"><p>ADULTS (12y +)</p><div class="new_guest_list"><div class="room_number room_number_adults"><ul><li onclick="editRoomAdults(1,' +
             i + ')">1</li><li onclick="editRoomAdults(2,' + i +
             ')">2</li><li onclick="editRoomAdults(3,' + i +
-            ')">3</li></ul></div></div><hr style="border: 1px solid #cfd1d2;"></div>';
+            ')">3</li></ul></div></div></div>';
 
         $('.added_rooms').append(html);
 

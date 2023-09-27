@@ -82,13 +82,14 @@
             @endif
             <span class="captcha_err text-danger"></span>
           </div>
+          
+          <div class="text-center">
+            <button type="button" id="contact_btn" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
       </div>
 
 
-      <div class="text-center">
-        <button type="button" id="contact_btn" class="btn btn-primary">Submit</button>
-      </div>
-      </form>
     </div>
     </div>
   </section>

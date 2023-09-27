@@ -28,7 +28,7 @@
                             @csrf
                             <div class="mb-3">
                                 <input type="text" class="form-control" id="first-name-field" name="first_name" placeholder="First Name*" value="{{ old('first_name') }}">
-                                <label class="error f_err"></label>
+                                <label class="error f_err" style="display: none;"></label>
                                 @error('first_name')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -36,7 +36,7 @@
 
                             <div class="mb-3">
                                 <input type="text" class="form-control" id="last-name-field" name="last_name" placeholder="Last Name*" value="{{ old('last_name') }}">
-                                <label class="error l_err"></label>
+                                <label class="error l_err" style="display: none;"></label>
                                 @error('last_name')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -45,7 +45,7 @@
 
                             <div class="mb-3">
                                 <input type="email" class="form-control" name="email" id="email" placeholder="Email Address*" value="{{ old('email') }}">
-                                <label class="error e_err"></label>
+                                <label class="error e_err" style="display: none;"></label>
                                 @error('email')
                                 <span class="text-danger" role="alert">
                                     {{ $message }}
@@ -61,7 +61,7 @@
                                         <img src="https://www.thetradeinternational.com/public//img/india-flag.png" alt="India Flag Image">&nbsp; +91
                                     </span>
                                     <input type="text" class="form-control phone_number phone" style="width: 30%;" name="phone_number" id="Phone-Number" minlength="10" maxlength="10" placeholder="Phone Number*" value="{{ old('phone_number') }}">
-                                    <label class="error p_err"></label>
+                                    <label class="error p_err" style="display: none;"></label>
 
                                     @error('phone_number')
                                     <span class="text-danger" role="alert">
@@ -75,7 +75,7 @@
                                     </div> -->
                                     <!-- <label for="" id="error"></label> -->
                                 </div>
-                                <label for="" class="successMassage"></label>
+                                <label for="" class="successMassage" style="display:none;"></label>
                                 
                                 <!-- OTP code -->
                                 @include('otp')
@@ -141,7 +141,7 @@
                                 <label class="form-check-label" for="flexCheckDefault">By signing up, I agree
                                     &amp;accept the <a href="#">Terms &amp; Conditions</a> of the The Trade Fair
                                     Hotel</label>
-                                <label class="error tc_err"></label>
+                                <label class="error tc_err" style="display: none;"></label>
                             </div>
 
                             <div class="text-center d-grid gap-3 mt-3 mb-3 " id="registerSubmitButton">

@@ -45,11 +45,11 @@
                     <hr style="border: 1px solid #cfd1d2;">
 
                     <div class="row action_row">
-                        <div class="col-md-6 col-sm-6">
-                            <button type="button" class="btn btn-dark btn-sm add-other-room"><i class="fa fa-plus"></i>Add another room</button>
+                        <div class="col-md-8 col-sm-8">
+                            <button type="button" class="btn btn-dark btn-sm add-other-room"><i class="fa fa-plus"></i> Add another room</button>
                         </div>
-                        <div class="col-md-6 col-sm-6" style="text-align: right;">
-                            <button type="button" class="btn btn-info apply-changes">Apply</button>
+                        <div class="col-md-4 col-sm-4" style="text-align: right;">
+                            <button type="button" class="btn btn-info btn-sm apply-changes">Apply</button>
                         </div>
                     </div>
 

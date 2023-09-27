@@ -236,14 +236,14 @@
 
                             <div class="row">
 
-                                <div class="mb-5 col-xl-6">
+                                <div class="mb-3 col-xl-6">
                                     <div class="form-floating">
                                         <input type="text" class="form-control validate[required,maxSize[50]]" name="name" id="name-field" placeholder="Name">
                                         <label for="name-field">Name<span aria-label="required" class="text-danger">*</span></label>
                                     </div>
                                 </div>
 
-                                <div class="mb-5 col-xl-6">
+                                <div class="mb-3 col-xl-6">
                                     <div class="form-floating">
                                         <input type="email" class="form-control validate[required,custom[email]]" name="email" id="email-field" placeholder="Email Address">
                                         <label for="email-field">Email Address<span aria-label="required" class="text-danger">*</span></label>
@@ -253,10 +253,10 @@
                             </div>
 
                             <div class="row">
-                                <div class="mb-5 col-xl-6">
-                                    <div class="form-floating">
-                                        <input type="text" name="phone" id="Phone-Number" minlength="10" maxlength="10" class="form-control phone validate[required,maxSize[10],minSize[10]]" />
-                                        {{-- <input type="number" class="form-control phone-num validate[required,phone,maxSize[10],minSize[10]]" id="mobile-number " maxlength="10" minlength="10" name="phone" placeholder="Mobile Number"> --}}
+                                <div class="mb-3 col-xl-6">
+                                    <div class="mb-3 form-floating">
+                                        <input type="text" name="phone" id="Phone-Number" minlength="10" maxlength="10" class="form-control phone validate[required,maxSize[10],minSize[10]]" placeholder="Phone Number"/>
+                                   
                                         <label for="mobile-number">Mobile Number<span aria-label="required" class="text-danger">*</span></label>
                                         <label class="error p_err"></label>
                                     </div>
@@ -266,7 +266,7 @@
                                     <!-- OTP code -->
                                 </div>
 
-                                <div class="mb-5 col-xl-6">
+                                <div class="mb-3 col-xl-6">
                                     <div class="form-floating">
                                         <input type="text" class="form-control  validate[required]" id="residing-city" name="city" placeholder="Residing City">
                                         <label for="residing-city">Residing City<span aria-label="required" class="text-danger">*</span></label>

@@ -242,11 +242,11 @@
               <input type="text" name="phone" id="Phone-Number" minlength="10" maxlength="10" class="form-control phone validate[required,maxSize[10],minSize[10]]" />
               <label class="error p_err"></label>
             </div>
+            <!-- OTP code -->
+            @include('otp')
+            <!-- OTP code -->
           </div>
 
-          <!-- OTP code -->
-          @include('otp')
-          <!-- OTP code -->
 
 
           <div class="col-lg-6">

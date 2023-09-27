@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use App\{Blog, Category, PhoneVerification, User, Job, RoomCategory, Wallet, NotificationPreferece, RoomAdditionalData, Review, ContactUs, SpaReservation, WeddingEnquiry, CMSPage};
+use App\{Blog, Category, PhoneVerification, User, Job, RoomCategory, Wallet, NotificationPreferece, RoomAdditionalData, Review, ContactUs, SpaReservation, WeddingEnquiry, CMSPage, career};
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Storage;
 // use Illuminate\Validation\ValidationException;
 // use Symfony\Component\VarDumper\Cloner\Data;
 use Illuminate\Support\Str;
@@ -14,6 +15,12 @@ use Illuminate\Support\Str;
 
 class PageController extends Controller
 {
+
+    public function getauthuser(){
+        // $allUsers = User::where('id','!=',Auth::user()->id)->where('role_id','!=',1)->orderBy('id','desc')->get();
+         $user = User::where('id',Auth::user()->id)->first();
+         return $user;
+     }
 
     public function thankyou()
     {
@@ -112,7 +119,7 @@ class PageController extends Controller
             'g-recaptcha-response' => ['required']
         ]);
 
-       
+
         $data = new SpaReservation;
         $data->name = $request->name;
         $data->email = $request->email;
@@ -128,11 +135,13 @@ class PageController extends Controller
         // return redirect()->route('home')->with(['status'=>200,'message'=>"Your request is in processing."]);
     }
 
-    public function wedding(){
+    public function wedding()
+    {
         return view('wedding');
     }
-    
-    public function saveWeddingEnquiry(Request $request){
+
+    public function saveWeddingEnquiry(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'name' => ['required'],
             'email' => ['required', 'email', 'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/'],
@@ -152,7 +161,7 @@ class PageController extends Controller
         $data->phone = $request->phone;
         $data->city = $request->city;
         $data->enquiry = $request->enquiry;
-        
+
         $data->save();
 
         return redirect('thankyou');
@@ -186,9 +195,10 @@ class PageController extends Controller
         return view('blogs.blog', compact('blogs', 'categories', 'categoryFilter', 'latest_blog'));
     }
 
-    public function banquet(){
+    public function banquet()
+    {
         $data = Review::all();
-        return view('banquet',compact('data'));
+        return view('banquet', compact('data'));
     }
 
 
@@ -224,13 +234,13 @@ class PageController extends Controller
         $contact->compny = $request->company;
         $contact->message = $request->message;
         $contact->booking_purpose = $request->booking_purpose;
-       
+
         $contact->status = 'Unread';
         $contact->save();
 
         return redirect('thankyou');
     }
-    
+
     public function blogDetail($slug)
     {
         $blog_detail = Blog::where('slug', $slug)->first();
@@ -272,7 +282,6 @@ class PageController extends Controller
             }
         } else {
             $this->updateInsertVerification($request->data);
-           
         }
     }
 
@@ -295,12 +304,12 @@ class PageController extends Controller
 
     public function otp(Request $request)
     {
-        
+
         $number = '+91' . $request->number;
         $otp = $request->codeBox;
-       
+
         $phoneVerification = PhoneVerification::where('phone', $number)->first();
-      
+
         if (!empty($phoneVerification) && $phoneVerification['otp'] != $otp) {
             return response()->json(["status" => 500, "error" => "Invalid OTP", "is_verify" => 0]);
         } else {
@@ -394,7 +403,7 @@ class PageController extends Controller
         $user = User::where('phone_number', '+91' . $request->phone_number)->first();
         if ($user) {
             Auth::loginUsingId($user->id);
-            return redirect('profile');
+            return redirect('room-order-history');
             // return response()->json(['message' => 'Logged in successfully']);
         } else {
             return redirect()->back();
@@ -448,6 +457,59 @@ class PageController extends Controller
 
         return view('career', compact('career'));
     }
+
+    public function saveCarrerForm(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'first_name'     => 'required',
+            'last_name'     => 'required',
+            'email'    => 'required',
+            'phone'    => 'required',
+            'job_title'    => 'required',
+            'qulification'    => 'required',
+            'job_location'    => 'required',
+            'job_position'    => 'required',
+            'experience'    => 'required',
+
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('career')->withErrors($validator)->withInput();
+        }
+        $career = new career();
+        $career->first_name = ucfirst($request->first_name);
+        $career->last_name = ucfirst($request->last_name);
+        $career->email = $request->email;
+        $career->phone_number = '+91' . $request->phone;
+        $career->job_title = str_replace("_", " ", $request->job_title);
+        $career->job_type = $request->job_type;
+        $career->qualification = $request->qulification;
+        $career->job_location = ucfirst($request->job_location);
+        $career->job_position = str_replace("_", " ", $request->job_position);
+        $career->experience = $request->experience;
+        $career->selected_website = 1;
+
+        if ($request->resume) {
+            $image = $request->file('resume');
+            $is_aws_active = $this->ifAWSKeyisNotResponse();
+            if ($is_aws_active == 0) {
+                $extention = uniqid() . '.' . $image->getClientOriginalExtension();
+                $destinationPath = public_path('/images');
+                $image->move($destinationPath, $extention);
+            } else {
+                $s3 = \Storage::disk('s3');
+                $extention = uniqid() . '.' . $image->getClientOriginalExtension();
+                $s3filePath = '/images/' . $extention;
+                $s3->put($s3filePath, file_get_contents($image), 'public');
+            }
+            $career->pdf = $extention;
+        }
+        $career->save();
+
+        return redirect('thankyou');
+    }
+
     public function gallery()
     {
         return view('gallery');
@@ -513,14 +575,14 @@ class PageController extends Controller
 
         $related_room = $this->fetchAllAdditionalRoomData($slug);
 
-        $about_TTF_city_center = CMSPage::where('slug','about-ttf-city-center')->first();
-        $facility_TTF_city_center = CMSPage::where('slug','facility-ttf-city-center')->first();
+        $about_TTF_city_center = CMSPage::where('slug', 'about-ttf-city-center')->first();
+        $facility_TTF_city_center = CMSPage::where('slug', 'facility-ttf-city-center')->first();
 
-        $total_rating = Review::where('item_id',$room_detail->id)->where('item_type','room')->sum('rating');
-        $total_reviews = Review::where('item_id',$room_detail->id)->where('item_type','room')->count();
+        $total_rating = Review::where('item_id', $room_detail->id)->where('item_type', 'room')->sum('rating');
+        $total_reviews = Review::where('item_id', $room_detail->id)->where('item_type', 'room')->count();
 
-          
-        return view('room-detail', ['room' => $room_detail, "related_room" => $related_room, "about_TTF_city_center" => $about_TTF_city_center, "facility_TTF_city_center" =>$facility_TTF_city_center, "total_rating"=>$total_rating, "total_reviews"=>$total_reviews]);
+
+        return view('room-detail', ['room' => $room_detail, "related_room" => $related_room, "about_TTF_city_center" => $about_TTF_city_center, "facility_TTF_city_center" => $facility_TTF_city_center, "total_rating" => $total_rating, "total_reviews" => $total_reviews]);
     }
 
     public function fetchSingleAdditionalRoomData($room_detail)
@@ -578,6 +640,91 @@ class PageController extends Controller
     public function terms()
     {
         return view('terms');
+    }
+
+    public function saveReviews(Request $request)
+    {
+
+        if (Auth::check()) {
+            $data = $this->getauthuser();
+            $user = $data;
+        }
+        $review = new Review();
+        $review->user_id = (isset($user)) ? $user->id : 0;
+        $image_arr = [];
+        if ($request->item_type == 'room') {
+
+            $review->category = $request->category;
+            if ($request->fileUpload) {
+                $image = $request->file('fileUpload');
+                $is_aws_active = $this->ifAWSKeyisNotResponse();
+                if ($is_aws_active == 0) {
+                    foreach ($image as $file) {
+                        $extention = uniqid() . '.' . $file->getClientOriginalExtension();
+                        $destinationPath = public_path('/images');
+                        $file->move($destinationPath, $extention);
+                        array_push($image_arr, $extention);
+                    }
+                } else {
+                    $s3 = \Storage::disk('s3');
+                    foreach ($image as $file) {
+                        $extention = uniqid() . '.' . $file->getClientOriginalExtension();
+                        $s3filePath = '/images/' . $extention;
+                        $s3->put($s3filePath, file_get_contents($file), 'public');
+                        array_push($image_arr, $extention);
+                    }
+                }
+
+                $review->image = json_encode($image_arr);
+            }
+        }
+        if ($request->public_review) {
+            if ($request->fileUpload) {
+                $image = $request->file('fileUpload');
+                $is_aws_active = $this->ifAWSKeyisNotResponse();
+                if ($is_aws_active == 0) {
+                    foreach ($image as $file) {
+                        $extention = uniqid() . '.' . $file->getClientOriginalExtension();
+                        $destinationPath = public_path('/images');
+                        $file->move($destinationPath, $extention);
+                        array_push($image_arr, $extention);
+                    }
+                } else {
+                    $s3 = \Storage::disk('s3');
+                    foreach ($image as $file) {
+                        $extention = uniqid() . '.' . $file->getClientOriginalExtension();
+                        $s3filePath = '/images/' . $extention;
+                        $s3->put($s3filePath, file_get_contents($file), 'public');
+                        array_push($image_arr, $extention);
+                    }
+                }
+
+                $review->image = json_encode($image_arr);
+            }
+
+            $review->public_review = 1;
+        }
+
+        if ($request->likecomment)
+            $review->liked = $request->likecomment;
+
+        if ($request->unlikecomment)
+            $review->unliked = $request->unlikecomment;
+
+
+        if ($request->message)
+            $review->review = $request->message;
+
+        $review->item_id = $request->item_id;
+        $review->item_type = $request->item_type;
+        $review->rating = $request->rating;
+        $review->save();
+
+        if ($request->ajax()) {
+            return response()->json(['success' => 200]);
+        } else {
+            return redirect()->back()->with('success', 'Thank you for submitting your feedback.');
+        }
     }
 
     public function updateRoomAdditionalYearData()

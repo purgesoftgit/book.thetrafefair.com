@@ -285,6 +285,7 @@ $(document).ready(function () {
             $('.p_err').html("Enter Valid Phone Number.").css({ 'display': 'block', 'color': 'red', 'font-size': '13px' }).delay(2000).fadeOut();
         } else {
 
+            $('.verify-spinner-border').show()
             $.ajax({
                 url: "register/data",
                 type: 'get',
@@ -293,12 +294,13 @@ $(document).ready(function () {
                     url_str: url_str
                 },
                 success: function (response) {
+                    $('.verify-spinner-border').hide()
                     if (response['status'] == 500) {
-                        isSubmit = false
+                       // isSubmit = false
                         isVerify = false
 
                         $('#invalid_otp').text(response['error']);
-                        $('#invalid_otp').show();
+                        $('#invalid_otp').css({'font-size':'13px','color':'red'}).show();
                         setTimeout(function () {
                             $("#invalid_otp")
                                 .hide();
@@ -386,11 +388,7 @@ $(document).ready(function () {
 
     $("#btn_register").click(function () {
         var eml_reglx = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-
-        console.log("dfgfdjk");
-
-        console.log($('#Phone-Number').val().length);
-
+ 
         if ($('#first-name-field').val().length == 0) {
             $('.f_err').text("Please enter first name").css({
                 'display': 'block'
@@ -434,11 +432,7 @@ $(document).ready(function () {
             });
         }
 
-       
-
         if ($('#first-name-field').val().length != 0 && $('#last-name-field').val().length != 10 && $('#email').val().length != 0 && $('#email').val().match(eml_reglx) && isSubmit == true && $('#flexCheckDefault').prop('checked') == true) {
-
-            console.log(isSubmit,isVerify);
 
             if (isVerify == false) {
                 $('#unsuccess-popups .errormessage').text('Please Verify Your Phone Number');

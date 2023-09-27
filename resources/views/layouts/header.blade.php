@@ -12,13 +12,13 @@
             <div class="right-menu">
                 {{-- {{Auth::user()->first_name}} --}}
                 @if (Auth::user())
-                    <span class="dropdown">
+                    <!-- <span class="dropdown">
                         <a href="javascript:void(0)" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            {{ Auth::user()->first_name }}
+                            <i class="fa fa-user"></i> {{ Auth::user()->first_name }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item text-dark " href="{{ url('profile') }}">Profile</a></li>
+                            <li><a class="dropdown-item text-dark " href="{{ url('room-order-history') }}">Dashboard</a></li>
                             <li>
                                 <form action="{{ url('logout') }}" method="POST" id="logForm">
                                     @csrf
@@ -28,11 +28,28 @@
 
                             </li>
                         </ul>
-                    </span>
+                    </span> -->
+
+                    <div class="dropdown web-profile-drop">
+                        <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-user"></i> {{ Auth::user()->first_name }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a class="dropdown-item" href="{{ url('room-order-history') }}">Dashboard</a>
+                            </li>
+                            <li>
+                                <form action="{{ url('logout') }}" method="POST" id="logForm">
+                                    @csrf
+                                    <a class="dropdown-item" id="log_out" href="javascript:void(0)">Log
+                                        out</a>
+                                </form>
+
+                            </li>
+                        </ul>
+                    </div>
                 @else
-                {{-- @if (Auth::user())
-                {{ Redirect::to('/login') }}
-                @endif --}}
+                
                     <a href="{{ url('login') }}">Login </a>
                     <span>|</span>
                     <a href="{{ url('register') }}">Signup</a>
@@ -79,13 +96,14 @@
                     <li class="nav-item">
                         <a class="nav-link  {{Request::is('event') ? 'active' : ''}}" href="{{ url('event') }}">Events</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="https://www.thetradebite.com/" target="_blank">Restaurants</a>
-                    </li>
-                    <li class="blogo-space"></li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link  {{Request::is('spa') ? 'active' : ''}}" href="{{ url('spa') }}">Spa</a>
                     </li>
+                    <li class="blogo-space"></li>
+                   
                     <li class="nav-item">
                         <a class="nav-link  {{Request::is('corporte-meeting-halls') ? 'active' : ''}}" href="{{ url('corporte-meeting-halls') }}">Meeting</a>
                     </li>

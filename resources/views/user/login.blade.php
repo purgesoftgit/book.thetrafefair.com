@@ -27,7 +27,7 @@
                             <div id="phoneVerify">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1">
-                                        <img src="https://www.thetradeinternational.com/public//img/india-flag.png" alt="India Flag Image">&nbsp; +91
+                                        <img src="{{asset('img/india-flag.png')}}" alt="India Flag Image">&nbsp; +91
                                     </span>
                                     <input type="text" class="form-control phone_number phone" minlength="10" maxlength="10" style="width: 30%;" name="phone_number" id="Phone-Number" placeholder="Phone Number*" value="{{ old('phone_number') }}">
                                     <label class="error p_err"></label>
@@ -163,27 +163,24 @@
         //     }
 
         // })
-        var is_phone_verified = localStorage.getItem("isVerify") ? localStorage.getItem("isVerify") : false;
- 
+       
         $("#btn-login").click(function() {
-           
             // console.log("click");
-            // if ($('#Phone-Number').val().length == 0) {
-            //     $('.p_err').text("Please enter phone number").css({
-            //         'display': 'block'
-            //     });
-            // } else if ($('#Phone-Number').val().length != 10) {
-            //     $('.p_err').text("Please enter valid phone number").css({
-            //         'display': 'block'
-            //     });
-            // } else {
-                if (is_phone_verified == false) {
-                    $('#unsuccess-popups .errormessage').text('Please Verify Your Phone Number');
-                    $('#unsuccess-popups').modal('show');
-                } else {
-                    $('#loginForm').submit();
-                }
-            // }
+            if ($('#Phone-Number').val().length == 0) {
+                $('.p_err').text("Phone Number is required.").css({
+                    'display': 'block'
+                });
+            } else if ($('#Phone-Number').val().length != 10) {
+                $('.p_err').text("Enter Valid Phone Number.").css({
+                    'display': 'block'
+                });
+            } else if (localStorage.getItem("isVerify") == false || localStorage.getItem("isVerify") == "false") {
+                $('#unsuccess-popups .errormessage').text('Please Verify Your Phone Number');
+                $('#unsuccess-popups').modal('show');
+            } else {
+                $('#loginForm').submit();
+            }
+
         })
     });
 </script>

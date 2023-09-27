@@ -114,7 +114,12 @@
   <!-- Rooms Page Section End -->
 
 </main>
-
-
+ 
 @include('layouts.footer')
+<!-- <script src="{{ asset('js/room.js')}}"></script> -->
+<script>
+
+  
+</script>
 @endsection
+

@@ -47,8 +47,7 @@ Route::post('banquet-store','PageController@saveBanquetRequest')->name('banquet-
 Route::get('login','PageController@login');
 Route::get('login/number','PageController@loginWithNumber');
 Route::post('login/verify','PageController@verifyLogin');
-Route::get('profile','PageController@profile')->middleware('auth');   
-Route::post('profile/update','PageController@profileUpdate')->middleware('auth'); 
+
 
 //log out
 Route::post('logout','PageController@Logout');
@@ -88,7 +87,23 @@ Route::post('deduct-room-price','RoomCheckoutController@deductAmountForDeluxe');
 Route::get('blog','PageController@blog')->name('blog');
 Route::get('blog-detail/{slug}','PageController@blogDetail');
 Route::get('career','PageController@career');
+Route::post('save-career-details','PageController@saveCarrerForm');
 
 
 //insert data in room addition detail according to currenct year (like Jan 2023 - Dec 2023)
 Route::get('update-room-addition-year-data','PageController@updateRoomAdditionalYearData');
+
+Route::post('save-review', 'PageController@saveReviews');
+
+//front login routes
+
+Route::group(['middleware' => 'auth'],function(){
+
+    Route::get('profile','PageController@profile');   
+    Route::post('profile/update','PageController@profileUpdate'); 
+
+    Route::get('room-order-history/{status?}', 'DashboardController@getRoomOrderHistory');
+    
+    // Route::get('event-requests', 'DashboardController@getEventRequests');
+    
+});

@@ -110,9 +110,9 @@
                                       
                                 if(mimeFilter.test($(uploadedFile).val().split('.').reverse()[0])){
                                     if($(uploadedFile).val().split('.').reverse()[0] == 'docx' || $(uploadedFile).val().split('.').reverse()[0] == 'doc')
-                                        var image = "http://13.232.32.179/public/img/docs.png";
+                                        var image = "/thetradefair/public/img/doc.webp";
                                     else
-                                        var image = "http://13.232.32.179/public/img/pdf.png";
+                                        var image = "/thetradefair/public/img/pdf.webp";
 
                                     $('#img-name').html('<img src="'+image+'" width="60px"/>')
                                 }

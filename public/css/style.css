@@ -37,10 +37,10 @@ main.web-main{margin-top:129px;}
 .left-menu b{font-weight:inherit;}
 .left-menu img, .left-menu span, .right-menu span{display: inline-block; vertical-align: middle;}
 .right-menu{text-align: right;}
-.right-menu a{color:rgba(255,255,255,0.55);}
+.right-menu a{color:#fff;}
 .right-menu span{margin:0 15px; color:#3f3f47;}
 .header-social{display:inline-block; margin-left:15px;}
-.header-social a{font-size:17px; display: inline-block; margin-left:17px;}
+.header-social a{font-size:17px; display: inline-block; margin-left:17px; color:rgba(255,255,255,0.55);}
 .mobile-menu-close{display: none;}
 .navbar{background:#fff; height:89px; position: relative; box-shadow:0 5px 12px 0 rgba(0,0,0,0.10);}
 .navbar:after{content:''; background:url('../img/logo-bottom-bg.png') no-repeat center bottom; width:285px; height:55px; position: absolute; top:100%; left:50%; 
@@ -63,6 +63,13 @@ main.web-main{margin-top:129px;}
 .navbar-expand-lg .navbar-nav .nav-item.d-none .btn{margin-left:15px; text-transform: uppercase; font-size:14px; padding: 6px 13px; border-radius:6px;}
 .navbar-nav .nav-link{font-size:14px; color:#000; font-weight:500; margin:0 18px; text-transform: uppercase;}
 .navbar-nav .nav-link:focus, .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active, .navbar-nav .show>.nav-link{color:#00b542;}
+
+.web-profile-drop .dropdown-toggle{background: #ffffff; padding: 6px 12px; margin: -8px 0; letter-spacing: 0.5px; border-radius: 5px; color: #000;}
+.web-profile-drop{display: inline-block;}
+.web-profile-drop .dropdown-toggle:hover, .web-profile-drop .dropdown-toggle:focus{background: #00b542; color: #fff;}
+.web-profile-drop .dropdown-menu{border-color: #00b542; box-shadow: 0 5px 14px 0 rgba(0,0,0,0.18); background: #000;}
+.web-profile-drop .dropdown-item{color:#fff;}
+.web-profile-drop .dropdown-item.active, .web-profile-drop .dropdown-item:active, .web-profile-drop .dropdown-item:focus, .web-profile-drop .dropdown-item:hover{background: #00b542; color: #fff !important;}
 /*Header Css End*/
 
 /*Banner Css Start*/
@@ -439,6 +446,8 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 
 .passcode-wrapper input{width:36px; height:36px; line-height:36px; border-radius:22px; text-align: center; font-size:16px; color:#000; border:1px solid #d9d9d9;}
 .passcode-wrapper input:focus{outline: none;}
+
+.account-detail-page .successMassage{position: absolute;}
 /*Login & Sign page Css End*/
 
 /*Rooms Page Css Start*/
@@ -480,22 +489,25 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 .rooms_guests{line-height:45px; background-color:#fff; cursor: pointer; position: relative;}
 .rooms_guests:after{position: absolute; top: 50%; right: 8px; font-size: 19px; font-weight:400; content: "\f107"; color: #555; padding: 0 5px; font-family: FontAwesome; transform: translateY(-50%);}
 .reservation-btn{height:45px; line-height:34px; border-radius:0; padding:5px;}
-.rooms_guests_list{height: auto; border: 1px solid rgba(255,255,255,0.3); padding:15px 15px; background:#fff; margin-top:3px;}
-.added-rooms-list{background:#f0f0f0; padding: 10px 20px; border-radius: 10px; margin-bottom:10px;}
-.added-rooms-action{display: flex; gap:10px; justify-content: space-between;}
-.added-rooms-action a{margin-left:10px; cursor: pointer;}
-.added-rooms-action p, .added-rooms-detail p, .room_adults_heading p{margin:0; font-size:14px;}
+
+.rooms_guests_list{color: #312d2d; height: auto; border: 1px solid rgba(255,255,255,0.3); padding:15px 15px; background:#fff; margin-top:3px;}
+.added_rooms > div{background:#f0f0f0; padding: 10px 20px; border-radius: 10px; margin-bottom:10px;}
+.editDiv{display: flex; gap:10px; justify-content: space-between;}
+.editDiv a{margin-left:10px; cursor: pointer; text-decoration: none;}
+.editDiv p, .editDetail p, .room_adults_heading p{margin:0; font-size:14px;}
+.editDiv p{margin-bottom:0;}
 .room_adults_heading{text-transform: uppercase;}
 .room_number ul{list-style: none; padding:0; margin:0;}
-.room_number ul li{width:36px; height:36px; line-height:36px; text-align: center; border:1px solid #d9d9d9; display: inline-block; border-radius:8px; cursor: pointer;}
+.room_number ul li{width:36px; height:36px; line-height:36px; text-align: center; border:1px solid #d9d9d9; display: inline-block; border-radius:8px; cursor: pointer; margin:8px 8px 0 0;}
 .room_number ul li.selected, .room_number ul li:hover{border-color:#00b542; background:#00b542; color:#fff;}
+
 .guests_list{padding-top:12px;}
-.added-rooms{max-height:230px; overflow-y: auto;}
-.added-rooms::-webkit-scrollbar{-webkit-appearance:none}
-.added-rooms::-webkit-scrollbar:vertical{width:8px}
-.added-rooms::-webkit-scrollbar:horizontal{height:8px}
-.added-rooms::-webkit-scrollbar-thumb{border-radius:8px; border:1px solid #fff; background-color:#ddd;}
-.added-rooms-detail{background:#fff; padding:15px; border:1px solid #d8d8d8; border-radius:12px; margin-top:10px;}
+.added_rooms{max-height:230px; overflow-y: auto;}
+.added_rooms::-webkit-scrollbar{-webkit-appearance:none}
+.added_rooms::-webkit-scrollbar:vertical{width:8px}
+.added_rooms::-webkit-scrollbar:horizontal{height:8px}
+.added_rooms::-webkit-scrollbar-thumb{border-radius:8px; border:1px solid #fff; background-color:#ddd;}
+.editDetail{background:#fff; padding:15px; border:1px solid #d8d8d8; border-radius:12px; margin-top:10px;}
 /*Rooms Page Css End*/
 
 /*Terms & Conditions Page Start*/
@@ -936,7 +948,7 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 .exp-tim-wed-title:before{content:''; position: absolute; top:100%; left:0; width:150px; height:2px; background-color:rgb(0 181 66);}
 .exp-tim-wed-inner p{font-weight: 400; font-size: 15px; line-height:20px; text-transform: capitalize; color: #000000;}
 
-.exp-tim-wed-slider .owl-carousel .owl-nav button.owl-prev, .exp-tim-wed-slider .owl-carousel .owl-nav button.owl-next, .venue-finder-section .owl-carousel .owl-nav button.owl-prev, .venue-finder-section .owl-carousel .owl-nav button.owl-next{width:50px; height:50px; border-radius:40px; background: linear-gradient(249.61deg, rgba(250, 225, 124, 0.93) -51.52%, rgba(207, 207, 207, 0) 107.91%); -webkit-transition: all 0.5s ease-in-out; -moz-transition: all 0.5s ease-in-out;  -o-transition: all 0.5s ease-in-out;  transition: all 0.5s ease-in-out;}
+.exp-tim-wed-slider .owl-carousel .owl-nav button.owl-prev, .exp-tim-wed-slider .owl-carousel .owl-nav button.owl-next, .venue-finder-section .owl-carousel .owl-nav button.owl-prev, .venue-finder-section .owl-carousel .owl-nav button.owl-next{width:50px; height:50px; border-radius:40px; background: linear-gradient(249.61deg, rgb(0 181 66 / 41%) -51.52%, rgba(207, 207, 207, 0) 107.91%); -webkit-transition: all 0.5s ease-in-out; -moz-transition: all 0.5s ease-in-out;  -o-transition: all 0.5s ease-in-out;  transition: all 0.5s ease-in-out;}
 .exp-tim-wed-slider .owl-carousel .owl-nav button.owl-prev:hover, .exp-tim-wed-slider .owl-carousel .owl-nav button.owl-prev:focus, .exp-tim-wed-slider .owl-carousel .owl-nav button.owl-next:hover, .exp-tim-wed-slider .owl-carousel .owl-nav button.owl-next:focus, .venue-finder-section .owl-carousel .owl-nav button.owl-prev:hover, .venue-finder-section .owl-carousel .owl-nav button.owl-prev:focus, .venue-finder-section .owl-carousel .owl-nav button.owl-next:hover, .venue-finder-section .owl-carousel .owl-nav button.owl-next:focus{background:#fff;}
 .exp-tim-wed-slider .owl-carousel .owl-nav button.owl-prev, .venue-finder-section .owl-carousel .owl-nav button.owl-prev{left:-30px;} 
 .exp-tim-wed-slider .owl-carousel .owl-nav button.owl-next, .venue-finder-section .owl-carousel .owl-nav button.owl-next{right:-30px;}
@@ -991,8 +1003,10 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 .con-form-title{font-size:26px; color:#000; font-weight:800; text-align: center; text-transform: uppercase;  font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom:45px;}
 .form-style .form-label{font-size:16px; color:#545454;}
 .form-style .form-label sup{color:#f00; top:-1px; font-weight:800;}
-.form-style .form-control, .form-style .form-select{height:55px; border:1px solid #d9d9d9; border-radius:6px; padding-left:24px;}
+.form-style .form-control, .form-style .form-select{height:55px; border:1px solid #d9d9d9; border-radius:6px; padding-left:14px;}
 .form-style textarea.form-control{height: auto; resize: none; padding-top:15px;}
+.form-floating>.form-control-plaintext~label, .form-floating>.form-control:focus~label, .form-floating>.form-control:not(:placeholder-shown)~label, .form-floating>.form-select~label{opacity: .65; transform: scale(.85) translateY(-1rem) translateX(0.15rem);}
+button.verify-btn, a.verify-btn{min-width: 100px; padding-left: 5px; padding-right: 5px;}
 /*Corporate Page Css End*/
 
 

@@ -25,25 +25,25 @@ if (localStorage.getItem('food_type') != null && localStorage.getItem('meal_arr'
     var rupee_arr = localStorage.getItem('meal_arr');
     var length = foodies.split(',').length
 
-    $('.enjoy-meals-during').each(function (key1, value1) {
-        if ($(value1).find("h6>span").attr("data-foodtype") != undefined) {
-            if (foodies.split(',')[0] == $(value1).find("h6>span").attr("data-foodtype"))
-                $(value1).find("button").addClass("active")
-            if (foodies.split(',')[1] == $(value1).find("h6>span").attr("data-foodtype"))
-                $(value1).find("button").addClass("active")
-            if (foodies.split(',')[2] == $(value1).find("h6>span").attr("data-foodtype"))
-                $(value1).find("button").addClass("active")
+    // $('.enjoy-meals-during').each(function (key1, value1) {
+    //     if ($(value1).find("h6>span").attr("data-foodtype") != undefined) {
+    //         if (foodies.split(',')[0] == $(value1).find("h6>span").attr("data-foodtype"))
+    //             $(value1).find("button").addClass("active")
+    //         if (foodies.split(',')[1] == $(value1).find("h6>span").attr("data-foodtype"))
+    //             $(value1).find("button").addClass("active")
+    //         if (foodies.split(',')[2] == $(value1).find("h6>span").attr("data-foodtype"))
+    //             $(value1).find("button").addClass("active")
 
-        } else {
-            if (foodies.split(',')[0] == $(value1).find("h6>select").attr("data-foodtype"))
-                $(value1).find("button").addClass("active")
-            if (foodies.split(',')[1] == $(value1).find("h6>select").attr("data-foodtype"))
-                $(value1).find("button").addClass("active")
-            if (foodies.split(',')[2] == $(value1).find("h6>select").attr("data-foodtype"))
-                $(value1).find("button").addClass("active")
+    //     } else {
+    //         if (foodies.split(',')[0] == $(value1).find("h6>select").attr("data-foodtype"))
+    //             $(value1).find("button").addClass("active")
+    //         if (foodies.split(',')[1] == $(value1).find("h6>select").attr("data-foodtype"))
+    //             $(value1).find("button").addClass("active")
+    //         if (foodies.split(',')[2] == $(value1).find("h6>select").attr("data-foodtype"))
+    //             $(value1).find("button").addClass("active")
 
-        }
-    })
+    //     }
+    // })
 
     var loop = 0;
     while (loop < length) {
