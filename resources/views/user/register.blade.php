@@ -139,7 +139,7 @@
                                 </span>
                                 @enderror
                                 <label class="form-check-label" for="flexCheckDefault">By signing up, I agree
-                                    &amp;accept the <a href="#">Terms &amp; Conditions</a> of the The Trade Fair
+                                    &amp;accept the <a href="{{url('terms')}}">Terms &amp; Conditions</a> of the The Trade Fair
                                     Hotel</label>
                                 <label class="error tc_err" style="display: none;"></label>
                             </div>

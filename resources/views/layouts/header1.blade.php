@@ -15,7 +15,11 @@
             @if(Auth::check())
             <div class="dropdown profile-btn">
                 <button class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    @if(Auth::check() && Auth::user()->image != null)
+                    <img src="{{ env('BACKEND_URL') .'public/upload'.'/'.Auth::user()->image}}" alt="Img">
+                    @else
                     <img src="{{asset('img/profile-img2.png')}}" alt="Img">
+                    @endif 
                     <span>{{ Auth::check() ? Auth::user()->first_name : 'User'}}</span>
                 </button>
 
@@ -27,14 +31,11 @@
                 <li><a class="dropdown-item" href="javascript:void(0);">Notification <span class="cout_notification" style="">10</span></a></li>
                 <li><a class="dropdown-item" href="javascript:void(0);">Setting</a></li> -->
                     <li>
-
                         <form action="{{ url('logout') }}" method="POST" id="logForm">
                             @csrf
                             <a class="dropdown-item" href="javascript:void(0);" id="log_out">Logout</a>
+                        </form>
                     </li>
-
-                    </form>
-
                 </ul>
             </div>
             @else
@@ -46,6 +47,7 @@
     </div>
 </header>
 <!-- Header Section End -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
         $("#log_out").click(function() {

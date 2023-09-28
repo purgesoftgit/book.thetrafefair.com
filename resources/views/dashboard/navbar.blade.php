@@ -19,10 +19,10 @@
 
         <h3>ORDERING & Enquiry</h3>
         <ul>
-            <li><a href="javascript:void(0);" class="active">Room Booking History</a></li>
-            <li><a href="javascript:void(0);">Event Booking History</a></li>
-            <li><a href="javascript:void(0);">Wedding History</a></li>
-            <li><a href="javascript:void(0);">spa reservation History</a></li>
+            <li><a href="{{route('room-history')}}" class="{{Request::is('room-order-history') ? 'active' : ''}}">Room Booking History</a></li>
+            <li><a href="{{url('event-requests')}}" class="{{Request::is('event-requests') ? 'active' : ''}}">Event Booking History</a></li>
+            <li><a href="{{url('wedding-history')}}" class="{{Request::is('wedding-history') ? 'active' : ''}}">Wedding History</a></li>
+            <li><a href="{{url('spa-reservation-history')}}" class="{{Request::is('spa-reservation-history') ? 'active' : ''}}">spa reservation History</a></li>
         </ul>
 
         <h3 class="d-none">TABLE BOOKING</h3>

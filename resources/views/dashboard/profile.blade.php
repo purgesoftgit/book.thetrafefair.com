@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 @section('content')
-    @include('layouts.header')
+
+    {{-- @include('layouts.header')
     <main class="web-main">
 
         <!-- Page Title Section Start -->
@@ -8,7 +9,7 @@
             <div class="container">
                 <div class="page-title">Profile</div>
             </div>
-        </section>
+        </section> --}}
         <!-- Page Title Section End -->
 
         <!-- Rooms Page Section Start -->
@@ -66,8 +67,7 @@
             </div>
         </section>
         <!-- Rooms Page Section End -->
-
     </main>
 
-    @include('layouts.footer')
+    {{-- @include('layouts.footer') --}}
 @endsection

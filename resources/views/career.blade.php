@@ -252,7 +252,12 @@
             if (key == 0) {
                 $('.job_type').val($(value).find('.vacancies-name').text());
             }
+           
         });
+
+        $('.vacancies-listing-section .vacancies-list').click(function(){
+            $('.job_type').val($(this).find('.vacancies-name').text());
+      });
 
         $("#submit-career-form").click(function(e) {
 
@@ -273,7 +278,7 @@
                     timerProgressBar: true,
                     showConfirmButton: false
                 }).then(function() {
-                    $('#career_form').submit();
+                    
                 });
             }
         });
