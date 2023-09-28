@@ -25,14 +25,14 @@
 
                     <h2 class="inner-title">Room Booking History</h2>
 
-                    <div class="room-filter-block">
+                    {{-- <div class="room-filter-block">
                         <select name="room_filter" id="roomFilter">
                             <option value="" selected="" disabled="">Select Filter</option>
                             <option value="D">Approve</option>
                             <option value="ROOM_CANCELLED">Cancelled</option>
                         </select>
                         <button type="button" class="btn btn-primary clear-btn">Clear</button>
-                    </div>
+                    </div> --}}
 
                     <div class="table-responsive">
                         <table class="table table table-striped" id="transactionHistory">
@@ -42,6 +42,7 @@
                                     <th>User Details</th>
                                     <th>Room Detail</th>
                                     <th>Booked At</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -112,6 +113,7 @@
                                         <div class="cancell-rooms mt-2"> <a class="btn btn-danger btn-small cancel-reservation" data-txnid="{{$d->txnid}}" style="font-size: 11px;">Cancel Booking</a> </div>
                                         @endif
                                     </td>
+                                    <td>{{$d->status == 0 ? 'Pending':'Approved'}}</td>
                                 </tr>
                                 @endforeach
 

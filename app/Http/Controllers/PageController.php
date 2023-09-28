@@ -417,39 +417,7 @@ class PageController extends Controller
         return view('dashboard.profile', compact('userProfile'));
     }
 
-    public function profileUpdate(Request $request)
-    {
-        //dd($request->all());
-        $userProfile = Auth::user('id');
-        //dd($userProfile->phone_number,$request->all());
-        $request->validate([
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => [
-                'required',
-                'string',
-                'email',
-                Rule::unique('users')->ignore($userProfile->id),
-            ],
-            'phone_number' => [
-                'required',
-                'string',
-                'min:10',
-                Rule::unique('users')->ignore($userProfile->id ?? null),
-            ]
-        ]);
-        PhoneVerification::where('phone', $userProfile->phone_number)->update(['phone' => '+91' . $request->input('phone_number')]);
-        $profile = User::where('id', $userProfile->id)->first();
-        $profile->username = str_replace(' ', '_', strtolower($request->first_name) . strtolower($request->last_name));
-        $profile->first_name = ucfirst($request->first_name);
-        $profile->last_name =  ucfirst($request->last_name);
-        $profile->email =  $request->input('email');
-        $profile->phone_number = '+91' . $request->input('phone_number');
-        $profile->updated_at = date("Y-m-d");
-        $profile->email_verifid_token = null;
-        $profile->save();
-        return redirect('profile');
-    }
+   
 
     public function career()
     {
@@ -505,6 +473,7 @@ class PageController extends Controller
             }
             $career->pdf = $extention;
         }
+        dd($career);
         $career->save();
 
         return redirect('thankyou');

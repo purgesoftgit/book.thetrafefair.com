@@ -7,7 +7,6 @@
         <div class="col-xl-3 col-lg-3 col-md-6 col-md-6 col-sm-6">
           <div class="footer-title">CORPORATE</div>
           <ul>
-            {{-- <li><a href="aboutus.html">About us</a></li> --}}
             <li><a href="{{route('about')}}">About us</a></li>
             <li><a href="javascript:void(0)">Management</a></li>
             <li><a href="{{ url('corporte-meeting-halls') }}">Corporate Meeting</a></li>
