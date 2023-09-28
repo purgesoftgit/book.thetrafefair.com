@@ -58,7 +58,7 @@ main.web-main{margin-top:129px;}
 	transform: translateX(-50%);
 }
 .blogo-space{width:160px;}
-.navbar-expand-lg .navbar-nav{position: relative; left:30px;}
+.navbar-expand-lg .navbar-nav{position: relative; left:43px;}
 .navbar-expand-lg .navbar-nav .nav-item{vertical-align: middle;}
 .navbar-expand-lg .navbar-nav .nav-item.d-none .btn{margin-left:15px; text-transform: uppercase; font-size:14px; padding: 6px 13px; border-radius:6px;}
 .navbar-nav .nav-link{font-size:14px; color:#000; font-weight:500; margin:0 18px; text-transform: uppercase;}
@@ -933,9 +933,11 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 .wedding-gallery-list p, .exp-tim-wed-section p{font-style: normal; font-weight:500; font-size: 16px; color:#878788;}
 .wedding-gallery-list span{position: absolute; bottom:0; left:0; right:0; background:rgba(255,255,255,0.65); padding:10px 20px;  font-size:18px; text-transform: capitalize; color: #000000; font-weight: 500;}
 .wedding-gallery-title{font-weight: 600; font-size: 40px; line-height: 47px; color: #242424; margin-bottom:20px;}
-.height50per{height:49%;}
-.height50per img{height:100%;}
-.wedding-gallery-button{height:49%; margin-top:2%; display: flex; align-items: center; padding:10px 12%;}
+.first-gal-img{height:454px; overflow: hidden;}
+.second-gal-img, .third-gal-img{height:222px; overflow: hidden;}
+.first-gal-img a, .second-gal-img a, .third-gal-img a{display: block; height:100%;}
+.first-gal-img img, .second-gal-img img, .third-gal-img img{min-height:100%; object-fit: cover;}
+.wedding-gallery-button{height: 222px; margin-top: 2%; display: flex; align-items: center; padding: 10px; width: 230px; margin: 0 auto;}
 .wedding-gallery-button .btn-primary{font-weight: 400; font-size: 24px; line-height: 28px; text-transform: capitalize; padding:12px;}
 .wd-g-link a{color:#878788; text-decoration: none;}
 .wd-g-link a:hover, .wd-g-link a:focus{color:#FFCD01; text-decoration: none;}
@@ -1038,6 +1040,8 @@ button.verify-btn, a.verify-btn{min-width: 100px; padding-left: 5px; padding-rig
 .banquet-offers-list-title{padding:20px 0; color:#fff; font-size:24px; font-weight:600; font-family: 'Plus Jakarta Sans', sans-serif;}
 /*Banquet Page Css End*/
 
+
+
 /*Responsive Css Start///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 @media (max-width:1450px){
 	.banner-title{font-size:56px;}
@@ -1055,21 +1059,27 @@ button.verify-btn, a.verify-btn{min-width: 100px; padding-left: 5px; padding-rig
 
 @media (max-width:1199px){
 	.hotel-service-title, .art-artefacts-title, .section-title, .tag-thetradefair-title{font-size:28px; letter-spacing:1px;}
-	.destinations-inner{grid-template-columns: repeat(3,1fr);}
+	.destinations-inner span{font-size:18px; line-height:28px;}
 	.hotel-service-box-inner{padding: 10px 0 10px 30px;}
 	.hotel-service-box:nth-child(even) .hotel-service-box-inner{padding-right:30px;}
 	.hotel-service-box p, .art-artefacts-section p, .verdance-box p{font-size:14px; line-height:24px;}
 	.art-artefacts-section{padding:30px;}
 	.art-artefacts-text{padding: 30px 0 0 10px;}
 
-	/*.rooms-detail-row{display:block;}
-	.rooms-detail-col{max-width: 100%; padding-right: 0;}*/
 	.whatgstLv__content--features{grid-template-columns: repeat(2,1fr);}
+	.navbar-expand-lg .navbar-nav{left: 53px;}
+	.navbar-nav .nav-link{font-size: 13px; margin: 0 8px;}
+	.blogo-space{width: 100px;}
+
+	.about-wedding iframe{height: 450px;}
+	.third-gal-img, .wedding-gallery-button{height:284px; overflow: hidden; margin-top:2%;}
+	.reachout-form{padding-bottom:40px;}
+	.reachout-form form{margin-bottom: 0; padding-left: 0;}
 }
 
 @media (max-width:991px){
 	.overflow-body{overflow: hidden;}
-	.destinations-inner{grid-template-columns: repeat(2,1fr);}
+	.destinations-inner{gap:15px}
 	.reservation-address-section .container{grid-template-columns: repeat(1,1fr);}
 	.header-top .container{max-width:100%;}
 	.left-menu b{display: none;}
@@ -1092,10 +1102,7 @@ button.verify-btn, a.verify-btn{min-width: 100px; padding-left: 5px; padding-rig
 	.mobile-menu-close:after{content:''; position: fixed; top:0; left:-50%; bottom:0; width:40%; background:rgba(0,0,0,0.8);  -webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;transition:all .3s ease-in-out;}
 	.navbar-collapse.show-menu .mobile-menu-close:after{left:0;}
 
-	.hotel-service-section{padding-bottom:10px;}
-	.hotel-service-box-inner, .hotel-service-box:nth-child(even) .hotel-service-box-inner{padding:20px 0 70px;}
-	.art-artefacts-section .owl-carousel .owl-nav button.owl-prev, .art-artefacts-section .owl-carousel .owl-nav button.owl-next{right:10px; top:50%; bottom: auto; margin-top:-120px;}
-	.art-artefacts-section .owl-carousel .owl-nav button.owl-prev{left:10px; right: auto;}
+	.hotel-service-title, .art-artefacts-title, .section-title, .tag-thetradefair-title, .about-wedding-title, .wedding-gallery-title, .venue-finder-title, .exp-tim-wed-title, .reachout-title, .event-name{font-size:20px;}
 	.slider-text{padding:60px 0;}
 	.banner-title{line-height:66px;}
 	.whatgstLv__content--features{grid-template-columns: repeat(1,1fr);}
@@ -1106,25 +1113,86 @@ button.verify-btn, a.verify-btn{min-width: 100px; padding-left: 5px; padding-rig
 	.spa-menu-list:nth-child(even) .spa-menu-title, .spa-menu-list:nth-child(even) .spa-menu-detail p{text-align:left;}
 	.spa-menu-list:nth-child(even) .spa-menu-title:before, .spa-menu-list:nth-child(even) .spa-menu-title:after{left:0; right: auto;}
 	.spa-menu-number{left:0; margin-left:0;}
+
+	.web-header{position: relative;}
+	main.web-main{margin-top:0;}
+	.banner-section .owl-carousel .item{min-height:420px;}
+	.destinations-inner, .testimonials-section .owl-carousel{margin-top:20px;}
+	.art-artefacts-section, .reachout-form{margin-bottom:40px;}
+	.verdance-section{height:380px;}
+	.verdance-box-title{font-size:22px;}
+	.verdance-box{padding: 20px 25px; max-width: 480px; margin: 10px;}
+	.tes-message-box{padding: 20px 5% 44px; min-height: 280px;}
+	.tes-message-box p, .about-wedding p, .exp-tim-wed-inner p, .wedding-gallery p, .reachout-form p, .event-list p{font-size: 14px; line-height: 24px;}
+	.tes-author-img{width: 80px; height: 80px; border-width:1px;}
+	.author-name{font-size:18px;}
+	.tes-author-box{margin-top: -38px;}
+	.testimonials-section .owl-carousel .owl-nav button.owl-prev, .testimonials-section .owl-carousel .owl-nav button.owl-next{bottom:0px;}
+
+	.tag-thetradefair-message{font-size: 14px; padding-left:30px; line-height: 25px;}
+	.tag-thetradefair-message .fa{font-size:18px;}
+
+	.owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev{width: 34px; height: 34px; line-height: 34px; margin-top: -17px;}
+	.owl-carousel .owl-nav button.owl-next img, .owl-carousel .owl-nav button.owl-prev img{max-width: 100%;}
+	.banner-section .owl-carousel .owl-nav button.owl-prev{bottom:54px;}
+	.destinations-inner a:before{top:8px; left:8px; right:8px; bottom:8px;}
+	.testimonials-section .owl-carousel .owl-nav button.owl-next{left:44px;}
+	.art-artefacts-section .owl-carousel .owl-nav button.owl-prev{right:43px;}
+	.destinations-section, .hotel-service-section, .testimonials-section, .tag-thetradefair, .about-wedding, .wedding-gallery, .exp-tim-wed-slider, .venue-finder-section, .vacancies-listing-section, .event-section{padding: 40px 0;}
+	.footer-section{padding-top:40px;}
+
+	.about-page-section .hotel-service-box-inner, .evennth .hotel-service-box:nth-child(even) .hotel-service-box-inner{padding: 20px 0 0;}
+	.page-title-section{min-height:180px;}
+	.page-title{font-size:26px;}
+	.counter-list-number{font-size:28px; line-height:38px;}
+	.about-wedding-title, .wedding-gallery-title, .venue-finder-title{line-height:28px;}
+	.about-wedding p{margin-bottom:30px;}
+	.about-wedding iframe{height:280px;}
+	.first-gal-img, .third-gal-img, .wedding-gallery-button{height: 320px;}
+	.second-gal-img{height: 156px;}
+	.wedding-gallery-list span{padding: 6px 10px; font-size: 14px;}
+
+	.exp-tim-wed-slider .owl-carousel .owl-nav button.owl-prev, .venue-finder-section .owl-carousel .owl-nav button.owl-prev{left:12px;}
+	.exp-tim-wed-slider .owl-carousel .owl-nav button.owl-next, .venue-finder-section .owl-carousel .owl-nav button.owl-next{right:12px;}
+
+	.event-list{padding-left:90px; display: block; position: relative;}
+	.event-list-img{display:block;}
+	.event-date{position: absolute; top: 50px; left: 0;}
+	.event-list-cont{display:block; padding-top:20px;}
+
+	.event-date strong{font-size:24px;}
+	.event-section .event-list{padding:0;}
+	.custom-meeting{padding:0 0 40px;}
+	.custom-meeting:nth-child(odd) .custom-meeting-inner{padding:20px 0 0;}
+
 }
 
 @media (max-width:767px){
-	main.web-main{margin-top: 100px;}
 	.btn{padding: 8px 18px; font-size: 14px; border-radius: 6px;}
 	.navbar{height:60px;}
 	.navbar-brand img{max-width: 66px;}
 	.left-menu span{display: none;}
 	.welcome-title{font-size:18px;}
-	.banner-section .owl-carousel .item{min-height:calc(100vh - 100px);}
 	.banner-title{font-size:36px; line-height:45px; letter-spacing:2px;}
+
+	.container{max-width:100%;}
+	.destinations-inner{padding:0;}
+	.seating-style-check{margin-right:12px;}
 }
 
 @media (max-width:499px){
 	.navbar-collapse{width:80%;}
 	.mobile-menu-close:after{width:20%;}
+	.web-header .btn{font-size: 12px; padding: 6px 12px;}
+	.navbar-toggler{width: 32px; height: 32px; padding: 0; border-radius: 5px;}
+	.navbar-toggler-icon{width: 20px; height: 20px;}
+	.header-top{padding:5px 0;}
+	.header-top a{font-size:12px;}
+	.header-social a{font-size:15px; margin-left:15px;}
+	.left-menu img{max-height: 16px;}
 	.copyright{display:block; text-align: center; margin-top:10px;}
 	.destinations-section, .testimonials-section{padding: 40px 0;}
-	.destinations-inner{grid-template-columns: repeat(1,1fr); margin-top:30px;}
+	.destinations-inner{grid-template-columns: repeat(2,1fr); margin-top:30px;}
 	.hotel-service-section{padding-top:40px;}
 	.hotel-service-title, .art-artefacts-title, .section-title, .tag-thetradefair-title{font-size:20px;}
 	.hotel-service-box-inner, .hotel-service-box:nth-child(even) .hotel-service-box-inner{padding:15px 0 40px}
@@ -1138,13 +1206,36 @@ button.verify-btn, a.verify-btn{min-width: 100px; padding-left: 5px; padding-rig
 	.tes-message-box p{font-size: 14px; line-height: 24px;}
 	.tes-author-img{width: 90px; height: 90px; border-width: 2px;}
 	.tes-author-box {margin-top: -45px;}
-	.owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev{width: 35px; height: 35px; line-height: 35px;}
-	.owl-carousel .owl-nav button.owl-next img, .owl-carousel .owl-nav button.owl-prev  img{max-width: 35px;}
-	.banner-section .owl-carousel .owl-nav button.owl-prev, .testimonials-section .owl-carousel .owl-nav button.owl-prev, .testimonials-section .owl-carousel .owl-nav button.owl-next{bottom:55px;}
-	.testimonials-section .owl-carousel .owl-nav button.owl-next{left: auto; right:0}
+	
 	.tag-thetradefair{padding:40px 0;}
 	.tag-thetradefair-message{font-size:14px; line-height:24px;}
 	.footer-section{padding-top:1px;}
 	.footer-title:first-child{margin-top:40px;}
+	.sub-title{font-size: 14px; line-height:22px; letter-spacing: 0px;}
+
+	.counter-section{padding:15px 0;}
+	.counter-section .container{grid-template-columns: repeat(2,1fr); gap:0;}
+	.counter-section article{border-bottom: 1px solid rgba(255,255,255,0.3); padding: 25px 0px;}
+	.counter-section article:nth-child(2){border-right:0;}
+	.counter-section article:nth-child(3), .counter-section article:nth-child(4){border-bottom:0;}
+	.first-gal-img{margin-bottom:2%;}
+	.first-gal-img, .second-gal-img, .third-gal-img, .wedding-gallery-button{height: auto;}
+	.reachout-form{padding: 16px;}
+
+	.event-list-img{max-width: 100%; min-width: 1px; width: 100%; border-radius: 10px;}
+	.event-date{display: none;}
+	.event-list{padding:20px 0;}
+	.event-list-inner .success{font-size:14px;}
+	.maintab-design .nav-link{font-size:13px; padding:8px 16px;}
+
+	.request-book-form{margin-top:30px; padding: 0; border-radius: 15px; border: 0;}
+	.step-icon{width: 40px; height: 40px; line-height: 40px; border-radius: 30px; font-size: 18px;}
+	.step-icon img{max-width: 23px;}
+	.seating-style-check{padding: 0; margin: 0px; width: 23%;}
+	.seating-style-check .form-check-label{width:100%; height: auto; padding: 10px 5px; border-radius: 5px;}
+	.seating-style-check img{max-width: 40px;}
+	.seating-style-check span{font-size:12px;}
+	.reservation-box .form-control, .reservation-box .form-select{height: 45px; border-radius: 5px; font-size: 13px;}
+
 }
 /*Responsive Css End///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/

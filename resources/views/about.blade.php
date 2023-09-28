@@ -12,7 +12,7 @@
     <!-- Page Title Section End -->
 
     <!-- Hotel Service Section Start -->
-    <section class="hotel-service-section">
+    <section class="hotel-service-section about-page-section">
       <div class="container">
         <!-- Box 1 -->
         <div class="hotel-service-box">
@@ -60,7 +60,7 @@
     <!-- Counter Section End -->
 
     <!-- Hotel Service Section Start -->
-    <section class="hotel-service-section evennth">
+    <section class="hotel-service-section evennth about-page-section">
       <div class="container">
 
         <!-- Box 1 -->
@@ -85,7 +85,7 @@
 
 
         <!-- Box 2 -->
-        <div class="hotel-service-box">
+        <div class="hotel-service-box about-page-section">
           <div class="row gx-0 align-items-center">
             <div class="col-xl-6 col-lg-6 col-md-12">
               <img src="{{ asset('img/vision-img.jpg')}}" alt="Restaurants" class="img-fluid">

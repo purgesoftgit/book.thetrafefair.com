@@ -38,8 +38,8 @@
                 <p class="mb-5">Exotic collection of thousands of pictures! Choose by color, theme, location, category & much more!</p>
 
                 <div class="row gx-2">
-                    <div class="col-xl-4">
-                        <div class="wedding-gallery-list">
+                    <div class="col-xl-4 col-lg-5 col-md-5 col-sm-5">
+                        <div class="wedding-gallery-list first-gal-img">
                             <a href="img/wedding-gallery-img.jpg" class="fancybox" data-fancybox="demo" rel="images-repeat" data-caption="Iconic city destination for a dream">
                                 <img src="img/wedding-gallery-img.jpg" alt="image" class="img-fluid">
                             </a>
@@ -47,15 +47,15 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-5">
-                        <div class="wedding-gallery-list height50per">
+                    <div class="col-xl-5 col-lg-7 col-md-7 col-sm-7">
+                        <div class="wedding-gallery-list second-gal-img">
                             <a href="img/wedding-gallery-img2.jpg" class="fancybox" data-fancybox="demo" rel="images-repeat" data-caption="Iconic city destination for a dream wedding">
                                 <img src="img/wedding-gallery-img2.jpg" alt="image" class="img-fluid">
                             </a>
                             <span>Iconic city destination for a dream wedding</span>
                         </div>
 
-                        <div class="wedding-gallery-list height50per">
+                        <div class="wedding-gallery-list second-gal-img">
                             <a href="img/wedding-gallery-img3.jpg" class="fancybox" data-fancybox="demo" rel="images-repeat" data-caption="Iconic city destination for a dream wedding 2">
                                 <img src="img/wedding-gallery-img3.jpg" alt="image" class="img-fluid">
                             </a>
@@ -63,17 +63,23 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-3">
-                        <div class="wedding-gallery-list height50per">
-                            <a href="img/wedding-gallery-img4.jpg" class="fancybox" data-fancybox="demo" rel="images-repeat" data-caption="Iconic city destination">
-                                <img src="img/wedding-gallery-img4.jpg" alt="image" class="img-fluid">
-                            </a>
-                            <span>Iconic city destination</span>
+                    <div class="col-xl-3 col-lg-12">
+                        <div class="row gx-2">
+                            <div class="col-xl-12 col-lg-5 col-md-5 col-sm-5">
+                                <div class="wedding-gallery-list third-gal-img">
+                                    <a href="img/wedding-gallery-img4.jpg" class="fancybox" data-fancybox="demo" rel="images-repeat" data-caption="Iconic city destination">
+                                        <img src="img/wedding-gallery-img4.jpg" alt="image" class="img-fluid">
+                                    </a>
+                                    <span>Iconic city destination</span>
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-lg-7 col-md-7 col-sm-7">
+                                <div class="wedding-gallery-button d-grid">
+                                    <button type="button" class="btn btn-primary">Get Inspired</button>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="wedding-gallery-button d-grid">
-                            <button type="button" class="btn btn-primary">Get Inspired</button>
-                        </div>
                     </div>
                 </div>
 
@@ -225,7 +231,7 @@
         <div class="container">
             <section class="reachout-form">
                 <div class="row">
-                    <div class="col-xl-5 align-self-end">
+                    <div class="col-xl-5 align-self-end d-none d-xl-block">
                         <img src="img/reachout-img.jpg" alt="image" class="img-fluid mb-m5">
                     </div>
                     <div class="col-xl-7">
@@ -236,14 +242,14 @@
 
                             <div class="row">
 
-                                <div class="mb-3 col-xl-6">
+                                <div class="mb-3 col-xl-6 col-lg-6">
                                     <div class="form-floating">
                                         <input type="text" class="form-control validate[required,maxSize[50]]" name="name" id="name-field" placeholder="Name">
                                         <label for="name-field">Name<span aria-label="required" class="text-danger">*</span></label>
                                     </div>
                                 </div>
 
-                                <div class="mb-3 col-xl-6">
+                                <div class="mb-3 col-xl-6 col-lg-6">
                                     <div class="form-floating">
                                         <input type="email" class="form-control validate[required,custom[email]]" name="email" id="email-field" placeholder="Email Address">
                                         <label for="email-field">Email Address<span aria-label="required" class="text-danger">*</span></label>
@@ -253,7 +259,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="mb-3 col-xl-6">
+                                <div class="mb-3 col-xl-6 col-lg-6">
                                     <div class="mb-3 form-floating">
                                         <input type="text" name="phone" id="Phone-Number" minlength="10" maxlength="10" class="form-control phone validate[required,maxSize[10],minSize[10]]" placeholder="Phone Number"/>
                                    
@@ -266,7 +272,7 @@
                                     <!-- OTP code -->
                                 </div>
 
-                                <div class="mb-3 col-xl-6">
+                                <div class="mb-3 col-xl-6 col-lg-6">
                                     <div class="form-floating">
                                         <input type="text" class="form-control  validate[required]" id="residing-city" name="city" placeholder="Residing City">
                                         <label for="residing-city">Residing City<span aria-label="required" class="text-danger">*</span></label>

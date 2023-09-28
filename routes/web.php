@@ -97,7 +97,7 @@ Route::post('save-review', 'PageController@saveReviews');
 
 //front login routes
 
-Route::group(['middleware' => 'auth'],function(){
+Route::group(['middleware' => 'admin'],function(){
 
     Route::get('profile','PageController@profile');   
     Route::post('profile/update','PageController@profileUpdate'); 
@@ -107,3 +107,5 @@ Route::group(['middleware' => 'auth'],function(){
     // Route::get('event-requests', 'DashboardController@getEventRequests');
     
 });
+
+// Route::get('send-test-message','Controller@sendSMSMessage');
