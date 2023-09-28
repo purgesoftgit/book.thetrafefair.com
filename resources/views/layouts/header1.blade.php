@@ -40,7 +40,7 @@
             </div>
             @else
             <a class="navbar-brand" href="{{ url('login') }}">
-               Login
+                Login
             </a>
             @endif
         </nav>

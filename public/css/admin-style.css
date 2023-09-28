@@ -100,7 +100,7 @@ a, a:hover, a:focus{color:#00b542;}
 
 table th, .table th{background:#000; color:#fff; font-weight:normal;}
 table th, .table th, table td, .table td{font-size:13px;}
-table .btn, .table .btn{padding:4px 12px; font-size:13px; border-radius:5px;}
+table.dataTable .btn, table.dataTable .btn{padding:4px 12px; font-size:12px; border-radius:5px;}
 .table-hover>tbody>tr:hover>*{--bs-table-accent-bg: rgb(248 255 251);}
 
 .bottom-gap{padding-bottom:60px;}
@@ -137,6 +137,22 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 .by-text a{display: inline-block;}
 /*Footer Section Css End*/
 
+.modal .btn-close{position: absolute; top: -5px; right: -5px; width: 35px; height: 35px; line-height: 31px; border-radius: 25px; padding: 0; background-color:#dfdfdf; color: #fff; text-align: center; opacity: 1; border: 2px solid #fff; background-size: 12px;}
+.write-review-popup .modal-header{margin-top: 20px; border: 0; justify-content: center; padding-bottom: 0;}
+.write-review-popup hr{margin: 25px 0 35px}
+.write-review-popup .form-control,.write-review-popup .form-select{font-size: 13px; color: #666; height: 40px; border-radius: 0;}
+.write-review-popup textarea.form-control{height:auto; resize: none; padding-top:20px;}
+.write-review-popup .form-control::-webkit-input-placeholder{color: #666}
+.write-review-popup .form-control::-moz-placeholder{color: #666}
+.write-review-popup .form-control:-ms-input-placeholder{color: #666}
+.write-review-popup .form-control:-moz-placeholder{color: #666}
+.write-review-popup .rating-and-review h4{font-size: 20px;}
+.rating-and-review{text-align: center;}
+
+.circle-user{width: 80px; height: 80px; line-height: 80px; border-radius: 70px; font-size: 50px; margin: 0 auto 15px; background:#00b542; color:#fff; text-align: center}
+.room-filter-block{float: right; margin: -54px 0 0}
+.room-filter-block select{font-size: 13px; height: 35px; padding: 0 10px; border-color: #c9c9c9; border-radius: 2px; background-color: #fff}
+.room-filter-block .btn{font-size: 12px; height: 35px; min-height: 1px; border-radius: 2px; line-height: 22px; min-width: 1px}
 
 /*Responsive Css Start///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 @media (max-width:1450px){

@@ -272,7 +272,7 @@ $(document).ready(function () {
             localStorage.setItem("resent_otp", true)
             sendOTPFunction();
 
-            $('#invalid_otp').text("Successfully send new OTP.").css({ 'display': 'block', 'font-size': '13px', 'color': 'green' }).delay(3000).fadeOut();
+            $('#valid_otp').text("Successfully send new OTP.").css({ 'display': 'block', 'font-size': '13px', 'color': 'green' }).delay(3000).fadeOut();
         }, 1000);
 
     });
@@ -313,7 +313,7 @@ $(document).ready(function () {
                         //  /$('.passcode-wrapper')
                         // $('.edit-input-group-append').show();
                         document.getElementById("Phone-Number").readOnly = true;
-                        $('.otp-input').show()
+                        $('.passcode-wrapper').show()
                         $('.second-verify-btn').show()
 
                         $('.verify-btn button').hide();
@@ -329,7 +329,7 @@ $(document).ready(function () {
         document.getElementById("Phone-Number").readOnly = false;
         $('.verify-btn button').show();
         $('.second-verify-btn').hide();
-        $('.otp-input').hide();
+        $('.passcode-wrapper').hide();
         $('.otp-input .passcode-wrapper input').val("");
         $('.resend-otp-btn').hide();
         localStorage.setItem("resent_otp", false)
@@ -342,7 +342,7 @@ $(document).ready(function () {
         setTimeout(() => {
             var otp = $('#codeBox1').val() + $('#codeBox2').val() + $('#codeBox3').val() + $('#codeBox4').val()
             if (otp.length == 4) {
-                console.log("second verify btn");
+                
                 $.ajax({
                     url: "register/data/otp",
                     type: 'get',
@@ -351,9 +351,9 @@ $(document).ready(function () {
                         number: $('#Phone-Number').val()
                     },
                     success: function (response) {
-                        console.log("second verify btn");
+                        
                         if (response.is_verify == 1) {
-                            $('.otp-input').hide()
+                            $('.passcode-wrapper').hide()
                             $('.second-verify-btn').hide()
                             $('.resend-otp').hide();
                             $('.verify-btn button').show();
@@ -364,7 +364,6 @@ $(document).ready(function () {
                             document.getElementById("Phone-Number").readOnly = true;
                             isVerify = true;
                             localStorage.setItem('isVerify', isVerify);
-
 
                             $("#ten-countdown").remove();
                         } else {

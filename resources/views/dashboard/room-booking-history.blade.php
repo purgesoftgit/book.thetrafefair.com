@@ -216,6 +216,8 @@
 @include('layouts.footer')
 <script>
     $(document).ready(function() {
+        
+
         $('.review-btn').click(function() {
             console.log("review btn click");
             var room_index = $('.my_item_id').data("index");

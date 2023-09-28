@@ -114,7 +114,7 @@
 
 <!-- Information Modal -->
 <div class="modal fade normal-popup information-popups" id="information-popups" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-sm  modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-body">
         <div class="message-top-icon">

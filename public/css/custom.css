@@ -1,35 +1,17 @@
 .blog-categories .active{color:#00b542;}
-label.error {
-	color: red!important;
-	font-size: 13px!important;
-    margin-top:10px;
-}
-#Phone-Number +label.error {
-	position: absolute;
-    top: 50px;
-}
+label.error{color: red!important; font-size: 13px!important; margin-top:10px;}
+#Phone-Number +label.error{position: absolute; top: 50px;}
+#review_form .error, label#error{color: red!important; font-size: 13px!important;}
+.successMassage, .valid_otp{color: green!important; font-size: 15px!important;}
 
-#review_form .error, label#error{
-	color: red!important;
-	font-size: 13px!important;
-}
+.normal-popup .btn span, .success-popups .btn span, .unsuccess-popups .btn span, .pending-popups .btn span{font-weight: 800; display: inline-block; -webkit-text-fill-color: transparent;}
+.normal-popup .btn span{background: linear-gradient(to right, #8dca83 0, #358e26 100%); -webkit-background-clip: text;}
 
-.successMassage,
-.valid_otp {
-	color: green!important;
-	font-size: 15px!important;
-}
-
-
-
-.success-popups .modal-body:before {
-    border-radius: 10px 10px 0 0;
-    background: #70ef48;
+.success-popups .modal-body:before, .review-success-popups .modal-body:before{border-radius: 10px 10px 0 0; background: #70ef48;
     background: -moz-linear-gradient(left, #70ef48 0, #49ab22 100%);
     background: -webkit-linear-gradient(left, #70ef48 0, #49ab22 100%);
     background: linear-gradient(to right, #70ef48 0, #49ab22 100%)
 }
-
 .success-popups .btn span {
     background: linear-gradient(to right, #8dca83 0, #358e26 100%);
     -webkit-background-clip: text;
@@ -40,8 +22,7 @@ label.error {
     text-shadow: 0 3px 0 rgb(103 219 67)
 }
 
-.unsuccess-popups .modal-body:before {
-    background: #f0b08d;
+.unsuccess-popups .modal-body:before{border-radius: 10px 10px 0 0; background: #f0b08d;
     background: -moz-linear-gradient(left, #f0b08d 0, #ed3833 100%);
     background: -webkit-linear-gradient(left, #f0b08d 0, #ed3833 100%);
     background: linear-gradient(to right, #f0b08d 0, #ed3833 100%)
@@ -53,23 +34,23 @@ label.error {
     background: -webkit-linear-gradient(top, #3d3d3d 0, #010101 100%);
     background: linear-gradient(to bottom, #3d3d3d 0, #010101 100%)
 }
+.unsuccess-popups .btn:hover, .unsuccess-popups .btn:focus, .success-popups .btn:hover, .success-popups .btn:focus, .pending-popups .btn:hover, .pending-popups .btn:focus, .information-popups .btn:hover, .information-popups .btn:focus, .review-success-popups .btn:hover, .review-success-popups .btn:focus{display: block; margin:0 auto -42px; min-width:120px;
+    background: #3d3d3d;
+    background: -moz-linear-gradient(top, #3d3d3d 0, #010101 100%);
+    background: -webkit-linear-gradient(top, #3d3d3d 0, #010101 100%);
+    background: linear-gradient(to bottom, #3d3d3d 0, #010101 100%)
+}
 
-.unsuccess-popups .btn span, .success-popups .btn span, .pending-popups .btn span, .information-popups .btn span, .review-success-popups .btn span{
+.unsuccess-popups .btn span{
     background: linear-gradient(to right, #d89f82 0, #9f2d2c 100%);
     -webkit-background-clip: text
 }
+.unsuccess-popups .message-top-icon .fa{text-shadow: 0 3px 0 #ec3732}
 
-.unsuccess-popups .message-top-icon, .success-popups .message-top-icon, .pending-popups .message-top-icon, .information-popups .message-top-icon, .review-success-popups .message-top-icon{
-    border: 5px solid #d9d9d9;
-    background: #d9d9d9;
-    width: 56px;
-    height: 56px;
-    line-height: 46px;
-    font-size: 24px;
-    text-align: center;
-    border-radius: 30px;
-    margin:15px auto 0;
-}
+.unsuccess-popups .message-top-icon, .success-popups .message-top-icon, .pending-popups .message-top-icon, .information-popups .message-top-icon, .review-success-popups .message-top-icon{ border: 5px solid #d9d9d9; background: #d9d9d9; width: 56px; height: 56px; line-height: 46px; font-size: 24px; text-align: center; border-radius: 30px; margin:15px auto 0;}
+
+
+.information-popups .btn span{background: linear-gradient(to right,#fdf3cd 0,#fae17c 100%); -webkit-background-clip: text;}
 
 .OTP-popups .passcode-wrapper{text-align: center; margin:0 0 35px;}
 .OTP-popups .verify-btn, .OTP-popups .resend-otp{text-align: center;}
@@ -79,34 +60,30 @@ label.error {
 .modal-sub-title + .img-fluid{width: 81px; margin: 0 auto 12px; display: block;}
 .errormessage, .successmessage, .pendingmessage{font-size: 13px; text-align: center; max-width: 80%; margin: 0 auto 18px;}
 
-.unsuccess-popups .message-top-icon .fa {
-    text-shadow: 0 3px 0 #ec3732
+.normal-popup .modal-body:before, .pending-popups .modal-body:before, .success-popups .modal-body:before{top: 0; right: 0; left: 0; height: 12px; position: absolute; content:''}
+
+.information-popups .modal-body:before{border-radius: 10px 10px 0 0; background: #fce388;
+    background: -moz-linear-gradient(left,#fce388 0,#f9d545 100%);
+    background: -webkit-linear-gradient(left,#fce388 0,#f9d545 100%);
+    background: linear-gradient(to right,#fce388 0,#f9d545 100%);
 }
 
-.normal-popup .modal-body:before,
-.pending-popups .modal-body:before,
-.success-popups .modal-body:before {
-    top: 0;
-    right: 0;
-    left: 0;
-    height: 12px;
-    position: absolute;
-    content: ''
+.pending-popups .modal-body:before{border-radius: 10px 10px 0 0; background: #70ef48;
+    background: -moz-linear-gradient(left,rgba(255 203 124) 0,rgba(255 153 0) 100%);
+    background: -webkit-linear-gradient(left,rgba(255 203 124) 0,rgba(255 153 0) 100%);
+    background: linear-gradient(to right,rgba(255 203 124) 0,rgba(255 153 0) 100%);
+}
+
+.pending-popups .btn span {
+    background: linear-gradient(to right,#ffcc7f 0,#f90 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* Read More and Less CSS */
-.read-more-show{
-    cursor:pointer;
-    color: #00b542;
-  }
-  .read-more-hide{
-    cursor:pointer;
-    color: #00b542;
-  }
-
-  .hide_content{
-    display: none;
-  }
+.read-more-show{cursor:pointer; color: #00b542;}
+.read-more-hide{cursor:pointer; color: #00b542;}
+.hide_content{display: none;}
 
 .confirm-page{padding:85px 0;}
 #progressbar-new{margin: 0 auto 30px; overflow: hidden; color: #d3d3d3; max-width: 585px; padding: 0; height: auto;}
@@ -121,88 +98,27 @@ label.error {
 #progressbar-new li.active:before{content: '\f00c'!important; font-family: FontAwesome;}
 #progressbar-new #step1 strong{text-align: left;}
 #progressbar-new #step3 strong{text-align: right;}
+
 .thanks-box{text-align: center; margin: 70px 0 0;}
 .thanks-box .btn{margin: 0 4px 8px; min-height: 40px; line-height: 26px; padding-left: 28px; padding-right: 28px;}
 .thanks-box h3 { font-size: 26px; font-weight: 700; color: #000; font-family: Raleway,sans-serif; margin: 30px 0 15px;}
 .thanks-box p { font-size: 16px; color: #656565; margin: 0 0 30px;}
 
-
-.failure-img {
-    max-width: 60%;
-    position: absolute;
-    top: 0;
-    bottom:0;
-    right: 6%;
-    z-index: -1
-}
-
+.failure-img{max-width: 60%; position: absolute; top: 0; bottom:0; right: 6%; z-index: -1}
 .failure-img img{max-height:100%;}
+.failure-page { text-align: left; padding: 0; display: flex; align-items: center; position: relative; min-height:660px}
+.failure-page .col-lg-5{ display: flex; align-items: center}
+.failure-page h1,.failure-page h2 { font-size: 56px; font-weight: 700; text-decoration: none; color: #1b1847; margin: 0 0 15px; text-transform: uppercase}
+.failure-page p { font-size: 22px; line-height: 28px; font-weight: 400; text-decoration: none; color: #242424; margin: 0 0 30px}
 
-.failure-page {
-    text-align: left;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    position: relative;
-    min-height:660px
-}
+.dropzone-wrapper { border: 2px dashed #91b0b3; color: #92b0b3; position: relative; height: 130px; border-radius: 10px;}
+.dropzone-desc { position: absolute; margin: 0 auto; left: 0; right: 0; text-align: center; width: 40%; top: 50%; font-size: 16px; transform: translateY(-50%);}
+.dropzone-wrapper .dropzone-desc svg{height: 20px!important;}
+.fa-cloud-upload-alt:before{content: "\f382";}
+.dropzone, .dropzone:focus{position: absolute; outline: 0!important; width: 100%; height: 150px; cursor: pointer; opacity: 0;}
 
-.failure-page .col-lg-5{
-    display: flex;
-    align-items: center
-}
 
-.failure-page h1,.failure-page h2 {
-    font-size: 56px;
-    font-weight: 700;
-    text-decoration: none;
-    color: #1b1847;
-    margin: 0 0 15px;
-    text-transform: uppercase
-}
 
-.failure-page p {
-    font-size: 22px;
-    line-height: 28px;
-    font-weight: 400;
-    text-decoration: none;
-    color: #242424;
-    margin: 0 0 30px
-}
-
-.dropzone-wrapper {
-    border: 2px dashed #91b0b3;
-    color: #92b0b3;
-    position: relative;
-    height: 130px;
-    border-radius: 10px;
-}
-
-.dropzone-desc {
-    position: absolute;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    text-align: center;
-    width: 40%;
-    top: 50%;
-    font-size: 16px;
-    transform: translateY(-50%);
-}
-.dropzone-wrapper .dropzone-desc svg {
-    height: 20px!important;
-}
-.fa-cloud-upload-alt:before {
-    content: "\f382";
-}
-.dropzone, .dropzone:focus {
-    position: absolute;
-    outline: 0!important;
-    width: 100%;
-    height: 150px;
-    cursor: pointer;
-    opacity: 0;
-}
 @media (max-width:1199px){
     .failure-page{min-height:480px;}
 }

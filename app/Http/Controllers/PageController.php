@@ -355,6 +355,7 @@ class PageController extends Controller
         $insert->email_verifid_token = Str::random(20);
         $insert->referral_code = strtolower(Str::random(6));
         $insert->password =  bcrypt(env('AUTO_PASSWORD'));
+        $insert->login_type = 3;
         $insert->save();
 
 
@@ -400,8 +401,9 @@ class PageController extends Controller
 
     public function verifyLogin(Request $request)
     {
+        
         $user = User::where('phone_number', '+91' . $request->phone_number)->first();
-        if ($user) {
+        if (!empty($user)) {
             Auth::loginUsingId($user->id);
             return redirect('room-order-history');
             // return response()->json(['message' => 'Logged in successfully']);

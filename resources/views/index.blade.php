@@ -104,7 +104,7 @@
             <!-- Box 1 -->
             <div class="hotel-service-box">
                 <div class="row gx-0 align-items-center">
-                    <div class="col-xl-6 col-lg-6 col-md-12">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                         <div class="owl-carousel owl-theme" id="rooms-suites-images-slider">
                             <div class="item">
                                 <img src="{{ asset('img/room-photo.jpg')}}" alt="Rooms and Suites">
@@ -118,7 +118,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-6 col-lg-6 col-md-12">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                         <div class="hotel-service-box-inner">
                             <div class="hotel-service-title">Rooms and Suites</div>
                             <p>Enveloped in the lap of nature's breath-taking marvels, your stay with us is one of peace
@@ -136,7 +136,7 @@
             <!-- Box 2 -->
             <div class="hotel-service-box">
                 <div class="row gx-0 align-items-center">
-                    <div class="col-xl-6 col-lg-6 col-md-12 order-lg-last">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 order-sm-last">
                         <div class="owl-carousel owl-theme" id="restaurants-images-slider">
                             <div class="item">
                                 <img src="{{ asset('img/restaurants-image.jpg')}}" alt="Restaurants">
@@ -150,7 +150,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-6 col-lg-6 col-md-12">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                         <div class="hotel-service-box-inner">
                             <div class="hotel-service-title">Restaurants</div>
                             <p>Each dining space at The Trade Fair has been designed keeping in mind an overall
@@ -168,7 +168,7 @@
             <!-- Box 3 -->
             <div class="hotel-service-box">
                 <div class="row gx-0 align-items-center">
-                    <div class="col-xl-6 col-lg-6 col-md-12">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                         <div class="owl-carousel owl-theme" id="meetings-events-images-slider">
                             <div class="item">
                                 <img src="{{ asset('img/meetings-events-image.jpg')}}" alt="Image">
@@ -182,7 +182,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-6 col-lg-6 col-md-12">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                         <div class="hotel-service-box-inner">
                             <div class="hotel-service-title">Meetings & Events</div>
                             <p>Render the magical The Trade Fair touch to your events, conferences and meetings. The
@@ -200,7 +200,7 @@
             <!-- Box 4 -->
             <div class="hotel-service-box">
                 <div class="row gx-0 align-items-center">
-                    <div class="col-xl-6 col-lg-6 col-md-12 order-lg-last">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 order-sm-last">
                         <div class="owl-carousel owl-theme" id="spa-wellness-slider">
                             <div class="item">
                                 <img src="{{ asset('img/spa-wellness-image.jpg')}}" alt="Image">
@@ -214,7 +214,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-6 col-lg-6 col-md-12">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                         <div class="hotel-service-box-inner">
                             <div class="hotel-service-title">SPA and Wellness</div>
                             <p>The soothing ambience at each of the The Trade Fair Spas will transport you to a world of
@@ -231,7 +231,7 @@
             <!-- Box 4 -->
             <div class="hotel-service-box">
                 <div class="row gx-0 align-items-center">
-                    <div class="col-xl-6 col-lg-6 col-md-12">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                         <div class="owl-carousel owl-theme" id="wedding-hall-slider">
                             <div class="item">
                                 <img src="{{ asset('img/wedding-hall-image.jpg')}}" alt="Image">
@@ -245,7 +245,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-6 col-lg-6 col-md-12">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                         <div class="hotel-service-box-inner">
                             <div class="hotel-service-title">Wedding Hall</div>
                             <p>Holiday Inn Jaipur City center is a 5-star property located in the Pink City of India.
@@ -261,7 +261,7 @@
     </section>
     <!-- Hotel Service Section End -->
 
-    <div class="container">
+    <div class="container art-artefacts-cont">
         <!-- Art and Artefacts Section Start -->
         <section class="art-artefacts-section">
             <div class="owl-carousel owl-theme" id="art-artefacts-slider">
@@ -277,7 +277,7 @@
                 @if ($item->selected_website == 1)
                 <div class="item">
                     <div class="row">
-                        <div class="col-xl-6 col-lg-6">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                             <a href="javascript:void(0)" class="art-artefacts-img">
                                 @if (!is_null($item->image))
                                 <img src="{{ env('BACKEND_URL') . 'show-images/' . $item->image }}" alt="Img" class="img-fluid">
@@ -286,7 +286,7 @@
                                 @endif
                             </a>
                         </div>
-                        <div class="col-xl-6 col-lg-6">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                             <div class="art-artefacts-text">
                                 <a href="javascript:void(0)" class="art-artefacts-title text-primary">{{ $item->title }}</a>
                                 <p class="mb-0">{!! Illuminate\Support\Str::words($item->description,100) !!}</p>
