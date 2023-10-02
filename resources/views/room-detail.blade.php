@@ -46,9 +46,7 @@
                     <section id="gallery-con">
 
                         <div class="room-offers">
-                            <big>
-                                <?php echo isset($room['new_off_percentage']) && !empty($room['new_off_percentage']) ? $room->new_off_percentage : $room->off_percentage;  ?><sup>%</sup></big>
-                            <span>Off</span>
+                            <span class="new_precentage"></span>
                         </div>
                         <div class="web-logo"><img src="{{asset('img/logo-blog.png')}}" alt="Logo"></div>
 
@@ -59,17 +57,17 @@
                         </section>
 
 
-                        {{--<section id="gallery-hidden">
+                        <section id="gallery-hidden">
 
                             @foreach(json_decode($room->image) as $key => $room_img)
 
                             <img src="{{env('BACKEND_URL') . 'show-images/' . $room_img}}" alt="Image">
 
                         @endforeach
-                    </section>--}}
+                    </section>
 
 
-                    <!-- <section id="thumbnails">
+                    <section id="thumbnails">
                             <div id="left-arrow" class="ui-button">
                                 <div class="icon icon-arrow-left"></div>
                             </div>
@@ -78,7 +76,7 @@
                             <div id="right-arrow" class="ui-button">
                                 <div class="icon icon-arrow-right"></div>
                             </div>
-                        </section> -->
+                        </section>
     </section>
 
 
@@ -86,12 +84,12 @@
         <div class="room-detail-top">
             <div class="room-detail-title category-title">{{$room->title ?? ''}}</div>
         </div>
-        <div class="room-detail-rate">
 
-            <big>₹<small class="per_person_price"><?php echo isset($room->final_price) && !empty($room->final_price) ? $room->final_price : $room->price; ?></small></big>
-
-            <s>₹<?php echo isset($room->new_old_price) && !empty($room->new_old_price) ? $room->new_old_price : $room->old_price; ?></s>
-        </div>
+         <div class="room-detail-rate">
+            <span class="new_price"></span>
+            <span class="old_price"></span>
+             
+        </div> 
         <p>{!! $room->description !!}</p>
 
     </div>
@@ -297,70 +295,75 @@
 
                 </div>
 
-                <div class="mb-4">
-                    <label class="form-label" for="full-name-id">Full name <sup class="text-danger">*</sup></label>
-                    <input type="text" class="form-control first_name validate[required]" name="first_name" placeholder="Full Name" value="{{ (Auth::check() && Auth::user()->role_id == 0) ? Auth::user()->first_name : '' }}">
-                </div>
+                <div class="row">
+                    <div class="mb-4 col-xl-12 col-lg-12 col-md-6 col-sm-12">
+                        <label class="form-label" for="full-name-id">Full name <sup class="text-danger">*</sup></label>
+                        <input type="text" class="form-control first_name validate[required]" name="first_name" placeholder="Full Name" value="{{ (Auth::check() && Auth::user()->role_id == 0) ? Auth::user()->first_name : '' }}">
+                    </div>
 
-                <div class="mb-4">
-                    <label class="form-label" for="full-name-id">Phone Number <sup class="text-danger">*</sup></label>
-                    <div class="input-group mb-3">
+                    <div class="mb-4 col-xl-12 col-lg-12 col-md-6 col-sm-12">
+                        <label class="form-label" for="full-name-id">Phone Number <sup class="text-danger">*</sup></label>
+                        <div class="input-group mb-3">
 
-                        <span class="input-group-text" id="basic-addon1">
-                            <img src="{{asset('img/india-flag.jpg')}}" alt="India Flag Image">&nbsp; +91
-                        </span>
-                        <input type="text" class="form-control phone phone-num validate[required,maxSize[10],minSize[10]]" id="checkout-phone" name="phone" maxlength="10" minlength="10" placeholder="Phone" value="{{ (Auth::check() && Auth::user()->role_id == 0) ? preg_replace('/^\+?91|\|1|\D/', '', (Auth::user()->phone_number)) : '' }}">
-
-                        <!-- <div class="input-group-append edit-input-group-append" style="display: none;">
-                            <span toggle="#password-field" class="input-group-text field-icon" style="height: 100%;color: #fff;background: #00b542;border-color: #00b542;">
-                                <i class="fa fa-pencil"></i>
+                            <span class="input-group-text" id="basic-addon1">
+                                <img src="{{asset('img/india-flag.jpg')}}" alt="India Flag Image">&nbsp; +91
                             </span>
-                        </div> -->
+                            <input type="text" class="form-control phone phone-num validate[required,maxSize[10],minSize[10]]" id="checkout-phone" name="phone" maxlength="10" minlength="10" placeholder="Phone" value="{{ (Auth::check() && Auth::user()->role_id == 0) ? preg_replace('/^\+?91|\|1|\D/', '', (Auth::user()->phone_number)) : '' }}">
 
-                        <span class="phone_error"></span>
+                            <!-- <div class="input-group-append edit-input-group-append" style="display: none;">
+                                <span toggle="#password-field" class="input-group-text field-icon" style="height: 100%;color: #fff;background: #00b542;border-color: #00b542;">
+                                    <i class="fa fa-pencil"></i>
+                                </span>
+                            </div> -->
 
+                            <span class="phone_error"></span>
+
+                        </div>
+
+                        @if(!Auth::check())
+                        <div class="row align-items-center mb-4">
+                            <div class="col-lg-7 col-md-7 col-sm-7 otp-input">
+                                <div class="passcode-wrapper" style="display:none;">
+                                    <input id="codeBox1" type="text" maxlength="1" onkeyup="onKeyUpEvent(1, event)" onfocus="onFocusEvent(1)">
+                                    <input id="codeBox2" type="text" maxlength="1" onkeyup="onKeyUpEvent(2, event)" onfocus="onFocusEvent(2)">
+                                    <input id="codeBox3" type="text" maxlength="1" onkeyup="onKeyUpEvent(3, event)" onfocus="onFocusEvent(3)">
+                                    <input id="codeBox4" type="text" maxlength="1" onkeyup="onKeyUpEvent(4, event)" onfocus="onFocusEvent(4)">
+                                </div>
+                                <span id="invalid_otp"></span>
+                            </div>
+
+                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                <div class="second-verify-btn otp-input text-end" style="display: none;">
+                                    <button type="button" class="btn btn-primary btn-sm verify-btn">
+                                        <span class="verify-spinner-border spinner-border spinner-border-sm" style="display:none; margin: 0 5px;"></span>
+                                        Verify
+                                    </button>
+                                </div>
+                                <div class="verify-btn text-end">
+                                    <button type="button" class="btn btn-primary btn-sm">verify</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="resend-otp" style="display: none;">
+                            <div class="row mt-2 mb-3 align-items-center">
+
+                                <div class="col-md-6" id="resend-otp-block">
+                                    <div class="countdown" id="ten-countdown"></div>
+                                </div>
+
+                                <div class="col-md-6 text-end resend-url-link" data-url="{{ url('resend-otp') }}/">
+                                    <a class="resend-otp-btn" href="javascript:void(0)" style="display:block;">Resend OTP</a>
+                                    <span class="spinner-border resend-spinner-border spinner-border-sm" style="display:none; margin-left: auto;"></span>
+                                </div>
+
+                            </div>
+                        </div>
+                        @endif
                     </div>
                 </div>
 
-                @if(!Auth::check())
-                <div class="row align-items-center mb-4">
-                    <div class="col-lg-6 otp-input" style="display:none;">
-                        <div class="passcode-wrapper">
-                            <input id="codeBox1" type="text" maxlength="1" onkeyup="onKeyUpEvent(1, event)" onfocus="onFocusEvent(1)">
-                            <input id="codeBox2" type="text" maxlength="1" onkeyup="onKeyUpEvent(2, event)" onfocus="onFocusEvent(2)">
-                            <input id="codeBox3" type="text" maxlength="1" onkeyup="onKeyUpEvent(3, event)" onfocus="onFocusEvent(3)">
-                            <input id="codeBox4" type="text" maxlength="1" onkeyup="onKeyUpEvent(4, event)" onfocus="onFocusEvent(4)">
-                        </div>
-                        <span id="invalid_otp"></span>
-                    </div>
-
-                    <div class="col-lg-6 second-verify-btn otp-input text-end" style="display: none;">
-                        <button type="button" class="btn btn-primary btn-sm verify-btn">
-                            <span class="verify-spinner-border spinner-border spinner-border-sm" style="display:none; margin: 0 5px;"></span>
-                            Verify
-                        </button>
-                    </div>
-                    <div class="verify-btn text-end">
-                        <button type="button" class="btn btn-primary btn-sm">verify</button>
-                    </div>
-
-                </div>
-
-                <div class="resend-otp" style="display: none;">
-                    <div class="row mt-2 mb-3 align-items-center">
-
-                        <div class="col-md-6" id="resend-otp-block">
-                            <div class="countdown" id="ten-countdown"></div>
-                        </div>
-
-                        <div class="col-md-6 text-end resend-url-link" data-url="{{ url('resend-otp') }}/">
-                            <a class="resend-otp-btn" href="javascript:void(0)" style="display:block;">Resend OTP</a>
-                            <span class="spinner-border resend-spinner-border spinner-border-sm" style="display:none; margin-left: auto;"></span>
-                        </div>
-
-                    </div>
-                </div>
-                @endif
 
 
                 <div class="row">
@@ -392,14 +395,16 @@
                     </div>
                 </div>
 
-                <div class="mb-4">
-                    <label class="form-label" for="email-id">Email <sup class="text-danger">*</sup></label>
-                    <input type="email" class="form-control email  validate[required, custom[email]] " id="checkout-email" placeholder="Enter Email" value="{{ (Auth::check()) ? Auth::user()->email : '' }}">
-                </div>
+                <div class="row">
+                    <div class="mb-4 col-xl-12 col-lg-12 col-md-6 col-sm-6">
+                        <label class="form-label" for="email-id">Email <sup class="text-danger">*</sup></label>
+                        <input type="email" class="form-control email  validate[required, custom[email]] " id="checkout-email" placeholder="Enter Email" value="{{ (Auth::check()) ? Auth::user()->email : '' }}">
+                    </div>
 
-                <div class="mb-4">
-                    <label class="form-label" for="children-id">Children</label>
-                    <input type="number" class="form-control children" id="children-id" value="0" placeholder="Enter Children">
+                    <div class="mb-4 col-xl-12 col-lg-12 col-md-6 col-sm-6">
+                        <label class="form-label" for="children-id">Children</label>
+                        <input type="number" class="form-control children" id="children-id" value="0" placeholder="Enter Children">
+                    </div>
                 </div>
 
                 <div class="mb-4">
@@ -416,8 +421,10 @@
                     <label class="form-check-label" for="flexCheckguest">To complete your reservation, you must agree to the Hotel The Trade Fair (“TTF”) Website Terms of Use. I agree to the TTF Website Terms of Use and Cancellation & Rate Details, and have read the Privacy Notice.</label>
                 </div>
 
-                <div class="d-grid">
-                    <button type="button" class="btn btn-primary reservation-btn" id="complete-room-reservation-btn">Complete Reservation</button>
+                <div class="row justify-content-center">
+                    <div class="d-grid mb-4 col-xl-12 col-lg-12 col-md-6 col-sm-6">
+                        <button type="button" class="btn btn-primary reservation-btn" id="complete-room-reservation-btn">Complete Reservation</button>
+                    </div>
                 </div>
             </form>
         </section>
@@ -426,7 +433,7 @@
 
     </div>
 
-    <div class="detail-list">
+    <div class="">
         @if(isset($facility_TTF_city_center)) {!! $facility_TTF_city_center->description !!} @endif
      </div>
     </div>
@@ -557,24 +564,26 @@
 
 
             <div class="d-flex align-items-start flex-tabs">
-                <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <button class="nav-link active" id="v-pills-all-reviews-tab" data-bs-toggle="pill" data-bs-target="#v-pills-all-reviews" type="button" role="tab" aria-controls="v-pills-all-reviews" aria-selected="true">All Reviews</button>
+                <div class="d-flex-mobile">
+                    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <button class="nav-link active" id="v-pills-all-reviews-tab" data-bs-toggle="pill" data-bs-target="#v-pills-all-reviews" type="button" role="tab" aria-controls="v-pills-all-reviews" aria-selected="true">All Reviews</button>
 
-                    <button class="nav-link" id="v-pills-luxury-tab" data-bs-toggle="pill" data-bs-target="#v-pills-luxury" type="button" role="tab" aria-controls="v-pills-luxury" aria-selected="false">Luxury</button>
+                        <button class="nav-link" id="v-pills-luxury-tab" data-bs-toggle="pill" data-bs-target="#v-pills-luxury" type="button" role="tab" aria-controls="v-pills-luxury" aria-selected="false">Luxury</button>
 
-                    <button class="nav-link" id="v-pills-location-tab" data-bs-toggle="pill" data-bs-target="#v-pills-location" type="button" role="tab" aria-controls="v-pills-location" aria-selected="false">Location</button>
+                        <button class="nav-link" id="v-pills-location-tab" data-bs-toggle="pill" data-bs-target="#v-pills-location" type="button" role="tab" aria-controls="v-pills-location" aria-selected="false">Location</button>
 
-                    <button class="nav-link" id="v-pills-connectivity-tab" data-bs-toggle="pill" data-bs-target="#v-pills-connectivity" type="button" role="tab" aria-controls="v-pills-connectivity" aria-selected="false">Connectivity</button>
+                        <button class="nav-link" id="v-pills-connectivity-tab" data-bs-toggle="pill" data-bs-target="#v-pills-connectivity" type="button" role="tab" aria-controls="v-pills-connectivity" aria-selected="false">Connectivity</button>
 
-                    <button class="nav-link" id="v-pills-market-tab" data-bs-toggle="pill" data-bs-target="#v-pills-market" type="button" role="tab" aria-controls="v-pills-market" aria-selected="false">Market</button>
+                        <button class="nav-link" id="v-pills-market-tab" data-bs-toggle="pill" data-bs-target="#v-pills-market" type="button" role="tab" aria-controls="v-pills-market" aria-selected="false">Market</button>
 
-                    <button class="nav-link" id="v-pills-nightlife-tab" data-bs-toggle="pill" data-bs-target="#v-pills-nightlife" type="button" role="tab" aria-controls="v-pills-nightlife" aria-selected="false">Nightlife</button>
+                        <button class="nav-link" id="v-pills-nightlife-tab" data-bs-toggle="pill" data-bs-target="#v-pills-nightlife" type="button" role="tab" aria-controls="v-pills-nightlife" aria-selected="false">Nightlife</button>
 
-                    <button class="nav-link" id="v-pills-safety-hygiene-tab" data-bs-toggle="pill" data-bs-target="#v-pills-safety-hygiene" type="button" role="tab" aria-controls="v-pills-safety-hygiene" aria-selected="false">Safety And Hygiene</button>
+                        <button class="nav-link" id="v-pills-safety-hygiene-tab" data-bs-toggle="pill" data-bs-target="#v-pills-safety-hygiene" type="button" role="tab" aria-controls="v-pills-safety-hygiene" aria-selected="false">Safety And Hygiene</button>
 
-                    <button class="nav-link" id="v-pills-hospitality-tab" data-bs-toggle="pill" data-bs-target="#v-pills-hospitality" type="button" role="tab" aria-controls="v-pills-hospitality" aria-selected="false">Hospitality</button>
+                        <button class="nav-link" id="v-pills-hospitality-tab" data-bs-toggle="pill" data-bs-target="#v-pills-hospitality" type="button" role="tab" aria-controls="v-pills-hospitality" aria-selected="false">Hospitality</button>
 
-                    <button class="nav-link" id="v-pills-food-tab" data-bs-toggle="pill" data-bs-target="#v-pills-food" type="button" role="tab" aria-controls="v-pills-food" aria-selected="false">Food</button>
+                        <button class="nav-link" id="v-pills-food-tab" data-bs-toggle="pill" data-bs-target="#v-pills-food" type="button" role="tab" aria-controls="v-pills-food" aria-selected="false">Food</button>
+                    </div>
                 </div>
 
                 <div class="tab-content" id="v-pills-tabContent">

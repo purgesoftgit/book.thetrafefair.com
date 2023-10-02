@@ -28,7 +28,7 @@
             @if ($item->selected_website == 1)
             <div class="vacancies-list">
                 <div class="vacancies-list-left">
-                    <div class="vacancies-name">{{ $item->job_title }} <a href="#career_form" class="btn btn-primary btn-sm">Apply Now</a></div>
+                    <div class="vacancies-name"><span>{{ $item->job_title }}</span></div>
                     <div class="vacancies-position">{{ $item->department }}</div>
                     <div class="vacancies-loc-time">
                         <span>{{ $item->experience }}</span>
@@ -49,6 +49,13 @@
 
 
                 </div>
+
+                <div class="vacancies-list-right">
+                    <a href="#career_form" class="apply-now">Apply Now
+                      <svg height="24px" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M322.7,128.4L423,233.4c6,5.8,9,13.7,9,22.4c0,8.7-3,16.5-9,22.4L322.7,383.6c-11.9,12.5-31.3,12.5-43.2,0  c-11.9-12.5-11.9-32.7,0-45.2l48.2-50.4h-217C93.7,288,80,273.7,80,256c0-17.7,13.7-32,30.6-32h217l-48.2-50.4  c-11.9-12.5-11.9-32.7,0-45.2C291.4,115.9,310.7,115.9,322.7,128.4z"/></svg>
+                    </a>
+                </div>
+
             </div>
             @endif
             @endif
@@ -244,26 +251,26 @@
 
 @include('messages')
 @include('layouts.footer')
-<script src="{{ asset('js/custom.js') }}"></script>
+<!-- <script src="{{ asset('js/custom.js') }}"></script> -->
 <script>
     $(document).ready(function() {
         $('.vacancies-listing-section .vacancies-list').each(function(key, value) {
 
             if (key == 0) {
-                $('.job_type').val($(value).find('.vacancies-name').text());
+                $('.job_type').val($(value).find('.vacancies-name span').text());
             }
            
         });
 
         $('.vacancies-listing-section .vacancies-list').click(function(){
-            $('.job_type').val($(this).find('.vacancies-name').text());
+            $('.job_type').val($(this).find('.vacancies-name span').text());
       });
 
         $("#submit-career-form").click(function(e) {
 
             var is_validate = $('#career_form').validationEngine('validate');
             var is_phone_verified = localStorage.getItem("isVerify") ? localStorage.getItem("isVerify") : false;
-
+ 
             if (is_validate == false || is_validate == "false") {} else if (grecaptcha.getResponse().length == 0) {
                 $('.captcha_err').text('Please complete the reCAPTCHA challenge.')
             } else if (is_phone_verified == false || is_phone_verified == "false") {
@@ -278,7 +285,7 @@
                     timerProgressBar: true,
                     showConfirmButton: false
                 }).then(function() {
-                    
+                    $('#career_form').submit()
                 });
             }
         });

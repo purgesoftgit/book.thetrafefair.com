@@ -184,7 +184,7 @@
     <div class="container">
       <div class="row">
 
-        <div class="col-xl-5 col-lg-5">
+        <div class="col-xl-5 col-lg-5 d-none d-lg-block">
           <div class="spa-video-box">
             <img src="{{ url('img/spa-form-img2.webp') }}" alt="spa Image" class="img-fluid">
           </div>
@@ -206,7 +206,7 @@
 
             <div class="row">
 
-              <div class="col-md-6 col-sm-6">
+              <div class="col-xl-6 col-lg-12 col-sm-6 mb-4">
                 <label for="your-email-field" class="form-label">Your Email<sup>*</sup></label>
                 <input type="email" name="email" id="email" class="form-control validate[required,custom[email]]" />
                 @if ($errors->has('email'))
@@ -214,7 +214,7 @@
                 @endif
               </div>
 
-              <div class="col-md-6 col-sm-6">
+              <div class="col-xl-6 col-lg-12 col-sm-6 mb-4">
                 <label for="your-email-field" class="form-label">Phone<sup>*</sup></label>
                 <div class="mb-3 input-group banquet-contact">
                   <span class="input-group-text" id="basic-addon1">

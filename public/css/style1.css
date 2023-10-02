@@ -37,10 +37,10 @@ main.web-main{margin-top:129px;}
 .left-menu b{font-weight:inherit;}
 .left-menu img, .left-menu span, .right-menu span{display: inline-block; vertical-align: middle;}
 .right-menu{text-align: right;}
-.right-menu a{color:rgba(255,255,255,0.55);}
+.right-menu a{color:#fff;}
 .right-menu span{margin:0 15px; color:#3f3f47;}
 .header-social{display:inline-block; margin-left:15px;}
-.header-social a{font-size:17px; display: inline-block; margin-left:17px;}
+.header-social a{font-size:17px; display: inline-block; margin-left:17px; color:rgba(255,255,255,0.55);}
 .mobile-menu-close{display: none;}
 .navbar{background:#fff; height:89px; position: relative; box-shadow:0 5px 12px 0 rgba(0,0,0,0.10);}
 .navbar:after{content:''; background:url('../img/logo-bottom-bg.png') no-repeat center bottom; width:285px; height:55px; position: absolute; top:100%; left:50%; 
@@ -58,11 +58,18 @@ main.web-main{margin-top:129px;}
 	transform: translateX(-50%);
 }
 .blogo-space{width:160px;}
-.navbar-expand-lg .navbar-nav{position: relative; left:30px;}
+.navbar-expand-lg .navbar-nav{position: relative; left:43px;}
 .navbar-expand-lg .navbar-nav .nav-item{vertical-align: middle;}
 .navbar-expand-lg .navbar-nav .nav-item.d-none .btn{margin-left:15px; text-transform: uppercase; font-size:14px; padding: 6px 13px; border-radius:6px;}
 .navbar-nav .nav-link{font-size:14px; color:#000; font-weight:500; margin:0 18px; text-transform: uppercase;}
 .navbar-nav .nav-link:focus, .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active, .navbar-nav .show>.nav-link{color:#00b542;}
+
+.web-profile-drop .dropdown-toggle{background: #ffffff; padding: 6px 12px; margin: -8px 0; letter-spacing: 0.5px; border-radius: 5px; color: #000;}
+.web-profile-drop{display: inline-block;}
+.web-profile-drop .dropdown-toggle:hover, .web-profile-drop .dropdown-toggle:focus{background: #00b542; color: #fff;}
+.web-profile-drop .dropdown-menu{border-color: #00b542; box-shadow: 0 5px 14px 0 rgba(0,0,0,0.18); background: #000;}
+.web-profile-drop .dropdown-item{color:#fff;}
+.web-profile-drop .dropdown-item.active, .web-profile-drop .dropdown-item:active, .web-profile-drop .dropdown-item:focus, .web-profile-drop .dropdown-item:hover{background: #00b542; color: #fff !important;}
 /*Header Css End*/
 
 /*Banner Css Start*/
@@ -439,6 +446,8 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 
 .passcode-wrapper input{width:36px; height:36px; line-height:36px; border-radius:22px; text-align: center; font-size:16px; color:#000; border:1px solid #d9d9d9;}
 .passcode-wrapper input:focus{outline: none;}
+
+.account-detail-page .successMassage{position: absolute;}
 /*Login & Sign page Css End*/
 
 /*Rooms Page Css Start*/
@@ -480,22 +489,25 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 .rooms_guests{line-height:45px; background-color:#fff; cursor: pointer; position: relative;}
 .rooms_guests:after{position: absolute; top: 50%; right: 8px; font-size: 19px; font-weight:400; content: "\f107"; color: #555; padding: 0 5px; font-family: FontAwesome; transform: translateY(-50%);}
 .reservation-btn{height:45px; line-height:34px; border-radius:0; padding:5px;}
-.rooms_guests_list{    color: #312d2d;height: auto; border: 1px solid rgba(255,255,255,0.3); padding:15px 15px; background:#fff; margin-top:3px;}
-.added-rooms-list{background:#f0f0f0; padding: 10px 20px; border-radius: 10px; margin-bottom:10px;}
-.added-rooms-action{display: flex; gap:10px; justify-content: space-between;}
-.added-rooms-action a{margin-left:10px; cursor: pointer;}
-.added-rooms-action p, .added-rooms-detail p, .room_adults_heading p{margin:0; font-size:14px;}
+
+.rooms_guests_list{color: #312d2d; height: auto; border: 1px solid rgba(255,255,255,0.3); padding:15px 15px; background:#fff; margin-top:3px;}
+.added_rooms > div{background:#f0f0f0; padding: 10px 20px; border-radius: 10px; margin-bottom:10px;}
+.editDiv{display: flex; gap:10px; justify-content: space-between;}
+.editDiv a{margin-left:10px; cursor: pointer; text-decoration: none;}
+.editDiv p, .editDetail p, .room_adults_heading p{margin:0; font-size:14px;}
+.editDiv p{margin-bottom:0;}
 .room_adults_heading{text-transform: uppercase;}
 .room_number ul{list-style: none; padding:0; margin:0;}
-.room_number ul li{width:36px; height:36px; line-height:36px; text-align: center; border:1px solid #d9d9d9; display: inline-block; border-radius:8px; cursor: pointer;}
+.room_number ul li{width:36px; height:36px; line-height:36px; text-align: center; border:1px solid #d9d9d9; display: inline-block; border-radius:8px; cursor: pointer; margin:8px 8px 0 0;}
 .room_number ul li.selected, .room_number ul li:hover{border-color:#00b542; background:#00b542; color:#fff;}
+
 .guests_list{padding-top:12px;}
-.added-rooms{max-height:230px; overflow-y: auto;}
-.added-rooms::-webkit-scrollbar{-webkit-appearance:none}
-.added-rooms::-webkit-scrollbar:vertical{width:8px}
-.added-rooms::-webkit-scrollbar:horizontal{height:8px}
-.added-rooms::-webkit-scrollbar-thumb{border-radius:8px; border:1px solid #fff; background-color:#ddd;}
-.added-rooms-detail{background:#fff; padding:15px; border:1px solid #d8d8d8; border-radius:12px; margin-top:10px;}
+.added_rooms{max-height:230px; overflow-y: auto;}
+.added_rooms::-webkit-scrollbar{-webkit-appearance:none}
+.added_rooms::-webkit-scrollbar:vertical{width:8px}
+.added_rooms::-webkit-scrollbar:horizontal{height:8px}
+.added_rooms::-webkit-scrollbar-thumb{border-radius:8px; border:1px solid #fff; background-color:#ddd;}
+.editDetail{background:#fff; padding:15px; border:1px solid #d8d8d8; border-radius:12px; margin-top:10px;}
 /*Rooms Page Css End*/
 
 /*Terms & Conditions Page Start*/
@@ -921,9 +933,11 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 .wedding-gallery-list p, .exp-tim-wed-section p{font-style: normal; font-weight:500; font-size: 16px; color:#878788;}
 .wedding-gallery-list span{position: absolute; bottom:0; left:0; right:0; background:rgba(255,255,255,0.65); padding:10px 20px;  font-size:18px; text-transform: capitalize; color: #000000; font-weight: 500;}
 .wedding-gallery-title{font-weight: 600; font-size: 40px; line-height: 47px; color: #242424; margin-bottom:20px;}
-.height50per{height:49%;}
-.height50per img{height:100%;}
-.wedding-gallery-button{height:49%; margin-top:2%; display: flex; align-items: center; padding:10px 12%;}
+.first-gal-img{height:454px; overflow: hidden;}
+.second-gal-img, .third-gal-img{height:222px; overflow: hidden;}
+.first-gal-img a, .second-gal-img a, .third-gal-img a{display: block; height:100%;}
+.first-gal-img img, .second-gal-img img, .third-gal-img img{min-height:100%; object-fit: cover;}
+.wedding-gallery-button{height: 222px; margin-top: 2%; display: flex; align-items: center; padding: 10px; width: 230px; margin: 0 auto;}
 .wedding-gallery-button .btn-primary{font-weight: 400; font-size: 24px; line-height: 28px; text-transform: capitalize; padding:12px;}
 .wd-g-link a{color:#878788; text-decoration: none;}
 .wd-g-link a:hover, .wd-g-link a:focus{color:#FFCD01; text-decoration: none;}
@@ -936,7 +950,7 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 .exp-tim-wed-title:before{content:''; position: absolute; top:100%; left:0; width:150px; height:2px; background-color:rgb(0 181 66);}
 .exp-tim-wed-inner p{font-weight: 400; font-size: 15px; line-height:20px; text-transform: capitalize; color: #000000;}
 
-.exp-tim-wed-slider .owl-carousel .owl-nav button.owl-prev, .exp-tim-wed-slider .owl-carousel .owl-nav button.owl-next, .venue-finder-section .owl-carousel .owl-nav button.owl-prev, .venue-finder-section .owl-carousel .owl-nav button.owl-next{width:50px; height:50px; border-radius:40px; background: linear-gradient(249.61deg, rgba(250, 225, 124, 0.93) -51.52%, rgba(207, 207, 207, 0) 107.91%); -webkit-transition: all 0.5s ease-in-out; -moz-transition: all 0.5s ease-in-out;  -o-transition: all 0.5s ease-in-out;  transition: all 0.5s ease-in-out;}
+.exp-tim-wed-slider .owl-carousel .owl-nav button.owl-prev, .exp-tim-wed-slider .owl-carousel .owl-nav button.owl-next, .venue-finder-section .owl-carousel .owl-nav button.owl-prev, .venue-finder-section .owl-carousel .owl-nav button.owl-next{width:50px; height:50px; border-radius:40px; background: linear-gradient(249.61deg, rgb(0 181 66 / 41%) -51.52%, rgba(207, 207, 207, 0) 107.91%); -webkit-transition: all 0.5s ease-in-out; -moz-transition: all 0.5s ease-in-out;  -o-transition: all 0.5s ease-in-out;  transition: all 0.5s ease-in-out;}
 .exp-tim-wed-slider .owl-carousel .owl-nav button.owl-prev:hover, .exp-tim-wed-slider .owl-carousel .owl-nav button.owl-prev:focus, .exp-tim-wed-slider .owl-carousel .owl-nav button.owl-next:hover, .exp-tim-wed-slider .owl-carousel .owl-nav button.owl-next:focus, .venue-finder-section .owl-carousel .owl-nav button.owl-prev:hover, .venue-finder-section .owl-carousel .owl-nav button.owl-prev:focus, .venue-finder-section .owl-carousel .owl-nav button.owl-next:hover, .venue-finder-section .owl-carousel .owl-nav button.owl-next:focus{background:#fff;}
 .exp-tim-wed-slider .owl-carousel .owl-nav button.owl-prev, .venue-finder-section .owl-carousel .owl-nav button.owl-prev{left:-30px;} 
 .exp-tim-wed-slider .owl-carousel .owl-nav button.owl-next, .venue-finder-section .owl-carousel .owl-nav button.owl-next{right:-30px;}
@@ -991,8 +1005,10 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 .con-form-title{font-size:26px; color:#000; font-weight:800; text-align: center; text-transform: uppercase;  font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom:45px;}
 .form-style .form-label{font-size:16px; color:#545454;}
 .form-style .form-label sup{color:#f00; top:-1px; font-weight:800;}
-.form-style .form-control, .form-style .form-select{height:55px; border:1px solid #d9d9d9; border-radius:6px; padding-left:24px;}
+.form-style .form-control, .form-style .form-select{height:55px; border:1px solid #d9d9d9; border-radius:6px; padding-left:14px;}
 .form-style textarea.form-control{height: auto; resize: none; padding-top:15px;}
+.form-floating>.form-control-plaintext~label, .form-floating>.form-control:focus~label, .form-floating>.form-control:not(:placeholder-shown)~label, .form-floating>.form-select~label{opacity: .65; transform: scale(.85) translateY(-1rem) translateX(0.15rem);}
+button.verify-btn, a.verify-btn{min-width: 100px; padding-left: 5px; padding-right: 5px;}
 /*Corporate Page Css End*/
 
 
@@ -1024,6 +1040,8 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 .banquet-offers-list-title{padding:20px 0; color:#fff; font-size:24px; font-weight:600; font-family: 'Plus Jakarta Sans', sans-serif;}
 /*Banquet Page Css End*/
 
+
+
 /*Responsive Css Start///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 @media (max-width:1450px){
 	.banner-title{font-size:56px;}
@@ -1041,21 +1059,27 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 
 @media (max-width:1199px){
 	.hotel-service-title, .art-artefacts-title, .section-title, .tag-thetradefair-title{font-size:28px; letter-spacing:1px;}
-	.destinations-inner{grid-template-columns: repeat(3,1fr);}
+	.destinations-inner span{font-size:18px; line-height:28px;}
 	.hotel-service-box-inner{padding: 10px 0 10px 30px;}
 	.hotel-service-box:nth-child(even) .hotel-service-box-inner{padding-right:30px;}
 	.hotel-service-box p, .art-artefacts-section p, .verdance-box p{font-size:14px; line-height:24px;}
 	.art-artefacts-section{padding:30px;}
 	.art-artefacts-text{padding: 30px 0 0 10px;}
 
-	/*.rooms-detail-row{display:block;}
-	.rooms-detail-col{max-width: 100%; padding-right: 0;}*/
 	.whatgstLv__content--features{grid-template-columns: repeat(2,1fr);}
+	.navbar-expand-lg .navbar-nav{left: 53px;}
+	.navbar-nav .nav-link{font-size: 13px; margin: 0 8px;}
+	.blogo-space{width: 100px;}
+
+	.about-wedding iframe{height: 450px;}
+	.third-gal-img, .wedding-gallery-button{height:284px; overflow: hidden; margin-top:2%;}
+	.reachout-form{padding-bottom:40px;}
+	.reachout-form form{margin-bottom: 0; padding-left: 0;}
 }
 
 @media (max-width:991px){
 	.overflow-body{overflow: hidden;}
-	.destinations-inner{grid-template-columns: repeat(2,1fr);}
+	.destinations-inner{gap:15px}
 	.reservation-address-section .container{grid-template-columns: repeat(1,1fr);}
 	.header-top .container{max-width:100%;}
 	.left-menu b{display: none;}
@@ -1078,10 +1102,7 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 	.mobile-menu-close:after{content:''; position: fixed; top:0; left:-50%; bottom:0; width:40%; background:rgba(0,0,0,0.8);  -webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;transition:all .3s ease-in-out;}
 	.navbar-collapse.show-menu .mobile-menu-close:after{left:0;}
 
-	.hotel-service-section{padding-bottom:10px;}
-	.hotel-service-box-inner, .hotel-service-box:nth-child(even) .hotel-service-box-inner{padding:20px 0 70px;}
-	.art-artefacts-section .owl-carousel .owl-nav button.owl-prev, .art-artefacts-section .owl-carousel .owl-nav button.owl-next{right:10px; top:50%; bottom: auto; margin-top:-120px;}
-	.art-artefacts-section .owl-carousel .owl-nav button.owl-prev{left:10px; right: auto;}
+	.hotel-service-title, .art-artefacts-title, .section-title, .tag-thetradefair-title, .about-wedding-title, .wedding-gallery-title, .venue-finder-title, .exp-tim-wed-title, .reachout-title, .event-name{font-size:20px;}
 	.slider-text{padding:60px 0;}
 	.banner-title{line-height:66px;}
 	.whatgstLv__content--features{grid-template-columns: repeat(1,1fr);}
@@ -1092,25 +1113,86 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 	.spa-menu-list:nth-child(even) .spa-menu-title, .spa-menu-list:nth-child(even) .spa-menu-detail p{text-align:left;}
 	.spa-menu-list:nth-child(even) .spa-menu-title:before, .spa-menu-list:nth-child(even) .spa-menu-title:after{left:0; right: auto;}
 	.spa-menu-number{left:0; margin-left:0;}
+
+	.web-header{position: relative;}
+	main.web-main{margin-top:0;}
+	.banner-section .owl-carousel .item{min-height:420px;}
+	.destinations-inner, .testimonials-section .owl-carousel{margin-top:20px;}
+	.art-artefacts-section, .reachout-form{margin-bottom:40px;}
+	.verdance-section{height:380px;}
+	.verdance-box-title{font-size:22px;}
+	.verdance-box{padding: 20px 25px; max-width: 480px; margin: 10px;}
+	.tes-message-box{padding: 20px 5% 44px; min-height: 280px;}
+	.tes-message-box p, .about-wedding p, .exp-tim-wed-inner p, .wedding-gallery p, .reachout-form p, .event-list p{font-size: 14px; line-height: 24px;}
+	.tes-author-img{width: 80px; height: 80px; border-width:1px;}
+	.author-name{font-size:18px;}
+	.tes-author-box{margin-top: -38px;}
+	.testimonials-section .owl-carousel .owl-nav button.owl-prev, .testimonials-section .owl-carousel .owl-nav button.owl-next{bottom:0px;}
+
+	.tag-thetradefair-message{font-size: 14px; padding-left:30px; line-height: 25px;}
+	.tag-thetradefair-message .fa{font-size:18px;}
+
+	.owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev{width: 34px; height: 34px; line-height: 34px; margin-top: -17px;}
+	.owl-carousel .owl-nav button.owl-next img, .owl-carousel .owl-nav button.owl-prev img{max-width: 100%;}
+	.banner-section .owl-carousel .owl-nav button.owl-prev{bottom:54px;}
+	.destinations-inner a:before{top:8px; left:8px; right:8px; bottom:8px;}
+	.testimonials-section .owl-carousel .owl-nav button.owl-next{left:44px;}
+	.art-artefacts-section .owl-carousel .owl-nav button.owl-prev{right:43px;}
+	.destinations-section, .hotel-service-section, .testimonials-section, .tag-thetradefair, .about-wedding, .wedding-gallery, .exp-tim-wed-slider, .venue-finder-section, .vacancies-listing-section, .event-section{padding: 40px 0;}
+	.footer-section{padding-top:40px;}
+
+	.about-page-section .hotel-service-box-inner, .evennth .hotel-service-box:nth-child(even) .hotel-service-box-inner{padding: 20px 0 0;}
+	.page-title-section{min-height:180px;}
+	.page-title{font-size:26px;}
+	.counter-list-number{font-size:28px; line-height:38px;}
+	.about-wedding-title, .wedding-gallery-title, .venue-finder-title{line-height:28px;}
+	.about-wedding p{margin-bottom:30px;}
+	.about-wedding iframe{height:280px;}
+	.first-gal-img, .third-gal-img, .wedding-gallery-button{height: 320px;}
+	.second-gal-img{height: 156px;}
+	.wedding-gallery-list span{padding: 6px 10px; font-size: 14px;}
+
+	.exp-tim-wed-slider .owl-carousel .owl-nav button.owl-prev, .venue-finder-section .owl-carousel .owl-nav button.owl-prev{left:12px;}
+	.exp-tim-wed-slider .owl-carousel .owl-nav button.owl-next, .venue-finder-section .owl-carousel .owl-nav button.owl-next{right:12px;}
+
+	.event-list{padding-left:90px; display: block; position: relative;}
+	.event-list-img{display:block;}
+	.event-date{position: absolute; top: 50px; left: 0;}
+	.event-list-cont{display:block; padding-top:20px;}
+
+	.event-date strong{font-size:24px;}
+	.event-section .event-list{padding:0;}
+	.custom-meeting{padding:0 0 40px;}
+	.custom-meeting:nth-child(odd) .custom-meeting-inner{padding:20px 0 0;}
+
 }
 
 @media (max-width:767px){
-	main.web-main{margin-top: 100px;}
 	.btn{padding: 8px 18px; font-size: 14px; border-radius: 6px;}
 	.navbar{height:60px;}
 	.navbar-brand img{max-width: 66px;}
 	.left-menu span{display: none;}
 	.welcome-title{font-size:18px;}
-	.banner-section .owl-carousel .item{min-height:calc(100vh - 100px);}
 	.banner-title{font-size:36px; line-height:45px; letter-spacing:2px;}
+
+	.container{max-width:100%;}
+	.destinations-inner{padding:0;}
+	.seating-style-check{margin-right:12px;}
 }
 
 @media (max-width:499px){
 	.navbar-collapse{width:80%;}
 	.mobile-menu-close:after{width:20%;}
+	.web-header .btn{font-size: 12px; padding: 6px 12px;}
+	.navbar-toggler{width: 32px; height: 32px; padding: 0; border-radius: 5px;}
+	.navbar-toggler-icon{width: 20px; height: 20px;}
+	.header-top{padding:5px 0;}
+	.header-top a{font-size:12px;}
+	.header-social a{font-size:15px; margin-left:15px;}
+	.left-menu img{max-height: 16px;}
 	.copyright{display:block; text-align: center; margin-top:10px;}
 	.destinations-section, .testimonials-section{padding: 40px 0;}
-	.destinations-inner{grid-template-columns: repeat(1,1fr); margin-top:30px;}
+	.destinations-inner{grid-template-columns: repeat(2,1fr); margin-top:30px;}
 	.hotel-service-section{padding-top:40px;}
 	.hotel-service-title, .art-artefacts-title, .section-title, .tag-thetradefair-title{font-size:20px;}
 	.hotel-service-box-inner, .hotel-service-box:nth-child(even) .hotel-service-box-inner{padding:15px 0 40px}
@@ -1124,13 +1206,36 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 	.tes-message-box p{font-size: 14px; line-height: 24px;}
 	.tes-author-img{width: 90px; height: 90px; border-width: 2px;}
 	.tes-author-box {margin-top: -45px;}
-	.owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev{width: 35px; height: 35px; line-height: 35px;}
-	.owl-carousel .owl-nav button.owl-next img, .owl-carousel .owl-nav button.owl-prev  img{max-width: 35px;}
-	.banner-section .owl-carousel .owl-nav button.owl-prev, .testimonials-section .owl-carousel .owl-nav button.owl-prev, .testimonials-section .owl-carousel .owl-nav button.owl-next{bottom:55px;}
-	.testimonials-section .owl-carousel .owl-nav button.owl-next{left: auto; right:0}
+	
 	.tag-thetradefair{padding:40px 0;}
 	.tag-thetradefair-message{font-size:14px; line-height:24px;}
 	.footer-section{padding-top:1px;}
 	.footer-title:first-child{margin-top:40px;}
+	.sub-title{font-size: 14px; line-height:22px; letter-spacing: 0px;}
+
+	.counter-section{padding:15px 0;}
+	.counter-section .container{grid-template-columns: repeat(2,1fr); gap:0;}
+	.counter-section article{border-bottom: 1px solid rgba(255,255,255,0.3); padding: 25px 0px;}
+	.counter-section article:nth-child(2){border-right:0;}
+	.counter-section article:nth-child(3), .counter-section article:nth-child(4){border-bottom:0;}
+	.first-gal-img{margin-bottom:2%;}
+	.first-gal-img, .second-gal-img, .third-gal-img, .wedding-gallery-button{height: auto;}
+	.reachout-form{padding: 16px;}
+
+	.event-list-img{max-width: 100%; min-width: 1px; width: 100%; border-radius: 10px;}
+	.event-date{display: none;}
+	.event-list{padding:20px 0;}
+	.event-list-inner .success{font-size:14px;}
+	.maintab-design .nav-link{font-size:13px; padding:8px 16px;}
+
+	.request-book-form{margin-top:30px; padding: 0; border-radius: 15px; border: 0;}
+	.step-icon{width: 40px; height: 40px; line-height: 40px; border-radius: 30px; font-size: 18px;}
+	.step-icon img{max-width: 23px;}
+	.seating-style-check{padding: 0; margin: 0px; width: 23%;}
+	.seating-style-check .form-check-label{width:100%; height: auto; padding: 10px 5px; border-radius: 5px;}
+	.seating-style-check img{max-width: 40px;}
+	.seating-style-check span{font-size:12px;}
+	.reservation-box .form-control, .reservation-box .form-select{height: 45px; border-radius: 5px; font-size: 13px;}
+
 }
 /*Responsive Css End///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/

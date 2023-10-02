@@ -223,8 +223,8 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 .vacancies-name{font-size:32px; color:#03021f; font-weight:800;  font-family: 'Plus Jakarta Sans', sans-serif;}
 .vacancies-position{font-size:16px; color:#7a7a7a; font-style: italic; letter-spacing:0.5px; margin: 3px 0 16px;}
 .vacancies-loc-time{margin-bottom:15px;}
-.vacancies-loc-time span{display: inline-block; background:#f5f5f5; font-size:14px; font-style:italic; padding:8px 22px; border-radius:20px; margin-right:8px;}
-.vacancies-list-right{min-width:220px; text-align: right; padding-top:10px;}
+.vacancies-loc-time span{display: inline-block; background:#f5f5f5; font-size:14px; font-style:italic; padding:8px 22px; border-radius:20px; margin:0 8px 8px 0;}
+.vacancies-list-right{min-width:170px; text-align: right; padding-top:10px;}
 .apply-now{text-decoration: none; font-weight:600; font-size:22px;}
 .apply-now svg{width:30px; height:30px; fill:#00b542;}
 .apply-now:hover{color:#000;}
@@ -419,10 +419,10 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 /*Login & Sign page Css Start*/
 .account-detail-page{height:100vh; position: relative; background:#000; padding:20px 0; display: flex; align-items: center;}
 .account-detail-page .container{position: relative; z-index:1;}
-.account-detail-page:after{content:''; background:url('../img/account-bg.jpg') no-repeat center; background-size:cover; height:100vh; filter: blur(15px); -webkit-filter: blur(15px); position: absolute; top:0; left:0; right:0; bottom:0; z-index:0; opacity:0.8}
+.account-detail-page:after{content:''; background:url('../img/account-bg.jpg') no-repeat center; background-size:cover; min-height:100vh; filter: blur(15px); -webkit-filter: blur(15px); position: absolute; top:0; left:0; right:0; bottom:0; z-index:0; opacity:0.8}
 
 .form-title{font-size:22px; line-height:32px; font-weight:600; margin:0 0 20px;}
-.account-form{min-height:505px;  background:#fff; padding:15px;}
+.account-form{min-height:505px;  background:#fff; padding:15px; position: relative;}
 .account-form-inner{overflow-y: auto; overflow-x: hidden; padding:35px; max-height:90vh;}
 .account-form-inner::-webkit-scrollbar{-webkit-appearance:none}
 .account-form-inner::-webkit-scrollbar:vertical{width:8px}
@@ -448,6 +448,8 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 .passcode-wrapper input:focus{outline: none;}
 
 .account-detail-page .successMassage{position: absolute;}
+.account-back{position: absolute; top: -17px; right: -17px; width: 45px; height: 45px; line-height: 40px; border-radius: 25px; padding: 0; background-color:#dfdfdf; color: #fff; text-align: center; opacity: 1; border: 2px solid #fff; background-size: 12px;}
+.account-back svg{width:22px; height:22px;}
 /*Login & Sign page Css End*/
 
 /*Rooms Page Css Start*/
@@ -518,23 +520,23 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 .terms-conditions-section .nav-pills .nav-link.active, .terms-conditions-section .nav-pills .show>.nav-link{background:#00b542; color:#fff;}
 .terms-conditions-section .nav-pills .nav-link.active:after, .terms-conditions-section .nav-pills .show>.nav-link:after{border-width:20px; border-right-width:22px;}
 
-.term-inbox{border:1px solid #d6d6d6; border-radius:30px; padding:40px 40px 15px; margin-left:15px;}
-.term-inbox h1, .term-inbox h2, .term-inbox h3, .term-inbox h4, .term-inbox h5, .term-inbox h6, .privacy-title{font-size:34px; font-weight:800; color:#010113; text-transform:uppercase; margin-bottom:15px;}
-.term-inbox h2{font-size:30px;}
-.term-inbox h3{font-size:26px;}
-.term-inbox h4{font-size:22px;}
-.term-inbox h5{font-size:18px;}
-.term-inbox h6{font-size:14px;}
-.term-inbox .privacy-title{font-size:26px;}
-.term-inbox .sub-title{font-size:22px; text-transform: capitalize; font-weight:normal; text-align: left; letter-spacing:0;}
-.term-inbox .subsub-title{font-size:18px; font-weight:600; text-align: left;}
+/*.term-inbox{border:1px solid #d6d6d6; border-radius:30px; padding:40px 40px 15px; margin-left:15px;}*/
+.terms-conditions-section h1, .terms-conditions-section h2, .terms-conditions-section h3, .terms-conditions-section h4, .terms-conditions-section h5, .terms-conditions-section h6, .privacy-title{font-size:34px; font-weight:800; color:#010113; text-transform:uppercase; margin-bottom:15px;}
+.terms-conditions-section h2{font-size:30px;}
+.terms-conditions-section h3{font-size:26px;}
+.terms-conditions-section h4{font-size:22px;}
+.terms-conditions-section h5{font-size:18px;}
+.terms-conditions-section h6{font-size:14px;}
+.terms-conditions-section .privacy-title{font-size:26px;}
+.terms-conditions-section .sub-title{font-size:22px; text-transform: capitalize; font-weight:normal; text-align: left; letter-spacing:0;}
+.terms-conditions-section .subsub-title{font-size:18px; font-weight:600; text-align: left;}
 
-.term-inbox p, .term-inbox ul li, .term-inbox ol li{font-size:15px; line-height:24px; font-weight:normal; color:#444454; margin:0 0 30px;}
-.term-inbox ul li, .term-inbox ol li{margin-bottom:5px;}
+.terms-conditions-section p, .terms-conditions-section ul li, .terms-conditions-section ol li{font-size:15px; line-height:24px; font-weight:normal; color:#444454; margin:0 0 30px;}
+.terms-conditions-section ul li, .terms-conditions-section ol li{margin-bottom:8px;}
 
 .sub-box-list{padding:30px; border-radius:20px; margin-bottom:15px; background:#f5f5f5;}
-.term-inbox .ligap > li{margin-bottom:45px;}
-.term-inbox .ligap > li::marker {font-size:22px; text-transform: capitalize; font-weight:normal; text-align: left; letter-spacing:0;}
+.terms-conditions-section .ligap > li{margin-bottom:45px;}
+.terms-conditions-section .ligap > li::marker {font-size:22px; text-transform: capitalize; font-weight:normal; text-align: left; letter-spacing:0;}
 /*Terms & Conditions Page End*/
 
 /*Room Detail Page Css Start*/
@@ -767,11 +769,12 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 	.review-list-title{font-size:20px; color:#000033; text-transform: uppercase; font-weight:700; font-family: 'Plus Jakarta Sans', sans-serif; margin:5px 0 7px;}
 	.review-list-date{font-size:17px; color:#000033; font-weight:500; font-style:italic; margin-bottom:10px;}
 	.review-rating .fa{color:#00cc33; margin-right:5px; font-size:24px;}
+	.rooms-detail-page-section{}
 /*Room Detail Page Css End*/
 
 /*SPA Page Css Start*/
 .spa-category{padding:60px 0;}
-.spa-category-list{border:1px solid #d9d9d9; border-radius:30px; padding:30px; display: block; text-align: center; text-decoration: none;}
+.spa-category-list{border:1px solid #d9d9d9; border-radius:30px; padding:30px; display: block; text-align: center; text-decoration: none; margin-bottom:24px;}
 .spa-category-icon{width:117px; height:130px; line-height:130px; background:url(../img/polygon-bg.png) no-repeat center 0; margin:0 auto 30px; 
 	-webkit-transition: .3s ease-in-out;
 	-moz-transition: .3s ease-in-out;
@@ -788,8 +791,8 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 .spa-gallery{padding-top:40px;}
 .spa-gallery .section-title{margin-bottom:40px;}
 
-.spa-counter-section{background:url(../img/spa-counter-bg.jpg) no-repeat center; padding:120px 0;}
-.spa-counter-list{background:rgba(255,255,255,0.85); padding:15px; height:250px; display: grid; align-items: center; justify-content: center; text-align: center;}
+.spa-counter-section{background:url(../img/spa-counter-bg.jpg) no-repeat center; background-size: cover; padding:120px 0;}
+.spa-counter-list{background:rgba(255,255,255,0.85); padding:15px; height:250px; display: grid; align-items: center; justify-content: center; text-align: center; margin:10px 0;}
 .spa-counter-list big{font-size:46px; color:#000; font-weight:500; font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing:2px; display: block; margin-bottom:10px;}
 .spa-counter-list-title{font-size:16px; color:#000; font-weight:500; text-transform:uppercase; letter-spacing:1px;}
 
@@ -824,7 +827,7 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 .spa-menu-section{padding:100px 0;}
 .spa-menu-section .row{--bs-gutter-x:140px;}
 .spa-menu-section .section-title{margin-bottom:60px;}
-
+.spa-menu-listing{overflow: hidden;}
 .spa-menu-list{position: relative; padding-bottom:55px;}
 .spa-menu-list:after{content:''; position: absolute; top:0; bottom:0; left:50%; width:2px; background:#00b542; z-index:-1; margin-left:-1px;}
 .spa-menu-list:last-child:after{display: none;}
@@ -1041,7 +1044,6 @@ button.verify-btn, a.verify-btn{min-width: 100px; padding-left: 5px; padding-rig
 /*Banquet Page Css End*/
 
 
-
 /*Responsive Css Start///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 @media (max-width:1450px){
 	.banner-title{font-size:56px;}
@@ -1055,6 +1057,7 @@ button.verify-btn, a.verify-btn{min-width: 100px; padding-left: 5px; padding-rig
 	/*About Page */
 	.page-title-section{min-height:320px;}
 	.page-title{font-size:40px;}
+
 }
 
 @media (max-width:1199px){
@@ -1075,7 +1078,38 @@ button.verify-btn, a.verify-btn{min-width: 100px; padding-left: 5px; padding-rig
 	.third-gal-img, .wedding-gallery-button{height:284px; overflow: hidden; margin-top:2%;}
 	.reachout-form{padding-bottom:40px;}
 	.reachout-form form{margin-bottom: 0; padding-left: 0;}
+
+	.activities-section .section-title{margin-bottom:30px;}
+	.custom-meeting h2{font-size:26px; margin-bottom:10px;}
+	.custom-meeting-inner p{font-size:14px; line-height:20px;}
+
+	.e-title{font-size:13px;}
+	.e-detail, .font18{font-size:16px;}
+	.e-icon{width: 50px; min-width: 50px; max-width: 50px; height: 50px; line-height: 50px; background-size: 45px;}
+	.e-icon img{max-width: 24px;}
+	.event-details-box ul li:nth-child(odd), .event-details-box ul li{padding:8px; gap:10px;}
+	.event-detail-col{padding: 30px 0 0 10px;}
+	.web-logo img{max-width: 110px;}
+	.room-list-detail{padding: 20px 70px 0 20px; margin: -20px 15px 0; border-top-width:1px;}
+	.room-list-bottom{margin:0 -20px; padding:8px 20px;}
+	.room-list-detail p{font-size:14px; line-height:22px;}
+	.room-list-title{font-size:20px;}
+	.room-detail-btn{width:52px; letter-spacing:-5px;}
+	.room-list-bottom big{font-size:24px;}
+	.room-list-bottom s {font-size: 18px; margin-left: 10px;}
+	.rooms-detail-col{max-width: 62%; padding-right: 20px;}
+	.rooms-detail-col-side{max-width: 38%;}
+	.reservation-form .form-control, .reservation-form .form-select, .rooms_guests{padding-left:12px;}
+	.enjoy-meals-during{padding:5px;}
+
+	/*Spa Page*/
+	.spa-category-list{padding:10px;}
+	.spa-category-icon{width: 87px; height: 90px; line-height: 90px; background-size: 82px;}
+	.spa-category-list:hover .spa-category-icon{background-position: center -91px;}
+	.spa-category-icon img{max-width: 44px;}
+	.spa-category-name{font-size:18px;}
 }
+
 
 @media (max-width:991px){
 	.overflow-body{overflow: hidden;}
@@ -1102,10 +1136,10 @@ button.verify-btn, a.verify-btn{min-width: 100px; padding-left: 5px; padding-rig
 	.mobile-menu-close:after{content:''; position: fixed; top:0; left:-50%; bottom:0; width:40%; background:rgba(0,0,0,0.8);  -webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;transition:all .3s ease-in-out;}
 	.navbar-collapse.show-menu .mobile-menu-close:after{left:0;}
 
-	.hotel-service-title, .art-artefacts-title, .section-title, .tag-thetradefair-title, .about-wedding-title, .wedding-gallery-title, .venue-finder-title, .exp-tim-wed-title, .reachout-title, .event-name{font-size:20px;}
+	.hotel-service-title, .art-artefacts-title, .section-title, .tag-thetradefair-title, .about-wedding-title, .wedding-gallery-title, .venue-finder-title, .exp-tim-wed-title, .reachout-title, .event-name, .vacancies-name, .event-detail-title, .event-details-title, .room-detail-title, .review-tabs-title, .spa-form-title, .spa-about-title{font-size:20px;}
 	.slider-text{padding:60px 0;}
 	.banner-title{line-height:66px;}
-	.whatgstLv__content--features{grid-template-columns: repeat(1,1fr);}
+	.whatgstLv__content--features{max-width:100%; margin: 20px 0 30px !important;}
 
 	.spa-menu-section .row{--bs-gutter-x: 0;}
 	.spa-menu-list{padding-left:90px;}
@@ -1123,7 +1157,7 @@ button.verify-btn, a.verify-btn{min-width: 100px; padding-left: 5px; padding-rig
 	.verdance-box-title{font-size:22px;}
 	.verdance-box{padding: 20px 25px; max-width: 480px; margin: 10px;}
 	.tes-message-box{padding: 20px 5% 44px; min-height: 280px;}
-	.tes-message-box p, .about-wedding p, .exp-tim-wed-inner p, .wedding-gallery p, .reachout-form p, .event-list p{font-size: 14px; line-height: 24px;}
+	.tes-message-box p, .about-wedding p, .exp-tim-wed-inner p, .wedding-gallery p, .reachout-form p, .event-list p, .vacancies-position, .vacancies-list p, .event-detail-col p, .room-detail p, .detail-list p, .ul-style li, .spa-form-subtitle, .spa-about-section p{font-size: 14px; line-height: 24px;}
 	.tes-author-img{width: 80px; height: 80px; border-width:1px;}
 	.author-name{font-size:18px;}
 	.tes-author-box{margin-top: -38px;}
@@ -1138,8 +1172,9 @@ button.verify-btn, a.verify-btn{min-width: 100px; padding-left: 5px; padding-rig
 	.destinations-inner a:before{top:8px; left:8px; right:8px; bottom:8px;}
 	.testimonials-section .owl-carousel .owl-nav button.owl-next{left:44px;}
 	.art-artefacts-section .owl-carousel .owl-nav button.owl-prev{right:43px;}
-	.destinations-section, .hotel-service-section, .testimonials-section, .tag-thetradefair, .about-wedding, .wedding-gallery, .exp-tim-wed-slider, .venue-finder-section, .vacancies-listing-section, .event-section{padding: 40px 0;}
+	.destinations-section, .hotel-service-section, .testimonials-section, .tag-thetradefair, .about-wedding, .wedding-gallery, .exp-tim-wed-slider, .venue-finder-section, .vacancies-listing-section, .event-section, .meeting-contact-form, .activities-section, .banquet-service-section, .banquet-offers-section, .reservation-address-section, .gallery-page-section, .rooms-page-section, .rooms-detail-page-section, .spa-category, .spa-counter-section, .spa-reservation-section, .spa-about-section, .spa-menu-section{padding: 40px 0;}
 	.footer-section{padding-top:40px;}
+	.contact-section{margin: 0px 0 40px;}
 
 	.about-page-section .hotel-service-box-inner, .evennth .hotel-service-box:nth-child(even) .hotel-service-box-inner{padding: 20px 0 0;}
 	.page-title-section{min-height:180px;}
@@ -1162,10 +1197,59 @@ button.verify-btn, a.verify-btn{min-width: 100px; padding-left: 5px; padding-rig
 
 	.event-date strong{font-size:24px;}
 	.event-section .event-list{padding:0;}
-	.custom-meeting{padding:0 0 40px;}
-	.custom-meeting:nth-child(odd) .custom-meeting-inner{padding:20px 0 0;}
+	.custom-meeting, .reservation-section{padding:0 0 40px;}
+	.custom-meeting:nth-child(odd) .custom-meeting-inner, .custom-meeting:nth-child(2n) .custom-meeting-inner{padding:20px 0 0;}
+
+	.event-section .event-list:before{top: 8px; right: 8px; bottom: 8px; left: 10px;}
+	.event-section .event-list-inner{padding:0 8px;}
+	.meeting-contact-form:after{height:110px;}
+	.banquet-service-detail-section{padding: 0px 0 40px 0;}
+	.col-grid{display: flex; margin-top:24px;}
+	.banquet-offers-section .col-xl-4{margin-bottom: 24px;}
+	.reservation-address-section:before{height:100px;}
+	.google-map iframe{height: 280px;}
+	.apply-now{font-size:16px;}
+	.vacancies-listing-section{padding-bottom:10px;}
+
+	.event-details-box{border-radius:10px; margin-top:-20px;}
+	.event-detail-title{line-height:30px; margin-bottom:5px;}
+	.rooms-page-section .action_row .btn{padding: 6px 5px; width: 100%; border-radius: 6px;}
+
+	.rooms-detail-row{display: block;}
+	.rooms-detail-col{max-width:100%; padding-right:0; margin-bottom:20px;}
+	.rooms-detail-col-side{max-width:100%;}
+
+	.room-detail-review{padding-top:40px;}
+	.flex-tabs .flex-column{width: 230px; min-width: 230px;}
+	.flex-tabs{margin-top:40px;}
+	.accordion-style{margin:40px 0;}
+	.room-detail-review:before{height:170px;}
+	.spa-category{padding-bottom:0;}
+
+	.spa-about-inner{padding: 0 0 30px;}
+	.spa-onoff-box{margin: 0;}
+	.spa-counter-list big{font-size:28px;}
+	.spa-counter-list-title{font-size:14px;}
+	.spa-counter-list{height:150px;}
+
+	.account-form{min-height: 325px; padding:25px;}
+	.account-form-inner{padding:0; max-height:none;}
+	.account-title{text-align: left; font-size: 22px; position: static; background: transparent; padding: 0; color: #000; font-weight: 600; letter-spacing: 0px; margin:0 0 12px;}
+	.account-detail-page .row.align-items-center{align-items: start !important;}
+
+	.form-title{font-size: 16px; line-height: 26px; font-weight: 400; margin: 0 0 9px;}
 
 }
+@media only screen 
+and (min-device-width:770px) 
+and (max-device-width: 896px)
+{
+	.account-detail-page{display: block; height: auto; min-height:100vh;}
+	
+}
+
+
+
 
 @media (max-width:767px){
 	.btn{padding: 8px 18px; font-size: 14px; border-radius: 6px;}
@@ -1178,6 +1262,11 @@ button.verify-btn, a.verify-btn{min-width: 100px; padding-left: 5px; padding-rig
 	.container{max-width:100%;}
 	.destinations-inner{padding:0;}
 	.seating-style-check{margin-right:12px;}
+	.guest-info-form-title:before{border-left-width:8px;}
+	.guest-info-form-title:after{border-right-width:8px;}
+	.account-detail-page{display: block;}
+
+	.account-back{top: -8px; right: -8px;}
 }
 
 @media (max-width:499px){
@@ -1203,7 +1292,7 @@ button.verify-btn, a.verify-btn{min-width: 100px; padding-left: 5px; padding-rig
 	.verdance-box-title{font-size:20px;}
 	.testimonials-section .owl-carousel{margin-top:20px;}
 	.tes-message-box{padding: 20px 5% 80px; min-height:440px;}
-	.tes-message-box p{font-size: 14px; line-height: 24px;}
+	.tes-message-box p, .banq-service-det-list p{font-size: 14px; line-height: 24px;}
 	.tes-author-img{width: 90px; height: 90px; border-width: 2px;}
 	.tes-author-box {margin-top: -45px;}
 	
@@ -1237,5 +1326,81 @@ button.verify-btn, a.verify-btn{min-width: 100px; padding-left: 5px; padding-rig
 	.seating-style-check span{font-size:12px;}
 	.reservation-box .form-control, .reservation-box .form-select{height: 45px; border-radius: 5px; font-size: 13px;}
 
+	.page-title{font-size:22px;}
+	.event-section .section-title.mb-5, .banquet-service-section .section-title, .banquet-offers-section .section-title{margin-bottom: 15px !important;}
+	.con-form-title{font-size:18px; margin-bottom:25px;}
+	.meeting-contact-form:after{height:80px;}
+	.meeting-contact-form form{border-radius: 12px; padding: 30px 10px 15px; border: none;}
+	.form-style .form-control, .form-style .form-select{height:44px; font-size:13px;}
+	.form-style textarea.form-control{height:auto; resize: none; padding-top:20px;}
+
+	.banquet-service-list{margin-bottom:15px;}
+	.col-grid{margin-top:0;}
+	.banq-service-det-list{padding: 15px 15px;}
+	.banq-service-det-list-title{font-size:24px; margin-bottom:12px;}
+
+	.banq-service-det-list-icon, .banquet-service-detail-section .col-xl-6:nth-child(2) .banq-service-det-list-icon, .banquet-service-detail-section .col-xl-6:nth-child(3) .banq-service-det-list-icon{width:80px; height:80px; line-height:80px; background-size:contain;}
+	.banq-service-det-list-icon img{max-width:40px;}
+	.banquet-offers-section{padding-bottom:0;}
+
+	.reservation-box {padding: 20px 10px; border-radius: 15px; border:0; margin-top:-20px;}
+	.reservation-box.request-book-form{margin-top:20px;}
+	.reservation-contact{font-size:13px;}
+	.reservation-title{font-size:20px;}
+	.address-listing{padding:20px 25px;}
+	.address-listing address, .address-listing p{font-size: 13px; line-height: 22px;}
+	.reservation-address-section .container{gap:15px;}
+	.web-profile-drop .dropdown-toggle{padding: 4px 12px; margin: 0 0;}
+
+	.vacancies-list{border-radius: 15px; padding: 15px 25px 15px 25px; display: block; margin-bottom:15px;}
+	.vacancies-list:after{left: -16px; top: 15px; width: 30px; height: 30px;}
+	.vacancies-loc-time span{font-size: 13px; padding: 5px 12px;}
+	.gallery-page-section{padding: 20px 0 0;}
+	.banquet-offers-list-title{font-size:20px;}
+
+	.reservation-form{border-radius: 10px; padding: 15px;}
+	.reservation-form .col-xs-7{width:68%;}
+	.reservation-form .col-xs-5{width:32%;}
+
+	.room-list-detail{padding:15px; margin: -15px 8px 0; border-top-width: 1px;}
+	.room-detail-btn{width: 100%; letter-spacing: 0; position: static; height: auto; padding:10px; margin: 14px 0 0;}
+	.room-detail-btn span{writing-mode: inherit; text-orientation: inherit; display: inline-block;}
+	.room-list-bottom{margin: 0 0; padding: 8px 20px; background: #fff; box-shadow: 0 5px 14px 0 rgba(0,0,0,0.10); border-radius: 8px;}
+	.rooms-page-section .reservation-form{margin-bottom:30px;}
+	.room-list, .spa-menu-section .section-title{margin-bottom: 20px;}
+
+	.detail-list{padding: 15px;}
+	.guest-info-form-title{margin:0 -15px 15px;}
+	.flex-tabs{display: block !important;}
+	.flex-tabs .flex-column{width: 100%; min-width: 1px; margin: 0 !important;}
+	.flex-tabs .tab-content{width: 100%; padding: 12px 0 0;}
+	.flex-tabs .nav-pills .nav-link.active:after{display: none;}
+	.facility-box .col-sm-6{max-width: 50%;}
+	.enjoy-meals-during{padding: 12px;}
+	.room-detail-review:before{height: 2px;}
+	.room-detail-review .room-detail-title{color:#000; margin-bottom:5px;}
+	.review-intro{color:#666;}
+	.whatgstLv__content--features{grid-template-columns: repeat(1,1fr);}
+	.review-tabs-title-div{display: block;}
+
+	.flex-tabs .d-flex-mobile{overflow-y: hidden; overflow-x: scroll;}
+	.flex-tabs .d-flex-mobile .flex-column{display: flex; align-items: center; min-width: 950px; width: auto; flex-direction: inherit !important; padding: 8px;}
+	.flex-tabs .d-flex-mobile .nav-link{display: inline-block !important; float: none; font-size:14px; padding:7px 12px;}
+	.spa-onoff-box{border-radius: 14px; padding: 10px 20px;}
+	.spa-onoff-list small{font-size:14px;}
+	.spa-onoff-list span{font-size:15px;}
+	.spa-menu-footer span{font-size:16px;}
+	.spa-menu-number, .spa-menu-list:after{display: none;}
+	.spa-menu-list{padding: 0; margin-bottom: 40px;}
+	.spa-menu-section{padding-bottom:0;}
+
+	.mobile-col .col-xs-7{width:63%;}
+	.mobile-col .col-xs-5{width:37%;}
+	.account-back{width: 32px; height: 32px; line-height: 26px;}
+	.account-back svg{width: 16px; height: 16px;}
+}
+
+@media (max-width:330px){
+	.account-form{padding:12px;}
 }
 /*Responsive Css End///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/

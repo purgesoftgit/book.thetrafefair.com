@@ -13,6 +13,9 @@ $('.room').val(l_room[0])
 $('.guest').val(l_guest[0])
 $('.check-in').val(check_in)
 $('.check-out').val(check_out)
+ 
+getAvailsRooms(check_in);
+
 
 
 const meal_arr = [];
@@ -173,9 +176,6 @@ $('.select-rs-dinner').on('change', function () {
     khana_arr[2] = '';
     khanatype[2] = '';
 });
-
-
-console.log(khanatype);
 
 //set date
 $('.check-in').on('change', function () {
@@ -415,21 +415,25 @@ function showValidationMessage(isSubmit, per_room_person, no_of_rooms_is_avail, 
 }
 
 function getAvailsRooms(checkindate) {
-
+ 
     $.ajax({
         url: $('.fetch-avail-room').data('fetchavailroom') + '/' + $('.room_id').val() + '/' + checkindate,
         type: "get",
         success: function (response) {
+            
             localStorage.setItem("per_room_price", response.avails_price);
 
             (response.avails_room == 0) ? $('.no_room_avail_error_msg').removeClass('d-none') : $('.no_room_avail_error_msg').addClass('d-none');
 
-            $('.no_of_avail_rooms').text(response.avails_room)
-            $('.room_date_wise_price span').text(response.avails_price);
+            $('.room-detail-rate .new_price').html('<big><i class="fa fa-rupee"></i>'+response.avails_price+'</big>');
             if (response.old_price != null && response.off_percentage != null) {
-                $('.room_date_wise_price small').css('display', 'inline').html('<strike><i class="fa fa-rupee"></i> ' + response.old_price + ' </strike><span class="price-offers">' + response.off_percentage + '% off</span>');
+                $('.room-detail-rate .old_price').html('<s>₹'+response.old_price+'</s> ');
+                $('.room-offers .new_precentage').html('<big> '+response.off_percentage+'<sup>%</sup></big><span>Off</span>');
             }
-            $('.room_date_wise_price .amountofroom').attr("room-amount", response.avails_price)
+            $('.no_of_avail_rooms').text(response.avails_room);
+            $('.no_of_rooms').text(response.avails_room);
+            $('.per_room_person').text(response.avails_room);
+            // $('.room_date_wise_price .amountofroom').attr("room-amount", response.avails_price)
         }
     })
 }
@@ -514,7 +518,7 @@ function sendOTPFunction() {
                 } else {
                     $('.edit-input-group-append').show();
                     document.getElementById("checkout-phone").readOnly = true;
-                    $('.otp-input').show()
+                    $('.passcode-wrapper').show()
                     $('.second-verify-btn').show()
                     $('.resend-otp').show();
                     $('.verify-btn button').hide();
@@ -529,7 +533,7 @@ $('.edit-input-group-append').click(function () {
     document.getElementById("checkout-phone").readOnly = false;
     $('.verify-btn button').show();
     $('.second-verify-btn').hide();
-    $('.otp-input').hide();
+    $('.passcode-wrapper').hide();
     $('.otp-input .passcode-wrapper input').val("");
     $('.resend-otp-btn').hide()
     localStorage.setItem("resent_otp", true)
@@ -554,7 +558,7 @@ $('.second-verify-btn .verify-btn').click(function () {
                 success: function (response) {
                     console.log(response);
                     if (response.is_verify == 1) {
-                        $('.otp-input').hide()
+                        $('.passcode-wrapper').hide()
                         $('.second-verify-btn').hide()
                         $('.resend-otp').hide();
                         $('.verify-btn button').show();

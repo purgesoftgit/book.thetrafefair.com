@@ -48,7 +48,7 @@
                   </div>
                   <div class="mb-3 col-lg-6">
                       <label for="phone" class="form-label">Phone Number</label>
-                      <input type="text" class="form-control" name="phone_number" id="phone"
+                      <input type="text" class="form-control phone" minlength="10" maxlength="10" name="phone_number" id="phone"
                           value=" {{ str_replace('+91', '', $userProfile->phone_number) }}">
                   </div>
                   <div class="mb-3 col-lg-6">
@@ -57,15 +57,14 @@
                           value="{{ $userProfile->email }}">
                   </div>
               </div>
-              <button type="button" class="btn btn-primary" id="update-profile">Update</button>
-              <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-primary btn-sm" id="update-profile">Update</button>
+              <button type="button" class="btn btn-dark btn-sm" data-bs-dismiss="modal">Cancel</button>
           </form>
         </div>  
       </div>
     </div>
   </div> 
  <!-- Edit Profile Modal End -->
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
  <script>
    $(document).ready(function() {
     $("#update-profile").click(function() {

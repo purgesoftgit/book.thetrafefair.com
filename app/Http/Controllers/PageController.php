@@ -8,6 +8,9 @@ use App\{Blog, Category, PhoneVerification, User, Job, RoomCategory, Wallet, Not
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Storage;
+use Illuminate\Support\Facades\Date;
+use App\Jobs\{ContactUsJob};
+use CURLFile;
 // use Illuminate\Validation\ValidationException;
 // use Symfony\Component\VarDumper\Cloner\Data;
 use Illuminate\Support\Str;
@@ -16,11 +19,18 @@ use Illuminate\Support\Str;
 class PageController extends Controller
 {
 
-    public function getauthuser(){
+    public function testMail()
+    {
+        $contact = ContactUs::where('id', 1)->first();
+        dispatch(new ContactUsJob($contact));
+    }
+
+    public function getauthuser()
+    {
         // $allUsers = User::where('id','!=',Auth::user()->id)->where('role_id','!=',1)->orderBy('id','desc')->get();
-         $user = User::where('id',Auth::user()->id)->first();
-         return $user;
-     }
+        $user = User::where('id', Auth::user()->id)->first();
+        return $user;
+    }
 
     public function thankyou()
     {
@@ -74,6 +84,8 @@ class PageController extends Controller
         $contact->status = 'Unread';
         $contact->save();
 
+        dispatch(new ContactUsJob($contact));
+
         return redirect('thankyou');
     }
     public function contactStore(Request $request)
@@ -101,6 +113,16 @@ class PageController extends Controller
         $data->status = 'Unread';
         $data->subject = "contact-us";
         $data->save();
+
+        $subjectAdmin = "Contact Enquiry";
+        $subjectUser = "Contact Enquiry";
+        $type = $data->is_meeting_contact;
+
+        dispatch(new ContactUsJob($data, $subjectAdmin, $type, $subjectUser));
+
+        // dispatch(new SendToAdminJob($contact,$subjectAdmin,$admin_mail));
+        // 			dispatch(new SendToUserJob($type,$name,$subjectUser,$email));
+
 
         return redirect('thankyou');
     }
@@ -131,6 +153,9 @@ class PageController extends Controller
         $data->selectedPeople = $request->input('selectedPeople');
         $data->request_message = $request->request_message;
         $data->save();
+
+
+
         return redirect('thankyou');
         // return redirect()->route('home')->with(['status'=>200,'message'=>"Your request is in processing."]);
     }
@@ -238,6 +263,8 @@ class PageController extends Controller
         $contact->status = 'Unread';
         $contact->save();
 
+        dispatch(new ContactUsJob($contact));
+
         return redirect('thankyou');
     }
 
@@ -287,18 +314,22 @@ class PageController extends Controller
 
     public function updateInsertVerification($phone_number)
     {
-
+        //$random_number = rand(1000, 9999);
+        $random_number = 1234;
         $phoneVerification = PhoneVerification::where('phone', '+91' . $phone_number)->first();
 
         if ($phoneVerification != null) {
-            PhoneVerification::where('phone', '+91' . $phone_number)->update(['is_varify' => '0', 'otp' => 1234]);
+            PhoneVerification::where('phone', '+91' . $phone_number)->update(['is_varify' => '0', 'otp' => $random_number]);
         } else {
             PhoneVerification::create([
                 'phone' => '+91' . $phone_number,
-                'otp' => 1234,
+                'otp' => $random_number,
                 'is_verifiy' => 0,
             ]);
         }
+
+        // $sms_text_message = "SECRET OTP is " . $random_number . " for Hotel The Trade International. It's only valid for 5 minutes. - Don't share it - BHSPVT";
+        // $this->sendSMSMessage($phone_number, $sms_text_message);
     }
 
 
@@ -401,7 +432,7 @@ class PageController extends Controller
 
     public function verifyLogin(Request $request)
     {
-        
+
         $user = User::where('phone_number', '+91' . $request->phone_number)->first();
         if (!empty($user)) {
             Auth::loginUsingId($user->id);
@@ -419,7 +450,7 @@ class PageController extends Controller
         return view('dashboard.profile', compact('userProfile'));
     }
 
-   
+
 
     public function career()
     {
@@ -447,6 +478,7 @@ class PageController extends Controller
         if ($validator->fails()) {
             return redirect('career')->withErrors($validator)->withInput();
         }
+
         $career = new career();
         $career->first_name = ucfirst($request->first_name);
         $career->last_name = ucfirst($request->last_name);
@@ -460,22 +492,54 @@ class PageController extends Controller
         $career->experience = $request->experience;
         $career->selected_website = 1;
 
+
         if ($request->resume) {
-            $image = $request->file('resume');
-            $is_aws_active = $this->ifAWSKeyisNotResponse();
-            if ($is_aws_active == 0) {
-                $extention = uniqid() . '.' . $image->getClientOriginalExtension();
-                $destinationPath = public_path('/images');
-                $image->move($destinationPath, $extention);
-            } else {
-                $s3 = \Storage::disk('s3');
-                $extention = uniqid() . '.' . $image->getClientOriginalExtension();
-                $s3filePath = '/images/' . $extention;
-                $s3->put($s3filePath, file_get_contents($image), 'public');
+            $image = $request->resume;
+
+            try{
+                $file_extention = $image->getClientOriginalExtension();
+
+            
+                $headers = [
+                    'Content-Type: multipart/form-data',
+                    'User-Agent: ' . $_SERVER['HTTP_USER_AGENT'],
+                ];
+    
+                $fields = [
+                    'resume' => new CURLFile($image),
+                    'file_extention' => $file_extention
+                ];
+    
+                $url = env('BACKEND_URL')."upload-images";
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+                curl_setopt($ch, CURLOPT_POST, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+                $curl_response = curl_exec($ch);
+                curl_close($ch);
+    
+                // $image = $request->file('resume');
+                // $is_aws_active = $this->ifAWSKeyisNotResponse();
+                // if ($is_aws_active == 0) {
+                //     $extention = uniqid() . '.' . $image->getClientOriginalExtension();
+                //     $destinationPath = public_path('/images');
+                //     $image->move($destinationPath, $extention);
+                // } else {
+                //     $s3 = \Storage::disk('s3');
+                //     $extention = uniqid() . '.' . $image->getClientOriginalExtension();
+                //     $s3filePath = '/images/' . $extention;
+                //     $s3->put($s3filePath, file_get_contents($image), 'public');
+                // }
+    
+                $career->pdf = $curl_response;
+            }catch(Exception $e) {
             }
-            $career->pdf = $extention;
         }
-        dd($career);
+
         $career->save();
 
         return redirect('thankyou');
@@ -501,22 +565,22 @@ class PageController extends Controller
     {
         $rooms = RoomCategory::with('roomadditionaldata')->where('id', $id)->first();
         $avails_price = 0;
-        $url = env('BACKEND_URL') . 'get-avails-room/' . $id . '/' . $checkin;
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // $url = env('BACKEND_URL') . 'get-avails-room/' . $id . '/' . $checkin;
+        // $ch = curl_init();
+        // curl_setopt($ch, CURLOPT_URL, $url);
+        // curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        $response = curl_exec($ch);
-        if (!$response) {
-            die('Error: "' . curl_error($ch) . '" - Code: ' . curl_errno($ch));
-        }
+        // $response = curl_exec($ch);
+        // if (!$response) {
+        //     die('Error: "' . curl_error($ch) . '" - Code: ' . curl_errno($ch));
+        // }
 
-        curl_close($ch);
-        $data = json_decode($response, true);
-        if ($data === null) {
-            die('Error decoding JSON: ' . json_last_error_msg());
-        }
+        // curl_close($ch);
+        // $data = json_decode($response, true);
+        // if ($data === null) {
+        //     die('Error decoding JSON: ' . json_last_error_msg());
+        // }
 
         if ($rooms) {
             if (count($rooms->roomadditionaldata) > 0 && !empty($rooms->roomadditionaldata)) {
@@ -596,8 +660,7 @@ class PageController extends Controller
                 }
             }
         }
-
-
+ 
         return $related_room;
     }
 
@@ -611,6 +674,10 @@ class PageController extends Controller
     public function terms()
     {
         return view('terms');
+    }
+    public function privacypolicy()
+    {
+        return view('privacy-policy');
     }
 
     public function saveReviews(Request $request)
@@ -700,32 +767,33 @@ class PageController extends Controller
 
     public function updateRoomAdditionalYearData()
     {
-
-        $room_ids = RoomCategory::where('id', 3)->get();
+        $room_ids = RoomCategory::all();
         $year_arr = [
             1 => "January", 2 => "February", 3 => "March", 4 => "April", 5 => "May", 6 => "June", 7 => "July", 8 => "August", 9 => "September", 10 => "October", 11 => "November", 12 => "December"
         ];
-
         if (!empty($room_ids) && count($room_ids) > 0) {
             foreach ($room_ids as $key => $value) {
 
                 foreach ($year_arr as $y_key => $y_value) {
-
                     if ((int)date('m') <= (int)$y_key) {
-
-                        $days_in_month = cal_days_in_month(CAL_GREGORIAN, $y_key, date('Y'));
-
-                        for ($i = 0; $i < $days_in_month; $i++) {
+                        $current_date = Date::now();
+                        $daysInYear = $current_date->isLeapYear() ? 366 : 365; 
+                        $remainingDays = $daysInYear - $current_date->dayOfYear;
+                        $month = $y_value;
+                        for ($i = 0; $i <= $remainingDays; $i++) {
                             $date = date('Y-m-d', strtotime(" +" . $i . " day"));
-
+                            $newMonth = date('F', strtotime($date));
+                            
+                            if ($newMonth != $month) {
+                                $month = $newMonth;
+                            }
+                
                             $is_already = RoomAdditionalData::where('date', $date)->where('room_id', $value['id'])->count();
-
                             if ($is_already == 0) {
                                 $room_data = new RoomAdditionalData();
                                 $room_data->room_id = $value['id'];
-                                $room_data->monthval = $y_value;
+                                $room_data->monthval = $month;
                                 $room_data->date = $date;
-
                                 $room_data->save();
                             }
                         }

@@ -300,7 +300,7 @@
 
           </div>
 
-          <div class="text-center">
+          <div class="text-center mt-3">
             <button type="button" class="btn btn-primary" id="submit-banquet-form">Submit</button>
           </div>
         </div>
@@ -313,24 +313,26 @@
     <!-- Contact Section Start -->
     <section class="contact-section">
       <div class="row">
-        <div class="col-lg-12 contact-box" style="background-image:url(img/meeting-banner.jpg);">
+        <div class="col-lg-12">
+          <div class="contact-box" style="background-image:url(img/meeting-banner.jpg);">
 
-          <div class="contact-box-inner">
-            <div class="contact-list">
-              <div class="contact-list-title">Visit us</div>
-              <p>{{ $settings['address'] ?? ''}}</p>
-            </div>
+            <div class="contact-box-inner">
+              <div class="contact-list">
+                <div class="contact-list-title">Visit us</div>
+                <p>{{ $settings['address'] ?? ''}}</p>
+              </div>
 
-            <div class="contact-list">
-              <div class="contact-list-title">Call us</div>
-              <p><a href="tel:{{ $settings['tradefair_contact_number'] ?? ''}}" class="text-body">{{ $settings['tradefair_contact_number'] ?? ''}}</a></p>
-            </div>
+              <div class="contact-list">
+                <div class="contact-list-title">Call us</div>
+                <p><a href="tel:{{ $settings['tradefair_contact_number'] ?? ''}}" class="text-body">{{ $settings['tradefair_contact_number'] ?? ''}}</a></p>
+              </div>
 
-            <div class="contact-list">
-              <div class="contact-list-title">Email Us</div>
-              <p><a href="mailto:{{ $settings['tradefair_email'] ?? '' }}" class="text-body">{{ $settings['tradefair_email'] ?? '' }}</a>
-              </p>
+              <div class="contact-list">
+                <div class="contact-list-title">Email Us</div>
+                <p><a href="mailto:{{ $settings['tradefair_email'] ?? '' }}" class="text-body">{{ $settings['tradefair_email'] ?? '' }}</a>
+                </p>
 
+              </div>
             </div>
           </div>
         </div>

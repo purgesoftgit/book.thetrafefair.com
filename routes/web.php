@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+Route::get('test-mail','PageController@testMail');
+
 Route::get('/','HomeController@index')->name('home');
 Route::get('event','HomeController@event')->name('event');
 Route::get('event-detail/{slug}','HomeController@eventDetail');
@@ -33,6 +35,7 @@ Route::get('gallery','PageController@gallery');
 Route::get('contact-us','PageController@contact')->name('contact');
 Route::post('store','PageController@contactStore')->name('store');
 Route::get('terms','PageController@terms');
+Route::get('privacy-policy','PageController@privacypolicy');
 
 Route::get('wedding','PageController@wedding');
 Route::post('save-wedding-enquiry','PageController@saveWeddingEnquiry');

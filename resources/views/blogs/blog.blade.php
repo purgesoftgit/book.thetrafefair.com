@@ -62,7 +62,7 @@
                                 <div class="sidebar-heading">Latest Blog</div>
                                 @foreach ($latest_blog as $item)
                                     @if ($item->type == 1)
-                                        <div class="latest-blog-list">
+                                        <a href="{{ url('blog-detail', ['id' => $item->slug]) }}" class="latest-blog-list">
                                             <div class="latest-blog-img">
                                                 @if (!is_null($item->image))
                                                     <img src="{{ env('BACKEND_URL') . 'show-images/' . $item->image }}"
@@ -71,16 +71,8 @@
                                                     <img src="img/dummy.png" alt="Default Image" class="img-fluid">
                                                 @endif
                                             </div>
-                                            <div class="latest-blog-content">
-                                                <div class="latest-blog-title">
-                                                    <a
-                                                        href="{{ url('blog-detail', ['id' => $item->slug]) }}">{{ $item->title }}</a>
-                                                </div>
-                                                <div class="latest-blog-date">
-                                                    <span>{!! Illuminate\Support\Str::words($item->description, 10) !!}</span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                            <div class="latest-blog-title">{{ $item->title }}</div>
+                                        </a>
                                     @endif
                                     
                                 @endforeach

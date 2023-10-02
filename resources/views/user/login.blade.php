@@ -8,7 +8,7 @@
                 {{ session('success') }}
             </div>
             @endif
-            <div class="col-xl-4 col-lg-4 col-md-4">
+            <div class="col-xl-4 col-lg-4 col-md-4 d-none d-lg-block">
                 <div class="account-img">
                     <a class="brand-img" href="{{ url('/') }}"><img src="img/logo-blog.png" align="The Trade Fair Brand"></a>
                     <img src="img/destinations-img3.jpg" alt="Image" class="img-fluid">
@@ -16,8 +16,12 @@
                 </div>
             </div>
 
-            <div class="col-xl-5 col-lg-7 col-md-8">
+            <div class="col-xl-5 col-lg-7 col-md-7 col-sm-8">
                 <div class="account-form">
+                    <div class="account-title d-block d-lg-none">Login</div>
+                    <a href="{{ url('/') }}" class="account-back">
+                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="cross"><line class="cls-1" x1="7" x2="25" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="25" y2="7"/></g></svg>
+                    </a>
                     <div class="account-form-inner">
                         <div class="form-title">Please login your Phone Number </div>
                         <form action="{{ url('login/verify') }}" method="POST" id="loginForm">

@@ -9,7 +9,7 @@
         <div class="row g-0 justify-content-center align-items-center">
 
 
-            <div class="col-xl-4 col-lg-4 col-md-4">
+            <div class="col-xl-4 col-lg-4 col-md-4 d-none d-lg-block">
                 <div class="account-img">
                     <a class="brand-img" href="{{ url('/') }}"><img src="img/logo-blog.png" align="The Trade Fair Brand"></a>
                     <img src="img/destinations-img3.jpg" alt="Image" class="img-fluid">
@@ -17,9 +17,13 @@
                 </div>
             </div>
 
-            <div class="col-xl-5 col-lg-7 col-md-8">
+            <div class="col-xl-5 col-lg-7 col-md-7 col-sm-8">
 
                 <div class="account-form">
+                    <div class="account-title d-block d-lg-none">Register</div>
+                    <a href="{{ url('/') }}" class="account-back">
+                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="cross"><line class="cls-1" x1="7" x2="25" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="25" y2="7"/></g></svg>
+                    </a>
 
                     <div class="account-form-inner">
                         <!-- <p class="text-danger">Please fill all required fields</p> -->
@@ -27,6 +31,7 @@
                         <form id="registationForm" method="POST" action="{{ url('register/store') }}">
                             @csrf
                             <div class="mb-3">
+
                                 <input type="text" class="form-control" id="first-name-field" name="first_name" placeholder="First Name*" value="{{ old('first_name') }}">
                                 <label class="error f_err" style="display: none;"></label>
                                 @error('first_name')
@@ -58,7 +63,7 @@
                             <div id="phoneVerify">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1">
-                                        <img src="https://www.thetradeinternational.com/public//img/india-flag.png" alt="India Flag Image">&nbsp; +91
+                                        <img src="{{asset('img/india-flag.png')}}" alt="India Flag Image">&nbsp; +91
                                     </span>
                                     <input type="text" class="form-control phone_number phone" style="width: 30%;" name="phone_number" id="Phone-Number" minlength="10" maxlength="10" placeholder="Phone Number*" value="{{ old('phone_number') }}">
                                     <label class="error p_err" style="display: none;"></label>

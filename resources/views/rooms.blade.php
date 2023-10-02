@@ -62,16 +62,23 @@
               <div class="room-offers">
                 <big>
                
-                {{ (isset($room['new_off_percentage']) && !empty($room['new_off_percentage'])) ? $room->new_off_percentage : $value->off_percentage }}<sup>%</sup></big>
+                {{ (isset($value['new_off_percentage']) && !empty($value['new_off_percentage'])) ? $value->new_off_percentage : $value->off_percentage }}<sup>%</sup></big>
                 <span>Off</span>
               </div>
+ 
             </div>
             <div class="room-list-detail">
               <div class="room-list-title"><a href="{{ url('room',$value->slug) }}">{{ $value->title }}</a></div>
               <p>{{ strip_tags(\Illuminate\Support\Str::words($value->description, 50)) }}</p>
               <div class="room-list-bottom">
-                <big>₹{{ $value->price }}</big>
-                <s>₹{{ $value->old_price }}</s>
+                <big><i class="fa fa-rupee"></i><?php echo isset($value->final_price) && !empty($value->final_price) ? $value->final_price : $value->price; ?></big>
+
+                <?php if(isset($value['new_old_price']) && !empty($value['new_old_price'])) {
+                         echo '<strike><i class="fa fa-rupee"></i> '.$value->new_old_price.' </strike>';
+                    }else{
+                      echo isset($value->old_price) && !empty($value->old_price) ? '<strike><i class="fa fa-rupee"></i> '.$value->old_price.' </strike>' : '' ;
+                    }  ?> 
+                
               </div>
 
               <a href="{{ url('room',$value->slug) }}" class="room-detail-btn"><span>Room Details</span></a>
@@ -84,6 +91,9 @@
 
         </div>
         <!-- Col End -->
+
+      </div>
+
 
         <!-- Col Start -->
         <section class="direct-contact d-block d-lg-none">
@@ -106,9 +116,6 @@
 
         </section>
         <!-- Col End -->
-
-
-      </div>
     </div>
   </section>
   <!-- Rooms Page Section End -->

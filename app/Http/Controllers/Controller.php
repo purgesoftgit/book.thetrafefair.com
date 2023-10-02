@@ -25,22 +25,21 @@ class Controller extends BaseController
             return 0; 
     }
 
-    // public function sendSMSMessage($phone_number='',$sms_text_message=''){
+    public function sendSMSMessage($phone_number,$sms_text_message){
          
-    //      $is_sms_auth_key = Setting::where('key','is_sms_auth_key')->first();
-    //      $is_sms_sender_id = Setting::where('key','is_sms_sender_id')->first();
+         $is_sms_auth_key = Setting::where('key','is_sms_auth_key')->first();
+         $is_sms_sender_id = Setting::where('key','is_sms_sender_id')->first();
         
-    //      $sms_text_message = $sms_text_message = "SECRET OTP is 1234 for Hotel The Trade Fair. It's only valid for 5 minutes. - Don't share it - BHSPVT";
-    //      if($is_sms_auth_key && $is_sms_sender_id){
-    //          $message = urlencode($sms_text_message);
-    //          $phone_number = '+919928044872';
-    //          $otp_url = "http://msg.icloudsms.com/rest/services/sendSMS/sendGroupSms?AUTH_KEY=".$is_sms_auth_key->value."&message=".$message."&senderId=".$is_sms_sender_id->value."&routeId=1&mobileNos=".$phone_number."&smsContentType=english";
-    //          $handle = curl_init();
-    //          curl_setopt($handle,CURLOPT_RETURNTRANSFER, true);
-    //          curl_setopt($handle, CURLOPT_URL, $otp_url);
-    //          $response = curl_exec($handle);
-    //          curl_close($handle);
-    //      }
-    //  }
+         if($is_sms_auth_key && $is_sms_sender_id){
+             $message = urlencode($sms_text_message);
+             $phone_number = '+91'.$phone_number;
+             $otp_url = "http://msg.icloudsms.com/rest/services/sendSMS/sendGroupSms?AUTH_KEY=".$is_sms_auth_key->value."&message=".$message."&senderId=".$is_sms_sender_id->value."&routeId=1&mobileNos=".$phone_number."&smsContentType=english";
+             $handle = curl_init();
+             curl_setopt($handle,CURLOPT_RETURNTRANSFER, true);
+             curl_setopt($handle, CURLOPT_URL, $otp_url);
+             $response = curl_exec($handle);
+             curl_close($handle);
+         }
+     }
 
 }

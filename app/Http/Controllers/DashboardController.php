@@ -64,10 +64,12 @@ class DashboardController extends Controller
     }
 
     public function getSpaReservationHistory(){
+        ///dd(Auth::user()->phone_number)
         $phoneNumber = Auth::user()->phone_number;
         $phone=substr($phoneNumber, 3);
 
         $spa_reservation = SpaReservation::where('phone',$phone)->get();
+        
         return view('dashboard.spa-reservation-history',compact('spa_reservation'));
     }
 

@@ -46,7 +46,7 @@ a, a:hover, a:focus{color:#00b542;}
 .back-link:hover svg{fill:#00b542;}
 
 .profile-btn .dropdown-toggle{background: 0 0; border: 0; box-shadow: none; outline: 0; font-size: 14px; text-transform: uppercase; font-weight:600; font-size:16px; color:#1a1b2f;}
-.profile-btn .dropdown-toggle img{width: 48px; height: 48px; border-radius: 30px; border:1px solid #fff; margin-right: 12px; box-shadow: 0 3px 15px 0 rgba(0,0,0,0.2);}
+.profile-btn .dropdown-toggle img{width: 48px; height: 48px; border-radius: 30px; border:1px solid #fff; margin-right: 12px;}
 .profile-btn .dropdown-menu{background: #ffffff; border-color: #02ae02; padding: 0; box-shadow: 0 6px 12px 0 rgb(0 0 0 / 38%); min-width: 200px; overflow: hidden;}
 .profile-btn .dropdown-item{font-size: 14px; color: #1a1b2f; border-bottom: 1px solid rgb(0 0 0 / 11%); padding: 10px 14px; text-transform: uppercase; letter-spacing: 0.5px;}
 .profile-btn .dropdown-item:focus, .profile-btn .dropdown-item:hover, .profile-btn .dropdown-item.active, .profile-btn .dropdown-item:active{background:#00b542; color:#fff;}
@@ -160,23 +160,80 @@ a.footer-contact-detail, address.footer-contact-detail{font-size:16px; text-tran
 }
 
 @media (max-width:1199px){
-}
-
-@media (max-width:991px){
 	.side-menu-button, .side-menu-close{display:block;}
 	.side-menu{position: fixed; top:0; bottom:0; left:-105%; z-index:104; width: 300px; padding: 15px 0; height: 100%!important; background:#f2f2f2; transition: .5s ease-in-out; box-shadow: 5px 0px 12px 0 rgba(0,0,0,0.10); border-right: 1px solid #fff;}
 	.side-menu.show{left:0;}
 	.side-menu-inner{overflow-y: auto; max-height: 100%;}
-	.side-menu-button{background: #f8dc78; color: #222; padding: 10px 20px; border: 0; outline: 0; display: block; text-transform: uppercase;}
-	.side-menu-close{position: absolute; left: 100%; top: 0; margin:0; width:40px; height:40px; line-height:40px; text-align: center; border: 0; background: red; color: #fff;}
+	.side-menu-button{background:#00b542; color: #fff; padding: 10px 5px; border: 0; outline: 0; display: block; text-transform: uppercase;  position: absolute; left: -70px; top: 50%; width: 228px; margin-top:109px;
+
+		-webkit-transform: rotate(-90deg) translateY(-50%);
+		-ms-transform: rotate(-90deg) translateY(-50%);
+		-o-transform: rotate(-90deg) translateY(-50%);
+		-ms-transform: rotate(-90deg) translateY(-50%);
+		transform: rotate(-90deg) translateY(-50%);
+	}
+	.side-menu-close{position: absolute; left: 100%; top: 0; margin:0; width:40px; height:40px; line-height:40px; text-align: center; border: 0; background:#03021e; color: #fff;}
+	.screen-gap{padding-left:15px;}
+}
+
+@media (max-width:991px){
+	.profile-img{width: 110px; height: 110px; line-height: 106px; margin-top: -30px; margin-right: 15px;}
+	.profile-text{padding-top:15px;}
+	.side-menu-button{margin-top:-120px;}
+	.screen-gap{padding-left:50px;}
+	.room-booking-table table{min-width:850px;}
+	.wedding-table table{min-width:1px;}
+	.spa-table table, .event-table table{min-width:1100px;}
+	.container{max-width:100%;}
+
 
 }
 
+
+@media only screen 
+and (min-device-width:770px) 
+and (max-device-width: 896px)
+{
+.side-menu-button{margin-top: 230px;}
+}
+
+
+
 @media (max-width:767px){
+.side-menu-button{margin-top: 230px;}
 }
 
 @media (max-width:499px){
+	.admin-header{min-height:42px;}
+	.profile-btn .dropdown-toggle img{width: 32px; height: 32px;}
+	.navbar-brand{top:7px;}
+	.navbar-brand img{max-width:48px;}
+	.back-link span, .profile-btn .dropdown-toggle span{display: none;}
+	.profile-btn .dropdown-toggle img{margin-right:0;}
+	.profile-btn .dropdown-toggle::after{display: none;}
+	.edit-banner{min-width: 120px; padding: 5px 5px; font-size: 12px;}
+	.profile-img{width: 80px; height: 80px; line-height: 76px;}
+	.profile-text h1{font-size:18px;}
+	.profile-content{padding: 0 10px; margin-bottom: 30px;}
+	.inner-title{font-size: 18px; margin: 0 0 20px; text-align: center;}
+	.screen-gap{padding-left:0;}
+	.bottom-gap{padding-bottom:30px;}
+	.profile-btn .dropdown-toggle{padding:0;}
+	.room-filter-block{float: none; margin: 0 0 10px; text-align: center;}
+	.side-menu-button{margin:0 auto 12px; position: static; 
+		-webkit-transform: none;
+		-ms-transform: none;
+		-o-transform: none;
+		-moz-transform: none;
+		transform: none;
+	}
+
+	.profile-banner{height:130px;}
+	.profile-banner img{height: 100%; object-fit: cover;}
+	.edit-banner{top: auto; bottom:10px;}
+
 	.footer-section{padding-top:1px;}
 	.footer-title:first-child{margin-top:40px;}
+
 }
 /*Responsive Css End///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/

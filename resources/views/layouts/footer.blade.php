@@ -18,6 +18,7 @@
             <li><a href="{{url('gallery')}}">Gallery</a></li>
             <li><a href="{{ url('blog') }}">Blogs</a></li>
             <li><a href="{{ url('terms')}}">Terms & conditions</a></li>
+            <li><a href="{{ url('privacy-policy')}}">Privacy Policy</a></li>
           </ul>
         </div>
         <!-- Col End -->
