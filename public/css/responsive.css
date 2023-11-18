@@ -1,0 +1,4 @@
+@media(max-width:991px){
+	.navbar-collapse {position: fixed; top: 0; left:-285px; bottom: 0; background: #fff; width: 280px; box-shadow: 0 0 20px 0 rgba(0,0,0,0.15); z-index: 105; display: block !important; height:100% !important;  -webkit-transition: all 0.3s ease-in-out; -moz-transition: all 0.3s ease-in-out;  -o-transition: all 0.3s ease-in-out;  transition: all 0.3s ease-in-out;}
+	.navbar-collapse.show{left:0;}
+}

@@ -10,6 +10,16 @@ $(".mobile-menu-close, .navbar-collapse:after").click(function () {
 });
 // Menu Toggle In Mobile End
 
+$(window).scroll(function () {
+    var scroll = $(window).scrollTop();
+
+    if (scroll >= 50) {
+        $(".web_header").addClass("stiky-header");
+    } else {
+        $(".web_header").removeClass("stiky-header");
+    }
+});
+
 
 function getCodeBoxElement(e) {
     return document.getElementById("codeBox" + e)
@@ -296,11 +306,11 @@ $(document).ready(function () {
                 success: function (response) {
                     $('.verify-spinner-border').hide()
                     if (response['status'] == 500) {
-                       // isSubmit = false
+                        // isSubmit = false
                         isVerify = false
 
                         $('#invalid_otp').text(response['error']);
-                        $('#invalid_otp').css({'font-size':'13px','color':'red'}).show();
+                        $('#invalid_otp').css({ 'font-size': '13px', 'color': 'red' }).show();
                         setTimeout(function () {
                             $("#invalid_otp")
                                 .hide();
@@ -342,7 +352,7 @@ $(document).ready(function () {
         setTimeout(() => {
             var otp = $('#codeBox1').val() + $('#codeBox2').val() + $('#codeBox3').val() + $('#codeBox4').val()
             if (otp.length == 4) {
-                
+
                 $.ajax({
                     url: "register/data/otp",
                     type: 'get',
@@ -351,7 +361,7 @@ $(document).ready(function () {
                         number: $('#Phone-Number').val()
                     },
                     success: function (response) {
-                        
+
                         if (response.is_verify == 1) {
                             $('.passcode-wrapper').hide()
                             $('.second-verify-btn').hide()
@@ -387,7 +397,7 @@ $(document).ready(function () {
 
     $("#btn_register").click(function () {
         var eml_reglx = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
- 
+
         if ($('#first-name-field').val().length == 0) {
             $('.f_err').text("Please enter first name").css({
                 'display': 'block'
