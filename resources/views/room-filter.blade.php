@@ -1,24 +1,11 @@
 <form class="booking-search">
     @csrf
     <div class="">Search</div>
-
-    <div class="mb-2">
-        <label for="search" class="form-label">Select Category:</label>
-        <select class="form-control room_catgory" name="room_catgory">
-
-            @if(!empty($rooms))
-            @foreach($rooms as $key => $value)
-            <option value="{{$value->id}}">{{$value->title}}</option>
-            @endforeach
-            @endif
-
-        </select>
-    </div>
-
+    
     <div class="mb-2">
         <label for="check-in-date" class="form-label">Check-in date</label>
         <div class="control-datepiker">
-            <input type="date" class="form-control check-in" onkeydown="return false" min="<?php echo date('Y-m-d'); ?>" max="<?php echo date('Y-m-d', strtotime(' +2 months')); ?>" value="<?php echo date('Y-m-d'); ?>" name="checkin" id="datepicker">
+            <input type="date" class="form-control check-in" onkeydown="return false" min="<?php echo date('Y-m-d'); ?>" max="<?php echo date('Y-m-d', strtotime(' +2 months')); ?>" value="" name="checkin" id="datepicker">
         </div>
     </div>
 
@@ -26,7 +13,7 @@
     <div class="mb-2">
         <label for="check-in-date" class="form-label">Check-out date</label>
         <div class="control-datepiker">
-            <input type="date" class="form-control check-out" onkeydown="return false" min="<?php echo date('Y-m-d', time() + 86400); ?>" max="<?php echo date('Y-m-d', strtotime('+2 months', strtotime('+1 days'))); ?>" value="<?php echo date('Y-m-d', time() + 86400); ?>" id="checkout" name="checkout">
+            <input type="date" class="form-control check-out" onkeydown="return false" min="<?php echo date('Y-m-d', time() + 86400); ?>" max="<?php echo date('Y-m-d', strtotime('+2 months', strtotime('+1 days'))); ?>" value="" id="checkout" name="checkout">
         </div>
     </div>
 

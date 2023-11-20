@@ -200,13 +200,34 @@ $('.roomRow' + index + ' .editDiv p:first').text(adults + " Adults");
 
 
  //check room availibility
- $(document).on("click",'.search-room',function() {
-    $.ajax({
-        url: "get-avails-room/" + $('.room_catgory').val() + '/' + $('.check-in').val(),
-        type: "get",
-        success: function(response) {
-            console.log(response);
-        }
-    });
+//  $(document).on("click",".check-availability",function(){})
+ $(document).on("click",".show-price",function(){
+    if($('.checkIn').val().length == 0){
+        alert("Please Select Checkin Date")
+    }
+    if($('.checkOut').val().length == 0){
+        alert("Please Select Checkout Date")
+    }
+
+    if($('.checkIn').val() != 0 && $('.checkOut').val() != 0){
+        $.ajax({
+            url: "check-room-availability/" + $('.checkIn').val(),
+            type: "get",
+            success: function(response) {
+                console.log(response);
+            }
+        });
+                
+    }
+
+ })
+//  $(document).on("click",'.search-room',function() {
+//     $.ajax({
+//         url: "get-avails-room/" + $('.room_catgory').val() + '/' + $('.check-in').val(),
+//         type: "get",
+//         success: function(response) {
+//             console.log(response);
+//         }
+//     });
     
-});
+// });

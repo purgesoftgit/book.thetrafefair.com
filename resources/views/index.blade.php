@@ -303,158 +303,73 @@
 
             </div>
 
-            <!-- <div class="row">
-                <div class="col-xl-9">
-
-                    <div class="form-box">
-                        <div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="col-md-3">
+                        <div class="mb-2">
+                            <label for="checkIn-date" class="form-label">CheckIn date</label>
                             <div class="control-datepiker">
-                                <input type="datepiker" class="form-control control-calendar-icon" placeholder="Check-in & Check-out Date">
+                                <input type="date" class="form-control checkIn" onkeydown="return false" min="<?php echo date('Y-m-d'); ?>" max="<?php echo date('Y-m-d', strtotime(' +2 months')); ?>" value="" name="checkin" id="datepicker">
                             </div>
-                        </div>
-
-                        <div class="dropdown">
-                            <button type="button" class="control-user form-dropdown dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">15 adults · 0 children · 1 room</button>
-                            <div class="dropdown-menu p-3 w-100">
-
-                                <div class="row mb-2">
-                                    <div class="col-sm-6 col-xs-6">
-                                        <span>Adults</span>
-                                    </div>
-                                    <div class="col-sm-6 col-xs-6">
-                                        <div class="indec-field d-flex align-items-center justify-content-between">
-                                            <div class="dec indec-button">-</div>
-                                            <input type="text" name="adults-field" id="adults-field" value="0" readonly="readonly">
-                                            <div class="inc indec-button">+</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row mb-2">
-                                    <div class="col-sm-6 col-xs-6">
-                                        <span>Children</span>
-                                    </div>
-                                    <div class="col-sm-6 col-xs-6">
-                                        <div class="indec-field d-flex align-items-center justify-content-between">
-                                            <div class="dec indec-button">-</div>
-                                            <input type="text" name="children-field" id="children-field" value="0" readonly="readonly">
-                                            <div class="inc indec-button">+</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="children-box">
-                                    <div class=" ">
-                                        <select>
-                                            <option>Age needed</option>
-                                            <option>0 years old</option>
-                                            <option>1 year old</option>
-                                            <option>2 years old</option>
-                                            <option>3 years old</option>
-                                            <option>4 years old</option>
-                                            <option>5 years old</option>
-                                            <option>6 years old</option>
-                                            <option>7 years old</option>
-                                            <option>8 years old</option>
-                                            <option>9 years old</option>
-                                            <option>10 years old</option>
-                                            <option>11 years old</option>
-                                            <option>12 years old</option>
-                                            <option>13 years old</option>
-                                            <option>14 years old</option>
-                                            <option>15 years old</option>
-                                            <option>16 years old</option>
-                                            <option>17 years old</option>
-                                        </select>
-                                    </div>
-                                    <p>To find you a place to stay that fits your entire group along with correct prices, we need to know how old your child will be at check-out</p>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-sm-6 col-xs-6">
-                                        <span>Rooms</span>
-                                    </div>
-                                    <div class="col-sm-6 col-xs-6">
-                                        <div class="indec-field d-flex align-items-center justify-content-between">
-                                            <div class="dec indec-button">-</div>
-                                            <input type="text" name="rooms-field" id="rooms-field" value="0" readonly="readonly">
-                                            <div class="inc indec-button">+</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div>
-                            <button type="submit" class="btn btn-secondary">Submit</button>
                         </div>
 
                     </div>
+                    <div class="col-md-3">
+                        <div class="mb-2">
+                            <label for="checkOut-date" class="form-label">CheckOut date</label>
+                            <div class="control-datepiker">
+                                <input type="date" class="form-control checkOut" onkeydown="return false" min="<?php echo date('Y-m-d', time() + 86400); ?>" max="<?php echo date('Y-m-d', strtotime('+2 months', strtotime('+1 days'))); ?>" value="" id="checkout" name="checkout">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+
+                        <div class="mb-2">
+                            <label class="form-label">ROOMS & GUESTS</label>
+                            <div class="rooms_guests">
+                                <p>1 Room - 1 Guest</p>
+                            </div>
+                            <div class="rooms_guests_list" style="display: none;">
+                                <div class="added_rooms"></div>
+                                <?php $row = 1; ?>
+                                <div class="guests_list">
+                                    <div class="row room_adults_heading"><strong>Room
+                                            {{ $row }}</strong>
+                                        <p>ADULTS (12y +)</p>
+                                    </div>
+                                    <div class="row room_number room_number_adults px-2">
+                                        <ul><?php $i = 1;
+                                            for ($i = 1; $i <= 3; $i++) {
+                                                echo $i == 1 ? "<li class='selected'>$i</li>" : "<li>$i</li>";
+                                            } ?></ul>
+                                    </div>
+                                </div>
+
+                                <hr style="border: 1px solid #cfd1d2;">
+
+                                <div class="row action_row">
+                                    <div class="col-md-8 col-sm-8 col-xs-7">
+                                        <button type="button" class="btn btn-dark btn-sm add-other-room"><i class="fa fa-plus"></i> Add another room</button>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-5" style="text-align: right;">
+                                        <button type="button" class="btn btn-info btn-sm apply-changes">Apply</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-secondary check-availability">Submit</button>
+                    </div>
 
                 </div>
-            </div> -->
+            </div>
 
 
 
             <div class="table-sec">
-                <div class="table-responsive">
-
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Room type</th>
-                                <th width="300">Number of guests</th>
-                                <th width="180"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <a href="#" class="bold-under">Double Room with Pool View</a>
-                                    <p class="mb-0">1 double bed <img src="img/bed-icon.png" alt="image"></p>
-                                </td>
-                                <td>
-                                    <img src="img/user-icon2.png" alt="User">
-                                    <img src="img/user-icon2.png" alt="User">
-                                </td>
-                                <td>
-                                    <button class="btn btn-primary btn-sm">Show prices</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <a href="#" class="bold-under">Double Room with Garden View</a>
-                                    <p class="mb-0">1 double bed <img src="img/bed-icon.png" alt="image"></p>
-                                </td>
-                                <td>
-                                    <img src="img/user-icon2.png" alt="User">
-                                    <img src="img/user-icon2.png" alt="User">
-                                </td>
-                                <td>
-                                    <button class="btn btn-primary btn-sm">Show prices</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <a href="#" class="bold-under">Twin Room with Balcony</a>
-                                    <p class="mb-0">2 double bed <img src="img/bed-icon.png" alt="image"></p>
-                                </td>
-                                <td>
-                                    <img src="img/user-icon2.png" alt="User">
-                                    <img src="img/user-icon2.png" alt="User">
-                                    <img src="img/user-icon2.png" alt="User">
-                                </td>
-                                <td>
-                                    <button class="btn btn-primary btn-sm">Show prices</button>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-
+                <div class="table-responsive room-reserve-table">
                 </div>
             </div>
 
@@ -1628,8 +1543,8 @@
 @include('footer')
 <script>
     $(document).ready(function() {
-
-        //get room data
+        var checkin = "";
+        // get room data
         $.ajax({
             url: "{{ url('rooms') }}",
             type: "get",
@@ -1638,7 +1553,25 @@
             }
         });
 
-       
-    })
+        //get room detail according to their category
+        // get-room-category
+        checkRoomAvailability(checkin);
+
+        $('.check-availability').click(function(){
+            checkRoomAvailability($('.checkIn').val());
+        });
+
+
+    });
+
+    function checkRoomAvailability(checkin) {
+        $.ajax({
+            url: "{{ url('check-room-availability') }}/" + checkin,
+            type: "get",
+            success: function(response) {
+                $('.room-reserve-table').html(response)
+            }
+        })
+    }
 </script>
 @endsection

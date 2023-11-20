@@ -8,43 +8,43 @@ use App\{Setting, RoomCategory};
 
 class PageController extends Controller
 {
-    public function defaultRoomCategory(){
-        $default_room = Setting::where('key','default_room_category')->first();
-        return (!empty($default_room)) ? $default_room : 'deluxe-room';
-    }
+    // public function defaultRoomCategory(){
+    //     $default_room = Setting::where('key','default_room_category')->first();
+    //     return (!empty($default_room)) ? $default_room : 'deluxe-room';
+    // }
 
     public function index(){
-        // $default_category = $this->defaultRoomCategory();
-
-        // $room = RoomCategory::with('roomadditionaldata')->where('slug',$default_category)->get();
-        // $room_detail = $this->fetchSingleAdditionalRoomData($room);
-        
+     
+      // $slug = '';
+       //$rooms = $this->fetchAllAdditionalRoomData($slug);
+ 
         return view('index');
     }
 
-    // public function fetchSingleAdditionalRoomData($room_detail)
-    // {
-    //     if ($room_detail) {
-    //         if (count($room_detail->roomadditionaldata) > 0 && !empty($room_detail->roomadditionaldata)) {
-    //             foreach ($room_detail->roomadditionaldata as $room_key => $room_value) {
-    //                 if (date('Y-m-d') == $room_value['date']) {
-    //                     $room_detail['room_avail'] = $room_value['room_avail'];
-    //                     $room_detail['avails_price'] = $room_value['price'];
-    //                     $room_detail['new_old_price'] = $room_value['old_price'];
-    //                     $room_detail['new_off_percentage'] = $room_value['off_percentage'];
-    //                 }
-    //             }
-    //         }
-    //     }
+   
+    public function fetchSingleAdditionalRoomData($room_detail)
+    {
+        if ($room_detail) {
+            if (count($room_detail->roomadditionaldata) > 0 && !empty($room_detail->roomadditionaldata)) {
+                foreach ($room_detail->roomadditionaldata as $room_key => $room_value) {
+                    if (date('Y-m-d') == $room_value['date']) {
+                        $room_detail['room_avail'] = $room_value['room_avail'];
+                        $room_detail['avails_price'] = $room_value['price'];
+                        $room_detail['new_old_price'] = $room_value['old_price'];
+                        $room_detail['new_off_percentage'] = $room_value['off_percentage'];
+                    }
+                }
+            }
+        }
 
-    //     return $room_detail;
-    // }
+        return $room_detail;
+    }
 
     public function getRooms()
     {
-        $slug = '';
-        $rooms = $this->fetchAllAdditionalRoomData($slug);
-        return view('room-filter', compact('rooms'));
+            $slug = '';
+            $rooms = $this->fetchAllAdditionalRoomData($slug);
+            return view('room-filter', compact('rooms'));
     }
 
     public function getAvailsRooms($id, $checkin)
@@ -72,6 +72,7 @@ class PageController extends Controller
         }
     }
 
+   
     public function fetchAllAdditionalRoomData($slug)
     {
         if ($slug == "")
@@ -99,8 +100,52 @@ class PageController extends Controller
     }
 
 
+    public function checkRoomAvailability($checkin = ""){
+        $rooms = RoomCategory::with('roomadditionaldata')->whereHas('roomadditionaldata',function($query){
+            $query->where('date','>=',date('Y-m-d'));
+        })->get();
+
+        $avails_price = 0;
+        $checkin = !empty($checkin) ? $checkin : date('Y-m-d');
+      
+        if ($rooms) {
+            foreach ($rooms as $value) {
+                if ($value->roomadditionaldata) {
+                    foreach ($value->roomadditionaldata as $room_value) {
+                        
+                        if ($checkin == $room_value['date']) {
+                            echo "<pre>";
+                            echo $room_value['date'].' --  '.$room_value['id'].'  --  '.$room_value['price'];
+                            echo "<pre>";
+                            $value['final_price'] = $room_value['price'];
+                            $value['new_old_price'] = $room_value['old_price'];
+                            $value['new_off_percentage'] = $room_value['off_percentage'];
+                        }
+                    }
+                }
+            }
+        }
+    echo "fkjdk";
+
+die;
+        dd($rooms);
+       return view('room-reserve-table',compact('rooms'));
+    }
 
 
+    //     if ((isset($rooms['room_avail']) && !empty($rooms['room_avail'])) && (isset($rooms['avails_price']) && !empty($rooms['avails_price'])) || (isset($rooms['new_old_price']) && !empty($rooms['new_old_price'])) || (isset($rooms['new_off_percentage']) && !empty($rooms['new_off_percentage']))) {
+    //         return response()->json(['avails_room' => $rooms['room_avail'], 'avails_price' => $rooms['avails_price'], 'old_price' => $rooms['new_old_price'], 'off_percentage' => $rooms['new_off_percentage']]);
+    //     } else {
+    //         return response()->json(['avails_room' => $rooms['no_of_rooms'], 'avails_price' => $rooms['price'], 'old_price' => $rooms['old_price'], 'off_percentage' => $rooms['off_percentage']]);
+    //     }
+    // }
+
+
+    // public function getCategoryRoom(Request $request){
+    //     $room = $request->all();
+    //     $roomDetail = $this->fetchSingleAdditionalRoomData($room);
+    //     return view('models',compact('roomDetail'));
+    // }
 
     // public function testMail()
     // {

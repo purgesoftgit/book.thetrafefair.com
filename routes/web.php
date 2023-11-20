@@ -17,7 +17,22 @@ use Illuminate\Support\Facades\Auth;
 
 // Route::get('test-mail','PageController@testMail');
 
+/***************************new routes *******************************/
+
 Route::get('/','PageController@index')->name('home');
+// //Room
+Route::get('rooms','PageController@getRooms');
+
+//check room availibility
+Route::get('get-avails-room/{id}/{checkin}','PageController@getAvailsRooms');
+
+Route::get('check-room-availability/{checkin?}','PageController@checkRoomAvailability');
+//get room detail according their category
+// Route::post('get-room-category','PageController@getCategoryRoom');
+
+
+/***************************new routes *******************************/
+
 // Route::get('event','HomeController@event')->name('event');
 // Route::get('event-detail/{slug}','HomeController@eventDetail');
 
@@ -55,7 +70,6 @@ Route::get('/','PageController@index')->name('home');
 // //log out
 // Route::post('logout','PageController@Logout');
 
-
 // // Registater route
 // Route::get('register','PageController@register')->name('register');
 // Route::get('register/data','PageController@phoneVerification');
@@ -64,9 +78,10 @@ Route::get('/','PageController@index')->name('home');
 // Route::get('register/is_verify_type','PageController@isVerify');
 // Route::get('resend-otp/{phone_number}','PageController@updateInsertVerification');
 
-// //Room
-Route::get('rooms','PageController@getRooms');
-Route::get('get-avails-room/{id}/{checkin}','PageController@getAvailsRooms');
+
+
+
+
 // Route::get('/room/{slug}', 'PageController@roomDetail');
 
 // //room checkout routes
