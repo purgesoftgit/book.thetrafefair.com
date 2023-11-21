@@ -309,3 +309,18 @@ ul.dark-ul-check li .gray-bg{background: #f2f2f2; font-size: 13px; display: inli
     cursor: pointer;
     margin: 8px 8px 0 0;
 }
+
+.almost-done{
+    background: aliceblue;
+    padding: 3px 0 3px 0;
+    border: 1px solid #a9cff1;
+    border-radius: 5px;
+}
+
+ul#lbt-headertop > div, ul#lbt-headertop > a {
+    display: none;
+}
+
+ul#lbt-headertop > #lbt-close_lightbox {
+    display: block;
+}

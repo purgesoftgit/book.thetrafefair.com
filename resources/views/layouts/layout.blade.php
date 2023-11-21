@@ -8,6 +8,11 @@
 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
+
+  <meta property="og:url" content="{{ env('APP_URL') }}" />
+  <meta property="og:title" content="Your Page Title" />
+  <meta property="og:description" content="A brief summary of your page" />
+  
   <title>The Trade Fair</title>
   <link rel="icon" type="image/x-icon" href="{{asset('img/favicon.ico')}}">
 

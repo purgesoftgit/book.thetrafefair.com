@@ -18,7 +18,7 @@
                     <button type="button" class="side-menu-button"><i class="fa fa-bars"></i> ORDERING & ENQUIRY</button>
 
                     <!-- navbar -->
-                    @include('dashboard.navbar')
+                    {{-- @include('dashboard.navbar') --}}
                     <!-- navbar -->
                 </div>
                 <div class="col-xxl-8 col-xl-8 col-lg-12">

@@ -5,7 +5,8 @@
     <div class="mb-2">
         <label for="check-in-date" class="form-label">Check-in date</label>
         <div class="control-datepiker">
-            <input type="date" class="form-control check-in" onkeydown="return false" min="<?php echo date('Y-m-d'); ?>" max="<?php echo date('Y-m-d', strtotime(' +2 months')); ?>" value="" name="checkin" id="datepicker">
+            <input type="date" class="form-control check-in" onchange="setCheckInDate(this.value)" onkeydown="return false" min="<?php echo date('Y-m-d'); ?>" max="<?php echo date('Y-m-d', strtotime(' +2 months')); ?>" value="" name="checkin" id="datepicker">
+            <span class="check-in-error info-aree"></span>
         </div>
     </div>
 
@@ -13,7 +14,8 @@
     <div class="mb-2">
         <label for="check-in-date" class="form-label">Check-out date</label>
         <div class="control-datepiker">
-            <input type="date" class="form-control check-out" onkeydown="return false" min="<?php echo date('Y-m-d', time() + 86400); ?>" max="<?php echo date('Y-m-d', strtotime('+2 months', strtotime('+1 days'))); ?>" value="" id="checkout" name="checkout">
+            <input type="date" class="form-control check-out"  onchange="setCheckOutDate(this.value)" onkeydown="return false" min="<?php echo date('Y-m-d', time() + 86400); ?>" max="<?php echo date('Y-m-d', strtotime('+2 months', strtotime('+1 days'))); ?>" value="" id="checkout" name="checkout">
+            <span class="check-out-error info-aree"></span>
         </div>
     </div>
 

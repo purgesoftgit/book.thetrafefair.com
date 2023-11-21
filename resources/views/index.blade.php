@@ -8,7 +8,7 @@
 
             <div class="col-xl-3 col-lg-3">
                 <div class="light-primary">
-                    <button type="button" class="price-match-btn" data-bs-toggle="modal" data-bs-target="#we-price-match"><img src="img/price-icon.png" alt="Image">We Price Match</button>
+                    <button type="button" class="price-match-btn" data-bs-toggle="modal" data-bs-target="#we-price-match"><img src="{{asset('img/price-icon.png')}}" alt="Image">We Price Match</button>
                 </div>
 
                 <!-- filter form start-->
@@ -16,7 +16,7 @@
                 <div class="room_filter_block"></div>
                 <!-- filter form end-->
 
-                <div class="map-box" style="background-image:url(img/google-map.jpg);">
+                <div class="map-box" style="background-image:url({{asset('img/google-map.jpg')}});">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#google-map-popup">Show on map</button>
                 </div>
 
@@ -27,19 +27,16 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Overview</a>
+                                <a class="nav-link active" aria-current="page" href="javascript:void(0)">Overview</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Info & prices</a>
+                                <a class="nav-link" href="#info-and-prices">Info & prices</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Facilities</a>
+                                <a class="nav-link" href="#facilities">Facilities</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">House rules</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">No reviews yet</a>
+                                <a class="nav-link" href="#house-rules">House rules</a>
                             </li>
                         </ul>
                     </div>
@@ -52,13 +49,17 @@
                             <!-- <button class="normal-link" title="Save" type="button"><img src="img/heart-icon.png" alt="Image"></button> -->
 
                             <div class="dropdown share-drop">
-                                <button type="button" class="normal-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside"><img src="img/share-icon.png" alt="Image"></button>
+                                <button type="button" class="normal-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside"><img src="{{asset('img/share-icon.png')}}" alt="Image"></button>
                                 <div class="dropdown-menu dropdown-menu-end p-3 w-100">
                                     <div class="share-drop-title">Share this property</div>
                                     <ul>
-                                        <li><a href="#"><i class="fa fa-copy"></i> Copy link</a></li>
-                                        <li><a href="#"><i class="fa fa-facebook"></i> Facebook</a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i> X (formerly Twitter)</a></li>
+                                        <li><a href="javascript:void(0)" onclick="copy()"><i class="fa fa-copy"></i> <span id="copyText">Copy link</a></li>
+                                        <li><a href="https://www.facebook.com/sharer/sharer.php?u={{env('TTF_URL')}}" target="_blank"><i class="fa fa-facebook"></i> Facebook</a>
+                                        </li>
+                                        <li><a href="https://twitter.com/intent/tweet?text={{env('APP_NAME')}}&url={{env('TTF_URL')}}" target="_blank"><i class="fa fa-twitter"></i> X (formerly Twitter)</a>
+                                        </li>
+                                        <li><a href="https://www.linkedin.com/shareArticle?mini=true&url={{env('TTF_URL')}}&title={{env('APP_NAME')}}" target="_blank"><i class="fa fa-linkedin"></i> LinkedIn</a></li>
+                                        <li><a href="https://wa.me/?text={{env('APP_NAME')}}%20{{env('TTF_URL')}}" target="_blank"><i class="fa fa-whatsapp"></i> Whatsapp</a></li>
                                     </ul>
 
                                 </div>
@@ -66,65 +67,67 @@
 
                             <button class="btn btn-primary" type="button">Reserve</button>
                             <div class="price-match-div">
-                                <button type="button" class="price-match-btn" data-bs-toggle="modal" data-bs-target="#we-price-match"><img src="img/price-icon.png" alt="Image">We Price Match</button>
+                                <button type="button" class="price-match-btn" data-bs-toggle="modal" data-bs-target="#we-price-match"><img src="{{asset('img/price-icon.png')}}" alt="Image">We Price Match</button>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-xl-9 col-lg-9">
-                        <div class="tags-list">
+                        {{-- <div class="tags-list">
                             <span class="bg-primary">New to Bookingengine.com</span>
                             <span>Airport shuttle</span>
-                            <span class="bg-greenlight"><img src="img/leaf-icon.png" alt="Image"> <img src="img/leaf-icon.png" alt="Image"> <img src="img/leaf-icon.png" alt="Image"> Travel Sustainable Level 3</span>
-                        </div>
+                            <span class="bg-greenlight"><img src="{{asset('img/leaf-icon.png')}}" alt="Image"> <img src="{{asset('img/leaf-icon.png')}}" alt="Image"> <img src="{{asset('img/leaf-icon.png')}}" alt="Image"> Travel Sustainable Level 3</span>
+                        </div> --}}
                         <div class="resort-title">The trade Fair - Resort and Spa</div>
 
-                        <address class="address-tag"><img src="img/location-icon.png" alt="Image"> Ajmer-Jaipur Expressway Near RIICO(Bagru), Jaipur, Rajsthan, 303007 Dahmi, India – <button class="showmap-link" data-bs-toggle="modal" data-bs-target="#google-map-popup">Show map</button></address>
+                        <address class="address-tag"><img src="{{asset('img/location-icon.png')}}" alt="Image">
+                            {{ $settings['address'] }} – <button class="showmap-link" data-bs-toggle="modal"
+                                data-bs-target="#google-map-popup">Show map</button></address>
                     </div>
                 </div>
 
 
 
                 <div class="photography-div" data-bs-toggle="modal" data-bs-target="#gallery-popup">
-                    <div class="row">
-                        <div class="col-xl-4">
+                    @if ($room && $count != null)
+                        <div class="row">
+                            <div class="col-xl-4">
 
-                            <div class="height-photo mb-10">
-                                <img src="img/gallery-1.jpg" alt="image1" class="img-fluid">
-                            </div>
+                                <div class="height-photo mb-10">
+                                    <img src="{{ env('BACKEND_URL') . 'show-images/' . $resultArray[0] }}"
+                                        alt="Image" class="img-fluid">
+                                </div>
 
-                            <div class="height-photo">
-                                <img src="img/gallery-2.jpg" alt="image1" class="img-fluid">
-                            </div>
+                                <div class="height-photo">
+                                    <img src="{{ env('BACKEND_URL') . 'show-images/' . $resultArray[1] }}"
+                                        alt="Image" class="img-fluid">
+                                </div>
 
-                        </div>
-                        <div class="col-xl-8">
-                            <div class="height-photo2">
-                                <img src="img/gallery-3.jpg" alt="image1" class="img-fluid">
+                            </div>
+                            <div class="col-xl-8">
+                                <div class="height-photo2">
+                                    <img src="{{ env('BACKEND_URL') . 'show-images/' . $resultArray[2] }}"
+                                        alt="Image" class="img-fluid">
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="flex-photo">
-                        <div>
-                            <img src="img/gallery-4.jpg" alt="image1" class="img-fluid">
-                        </div>
-                        <div>
-                            <img src="img/gallery-5.jpg" alt="image1" class="img-fluid">
-                        </div>
-                        <div>
-                            <img src="img/gallery-6.jpg" alt="image1" class="img-fluid">
-                        </div>
-                        <div>
-                            <img src="img/gallery-7.jpg" alt="image1" class="img-fluid">
-                        </div>
-                        <div style="position: relative;">
-                            <div class="photos-remain">
-                                <span>+14 Photos</span>
+                        <div class="flex-photo">
+                            @for ($i = 3; $i < 7; $i++)
+                                <div>
+                                    <img src="{{ env('BACKEND_URL') . 'show-images/' . $resultArray[$i] }}"
+                                        alt="Image" class="img-fluid">
+                                </div>
+                            @endfor
+                            <div style="position: relative;">
+                                <div class="photos-remain">
+                                    <span>View All Photos</span>
+                                </div>
+                                <img src="{{ env('BACKEND_URL') . 'show-images/' . $resultArray[0] }}" alt="Image"
+                                    class="img-fluid">
                             </div>
-                            <img src="img/gallery-8.jpg" alt="image1" class="img-fluid">
                         </div>
-                    </div>
+                    @endif
                 </div>
 
             </div>
@@ -134,52 +137,52 @@
         <section class="main-facilities">
 
             <div class="main-facilities-list">
-                <img src="img/main-ame-icon.png" alt="Image">
+                <img src="{{asset('img/main-ame-icon.png')}}" alt="Image">
                 <span>Breakfast</span>
             </div>
 
             <div class="main-facilities-list">
-                <img src="img/main-ame-icon2.png" alt="Image">
+                <img src="{{asset('img/main-ame-icon2.png')}}" alt="Image">
                 <span>Outdoor swimming pool</span>
             </div>
 
             <div class="main-facilities-list">
-                <img src="img/main-ame-icon3.png" alt="Image">
+                <img src="{{asset('img/main-ame-icon3.png')}}" alt="Image">
                 <span>Restaurant</span>
             </div>
 
             <div class="main-facilities-list">
-                <img src="img/main-ame-icon4.png" alt="Image">
+                <img src="{{asset('img/main-ame-icon4.png')}}" alt="Image">
                 <span>Free parking</span>
             </div>
 
             <div class="main-facilities-list">
-                <img src="img/main-ame-icon5.png" alt="Image">
+                <img src="{{asset('img/main-ame-icon5.png')}}" alt="Image">
                 <span>Private bathroom</span>
             </div>
 
             <div class="main-facilities-list">
-                <img src="img/main-ame-icon6.png" alt="Image">
+                <img src="{{asset('img/main-ame-icon6.png')}}" alt="Image">
                 <span>Balcony</span>
             </div>
 
             <div class="main-facilities-list">
-                <img src="img/main-ame-icon7.png" alt="Image">
+                <img src="{{asset('img/main-ame-icon7.png')}}" alt="Image">
                 <span>Balcony</span>
             </div>
 
             <div class="main-facilities-list">
-                <img src="img/main-ame-icon8.png" alt="Image">
+                <img src="{{asset('img/main-ame-icon8.png')}}" alt="Image">
                 <span>Spa and wellness centre</span>
             </div>
 
             <div class="main-facilities-list">
-                <img src="img/main-ame-icon9.png" alt="Image">
+                <img src="{{asset('img/main-ame-icon9.png')}}" alt="Image">
                 <span>View</span>
             </div>
 
             <div class="main-facilities-list">
-                <img src="img/main-ame-icon10.png" alt="Image">
+                <img src="{{asset('img/main-ame-icon10.png')}}" alt="Image">
                 <span>Airport shuttle (free)</span>
             </div>
 
@@ -208,52 +211,52 @@
                         <div class="most-facilities-listing">
 
                             <div class="most-facilities-list">
-                                <big><img src="img/most-ame-icon.png" alt="Image"></big>
+                                <big><img src="{{asset('img/most-ame-icon.png')}}" alt="Image"></big>
                                 <span>Outdoor swimming pool</span>
                             </div>
 
                             <div class="most-facilities-list">
-                                <big><img src="img/most-ame-icon2.png" alt="Image"></big>
+                                <big><img src="{{asset('img/most-ame-icon2.png')}}" alt="Image"></big>
                                 <span>Free parking</span>
                             </div>
 
                             <div class="most-facilities-list">
-                                <big><img src="img/most-ame-icon3.png" alt="Image"></big>
+                                <big><img src="{{asset('img/most-ame-icon3.png')}}" alt="Image"></big>
                                 <span>Airport shuttle (free)</span>
                             </div>
 
                             <div class="most-facilities-list">
-                                <big><img src="img/most-ame-icon4.png" alt="Image"></big>
+                                <big><img src="{{asset('img/most-ame-icon4.png')}}" alt="Image"></big>
                                 <span>Room Service</span>
                             </div>
 
                             <div class="most-facilities-list">
-                                <big><img src="img/most-ame-icon5.png" alt="Image"></big>
+                                <big><img src="{{asset('img/most-ame-icon5.png')}}" alt="Image"></big>
                                 <span>Spa and wellness centre</span>
                             </div>
 
                             <div class="most-facilities-list">
-                                <big><img src="img/most-ame-icon6.png" alt="Image"></big>
+                                <big><img src="{{asset('img/most-ame-icon6.png')}}" alt="Image"></big>
                                 <span>Restaurant</span>
                             </div>
 
                             <div class="most-facilities-list">
-                                <big><img src="img/most-ame-icon7.png" alt="Image"></big>
+                                <big><img src="{{asset('img/most-ame-icon7.png')}}" alt="Image"></big>
                                 <span>Free WiFi</span>
                             </div>
 
                             <div class="most-facilities-list">
-                                <big><img src="img/most-ame-icon8.png" alt="Image"></big>
+                                <big><img src="{{asset('img/most-ame-icon8.png')}}" alt="Image"></big>
                                 <span>Tea/coffee maker in all rooms</span>
                             </div>
 
                             <div class="most-facilities-list">
-                                <big><img src="img/most-ame-icon9.png" alt="Image"></big>
+                                <big><img src="{{asset('img/most-ame-icon9.png')}}" alt="Image"></big>
                                 <span>Bar</span>
                             </div>
 
                             <div class="most-facilities-list">
-                                <big><img src="img/most-ame-icon10.png" alt="Image"></big>
+                                <big><img src="{{asset('img/most-ame-icon10.png')}}" alt="Image"></big>
                                 <span>Breakfast</span>
                             </div>
 
@@ -268,7 +271,7 @@
                         <p>Continental, Italian, Full English/Irish, Vegetarian, Halal, Gluten-free, Asian, American, Buffet, Breakfast to go</p>
 
                         <div class="parking-div">
-                            <img src="img/parking-icon.png" alt="image">
+                            <img src="{{asset('img/parking-icon.png')}}" alt="image">
                             <span>Free private parking available on-site</span>
                         </div>
 
@@ -278,7 +281,7 @@
                         <p>Golf course (within 3 km)</p>
 
                         <div class="d-grid mt-4">
-                            <button class="btn btn-secondary">Reserve</button>
+                            <a href="#RoomReservation" class="btn btn-secondary">Reserve</a>
                         </div>
 
                     </div>
@@ -286,108 +289,109 @@
             </div>
         </section>
 
-        <section class="availability-section">
+        <section class="availability-section" id="info-and-prices">
             <div class="row" id="availability-section">
 
                 <div class="col-lg-8 col-md-9">
                     <div class="section-title">Availability</div>
                     <div class="info-aree">
-                        <img src="img/info-icon2.png" align="image">
+                        <img src="{{asset('img/info-icon2.png')}}" align="image">
                         <span>Select dates to see this property's availability and prices</span>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-3 text-end">
-                    <button type="button" class="price-match-btn" data-bs-toggle="modal" data-bs-target="#we-price-match"><img src="img/price-icon.png" alt="Image">We Price Match</button>
+                    <button type="button" class="price-match-btn" data-bs-toggle="modal" data-bs-target="#we-price-match"><img src="{{asset('img/price-icon.png')}}" alt="Image">We Price Match</button>
                 </div>
 
             </div>
 
             <div class="row">
-                <div class="col-xl-12">
-                    <div class="col-md-3">
-                        <div class="mb-2">
-                            <label for="checkIn-date" class="form-label">CheckIn date</label>
-                            <div class="control-datepiker">
-                                <input type="date" class="form-control checkIn" onkeydown="return false" min="<?php echo date('Y-m-d'); ?>" max="<?php echo date('Y-m-d', strtotime(' +2 months')); ?>" value="" name="checkin" id="datepicker">
-                            </div>
+                <div class="col-md-3">
+                    <div class="mb-2">
+                        <label for="checkIn-date" class="form-label">Check-in date</label>
+                        <div class="control-datepiker">
+                            <input type="date" class="form-control check-in" onchange="setCheckInDate(this.value)" onkeydown="return false" min="<?php echo date('Y-m-d'); ?>" max="<?php echo date('Y-m-d', strtotime(' +2 months')); ?>" value="" name="checkin" id="datepicker">
+                            <span class="check-in-error info-aree"></span>
                         </div>
-
-                    </div>
-                    <div class="col-md-3">
-                        <div class="mb-2">
-                            <label for="checkOut-date" class="form-label">CheckOut date</label>
-                            <div class="control-datepiker">
-                                <input type="date" class="form-control checkOut" onkeydown="return false" min="<?php echo date('Y-m-d', time() + 86400); ?>" max="<?php echo date('Y-m-d', strtotime('+2 months', strtotime('+1 days'))); ?>" value="" id="checkout" name="checkout">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-
-                        <div class="mb-2">
-                            <label class="form-label">ROOMS & GUESTS</label>
-                            <div class="rooms_guests">
-                                <p>1 Room - 1 Guest</p>
-                            </div>
-                            <div class="rooms_guests_list" style="display: none;">
-                                <div class="added_rooms"></div>
-                                <?php $row = 1; ?>
-                                <div class="guests_list">
-                                    <div class="row room_adults_heading"><strong>Room
-                                            {{ $row }}</strong>
-                                        <p>ADULTS (12y +)</p>
-                                    </div>
-                                    <div class="row room_number room_number_adults px-2">
-                                        <ul><?php $i = 1;
-                                            for ($i = 1; $i <= 3; $i++) {
-                                                echo $i == 1 ? "<li class='selected'>$i</li>" : "<li>$i</li>";
-                                            } ?></ul>
-                                    </div>
-                                </div>
-
-                                <hr style="border: 1px solid #cfd1d2;">
-
-                                <div class="row action_row">
-                                    <div class="col-md-8 col-sm-8 col-xs-7">
-                                        <button type="button" class="btn btn-dark btn-sm add-other-room"><i class="fa fa-plus"></i> Add another room</button>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-5" style="text-align: right;">
-                                        <button type="button" class="btn btn-info btn-sm apply-changes">Apply</button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <button type="button" class="btn btn-secondary check-availability">Submit</button>
                     </div>
 
                 </div>
+                <div class="col-md-3">
+                    <div class="mb-2">
+                        <label for="checkOut-date" class="form-label">Check-out date</label>
+                        <div class="control-datepiker">
+                            <input type="date" class="form-control check-out" onchange="setCheckOutDate(this.value)" onkeydown="return false" min="<?php echo date('Y-m-d', time() + 86400); ?>" max="<?php echo date('Y-m-d', strtotime('+2 months', strtotime('+1 days'))); ?>" value="" id="checkout" name="checkout">
+                            <span class="check-out-error info-aree"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 ">
+
+                    <div class="mb-2">
+                        <label class="form-label">ROOMS & GUESTS</label>
+                        <div class="rooms_guests border">
+                            <p>1 Room - 1 Guest</p>
+                        </div>
+                        <div class="rooms_guests_list border" style="display: none;">
+                            <div class="added_rooms"></div>
+                            <?php $row = 1; ?>
+                            <div class="guests_list">
+                                <div class="row room_adults_heading"><strong>Room
+                                        {{ $row }}</strong>
+                                    <p>ADULTS (12y +)</p>
+                                </div>
+                                <div class="row room_number room_number_adults px-2">
+                                    <ul><?php $i = 1;
+                                        for ($i = 1; $i <= 3; $i++) {
+                                            echo $i == 1 ? "<li class='selected'>$i</li>" : "<li>$i</li>";
+                                        } ?></ul>
+                                </div>
+                            </div>
+
+                            <hr style="border: 1px solid #cfd1d2;">
+
+                            <div class="row action_row">
+                                <div class="col-md-8 col-sm-8 col-xs-7">
+                                    <button type="button" class="btn btn-dark btn-sm add-other-room"><i class="fa fa-plus"></i> Add another room</button>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-5" style="text-align: right;">
+                                    <button type="button" class="btn btn-info btn-sm apply-changes">Apply</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-secondary check-availability mt-4">Search</button>
+                </div>
+
+
             </div>
 
 
 
             <div class="table-sec">
-                <div class="table-responsive room-reserve-table">
+                <div class="table-responsive room-reserve-table" id="RoomReservation">
                 </div>
             </div>
-
+{{--
             <div class="bordshad-div">
                 <div class="card-div">
-                    <img src="img/card-img.png" alt="Image">
+                    <img src="{{asset('img/card-img.png')}}" alt="Image">
                     <strong>No credit card needed to book.</strong> We'll send you an email confirming your reservation.
                 </div>
             </div>
 
 
-            <div class="bordshad-div">
+             <div class="bordshad-div">
                 <div class="row align-items-center">
                     <div class="col-lg-10 col-md-10">
                         <div class="level-div">
-                            <img src="img/leaf-icon2.png" alt="Image">
-                            <img src="img/leaf-icon2.png" alt="Image">
-                            <img src="img/leaf-icon2.png" alt="Image">
+                            <img src="{{asset('img/leaf-icon2.png')}}" alt="Image">
+                            <img src="{{asset('img/leaf-icon2.png')}}" alt="Image">
+                            <img src="{{asset('img/leaf-icon2.png')}}" alt="Image">
                             <span>Event Sustainable Level 3</span>
                         </div>
 
@@ -396,17 +400,17 @@
                     </div>
                     <div class="col-lg-2 col-md-2">
                         <div class="learn-div">
-                            <a href="#">Learn more</a>
+                            <a href="javascript:void(0)">Learn more</a>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="bordshad-div">
                 <div class="row align-items-center">
                     <div class="col-lg-10 col-md-10">
                         <div class="chat-div">
-                            <div class="chat-img"><img src="img/chat-icon.png" alt="Image"></div>
+                            <div class="chat-img"><img src="{{asset('img/chat-icon.png')}}" alt="Image"></div>
                             <div>
                                 <div class="chat-title">Property questions and answers</div>
                                 <p class="fn-14 mb-0">Send a question to the property to find out more.</p>
@@ -443,7 +447,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
 
                     <div class="surroundings-title">
-                        <img src="img/nearby-icon.png" alt="Image">
+                        <img src="{{asset('img/nearby-icon.png')}}" alt="Image">
                         <span>What's nearby</span>
                     </div>
                     <div class="nearby-listing">
@@ -505,7 +509,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
 
                     <div class="surroundings-title">
-                        <img src="img/restaurants-cafes-icon.png" alt="Image">
+                        <img src="{{asset('img/restaurants-cafes-icon.png')}}" alt="Image">
                         <span>Restaurants & cafes</span>
                     </div>
 
@@ -530,7 +534,7 @@
 
                     <div class="nearby-listing">
                         <div class="surroundings-title">
-                            <img src="img/public-transport-icon.png" alt="Image">
+                            <img src="{{asset('img/public-transport-icon.png')}}" alt="Image">
                             <span>Public transport</span>
                         </div>
 
@@ -562,7 +566,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
 
                     <div class="surroundings-title">
-                        <img src="img/closest-airports-icon.png" alt="Image">
+                        <img src="{{asset('img/closest-airports-icon.png')}}" alt="Image">
                         <span>Closest airports</span>
                     </div>
                     <div class="nearby-listing">
@@ -584,10 +588,10 @@
 
             <p class="fn-14">All distances are measured in straight lines. Actual travel distances may vary.</p>
 
-            <div class="mission-div fn-14">
+            {{-- <div class="mission-div fn-14">
                 <span>Missing some information?</span>
                 <button type="button">Yes</button>/<button type="button">No</button>
-            </div>
+            </div> --}}
         </section>
 
         <section class="restaurants-section">
@@ -633,7 +637,7 @@
             </div>
         </section>
 
-        <section class="resort-facilities-sec">
+        <section class="resort-facilities-sec" id="facilities">
             <div class="row">
 
                 <div class="col-lg-8 col-md-9">
@@ -651,52 +655,52 @@
                 <div class="most-facilities-listing">
 
                     <div class="most-facilities-list">
-                        <big><img src="img/most-ame-icon.png" alt="Image"></big>
+                        <big><img src="{{asset('img/most-ame-icon.png')}}" alt="Image"></big>
                         <span>Outdoor swimming pool</span>
                     </div>
 
                     <div class="most-facilities-list">
-                        <big><img src="img/most-ame-icon2.png" alt="Image"></big>
+                        <big><img src="{{asset('img/most-ame-icon2.png')}}" alt="Image"></big>
                         <span>Free parking</span>
                     </div>
 
                     <div class="most-facilities-list">
-                        <big><img src="img/most-ame-icon3.png" alt="Image"></big>
+                        <big><img src="{{asset('img/most-ame-icon3.png')}}" alt="Image"></big>
                         <span>Airport shuttle (free)</span>
                     </div>
 
                     <div class="most-facilities-list">
-                        <big><img src="img/most-ame-icon4.png" alt="Image"></big>
+                        <big><img src="{{asset('img/most-ame-icon4.png')}}" alt="Image"></big>
                         <span>Room Service</span>
                     </div>
 
                     <div class="most-facilities-list">
-                        <big><img src="img/most-ame-icon5.png" alt="Image"></big>
+                        <big><img src="{{asset('img/most-ame-icon5.png')}}" alt="Image"></big>
                         <span>Spa and wellness centre</span>
                     </div>
 
                     <div class="most-facilities-list">
-                        <big><img src="img/most-ame-icon6.png" alt="Image"></big>
+                        <big><img src="{{asset('img/most-ame-icon6.png')}}" alt="Image"></big>
                         <span>Restaurant</span>
                     </div>
 
                     <div class="most-facilities-list">
-                        <big><img src="img/most-ame-icon7.png" alt="Image"></big>
+                        <big><img src="{{asset('img/most-ame-icon7.png')}}" alt="Image"></big>
                         <span>Free WiFi</span>
                     </div>
 
                     <div class="most-facilities-list">
-                        <big><img src="img/most-ame-icon8.png" alt="Image"></big>
+                        <big><img src="{{asset('img/most-ame-icon8.png')}}" alt="Image"></big>
                         <span>Tea/coffee maker in all rooms</span>
                     </div>
 
                     <div class="most-facilities-list">
-                        <big><img src="img/most-ame-icon9.png" alt="Image"></big>
+                        <big><img src="{{asset('img/most-ame-icon9.png')}}" alt="Image"></big>
                         <span>Bar</span>
                     </div>
 
                     <div class="most-facilities-list">
-                        <big><img src="img/most-ame-icon10.png" alt="Image"></big>
+                        <big><img src="{{asset('img/most-ame-icon10.png')}}" alt="Image"></big>
                         <span>Breakfast</span>
                     </div>
 
@@ -710,7 +714,7 @@
 
                     <div class="resort-facilities-list">
                         <div class="surroundings-title">
-                            <img src="img/bathroom-icon.png" alt="Image">
+                            <img src="{{asset('img/bathroom-icon.png')}}" alt="Image">
                             <span>Bathroom</span>
                         </div>
 
@@ -733,7 +737,7 @@
 
                     <div class="resort-facilities-list">
                         <div class="surroundings-title">
-                            <img src="img/bedroom-icon.png" alt="Image">
+                            <img src="{{asset('img/bedroom-icon.png')}}" alt="Image">
                             <span>Bedroom</span>
                         </div>
 
@@ -747,7 +751,7 @@
 
                     <div class="resort-facilities-list">
                         <div class="surroundings-title">
-                            <img src="img/view-icon.png" alt="Image">
+                            <img src="{{asset('img/view-icon.png')}}" alt="Image">
                             <span>View</span>
                         </div>
 
@@ -760,7 +764,7 @@
 
                     <div class="resort-facilities-list">
                         <div class="surroundings-title">
-                            <img src="img/outdoors-icon.png" alt="Image">
+                            <img src="{{asset('img/outdoors-icon.png')}}" alt="Image">
                             <span>Outdoors</span>
                         </div>
 
@@ -780,7 +784,7 @@
 
                     <div class="resort-facilities-list">
                         <div class="surroundings-title">
-                            <img src="img/kitchen-icon.png" alt="Image">
+                            <img src="{{asset('img/kitchen-icon.png')}}" alt="Image">
                             <span>Kitchen</span>
                         </div>
 
@@ -796,7 +800,7 @@
 
                     <div class="resort-facilities-list">
                         <div class="surroundings-title">
-                            <img src="img/room-amenities-icon.png" alt="Image">
+                            <img src="{{asset('img/room-amenities-icon.png')}}" alt="Image">
                             <span>Room Amenities</span>
                         </div>
 
@@ -810,7 +814,7 @@
 
                     <div class="resort-facilities-list">
                         <div class="surroundings-title">
-                            <img src="img/pets-icon.png" alt="Image">
+                            <img src="{{asset('img/pets-icon.png')}}" alt="Image">
                             <span>Pets</span>
                         </div>
                         <p>Pets are allowed on request. Charges may be applicable.</p>
@@ -819,7 +823,7 @@
 
                     <div class="resort-facilities-list">
                         <div class="surroundings-title">
-                            <img src="img/activities-icon.png" alt="Image">
+                            <img src="{{asset('img/activities-icon.png')}}" alt="Image">
                             <span>Activities</span>
                         </div>
 
@@ -858,7 +862,7 @@
 
                     <div class="resort-facilities-list">
                         <div class="surroundings-title">
-                            <img src="img/living-area-icon.png" alt="Image">
+                            <img src="{{asset('img/living-area-icon.png')}}" alt="Image">
                             <span>Living Area</span>
                         </div>
 
@@ -872,7 +876,7 @@
 
                     <div class="resort-facilities-list">
                         <div class="surroundings-title">
-                            <img src="img/media-icon.png" alt="Image">
+                            <img src="{{asset('img/media-icon.png')}}" alt="Image">
                             <span>Media & Technology</span>
                         </div>
 
@@ -893,7 +897,7 @@
 
                     <div class="resort-facilities-list">
                         <div class="surroundings-title">
-                            <img src="img/food-drink-icon.png" alt="Image">
+                            <img src="{{asset('img/food-drink-icon.png')}}" alt="Image">
                             <span>Food & Drink</span>
                         </div>
 
@@ -915,7 +919,7 @@
 
                     <div class="resort-facilities-list">
                         <div class="surroundings-title">
-                            <img src="img/internet-icon.png" alt="Image">
+                            <img src="{{asset('img/internet-icon.png')}}" alt="Image">
                             <span>Internet</span>
                         </div>
                         <p>WiFi is available in all areas and is free of charge.</p>
@@ -923,7 +927,7 @@
 
                     <div class="resort-facilities-list">
                         <div class="surroundings-title">
-                            <img src="img/parking-icon2.png" alt="Image">
+                            <img src="{{asset('img/parking-icon2.png')}}" alt="Image">
                             <span>Parking</span>
                         </div>
                         <p>Free private parking is possible on site (reservation is not needed).</p>
@@ -935,7 +939,7 @@
 
                     <div class="resort-facilities-list">
                         <div class="surroundings-title">
-                            <img src="img/transport-icon.png" alt="Image">
+                            <img src="{{asset('img/transport-icon.png')}}" alt="Image">
                             <span>Transport</span>
                         </div>
 
@@ -946,7 +950,7 @@
 
                     <div class="resort-facilities-list">
                         <div class="surroundings-title">
-                            <img src="img/reception-services-icon.png" alt="Image">
+                            <img src="{{asset('img/reception-services-icon.png')}}" alt="Image">
                             <span>Reception services</span>
                         </div>
 
@@ -967,7 +971,7 @@
 
                     <div class="resort-facilities-list">
                         <div class="surroundings-title">
-                            <img src="img/entertainment-icon.png" alt="Image">
+                            <img src="{{asset('img/entertainment-icon.png')}}" alt="Image">
                             <span>Entertainment and family services</span>
                         </div>
 
@@ -984,7 +988,7 @@
 
                     <div class="resort-facilities-list">
                         <div class="surroundings-title">
-                            <img src="img/cleaning-services-icon.png" alt="Image">
+                            <img src="{{asset('img/cleaning-services-icon.png')}}" alt="Image">
                             <span>Cleaning services</span>
                         </div>
 
@@ -1000,7 +1004,7 @@
 
                     <div class="resort-facilities-list">
                         <div class="surroundings-title">
-                            <img src="img/business-facilities-icon.png" alt="Image">
+                            <img src="{{asset('img/business-facilities-icon.png')}}" alt="Image">
                             <span>Business facilities</span>
                         </div>
 
@@ -1013,7 +1017,7 @@
 
                     <div class="resort-facilities-list">
                         <div class="surroundings-title">
-                            <img src="img/safety-icon.png" alt="Image">
+                            <img src="{{asset('img/safety-icon.png')}}" alt="Image">
                             <span>Safety & security</span>
                         </div>
 
@@ -1032,7 +1036,7 @@
 
                     <div class="resort-facilities-list">
                         <div class="surroundings-title">
-                            <img src="img/general-icon.png" alt="Image">
+                            <img src="{{asset('img/general-icon.png')}}" alt="Image">
                             <span>General</span>
                         </div>
 
@@ -1079,7 +1083,7 @@
 
                     <div class="resort-facilities-list">
                         <div class="surroundings-title">
-                            <img src="img/accessibility-img.png" alt="Image">
+                            <img src="{{asset('img/accessibility-img.png')}}" alt="Image">
                             <span>Accessibility</span>
                         </div>
 
@@ -1100,7 +1104,7 @@
 
                     <div class="resort-facilities-list">
                         <div class="surroundings-title">
-                            <img src="img/swimming-img.png" alt="Image">
+                            <img src="{{asset('img/swimming-img.png')}}" alt="Image">
                             <span>Outdoor swimming pool <small>Free!</small></span>
                         </div>
                         <ul class="dark-ul-check">
@@ -1118,7 +1122,7 @@
 
                     <div class="resort-facilities-list">
                         <div class="surroundings-title">
-                            <img src="img/wellness-icon.png" alt="Image">
+                            <img src="{{asset('img/wellness-icon.png')}}" alt="Image">
                             <span>Wellness</span>
                         </div>
 
@@ -1169,7 +1173,7 @@
 
                     <div class="resort-facilities-list">
                         <div class="surroundings-title">
-                            <img src="img/languages-icon.png" alt="Image">
+                            <img src="{{asset('img/languages-icon.png')}}" alt="Image">
                             <span>Languages spoken</span>
                         </div>
 
@@ -1188,14 +1192,14 @@
             </div>
 
 
-            <div class="mission-div fn-14">
+            {{-- <div class="mission-div fn-14">
                 <span>Missing some information?</span>
                 <button type="button">Yes</button>/<button type="button">No</button>
-            </div>
+            </div> --}}
         </section>
 
 
-        <section class="house-rules-sec">
+        <section class="house-rules-sec" id="house-rules">
             <div class="row">
 
                 <div class="col-lg-8 col-md-9">
@@ -1214,7 +1218,7 @@
 
                 <div class="house-rules-list">
                     <div class="house-rules-left">
-                        <img src="img/checkin-icon.png" alt="Image">
+                        <img src="{{asset('img/checkin-icon.png')}}" alt="Image">
                         <span>Check-in</span>
                     </div>
                     <div class="house-rules-right">
@@ -1224,27 +1228,27 @@
 
                 <div class="house-rules-list">
                     <div class="house-rules-left">
-                        <img src="img/checkout-icon.png" alt="Image">
+                        <img src="{{asset('img/checkout-icon.png')}}" alt="Image">
                         <span>Check-out</span>
                     </div>
                     <div class="house-rules-right">
-                        <p>From 00:00 to 10:00</p>
+                        <p>From 12:00 PM to 11:00 AM</p>
                     </div>
                 </div>
 
                 <div class="house-rules-list">
                     <div class="house-rules-left">
-                        <img src="img/info-icon3.png" alt="Image">
+                        <img src="{{asset('img/info-icon3.png')}}" alt="Image">
                         <span>Cancellation/prepayment</span>
                     </div>
                     <div class="house-rules-right">
-                        <p>Cancellation and prepayment policies vary according to accommodation type. <a href="#" class="text-primary"><b>Please enter the dates of your stay</b></a> and check the conditions of your required room.</p>
+                        <p>Cancellation and prepayment policies vary according to accommodation type. <a href="javascript:void(0)" class="text-primary"><b>Please enter the dates of your stay</b></a> and check the conditions of your required room.</p>
                     </div>
                 </div>
 
                 <div class="house-rules-list">
                     <div class="house-rules-left">
-                        <img src="img/children-beds-icon.png" alt="Image">
+                        <img src="{{asset('img/children-beds-icon.png')}}" alt="Image">
                         <span>Children and beds</span>
                     </div>
                     <div class="house-rules-right">
@@ -1259,7 +1263,7 @@
 
                 <div class="house-rules-list">
                     <div class="house-rules-left">
-                        <img src="img/restriction-icon.png" alt="Image">
+                        <img src="{{asset('img/restriction-icon.png')}}" alt="Image">
                         <span>No age restriction</span>
                     </div>
                     <div class="house-rules-right">
@@ -1269,7 +1273,7 @@
 
                 <div class="house-rules-list">
                     <div class="house-rules-left">
-                        <img src="img/pets-icon2.png" alt="Image">
+                        <img src="{{asset('img/pets-icon2.png')}}" alt="Image">
                         <span>Pets</span>
                     </div>
                     <div class="house-rules-right">
@@ -1514,10 +1518,10 @@
                 </div>
             </div>
 
-            <div class="secondary-bg dark-secondary">
+            {{-- <div class="secondary-bg dark-secondary">
                 <div class="fn-24">The best of Dahmi</div>
                 <p>Click here to see more properties near popular landmarks in Dahmi</p>
-            </div>
+            </div> --}}
 
         </section>
 
@@ -1557,21 +1561,68 @@
         // get-room-category
         checkRoomAvailability(checkin);
 
-        $('.check-availability').click(function(){
-            checkRoomAvailability($('.checkIn').val());
-        });
+        $(document).on("click", '.search-room, .check-availability', function() {
+
+var enddate = $('.check-out').val()
+var startdate = $('.check-in').val()
+
+if (startdate < moment().format('YYYY-MM-DD') || startdate > moment().add(2, 'months').format('YYYY-MM-DD')) {
+    $('.check-in-error').show()
+    $('.check-in-error').text("Start Date cannot be before Today Date.").css({
+        'display': 'block',
+        'font-size': '13px',
+        'color': 'red'
+    }).delay(800).fadeOut(1000);
+}else if (enddate < moment().format('YYYY-MM-DD') || enddate > moment().add(2, 'months').add(1, 'days').format('YYYY-MM-DD')) {
+    $('.check-out-error').text("End Date cannot be before Today Date.").css({
+        'display': 'block',
+        'font-size': '13px',
+        'color': 'red'
+    }).delay(800).fadeOut(1000);
+}else if(enddate<=startdate){
+    $('.check-out-error').text("End Date cannot be before or equal to Start Date.").css({
+        'display': 'block',
+        'font-size': '13px',
+        'color': 'red'
+    }).delay(800).fadeOut(1000);
+}else{
+    window.location.href = '/book.thetradefair/public/#RoomReservation';
+}
+
+});
 
 
     });
+
+    function setCheckInDate(value) {
+        $('.check-in-error').hide()
+        $('.check-in').val(value)
+    }
+
+    function setCheckOutDate(value) {
+        $('.check-out-error').hide()
+        $('.check-out').val(value)
+    }
 
     function checkRoomAvailability(checkin) {
         $.ajax({
             url: "{{ url('check-room-availability') }}/" + checkin,
             type: "get",
             success: function(response) {
+                // $(document).scrollTop(1500);
                 $('.room-reserve-table').html(response)
             }
         })
     }
+
+    function copy() {
+            let url = window.location.href;
+            navigator.clipboard.writeText(url);
+            
+            $('#copyText').text('Copied');
+            setTimeout(function() {
+                $('#copyText').text('Copy link');
+            }, 3000);
+        }
 </script>
 @endsection

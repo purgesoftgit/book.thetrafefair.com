@@ -39,6 +39,6 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        return ($this->role_id == 0 || $this->login_type == 3);
+        return ($this->role_id == 3);
     }
 }

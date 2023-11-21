@@ -1,10 +1,10 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>Room type</th>
-            <th width="300">Number of guests</th>
-            <th width="300">Today's Price</th>
-            <th width="180"></th>
+            <th width="25%">Room type</th>
+            <th width="20%">Number of guests</th>
+            <th width="25%">Today's Price</th>
+            <th width="30%"></th>
         </tr>
     </thead>
     <tbody>
@@ -13,7 +13,6 @@
         <tr>
             <td>
                 <a data-bs-toggle="modal" data-bs-target="#roomDetail-popup" href="javascript:void(0)" class="bold-under">{{$value->title}}</a>
-                <!-- <p class="mb-0">1 double bed <img src="img/bed-icon.png" alt="image"></p> -->
             </td>
             <td>
                 <img src="{{asset('img/user-icon2.png')}}" alt="User">
@@ -23,8 +22,12 @@
                 <big><i class="fa fa-rupee"></i><?php echo isset($value->final_price) && !empty($value->final_price) ? $value->final_price : $value->price; ?></big>
             </td>
             <td>
-                <button class="btn btn-primary btn-sm show-price">Reserve</button>
-                <p>Confirmation is immediate</p>
+                @if(isset($value->new_avail_price) && !empty($value->new_avail_price) || $value->no_of_rooms != 0)
+                    <a href="javascript:void(0)" class="btn btn-primary btn-sm reserve-room" data-slug="{{ $value->slug }}" data-roomid="{{ $value->id }}">Reserve</a>
+                    <p>Confirmation is immediate</p>
+                @else
+                <span class="info-aree">Room not available</span>
+                @endif
             </td>
         </tr>
         @endforeach

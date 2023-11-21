@@ -1,24 +1,11 @@
 @extends('layouts.layout')
 @section('content')
-<!-- header section -->
-@include('layouts.header')
+@include('header')
 <!-- Mid Section Start -->
 <main class="web-main">
 
   <div class="confirm-page">
     <div class="container">
-
-      <ul id="progressbar-new">
-        <li class="active" id="step1">
-          <strong>SELECT A ROOM</strong>
-        </li>
-        <li class="active" id="step2">
-          <strong>PAY</strong>
-        </li>
-        <li class="active" id="step3">
-          <strong>CONFIRM</strong>
-        </li>
-      </ul>
 
       <?php $checkout_form_data = !(empty($transaction_data)) ? json_decode($transaction_data->checkout_form_data, true) : array();
 
@@ -57,32 +44,65 @@
       <!-- print div start-->
 
       <div class="thanks-box">
-        <img src="{{asset('img/success-check.png')}}">
-        <h3>Thanks {{$checkout_form_data['customerName'] ?? ''}}, your booking is confirmed</h3>
-        <p><strong>Confirmation Number:</strong>{{$transaction_data->txnid ?? ''}}</p>
-        <a class="view-invoice btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">View Invoice</a>
-        <a href="{{url('downloadTicket',$transaction_data->txnid ?? '')}}/downl_invoice" class="btn btn-dark">Download Invoice</a>
+        <!-- <img src="{{asset('img/success-check.png')}}"> -->
+        <h3>Your booking is confirmed at THE TRADE FAIR - RESORT AND SPA</h3>
+
+        <ul class="list-unstyled">
+          <li><i class="fa fa-check" aria-hidden="true"></i> You Booking Confirmation is in your Inbox!</li>
+          <li><i class="fa fa-check" aria-hidden="true"></i> Your Payment will be handles by the property</li>
+          <li><i class="fa fa-check" aria-hidden="true"></i> You can now cancel your booking untill check-in</li>
+        </ul>
 
 
-        <?php
-        if ($checkout_form_data['grand_total_amt'] > 0) {
-        ?>
+        <div class="text-center mt-5">
 
+          <a href="{{url('downloadTicket',$transaction_data->txnid ?? '')}}/downl_invoice" class="btn btn-dark">Download Invoice</a>
 
-          <div class="text-center">
+          <?php
+          if ($checkout_form_data['grand_total_amt'] > 0) {
+          ?>
             <a href="javascript:void(0)" class="btn btn-primary cancel-reservation">Cancel Reservation</a>
-          </div>
-
-        <?php } ?>
+          <?php } ?>
+        </div>
 
       </div>
 
+
+      <div class="you-booking-summary mt-5">
+        <h4>Your Booking Summary</h4>
+        <div class="row g-0 mt-4">
+          <div class="col-md-5">
+            <img src="{{ asset('img/room-photo.webp')}}" alt="" width="400" height="250">
+          </div>
+          <div class="col-md-7">
+            <h4>THE TRADE FAIR - RESORT AND SPA</h4>
+            <p><small class="checkin-date" data-checkindate="{{$checkout_form_data['checkin']}}">{{ date('d M Y',strtotime($checkout_form_data['checkin'])) }}</small>
+              <small> From 12:00 PM</small> - <small class="checkout-date" data-checkoutdate="{{$checkout_form_data['checkin']}}">{{ date('d M Y',strtotime($checkout_form_data['checkout'] )) }}</small> To 11:00 AM
+            </p>
+
+            <p>Confirmation Number : <span class="badge text-bg-success">{{$transaction_data->txnid ?? ''}}</span></p>
+            <p>PIN Number : <span class="badge text-bg-success">{{$transaction_data->pin_code ?? '4564'}}</span></p>
+
+            <p>{{ $checkout_form_data['item']['room'] }} Room {{ $checkout_form_data['item']['guest'] }} Adults, {{$checkout_form_data['item']['children'] }} Child</p>
+            <p>Advance Payable Amount: <i class="fa fa-rupee"></i>{{ $checkout_form_data['f_total_amt'] }} </p>
+
+            <hr>
+            <div class="text-end">
+              <a class="view-invoice btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">View Invoice</a>
+            </div>
+          </div>
+
+
+        </div>
+
+
+      </div>
     </div>
   </div>
 
 
   <!-- Modal -->
-  <div class="modal fade" id="staticBackdrop"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -171,6 +191,6 @@
 
   })
 </script>
-@include('layouts.footer')
+
 <!-- footer section -->
 @endsection
