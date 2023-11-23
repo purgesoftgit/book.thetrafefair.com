@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Session;
-use App\{Setting, RoomCategory, Country, UserAddress, Wallet, TempCheckout, UsedPromocode, Promocode, TempUserInfo};
+use App\{Setting, RoomCategory, Country, UserAddress, Wallet, TempCheckout, UsedPromocode, Promocode, TempUserInfo, FAQ, AskQuestion, NewsLetter};
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
     public function index()
     {
+        $faqs = FAQ::all();
+
         $room = RoomCategory::all();
         $myArr = [];
         foreach($room as $value){
@@ -19,9 +20,46 @@ class PageController extends Controller
         }
         $resultArray = call_user_func_array('array_merge', $myArr);
         $count = count($resultArray);
-        return view('index', compact('room','resultArray','count'));
+        return view('index', compact('room','resultArray','count','faqs'));
     }
 
+    public function submitAskQuestion(Request $request){
+        
+        $validator = Validator::make($request->all(),array(
+            'email' =>'required',
+            'question' => 'required',
+        ));
+
+        if($validator->fails()){
+            return redirect('/');
+        }
+
+        $askQuestion = new AskQuestion();
+        $askQuestion->email = $request->email;
+        $askQuestion->question = $request->question;
+        $askQuestion->save();
+
+        return redirect('/')->with('success','Successfully submit your Request. Team will contact you as soon as possible');
+ 
+    }
+
+    public function newsletter(Request $request){
+        $data = $request->all();
+        $validator = Validator::make($data,array(
+            'email' => 'unique:newsletters|required',
+        ));
+        
+        if ($validator->fails()) {
+            return redirect()->back();
+        }else{
+
+        $newsletter = new NewsLetter();
+        $newsletter->email = $request->email;
+        $newsletter->save();
+        }
+        return redirect('/')->with('newsletter-success','Thank You for subscribing to our Newsletter, We will contact you shortly.');
+        
+    }
 
     public function fetchSingleAdditionalRoomData($room_detail,$checkin)
     {

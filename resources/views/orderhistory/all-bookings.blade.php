@@ -6,7 +6,7 @@
       <i class="fas fa-bars"></i>
     </a>
   <!--Navbar Start-->
-   {{-- @include('dashboard.navbar') --}}
+   @include('dashboard.navbar')
   <!--EndNavbar Start-->
    <!-- sidebar-wrapper  -->
     <main class="page-content"> 
@@ -23,14 +23,7 @@
                   <div class="whbox">
 
                   <div class="navbar-with-export-data">
-                    {{-- <nav aria-label="breadcrumb">
-                      <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{url('home')}}">Home</a></li>
-                        <li class="breadcrumb-item">/</li>
-                        <li class="breadcrumb-item active" aria-current="page">Room Booking History</li>
-                      </ol>
-                    </nav> --}}
-                     
+                    
                      <div class="">
                       <div class="export-box form-inline room-filter-block">
                         <div class="field-div">
@@ -171,19 +164,7 @@
 
                               </div>
                           </div>
-                          <!-- 2nd payments tab end-->
-                            <nav class="pagination-nav">
-                                <ul class="pagination booking_pagination">
-                               <?php if($total_cmc_data > 10) { 
-                                $is_zero = 0; 
-                                $total_number_of_pages = ceil($total_cmc_data / 10);
-                                for($i=1;$i<=$total_number_of_pages;$i++){ ?>
-                                    <li class="page-item booking_already_active" data-index="{{$i}}">
-                                      <a class="page-link booking_per_data_count" data-pagenum="<?php echo $i; ?>" data-offset="<?php if($i==1){ echo 0;}else{ echo ($i.$is_zero - 10); } ?>" href="javascript:void(0)">{{$i}}</a>
-                                    </li>
-                               <?php } }?>
-                              </ul>
-                            </nav>
+                          
                         </div>
                       </div>
                     </div>
@@ -228,6 +209,7 @@
   var offset = 0;
 
   function seeAllRoomDetails(value,type){
+    
     $.ajax({
       url:"{{ url('see-all-upcoming-checkin-checkout') }}/"+value+'/'+type,
       type:"get",
@@ -275,20 +257,7 @@
 
   //function getMarkCancelCompleteData(start_date,end_date){
   function getMarkCancelCompleteData(start_date,end_date,current_page,records_per_page,offset,search_text){
-    // if(start_date != "" && end_date != "" && search_text == ''){
-    //   var url = "{{ url('get-upcoming-cancel-history') }}"+'/'+start_date+'/'+end_date
-    // }
-    // else if(start_date != "" && end_date != "" && search_text != ''){
-    //   var url = "{{ url('get-upcoming-cancel-history') }}"+'/'+start_date+'/'+end_date+'/'+current_page+'/'+records_per_page+'/'+offset+'/'+search_text
-    // }
-    // else if(search_text != ''){
-    //   start_date = end_date = 0
-    //   var url = "{{ url('get-upcoming-cancel-history') }}"+'/'+start_date+'/'+end_date+'/'+current_page+'/'+records_per_page+'/'+offset+'/'+search_text
-    // }
-    // else{
-    //   start_date = end_date = 0
-    //   var url = "{{ url('get-upcoming-cancel-history') }}"+'/'+start_date+'/'+end_date+'/'+current_page+'/'+records_per_page+'/'+offset
-    // }
+    
 
     if((start_date == '' && end_date == '') && (start_date == 0 && end_date == 0) && search_text == 0){
       start_date = end_date = 0
@@ -301,30 +270,31 @@
       type:"get",
       success:function(response){
          $("#mark_complete_cancel tbody").html(response)
+         console.log($('.total_mcc_booking').data("totalmdcount"));
          $(".mark_complete_cancel_data span").text($('.total_mcc_booking').data("totalmdcount"))
    
-          if($(".mark_complete_cancel_data span").text() > 10)
-          {
-              var is_zero = 0; 
-              var total_number_of_pages = Math.ceil($(".mark_complete_cancel_data span").text() / 10);
-              var i;
-              var pag_append = ''
-              for(i=1;i<=total_number_of_pages;i++){
-                if(i==1)
-                  var i_off = 0;
-                else
-                  var i_off = i+''+0 - 10
-                pag_append = pag_append +  '<li class="page-item booking_already_active"><a class="page-link booking_per_data_count" data-pagenum="'+i+'" data-offset="'+i_off+'" href="javascript:void(0)">'+i+'</a></li>';
-              }
+          // if($(".mark_complete_cancel_data span").text() > 10)
+          // {
+          //     var is_zero = 0; 
+          //     var total_number_of_pages = Math.ceil($(".mark_complete_cancel_data span").text() / 10);
+          //     var i;
+          //     var pag_append = ''
+          //     for(i=1;i<=total_number_of_pages;i++){
+          //       if(i==1)
+          //         var i_off = 0;
+          //       else
+          //         var i_off = i+''+0 - 10
+          //       pag_append = pag_append +  '<li class="page-item booking_already_active"><a class="page-link booking_per_data_count" data-pagenum="'+i+'" data-offset="'+i_off+'" href="javascript:void(0)">'+i+'</a></li>';
+          //     }
 
-              if(start_date != 0 || end_date != 0){
-                $('.booking_pagination').show()
-              }
-            $('.booking_pagination').html(pag_append)
-          }
-          else{
-            $('.booking_pagination').hide()
-          }
+          //     if(start_date != 0 || end_date != 0){
+          //       $('.booking_pagination').show()
+          //     }
+          //   $('.booking_pagination').html(pag_append)
+          // }
+          // else{
+          //   $('.booking_pagination').hide()
+          // }
          
         var minus_page_value = current_page - 1;
         $(".booking_pagination li:eq("+minus_page_value+")").addClass("active");

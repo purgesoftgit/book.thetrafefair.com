@@ -13,7 +13,7 @@
 
         @if(Auth::check() && (Auth::user()->role_id == 3))  {{ ucfirst(Auth::user()->first_name)}} {{ ucfirst(Auth::user()->last_name)}} @endif</a>
          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown1">
-              {{-- <a class="dropdown-item" href="{{url('update-profile')}}">Profile</a> --}}
+             
             <a class="dropdown-item" href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
              Logout
             </a>

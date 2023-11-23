@@ -109,25 +109,20 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form class="form-validate" id="submitAskQuestion" action="{{ url('submit-ask-question') }}" method="POST" >
+                    @csrf
                     <div class="mb-3">
                         <label for="ask-question-email" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="ask-question-email">
+                        <input type="email" name="email" class="form-control validate[required, custom[email]]" id="ask-question-email">
                     </div>
                     <div class="mb-3">
                         <label for="ask-question-textarea" class="form-label">Type your question here:</label>
-                        <textarea class="form-control" id="ask-question-textarea" rows="5"></textarea>
-                        <div id="ask-question-textareaHelp" class="form-text">300 characters left</div>
-
+                        <textarea class="form-control validate[required]" name="question"  id="ask-question-textarea" rows="5"></textarea>
                     </div>
                     <div class="d-grid mb-3">
-                        <button type="submit" class="btn btn-primary">Submit your question</button>
+                        <button type="button" class="btn btn-primary submitAskquestion">Submit your question</button>
                     </div>
-
-                    <p class="fn-14">Your question will be published on Bookingengine.com after it has been approved
-                        and answered. <a href="javascript:void(0)" data-bs-toggle="modal"
-                            data-bs-target="#guidelines-popup" class="text-primary">Click here to read post
-                            guidelines.</a></p>
+ 
                 </form>
             </div>
         </div>

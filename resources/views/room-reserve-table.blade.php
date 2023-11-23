@@ -3,7 +3,7 @@
         <tr>
             <th width="25%">Room type</th>
             <th width="20%">Number of guests</th>
-            <th width="25%">Today's Price</th>
+            <th width="25%">Room Price</th>
             <th width="30%"></th>
         </tr>
     </thead>

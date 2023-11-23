@@ -97,7 +97,7 @@
         ?>
           <a class="btn btn-dark" href="{{ url('room-order-history/change-status',$today_upcoming_value->id).'/M/0/status/1' }}">Mark As No Show</a>
         <?php } ?>
-        <button class="btn btn-info" onclick="seeAllRoomDetails({{$today_upcoming_value->id}})">View</button>
+        <button class="btn btn-info" onclick="seeAllRoomDetails({{$today_upcoming_value->id}},'upcoming')">View</button>
       </div>
     </div>
     <!-- Bookig List End -->
@@ -245,7 +245,7 @@
                 ?>
                   <a class="btn btn-dark" href="{{ url('room-order-history/change-status',$late_upcoming_value->id).'/M/0/status/1' }}">Mark As No Show</a>
               <?php } ?>
-              <button class="btn btn-info" onclick="seeAllRoomDetails({{$late_upcoming_value->id}})">View</button>
+              <button class="btn btn-info" onclick="seeAllRoomDetails({{$late_upcoming_value->id}},'upcoming')">View</button>
             </div>
           </div>
           <!-- Bookig List End -->
@@ -392,7 +392,7 @@
                   <button class="btn btn-dark" id="mark-as-no-prev" data-id="{{$prev_upcoming_value->id}}" >Mark As No Show</button>
               @endif
           @endif
-          <button class="btn btn-info" onclick="seeAllRoomDetails({{$prev_upcoming_value->id}})">View</button>
+          <button class="btn btn-info" onclick="seeAllRoomDetails({{$prev_upcoming_value->id}},'upcoming')">View</button>
         </div>
       </div>
       <!-- Bookig List End -->

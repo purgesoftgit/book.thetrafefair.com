@@ -203,11 +203,6 @@
                                                     <option value="10">Pay at Hotel (min: 10% required)</option>
                                                     <option value="25">Partial Booking (min: 25% required)</option>
 
-
-
-                                                    <option value="100">Pay at Service</option>
-                                                    <option value="10">Pay at Hotel <small>(min: 10% required)</small></option>
-                                                    <option value="25">Partial Booking</option>
                                                 </select>
                                             </div>
                                         </div>

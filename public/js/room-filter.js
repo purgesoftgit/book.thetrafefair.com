@@ -61,12 +61,14 @@ $(document).change(
     }
 );
 var is_valid_child = true;
+
 $(document).on("click", ".apply-changes", function () {
     var count_adults,
         count_child,
         total_adults = 0;
     var total_child = 0;
     var count_rooms = 0;
+
     $(".added_rooms")
         .children()
         .each(function (key, value) {
@@ -82,7 +84,11 @@ $(document).on("click", ".apply-changes", function () {
             count_child = 0;
             total_adults += count_adults;
             total_child += count_child;
+
+            console.log(count_adults);
         });
+
+
     var room = parseInt(
         $(".guests_list .room_number_adults ul li.selected").text()
     );
@@ -229,7 +235,7 @@ function editRooms(index) {
         "selected"
     );
     $(".roomRow" + index + " .editDetail .room_number_child ul li").each(
-        function () {}
+        function () { }
     );
 
     $(".roomRow" + index + " .editDiv .edit-rooms").hide();
@@ -308,61 +314,27 @@ $(document).on("click", ".show-price", function () {
 
 $(document).on("click", ".reserve-room", function () {
     var slug = $(this).data("slug");
-    var enddate = $(".check-out").val();
-    var startdate = $(".check-in").val();
-
-    if (
-        startdate < moment().format("YYYY-MM-DD") ||
-        startdate > moment().add(2, "months").format("YYYY-MM-DD")
-    ) {
-        $(".check-in-error").show();
-        $(".check-in-error")
-            .text("Start Date cannot be before Today Date.")
-            .css({
-                display: "block",
-                "font-size": "13px",
-                color: "red",
-            })
-            .delay(800)
-            .fadeOut(1000);
-        //  $('.search-room').prop("disabled", true)
-    }else if (
-        enddate < moment().format("YYYY-MM-DD") ||
-        enddate > moment().add(2, "months").add(1, "days").format("YYYY-MM-DD")
-    ) {
-        $(".check-out-error")
-            .text("End Date cannot be before Today Date.")
-            .css({
-                display: "block",
-                "font-size": "13px",
-                color: "red",
-            })
-            .delay(800)
-            .fadeOut(1000);
-        // $('.search-room').prop("disabled", true)
-    } else if (enddate <= startdate) {
-        $(".check-out-error")
-            .text("End Date cannot be before or equal to Start Date.")
-            .css({
-                display: "block",
-                "font-size": "13px",
-                color: "red",
-            })
-            .delay(800)
-            .fadeOut(1000);
+ 
+    if ($('.check-in').val().length == 0 && $('.check-out').val().length == 0) {
+        var enddate = moment().add(1, "day").format("YYYY-MM-DD");
+        var startdate = moment().format("YYYY-MM-DD");
     } else {
-        $.ajax({
-            url: "user-information",
-            type: "post",
-            data: {
-                room_id: $(this).data("roomid"),
-                checkin: $(".booking-search .check-in").val(),
-                checkout: $(".booking-search .check-out").val(),
-                room_guest: $(".booking-search .rooms_guests p").text(),
-            },
-            success: function (response) {
-                window.location.href = "checkout-information/" + slug + "/" + response.hash_id;
-            },
-        });
+        var enddate =  $('.check-out').val();
+        var startdate = $('.check-in').val();
     }
+
+    $.ajax({
+        url: "user-information",
+        type: "post",
+        data: {
+            room_id: $(this).data("roomid"),
+            checkin: startdate,
+            checkout: enddate,
+            room_guest: $(".booking-search .rooms_guests p").text(),
+        },
+        success: function (response) {
+            window.location.href = "checkout-information/" + slug + "/" + response.hash_id;
+        },
+    });
+
 });

@@ -4,23 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\{RoomCategory, Setting, TempCheckout, UsedPromocode, Promocode, Book, Transaction, RefundUsers};
-// use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
-// use Storage;
 use Dompdf\Dompdf;
-use App\Jobs\RoomConfirmJob;
+use App\Jobs\{RoomConfirmJob,RoomConfirmAdminJob};
 
 class RoomCheckoutController extends Controller
 {
 
-  // public function testMail(){
-  //   $setting = Setting::whereIn('key',['phone_number','address'])->get();
-  //   $email = "leena.sharma@purgesoftwares.com";
-  //   $txn_rec = Transaction::where('txnid','b6bc8c14bd')->first();
-
+  public function testMail(){
+    $setting = Setting::whereIn('key',['phone_number','address'])->get();
+    $email = "leena.sharma@mailinator.com";
+    $txn_rec = Transaction::where('txnid','b6bc8c14bd')->first();
     
-  //    dispatch(new RoomConfirmJob($email,$txn_rec,$setting));
-  // }
+  //  dispatch(new RoomConfirmAdminJob(env('MAIL_USERNAME'),$txn_rec));
+    dispatch(new RoomConfirmJob($email,$txn_rec,$setting));
+  }
   public function roomcart($order_id)
   {
 
@@ -488,6 +486,8 @@ class RoomCheckoutController extends Controller
       $checkout_records = TempCheckout::where('id', $temp_checkout_inserted_id)->first();
       $checkout_form_data = !empty($checkout_records) ? json_decode($checkout_records['formData'], true) : array();
 
+      $setting = Setting::whereIn('key',['phone_number','address'])->get();
+
       if ($checkout_form_data) {
         $book = new Book();
         $book->user_id = $checkout_form_data['user_id'];
@@ -541,30 +541,6 @@ class RoomCheckoutController extends Controller
         $txn_rec->save();
       }
 
-      // if (!empty($checkout_form_data) && ($checkout_form_data['subtotal_tti_credit'] > 0)) {
-      //     $wallet = new Wallet();
-      //     $wallet->user_id  = $checkout_form_data['user_id'];
-      //     $wallet->amount   = $checkout_form_data['subtotal_tti_credit'];
-      //     $wallet->message  = 'Room Booked';
-      //     $wallet->txn_type = 'DEBIT';
-      //     $wallet->amount_type = 'TTI_CREDIT';
-      //     $wallet->txnid = $txnid;
-      //     $wallet->txn_data = '';
-      //     $wallet->save();
-      // }
-
-      // if (!empty($checkout_form_data) && ($checkout_form_data['subtotal_tti_rewardpoint'] > 0)) {
-      //     $wallet = new Wallet();
-      //     $wallet->user_id  = $checkout_form_data['user_id'];
-      //     $wallet->amount   = $checkout_form_data['subtotal_tti_rewardpoint'];
-      //     $wallet->message  = 'Room Booked';
-      //     $wallet->txn_type = 'DEBIT';
-      //     $wallet->amount_type = 'TTI_REWARD';
-      //     $wallet->txnid = $txnid;
-      //     $wallet->txn_data = '';
-      //     $wallet->save();
-      // }
-
       if (!empty($checkout_form_data) && $checkout_form_data['promocode'] != '') {
         $promocodeData = Promocode::with('usedpromo')->where('code', trim(strtoupper($checkout_form_data['promocode'])))->first();
 
@@ -581,35 +557,20 @@ class RoomCheckoutController extends Controller
       }
 
       $email = $checkout_form_data['customerEmail'];
-      // dispatch(new RoomConfirmAdminJob(env('MAIL_USERNAME'),$txn_rec));
-      // dispatch(new RoomConfirmJob($email,$txn_rec));
+      dispatch(new RoomConfirmAdminJob(env('MAIL_USERNAME'),$txn_rec));
+      dispatch(new RoomConfirmJob($email,$txn_rec,$setting));
 
       $post = [
         'txn_rec' => $txn_rec,
         'email' => $email,
       ];
 
-      //$url = "send-room-confirmation-mail";
-      //  (new TestController)->roomCurlMailFunction($url,$post);
-
-
-      //   $message = "Hello ".$checkout_form_data['customerName'].", Thank you for choosing Hotel The Trade International. We’re all set to serve you hassle-free stays with Check-in Assured. In case you face issues with your check-in, contact us for immediate assistance and you may avail a free stay, HAVE A GREAT TIME";
-      //   $this->sendMessageWhatsapp($checkout_form_data['customerPhone'],$message);
-
+   
       TempCheckout::where('id', $temp_checkout_inserted_id)->delete();
-
-      // Auth::loginUsingId($checkout_form_data['user_id']);
-
-
+ 
       return redirect('room-payment-summary/' . $txnid);
     } else {
-      // if (!empty($data)) {
-      //     $temp_checkout_inserted_data = explode('-', $data['orderId']);
-      //     $temp_checkout_inserted_id = trim($temp_checkout_inserted_data[1]);
-      //     $checkout_records = TempCheckout::where('id', $temp_checkout_inserted_id)->first();
-      //     $user_id = $checkout_records['user_id'];
-      //     Auth::loginUsingId($user_id);
-      // }
+      
       return view('paymenterror');
     }
   }
@@ -753,136 +714,136 @@ class RoomCheckoutController extends Controller
     }
   }
 
-  public function room_checkout_payment_for_zero_amount(Request $request)
-  {
-    $data = $request->all();
-    if (!empty($data)) {
-      $temp_checkout_inserted_data = explode('-', $data['orderId']);
-      $temp_checkout_inserted_id = trim($temp_checkout_inserted_data[1]);
-      $checkout_records = TempCheckout::where('id', $temp_checkout_inserted_id)->first();
-      $checkout_form_data = !empty($checkout_records) ? json_decode($checkout_records['formData'], true) : array();
-      $payu_data = json_encode($data);
+  // public function room_checkout_payment_for_zero_amount(Request $request)
+  // {
+  //   $data = $request->all();
+  //   if (!empty($data)) {
+  //     $temp_checkout_inserted_data = explode('-', $data['orderId']);
+  //     $temp_checkout_inserted_id = trim($temp_checkout_inserted_data[1]);
+  //     $checkout_records = TempCheckout::where('id', $temp_checkout_inserted_id)->first();
+  //     $checkout_form_data = !empty($checkout_records) ? json_decode($checkout_records['formData'], true) : array();
+  //     $payu_data = json_encode($data);
 
-      if ($checkout_form_data) {
+  //     if ($checkout_form_data) {
 
-        //book table
-        $room_category = RoomCategory::with('roomadditionaldata')->where('room_category', $checkout_form_data['item']['room_category'])->first();
-        $how_many_rooms = 0;
-        if ($room_category->roomadditionaldata) {
-          foreach ($room_category->roomadditionaldata as $room_key => $room_value) {
-            if ($checkout_form_data['checkindate'] == $room_value['date']) {
-              if ($room_value['room_avail'] > 0) {
-                $how_many_rooms = "yes";
-                $room_value['room_avail'] = (int)$room_value['room_avail'] - $checkout_form_data['item']['room'];
-                $room_value->save();
-              }
-            }
-          }
-        }
+  //       //book table
+  //       $room_category = RoomCategory::with('roomadditionaldata')->where('room_category', $checkout_form_data['item']['room_category'])->first();
+  //       $how_many_rooms = 0;
+  //       if ($room_category->roomadditionaldata) {
+  //         foreach ($room_category->roomadditionaldata as $room_key => $room_value) {
+  //           if ($checkout_form_data['checkindate'] == $room_value['date']) {
+  //             if ($room_value['room_avail'] > 0) {
+  //               $how_many_rooms = "yes";
+  //               $room_value['room_avail'] = (int)$room_value['room_avail'] - $checkout_form_data['item']['room'];
+  //               $room_value->save();
+  //             }
+  //           }
+  //         }
+  //       }
 
-        //decrease value by 1 accoding to category
-        if ($how_many_rooms !== "yes" && $room_category->no_of_rooms != 0) {
-          $room_category->no_of_rooms = (int)$room_category['no_of_rooms'] - $checkout_form_data['item']['room'];
-          $room_category->save();
-        }
+  //       //decrease value by 1 accoding to category
+  //       if ($how_many_rooms !== "yes" && $room_category->no_of_rooms != 0) {
+  //         $room_category->no_of_rooms = (int)$room_category['no_of_rooms'] - $checkout_form_data['item']['room'];
+  //         $room_category->save();
+  //       }
 
-        $book = new Book();
-        $book->user_id = $checkout_form_data['user_id'];
-        $book->room_id = $checkout_form_data['item']['room_id'];
-        $book->cin_date = $checkout_form_data['checkin'];
-        $book->cout_date = $checkout_form_data['checkout'];
-        $book->category = $checkout_form_data['item']['room_category'];
-        $book->room = $checkout_form_data['item']['room'];
-        $book->guests = $checkout_form_data['item']['guest'];
-        $book->name = $checkout_form_data['customerName'];
-        $book->email = $checkout_form_data['customerEmail'];
-        $book->phone_number = '+91' . $checkout_form_data['customerPhone'];
-        $book->save();
-      }
+  //       $book = new Book();
+  //       $book->user_id = $checkout_form_data['user_id'];
+  //       $book->room_id = $checkout_form_data['item']['room_id'];
+  //       $book->cin_date = $checkout_form_data['checkin'];
+  //       $book->cout_date = $checkout_form_data['checkout'];
+  //       $book->category = $checkout_form_data['item']['room_category'];
+  //       $book->room = $checkout_form_data['item']['room'];
+  //       $book->guests = $checkout_form_data['item']['guest'];
+  //       $book->name = $checkout_form_data['customerName'];
+  //       $book->email = $checkout_form_data['customerEmail'];
+  //       $book->phone_number = '+91' . $checkout_form_data['customerPhone'];
+  //       $book->save();
+  //     }
 
-      $txnid = substr(hash('sha256', mt_rand() . microtime()), 0, 10);
-      $txn_rec = new Transaction();
-      $txn_rec->user_id = $checkout_form_data['user_id'];
-      $txn_rec->txnid = $txnid;
-      $txn_rec->amount = $checkout_form_data['f_total_amt'];
-      $txn_rec->txn_type = $checkout_form_data['txn_type'];
-      $txn_rec->checkout_form_data = json_encode($checkout_form_data);
-      $txn_rec->payu_data =  json_encode($data);
-      $txn_rec->f_status =  'U';
-      $txn_rec->status =  'D';
-      $txn_rec->read_status =  'Unread';
-      $txn_rec->save();
+  //     $txnid = substr(hash('sha256', mt_rand() . microtime()), 0, 10);
+  //     $txn_rec = new Transaction();
+  //     $txn_rec->user_id = $checkout_form_data['user_id'];
+  //     $txn_rec->txnid = $txnid;
+  //     $txn_rec->amount = $checkout_form_data['f_total_amt'];
+  //     $txn_rec->txn_type = $checkout_form_data['txn_type'];
+  //     $txn_rec->checkout_form_data = json_encode($checkout_form_data);
+  //     $txn_rec->payu_data =  json_encode($data);
+  //     $txn_rec->f_status =  'U';
+  //     $txn_rec->status =  'D';
+  //     $txn_rec->read_status =  'Unread';
+  //     $txn_rec->save();
 
-      // if (!empty($checkout_form_data) && ($checkout_form_data['subtotal_tti_credit'] > 0)) {
-      //   $wallet = new Wallet();
-      //   $wallet->user_id  = $checkout_form_data['user_id'];
-      //   $wallet->amount   = $checkout_form_data['subtotal_tti_credit'];
-      //   $wallet->message  = 'Room Booked';
-      //   $wallet->txn_type = 'DEBIT';
-      //   $wallet->amount_type = 'TTI_CREDIT';
-      //   $wallet->txnid = $txnid;
-      //   $wallet->txn_data = '';
-      //   $wallet->save();
-      // }
+  //     // if (!empty($checkout_form_data) && ($checkout_form_data['subtotal_tti_credit'] > 0)) {
+  //     //   $wallet = new Wallet();
+  //     //   $wallet->user_id  = $checkout_form_data['user_id'];
+  //     //   $wallet->amount   = $checkout_form_data['subtotal_tti_credit'];
+  //     //   $wallet->message  = 'Room Booked';
+  //     //   $wallet->txn_type = 'DEBIT';
+  //     //   $wallet->amount_type = 'TTI_CREDIT';
+  //     //   $wallet->txnid = $txnid;
+  //     //   $wallet->txn_data = '';
+  //     //   $wallet->save();
+  //     // }
 
-      // if (!empty($checkout_form_data) && ($checkout_form_data['subtotal_tti_rewardpoint'] > 0)) {
-      //   $wallet = new Wallet();
-      //   $wallet->user_id  = $checkout_form_data['user_id'];
-      //   $wallet->amount   = $checkout_form_data['subtotal_tti_rewardpoint'];
-      //   $wallet->message  = 'Room Booked';
-      //   $wallet->txn_type = 'DEBIT';
-      //   $wallet->amount_type = 'TTI_REWARD';
-      //   $wallet->txnid = $txnid;
-      //   $wallet->txn_data = '';
-      //   $wallet->save();
-      // }
+  //     // if (!empty($checkout_form_data) && ($checkout_form_data['subtotal_tti_rewardpoint'] > 0)) {
+  //     //   $wallet = new Wallet();
+  //     //   $wallet->user_id  = $checkout_form_data['user_id'];
+  //     //   $wallet->amount   = $checkout_form_data['subtotal_tti_rewardpoint'];
+  //     //   $wallet->message  = 'Room Booked';
+  //     //   $wallet->txn_type = 'DEBIT';
+  //     //   $wallet->amount_type = 'TTI_REWARD';
+  //     //   $wallet->txnid = $txnid;
+  //     //   $wallet->txn_data = '';
+  //     //   $wallet->save();
+  //     // }
 
 
-      if (!empty($checkout_form_data) && $checkout_form_data['promocode'] != '') {
-        $promocodeData = Promocode::with('usedpromo')->where('code', trim(strtoupper($checkout_form_data['promocode'])))->first();
+  //     if (!empty($checkout_form_data) && $checkout_form_data['promocode'] != '') {
+  //       $promocodeData = Promocode::with('usedpromo')->where('code', trim(strtoupper($checkout_form_data['promocode'])))->first();
 
-        if (!empty($promocodeData)) {
-          $already_used = UsedPromocode::where('promocode_id', $promocodeData['id'])->where('phone_number', '+91' . $checkout_form_data['customerPhone'])->count();
-          if ($already_used == 0 && $checkout_form_data['item']['room_category'] == "deluxe") {
-            $used_promocode = new UsedPromocode();
-            $used_promocode->phone_number = '+91' . $checkout_form_data['customerPhone'];
-            $used_promocode->promocode_id = $promocodeData['id'];
-            $used_promocode->used_time += $checkout_form_data['item']['room'];
-            $used_promocode->save();
-          }
-        }
-      }
+  //       if (!empty($promocodeData)) {
+  //         $already_used = UsedPromocode::where('promocode_id', $promocodeData['id'])->where('phone_number', '+91' . $checkout_form_data['customerPhone'])->count();
+  //         if ($already_used == 0 && $checkout_form_data['item']['room_category'] == "deluxe") {
+  //           $used_promocode = new UsedPromocode();
+  //           $used_promocode->phone_number = '+91' . $checkout_form_data['customerPhone'];
+  //           $used_promocode->promocode_id = $promocodeData['id'];
+  //           $used_promocode->used_time += $checkout_form_data['item']['room'];
+  //           $used_promocode->save();
+  //         }
+  //       }
+  //     }
 
-      Auth::loginUsingId($checkout_form_data['user_id']);
+  //     Auth::loginUsingId($checkout_form_data['user_id']);
 
-      $email = $checkout_form_data['customerEmail'];
+  //     $email = $checkout_form_data['customerEmail'];
 
-      //dispatch(new RoomConfirmAdminJob(env('MAIL_USERNAME'),$txn_rec));
-      // dispatch(new RoomConfirmJob($email,$txn_rec));
+  //     //dispatch(new RoomConfirmAdminJob(env('MAIL_USERNAME'),$txn_rec));
+  //     dispatch(new RoomConfirmJob($email,$txn_rec));
 
-      $post = [
-        'txn_rec' => $txn_rec,
-        'email' => $email,
-      ];
-      $url = "send-room-confirmation-mail";
-      // $this->roomCurlMailFunction($url,$post);
+  //     $post = [
+  //       'txn_rec' => $txn_rec,
+  //       'email' => $email,
+  //     ];
+  //     $url = "send-room-confirmation-mail";
+  //     // $this->roomCurlMailFunction($url,$post);
 
-      //   $message = "Hello ".$checkout_form_data['customerName'].", Thank you for choosing Hotel The Trade International. We’re all set to serve you hassle-free stays with Check-in Assured. In case you face issues with your check-in, contact us for immediate assistance and you may avail a free stay, HAVE A GREAT TIME";
-      //   $this->sendMessageWhatsapp($checkout_form_data['customerPhone'],$message);
+  //     //   $message = "Hello ".$checkout_form_data['customerName'].", Thank you for choosing Hotel The Trade International. We’re all set to serve you hassle-free stays with Check-in Assured. In case you face issues with your check-in, contact us for immediate assistance and you may avail a free stay, HAVE A GREAT TIME";
+  //     //   $this->sendMessageWhatsapp($checkout_form_data['customerPhone'],$message);
 
-      TempCheckout::where('id', $temp_checkout_inserted_id)->delete();
-      echo json_encode(array('status' => 'success', 'txnid' => $txnid));
-    } else {
-      if (!empty($data)) {
-        $temp_checkout_inserted_data = explode('-', $data['orderId']);
-        $temp_checkout_inserted_id = trim($temp_checkout_inserted_data[1]);
-        $checkout_records = TempCheckout::where('id', $temp_checkout_inserted_id)->first();
-        $user_id = $checkout_records['user_id'];
-        Auth::loginUsingId($user_id);
-      }
-      return view('paymenterror');
-    }
-  }
+  //     TempCheckout::where('id', $temp_checkout_inserted_id)->delete();
+  //     echo json_encode(array('status' => 'success', 'txnid' => $txnid));
+  //   } else {
+  //     if (!empty($data)) {
+  //       $temp_checkout_inserted_data = explode('-', $data['orderId']);
+  //       $temp_checkout_inserted_id = trim($temp_checkout_inserted_data[1]);
+  //       $checkout_records = TempCheckout::where('id', $temp_checkout_inserted_id)->first();
+  //       $user_id = $checkout_records['user_id'];
+  //       Auth::loginUsingId($user_id);
+  //     }
+  //     return view('paymenterror');
+  //   }
+  // }
 
   public function room_payment_success($txn_id)
   {

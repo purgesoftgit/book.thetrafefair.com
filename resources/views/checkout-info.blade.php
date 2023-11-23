@@ -221,7 +221,7 @@
 </main>
 <script>
     $(document).ready(function() {
-        $('#validateUserInfo').validationEngine({
+        $('#validateUserInfo,#submitAskQuestion').validationEngine({
             autoHidePrompt: true,
             autoHideDelay: 8000,
             scroll: false

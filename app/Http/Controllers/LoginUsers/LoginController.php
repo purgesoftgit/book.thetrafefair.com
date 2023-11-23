@@ -45,7 +45,7 @@ class LoginController extends Controller
             // attempt to do the login
             if (Auth::attempt($userdata)) {
                 if(Auth::user()->role_id == 3 && ( !str_contains(URL::current(), 'subadmin') )){
-                    return redirect('/SFJfrRsrEs6859UyGXiEL7dA2MBj9KuSrtbrtbrb');
+                    return redirect('/get-upcoming-checkin-checkout');
                 }
                 else{
                     return redirect()->back()->with('error-message', 'Opps!!! You are not valid user.');
@@ -60,7 +60,7 @@ class LoginController extends Controller
     public function Logout()
     { 
         Auth::logout();
-        return redirect('/');
+        return redirect('login');
     }
 
     

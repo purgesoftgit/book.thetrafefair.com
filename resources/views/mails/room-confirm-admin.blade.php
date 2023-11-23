@@ -13,7 +13,7 @@
                         <tr style="background:#060611;">
                             <td align="center" valign="top"></td>
                             <td align="left" valign="top" style=" text-align: center;">
-                                <a href="https://www.thetradeinternational.com/" style="display:inline-block" target="_blank" rel="noopener noreferrer" data-saferedirecturl="https://www.google.com/url?q=https://www.thetradeinternational.com/&amp;source=gmail&amp;ust=1652849288529000&amp;usg=AOvVaw3u-DKAAw08bNiWJHO8E--c"><img src="https://ci5.googleusercontent.com/proxy/RppfF51tMpXMh0Dh_P9dndG6GDyjDTOpQJ4TGjD6JGClodRYTEB8Un4qdq10s_EoljgIODg5TWAjZ19SVaN29UvCO-lqkKi337h_VoNaOntsjw=s0-d-e1-ft#https://www.thetradeinternational.com/public/email-img/logo.png" alt="Logo" class="CToWUd"></a>
+                                <a href="{{ url('/')}}" style="display:inline-block" target="_blank" rel="noopener noreferrer" ><img src="{{asset('img/logo.png')}}" alt="Logo" class="CToWUd"></a>
                             </td>
                             <td align="center" valign="top"></td>
                         </tr>
@@ -272,49 +272,11 @@
                                                                                         <tr>
                                                                                             <td style="height:10px;"></td>
                                                                                         </tr>
-
-                                                                                        <tr>
-                                                                                            <td>
-                                                                                                <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="color:#000000;font-family:Arial,'sans-serif';font-size:15px">
-                                                                                                    <tbody>
-                                                                                                        <tr>
-                                                                                                            <td valign="middle" width="180px" align="left">Meal Total Amount</td>
-                                                                                                            <td valign="middle" align="right">₹{{$checkout_form_data['subtotal_meal_amt'] ?? ''}}</td>
-                                                                                                        </tr>
-                                                                                                    </tbody>
-                                                                                                </table>
-                                                                                            </td>
-                                                                                        </tr>
-
+                                                                                       
                                                                                         <tr>
                                                                                             <td style="height:10px;"></td>
                                                                                         </tr>
-                                                                                        <tr>
-                                                                                            <td style="border-top:#9b9b9b"></td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <td style="height:10px;"></td>
-                                                                                        </tr>
-
-                                                                                        <tr>
-                                                                                            <td>
-                                                                                                <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="color:#000000;font-family:Arial,'sans-serif';font-size:15px">
-                                                                                                    <tbody>
-                                                                                                        <tr>
-                                                                                                            <td valign="middle" width="180px" align="left">Meal Tax <small>({{ env('DEFAULT_MEAL_TAX_RATE') }}% Tax)</small></td>
-                                                                                                            <td valign="middle" align="right">₹{{$checkout_form_data['subtotal_meal_tax'] ?? ''}}</td>
-                                                                                                        </tr>
-                                                                                                    </tbody>
-                                                                                                </table>
-                                                                                            </td>
-                                                                                        </tr>
-
-                                                                                        <tr>
-                                                                                            <td style="height:10px;"></td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <td style="border-top:#9b9b9b"></td>
-                                                                                        </tr>
+ 
                                                                                         <tr>
                                                                                             <td style="height:10px;background: #f0f0f0;"></td>
                                                                                         </tr>
@@ -368,52 +330,13 @@
                                                                                         <tr>
                                                                                             <td style="height:10px;"></td>
                                                                                         </tr>
-
+ 
                                                                                         <tr>
-                                                                                            <td>
-                                                                                                <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="color:#000000;font-family:Arial,'sans-serif';font-size:15px">
-                                                                                                    <tbody>
-                                                                                                        <tr>
-                                                                                                            <td valign="middle" width="180px" align="left">Reward Points</td>
-                                                                                                            <td valign="middle" align="right">- {{$checkout_form_data['subtotal_tti_rewardpoint'] ?? ''}} P</td>
-                                                                                                        </tr>
-                                                                                                    </tbody>
-                                                                                                </table>
-                                                                                            </td>
+                                                                                            <td style="height:10px;"></td>
                                                                                         </tr>
+
+
                                                                                         
-
-                                                                                        <tr>
-                                                                                            <td style="height:10px;"></td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <td style="border-top:#9b9b9b"></td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <td style="height:10px;"></td>
-                                                                                        </tr>
-
-
-                                                                                        <tr>
-                                                                                            <td>
-                                                                                                <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="color:#000000;font-family:Arial,'sans-serif';font-size:15px">
-                                                                                                    <tbody>
-                                                                                                        <tr>
-                                                                                                            <td valign="middle" width="180px" align="left">The Trade International Credit</td>
-                                                                                                            <td valign="middle" align="right">- {{$checkout_form_data['subtotal_tti_credit'] ?? ''}} P</td>
-                                                                                                        </tr>
-                                                                                                    </tbody>
-                                                                                                </table>
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                        
-
-                                                                                        <tr>
-                                                                                            <td style="height:10px;"></td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <td style="border-top:#9b9b9b"></td>
-                                                                                        </tr>
                                                                                         <tr>
                                                                                             <td style="height:10px;"></td>
                                                                                         </tr>
