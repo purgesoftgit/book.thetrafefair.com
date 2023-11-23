@@ -34,6 +34,6 @@
 @endforeach
 @else
 <tr>
-<td colspan="7"  class="text-center text-dark"> No Data.</td>
+<td colspan="8"  class="text-center text-dark"> No Data.</td>
 </tr>
 @endif

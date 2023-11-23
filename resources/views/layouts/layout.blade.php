@@ -8,16 +8,11 @@
 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-
-  <meta property="og:url" content="{{ env('APP_URL') }}" />
-  <meta property="og:title" content="Your Page Title" />
-  <meta property="og:description" content="A brief summary of your page" />
-  
-  <title>The Trade Fair</title>
+  <title>Booking Engine - The Trade Fair</title>
   <link rel="icon" type="image/x-icon" href="{{asset('img/favicon.ico')}}">
 
- <!-- Bootstrap CSS -->
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
   <link rel="stylesheet" href="{{asset('css/jquery.lbt-lightbox.min.css')}}">
 
@@ -28,7 +23,13 @@
   <link href="{{asset('css/custom.css')}}" rel="stylesheet">
   <link href="{{asset('css/responsive.css')}}" rel="stylesheet">
 
+  <link rel="stylesheet" type="text/css" href="{{asset('css/validationEngine.jquery.css')}}">
+
   <script type="text/javascript" src="{{asset('js/jquery.min.js')}}"></script>
+
+  <script type="text/javascript" src="{{asset('js/jquery.validationEngine.js')}}"></script>
+  <script type="text/javascript" src="{{asset('js/jquery.validationEngine-en.js')}}"></script>
+
 
   <style>
     /*hide number input spin box */
@@ -43,12 +44,13 @@
       -webkit-appearance: textfield;
     }
   </style>
+
 <body>
   @yield('content')
 
 
-   <!-- Option 1: Bootstrap Bundle with Popper -->
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
   <script src="{{asset('js/jquery.lbt-lightbox.min.js')}}"></script>
   <script>
@@ -74,40 +76,13 @@
   <script type="text/javascript" src="{{asset('js/custom.js')}}"></script>
   <script type="text/javascript" src="{{asset('js/room-filter.js')}}"></script>
 
-  <!-- Slider Script Start -->
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $("--").owlCarousel({
-        margin: 24,
-        loop: true,
-        nav: false,
-        dots: false,
-        items: 6,
-        autoplay: true,
-        smartSpeed: 2000,
-        autoplayTimeout: 4000,
-        responsiveClass: true,
-        responsive: {
-          0: {
-            margin: 0,
-            items: 1
-          },
-          600: {
-            margin: 0,
-            items: 1
-          },
-          992: {
-            margin: 15,
-            items: 2
-          },
-          1200: {
-            items: 3
-          },
-        },
-      });
-    });
-  </script>
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+  <script src="{{ asset('js/sweetalert2@10.js') }}"></script>
 
+  
+
+ 
   <script type="text/javascript">
     $(".indec-button").on("click", function() {
 
@@ -135,6 +110,8 @@
       new bootstrap.Tooltip(el);
     });
   </script>
+
+
 </body>
 
 </html>

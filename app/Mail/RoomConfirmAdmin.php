@@ -28,6 +28,6 @@ class RoomConfirmAdmin extends Mailable
      */
     public function build()
     {
-        return $this->from(env('MAIL_USERNAME'),'Hotel The Trade International')->subject("Room Booked Mail.")->view('mails.room-confirm-admin');
+        return $this->from(env('MAIL_USERNAME'),'Hotel The Trade Fair')->subject("Booking Engine - Room Booked Mail.")->view('mails.room-confirm-admin');
     }
 }

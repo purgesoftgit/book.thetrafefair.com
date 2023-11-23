@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('content')
 <!-- Header Section Start -->
-@include('layouts.header')    
+@include('header')    
 <!-- Header Section End -->
 <!-- Mid Section Start -->
 <main class="web-main">
@@ -29,5 +29,5 @@
     
 </main>
 <!-- Footer Section Start -->
-@include('layouts.footer')
+@include('footer')
 @endsection

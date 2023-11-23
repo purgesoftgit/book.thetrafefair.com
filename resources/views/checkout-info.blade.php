@@ -48,11 +48,49 @@
                             <hr>
                             <small>You Selected : </small></br>
 
+                            <span class="hash_id d-none">{{ $temp_user_info->hash_id }}</span>
                             <span class="room d-none">{{ $temp_user_info->room }}</span>
                             <span class="guest d-none">{{ $temp_user_info->guest }}</span>
                             <span class="per_room_childrens_allowed" style="display:none;">@if($per_room_childrens_allowed) {{$per_room_childrens_allowed->value}} @else 0 @endif</span>
 
-                            <small>{{ $temp_user_info->room }} Room for {{ $temp_user_info->guest }} Adults</small>
+                            <small class="default_room_guest">{{ $temp_user_info->room }} Room for {{ $temp_user_info->guest }} Adults</small>
+
+                            <a href="javascript:void(0)" class=""><i class="fa fa-edit updateformopen"></i></a>
+
+                            <div class="Room-updateform card p-2 mt-2 mb-2" style="display:none;">
+
+                                <form method="POST" action="">
+
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Room</label>
+                                                <input type="number" class="form-control" name="updateroom" value="{{ $temp_user_info->room }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Guest</label>
+                                                <input type="number" class="form-control" name="updateguest" value="{{ $temp_user_info->guest }}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 text-end">
+                                            <button type="button" class="btn btn-primary btn-sm update-info">Update</button>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <button type="button" class="btn btn-light btn-sm updateformopen">Cancel</button>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+
                         </div>
 
                         <a href="{{ url('/') }}" class="text-primary text-decoration-none">Change Your Selection</a>
@@ -91,6 +129,12 @@
 
             </div>
             <div class="col-md-8">
+
+                <span class="per_room_person d-none"><?php echo isset($room->room_avail) ? $room->room_avail : $room->no_of_rooms; ?></span>
+                <span class="setting_person d-none">{{ $per_room_person->value ?? 2}}</span>
+                <span class="no_of_avail_rooms d-none"><?php echo isset($room->room_avail) ? $room->room_avail : $room->no_of_rooms; ?></span>
+                <span class="category-title d-none">{{$room->room_category}}</span>
+
                 <?php
                 if (env('CASHFREE_TEST_MODE')) {
                     $merchant_key = env('CASHFREE_APP_ID_TEST');
@@ -218,18 +262,46 @@
         @endif
 
     </div>
+    @include('messages')
 </main>
 <script>
     $(document).ready(function() {
-        $('#validateUserInfo').validationEngine({
+        var isSubmit = true;
+
+        $('#validateUserInfo,#submitAskQuestion').validationEngine({
             autoHidePrompt: true,
             autoHideDelay: 8000,
             scroll: false
         });
 
+        $('.updateformopen').click(function() {
+            $('.Room-updateform').toggle();
+        });
+
+        $('.update-info').click(function() {
+            $.ajax({
+                url: "{{url('user-information')}}",
+                type: "POST",
+                data: {
+                    room: $('input[name="updateroom"]').val(),
+                    guest: $('input[name="updateguest"]').val(),
+                    is_update: "update",
+                    hash_id: $('.hash_id').text(),
+
+                },
+                
+                success: function(response) {
+                    $('.room').text(response.room)
+                    $('.guest').text(response.guest)
+
+                    $('.default_room_guest').text(response.room + " Room for " + response.guest + " Adults")
+
+                },
+            });
+        });
+
         //final button click script
         $('.final-details').click(function() {
-            var isValidate = $('#validateUserInfo').validationEngine('validate')
 
             $('.customerName').val($('.first_name').val() + ' ' + $('.last_name').val())
             $('.customerEmail').val($('.email').val())
@@ -248,84 +320,166 @@
             var arrival_time = $('.arrival_time').val()
             var children = $('.children').val()
 
+
+            console.log(guest, room, children);
+            var returnData = checkValidGuestInRoom(guest, room, children);
+            isSubmit = returnData;
+
+            var isValidate = $('#validateUserInfo').validationEngine('validate')
+
             const date1 = new Date(checkin);
             const date2 = new Date(checkout);
             const diffTime = Math.abs(date2 - date1);
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
+            console.log(isValidate,isSubmit);
+
             if (isValidate == true) {
-                $.ajax({
-                    url: "{{ url('submit-book-now') }}",
-                    type: "POST",
-                    data: {
-                        checkin: checkin,
-                        checkout: checkout,
-                        room_id: room_id,
-                        room: room,
-                        guest: guest,
-                        name: customerName,
-                        email: customerEmail,
-                        phone: customerPhone,
-                        country: country,
-                        preference: preference,
-                        arrival_time: arrival_time,
-                        children: children,
-                    },
-                    success: function(response) {
+                if (isSubmit == true) {
+                    console.log(isSubmit);
+                    $.ajax({
+                        url: "{{ url('submit-book-now') }}",
+                        type: "POST",
+                        data: {
+                            checkin: checkin,
+                            checkout: checkout,
+                            room_id: room_id,
+                            room: room,
+                            guest: guest,
+                            name: customerName,
+                            email: customerEmail,
+                            phone: customerPhone,
+                            country: country,
+                            preference: preference,
+                            arrival_time: arrival_time,
+                            children: children,
+                        },
+                        success: function(response) {
 
-                        if (response.status == "available") {
-                            let total_amount = guest + (diffDays * parseInt($('.roomamount').data('amount')) * parseInt(room));
+                            if (response.status == "available") {
+                                let total_amount = guest + (diffDays * parseInt($('.roomamount').data('amount')) * parseInt(room));
 
-                            let totalAmount = total_amount
-                            let children = $('.children').val()
-                            let email = $('#checkout-email').val()
-                            let phone = $('#checkout-phone').val()
-                            $('#payuprice').val(totalAmount);
+                                let totalAmount = total_amount
+                                let children = $('.children').val()
+                                let email = $('#checkout-email').val()
+                                let phone = $('#checkout-phone').val()
+                                $('#payuprice').val(totalAmount);
 
-                            // var room_image = '<?php //echo $room_image; ?>';
+                                $.ajax({
+                                    url: "{{ url('save-room-temp-checkouts') }}",
+                                    type: "POST",
+                                    data: {
+                                        customerName: customerName,
+                                        customerEmail: customerEmail,
+                                        customerPhone: customerPhone,
+                                        totalAmount: totalAmount,
+                                        room_id: room_id,
+                                        checkin: checkin,
+                                        checkout: checkout,
+                                        room: room,
+                                        guest: guest,
+                                        children: children,
+                                        diffDays: diffDays,
+                                    },
+                                    success: function(response) {
+                                        orderid = "<?php //echo time(); 
+                                                    ?>" + response.last_inserted_id;
+                                        $('#orderId').val(orderid);
 
-                           // temporary checkout ajax
-                            $.ajax({
-                                url: "{{ url('save-room-temp-checkouts') }}",
-                                type: "POST",
-                                data: {
-                                    customerName: customerName,
-                                    customerEmail: customerEmail,
-                                    customerPhone: customerPhone,
-                                    totalAmount: totalAmount,
-                                    room_id: room_id,
-                                    checkin: checkin,
-                                    checkout: checkout,
-                                    room: room,
-                                    guest: guest,
-                                    children: children,
-                                    diffDays: diffDays,
-                                },
-                                success: function(response) {
-                                    orderid = "<?php //echo time(); 
-                                                ?>" + response.last_inserted_id;
-                                    $('#orderId').val(orderid);
+                                        window.location.href = "{{url('room-cart')}}/" + btoa(orderid);
+                                    }
+                                })
 
-                                    window.location.href = "{{url('room-cart')}}/" + btoa(orderid);
-                                }
-                            })
+                            } else if (response.status == "un-available") {
+                                swapPopPupMessage('Room Not available for this date.', 'error');
+                            } else if (response.status == "validation-issue") {
+                                swapPopPupMessage('Please fill all fields.', 'error');
+                            } else if (response.status == "incorrect-date") {
+                                swapPopPupMessage('You have enter wrong Date.', 'error');
+                            } else if (response.status == "invalid-room-guest") {
+                                swapPopPupMessage('You have entered wrong data for guest or room.', 'error');
+                            } else if (response.status == "invalid-children") {
+                                swapPopPupMessage('Childrens is reached the limitation of allowed Childrens for Room.', 'error');
+                            } else {}
+                        }
+                    });
+                } else {
+                    var per_room_person = $('.setting_person').text();
+                    per_room_person = Number(per_room_person) + 1;
 
-                        } else if (response.status == "un-available") {
-                            swapPopPupMessage('Room Not available with this details.', 'error');
-                        } else if (response.status == "validation-issue") {
-                            swapPopPupMessage('Please fill all fields.', 'error');
-                        } else if (response.status == "incorrect-date") {
-                            swapPopPupMessage('You have enter wrong Date.', 'error');
-                        } else if (response.status == "invalid-room-guest") {
-                            swapPopPupMessage('You have entered wrong data for guest or room.', 'error');
-                        } else if (response.status == "invalid-children") {
-                            swapPopPupMessage('Childrens is reached the limitation of allowed Childrens for Room.', 'error');
-                        } else {}
-                    }
-                });
+                    var no_of_rooms_is_avail = $('.no_of_avail_rooms').text()
+                    var category = $('.category-title').text();
+
+                    var per_room_childrens_allowed = $('.per_room_childrens_allowed').text();
+                    var max_allowed_child = parseInt($('.room').val()) * per_room_childrens_allowed;
+
+                    showValidationMessage(isSubmit, per_room_person, no_of_rooms_is_avail, category, max_allowed_child)
+
+                }
             }
         });
     })
+
+    function checkValidGuestInRoom(guest, total_needed_room, children) {
+
+        var total_avail_rooms = $('.per_room_person').text();
+        var per_room_person = $('.setting_person').text();
+        var no_of_avail_rooms = $('.no_of_avail_rooms').text();
+        var per_room_childrens_allowed = $('.per_room_childrens_allowed').text();
+
+        var total_persons = parseInt(per_room_person) * parseInt(total_needed_room);
+        var max_person_room = (parseInt(per_room_person) + 1) * parseInt(total_needed_room);
+        var guest = parseInt(guest);
+
+        var max_allowed_guest = guest;
+        var min_allowed_guest = Math.ceil(max_allowed_guest / (parseInt(per_room_person) + 1));
+
+
+        var min_allowed_child = 0;
+        var max_allowed_child = total_needed_room * per_room_childrens_allowed;
+
+        if ((parseInt(total_needed_room) <= parseInt(no_of_avail_rooms.trim())) && parseInt(guest) <= parseInt(max_person_room) && (parseInt(total_needed_room) <= parseInt(max_allowed_guest) && parseInt(total_needed_room) >= parseInt(min_allowed_guest)) && parseInt(children) <= max_allowed_child) {
+            return true;
+        } else if (parseInt(total_needed_room) > parseInt(no_of_avail_rooms.trim())) {
+            return "take_greater_room";
+        } else if (guest > max_person_room) {
+            return "take_greater_guest";
+        } else if (parseInt(total_needed_room) > parseInt(max_allowed_guest)) {
+            return "take_lesser_guest";
+        } else if (parseInt(children) > max_allowed_child) {
+            return "take_greater_children";
+        } else {
+            return true;
+        }
+    }
+
+    function showValidationMessage(isSubmit, per_room_person, no_of_rooms_is_avail, category, max_allowed_child) {
+        if (isSubmit == "take_greater_guest") {
+            $('#unsuccess-popups .errormessage').text('Sorry! Maximum ' + per_room_person + ' Guests allowed in ' + $('.room').val() + ' Room.');
+            $('#unsuccess-popups').modal('show');
+        }
+
+        if (isSubmit == "take_greater_room") {
+            if (no_of_rooms_is_avail == 0)
+                var message = category + ' not available right now.';
+            else
+                var message = 'Only <span style="font-size: 18px;">' + no_of_rooms_is_avail + '</span> ' + category + ' available right now.';
+
+            $('#unsuccess-popups .errormessage').html(message);
+            $('#unsuccess-popups').modal('show');
+        }
+
+        if (isSubmit == "take_lesser_guest") {
+            $('#unsuccess-popups .errormessage').html('Sorry! Minimum 1 Guest is compulsory for each Room.');
+            $('#unsuccess-popups').modal('show');
+        }
+
+        if (isSubmit == "take_greater_children") {
+            $('#unsuccess-popups .errormessage').html('Sorry! Maximum ' + max_allowed_child + ' Childrens allowed for ' + $('.room').val() + ' Rooms.');
+            $('#unsuccess-popups').modal('show');
+        }
+
+    }
 
     function swapPopPupMessage(message, type) {
         Swal.fire({

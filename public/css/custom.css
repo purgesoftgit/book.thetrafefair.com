@@ -258,69 +258,80 @@ ul.dark-ul-check li .gray-bg{background: #f2f2f2; font-size: 13px; display: inli
 
 
 
-/* room-filter css */
-.rooms_guests{
-    color: #000;
-    height: 40px;
-    border-radius: 5px;
-    padding: 0 10px;
-	line-height: 45px;
-    background-color: #fff;
-    cursor: pointer;
-    position: relative;
+.rooms_guests{color:#000;height:40px;border-radius:5px;padding:0 10px;line-height:45px;background-color:#fff;cursor:pointer;position:relative}.rooms_guests_list{color:#312d2d;height:auto;border:1px solid rgba(255,255,255,.3);padding:15px;background:#fff;margin-top:3px}.added_rooms{max-height:230px;overflow-y:auto}.guests_list{padding-top:12px}.room_adults_heading{text-transform:uppercase}.room_number ul{list-style:none;padding:0;margin:0}.room_number ul li.selected,.room_number ul li:hover{border-color:#00b542;background:#00b542;color:#fff}.room_number ul li{width:36px;height:36px;line-height:36px;text-align:center;border:1px solid #d9d9d9;display:inline-block;border-radius:8px;cursor:pointer;margin:8px 8px 0 0}.almost-done{background:#f0f8ff;padding:3px 0;border:1px solid #a9cff1;border-radius:5px}ul#lbt-headertop>a,ul#lbt-headertop>div{display:none}ul#lbt-headertop>#lbt-close_lightbox{display:block}.failure-page{text-align:left;padding:0;display:flex;align-items:center;position:relative;min-height:660px}.failure-img{max-width:60%;position:absolute;top:0;bottom:0;right:6%;z-index:-1}.failure-page p{font-size:22px;line-height:28px;font-weight:400;text-decoration:none;color:#242424;margin:0 0 30px}
 
+.normal-popup .btn span, .success-popups .btn span, .unsuccess-popups .btn span, .pending-popups .btn span{font-weight: 800; display: inline-block; -webkit-text-fill-color: transparent;}
+.normal-popup .btn span{background: linear-gradient(to right, #8dca83 0, #358e26 100%); -webkit-background-clip: text;}
+
+.success-popups .modal-body:before, .review-success-popups .modal-body:before{border-radius: 10px 10px 0 0; background: #70ef48;
+    background: -moz-linear-gradient(left, #70ef48 0, #49ab22 100%);
+    background: -webkit-linear-gradient(left, #70ef48 0, #49ab22 100%);
+    background: linear-gradient(to right, #70ef48 0, #49ab22 100%)
 }
-.rooms_guests_list {
-    color: #312d2d;
-    height: auto;
-    border: 1px solid rgba(255,255,255,0.3);
-    padding: 15px 15px;
-    background: #fff;
-    margin-top: 3px;
-}
-.added_rooms {
-    max-height: 230px;
-    overflow-y: auto;
-}
-.guests_list {
-    padding-top: 12px;
-}
-.room_adults_heading {
-    text-transform: uppercase;
-}
-.room_number ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-.room_number ul li.selected, .room_number ul li:hover {
-    border-color: #00b542;
-    background: #00b542;
-    color: #fff;
-}
-.room_number ul li {
-    width: 36px;
-    height: 36px;
-    line-height: 36px;
-    text-align: center;
-    border: 1px solid #d9d9d9;
-    display: inline-block;
-    border-radius: 8px;
-    cursor: pointer;
-    margin: 8px 8px 0 0;
+.success-popups .btn span {
+    background: linear-gradient(to right, #8dca83 0, #358e26 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent
 }
 
-.almost-done{
-    background: aliceblue;
-    padding: 3px 0 3px 0;
-    border: 1px solid #a9cff1;
-    border-radius: 5px;
+.success-popups .message-top-icon .fa {
+    text-shadow: 0 3px 0 rgb(103 219 67)
 }
 
-ul#lbt-headertop > div, ul#lbt-headertop > a {
-    display: none;
+.unsuccess-popups .modal-body:before{border-radius: 10px 10px 0 0; background: #f0b08d;
+    background: -moz-linear-gradient(left, #f0b08d 0, #ed3833 100%);
+    background: -webkit-linear-gradient(left, #f0b08d 0, #ed3833 100%);
+    background: linear-gradient(to right, #f0b08d 0, #ed3833 100%)
 }
 
-ul#lbt-headertop > #lbt-close_lightbox {
-    display: block;
+.unsuccess-popups .btn, .success-popups .btn, .pending-popups .btn, .information-popups .btn, .review-success-popups .btn{display: block; margin:0 auto -42px; min-width:120px;
+    background: #3d3d3d;
+    background: -moz-linear-gradient(top, #3d3d3d 0, #010101 100%);
+    background: -webkit-linear-gradient(top, #3d3d3d 0, #010101 100%);
+    background: linear-gradient(to bottom, #3d3d3d 0, #010101 100%)
+}
+.unsuccess-popups .btn:hover, .unsuccess-popups .btn:focus, .success-popups .btn:hover, .success-popups .btn:focus, .pending-popups .btn:hover, .pending-popups .btn:focus, .information-popups .btn:hover, .information-popups .btn:focus, .review-success-popups .btn:hover, .review-success-popups .btn:focus{display: block; margin:0 auto -42px; min-width:120px;
+    background: #3d3d3d;
+    background: -moz-linear-gradient(top, #3d3d3d 0, #010101 100%);
+    background: -webkit-linear-gradient(top, #3d3d3d 0, #010101 100%);
+    background: linear-gradient(to bottom, #3d3d3d 0, #010101 100%)
+}
+
+.unsuccess-popups .btn span{
+    background: linear-gradient(to right, #d89f82 0, #9f2d2c 100%);
+    -webkit-background-clip: text
+}
+.unsuccess-popups .message-top-icon .fa{text-shadow: 0 3px 0 #ec3732}
+
+.unsuccess-popups .message-top-icon, .success-popups .message-top-icon, .pending-popups .message-top-icon, .information-popups .message-top-icon, .review-success-popups .message-top-icon{ border: 5px solid #d9d9d9; background: #d9d9d9; width: 56px; height: 56px; line-height: 46px; font-size: 24px; text-align: center; border-radius: 30px; margin:15px auto 0;}
+
+
+.information-popups .btn span{background: linear-gradient(to right,#fdf3cd 0,#fae17c 100%); -webkit-background-clip: text;}
+
+.OTP-popups .passcode-wrapper{text-align: center; margin:0 0 35px;}
+.OTP-popups .verify-btn, .OTP-popups .resend-otp{text-align: center;}
+.OTP-popups .resend-otp{margin-top:12px;}
+
+.modal-sub-title {text-align: center; margin: 12px 0 10px; font-size:22px;}
+.modal-sub-title + .img-fluid{width: 81px; margin: 0 auto 12px; display: block;}
+.errormessage, .successmessage, .pendingmessage{font-size: 13px; text-align: center; max-width: 80%; margin: 0 auto 18px;}
+
+.normal-popup .modal-body:before, .pending-popups .modal-body:before, .success-popups .modal-body:before{top: 0; right: 0; left: 0; height: 12px; position: absolute; content:''}
+
+.information-popups .modal-body:before{border-radius: 10px 10px 0 0; background: #fce388;
+    background: -moz-linear-gradient(left,#fce388 0,#f9d545 100%);
+    background: -webkit-linear-gradient(left,#fce388 0,#f9d545 100%);
+    background: linear-gradient(to right,#fce388 0,#f9d545 100%);
+}
+
+.pending-popups .modal-body:before{border-radius: 10px 10px 0 0; background: #70ef48;
+    background: -moz-linear-gradient(left,rgba(255 203 124) 0,rgba(255 153 0) 100%);
+    background: -webkit-linear-gradient(left,rgba(255 203 124) 0,rgba(255 153 0) 100%);
+    background: linear-gradient(to right,rgba(255 203 124) 0,rgba(255 153 0) 100%);
+}
+
+.pending-popups .btn span {
+    background: linear-gradient(to right,#ffcc7f 0,#f90 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
