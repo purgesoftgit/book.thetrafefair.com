@@ -4,10 +4,7 @@
 
 <main class="main-div">
     <div class="container">
-        <!-- <div class="back-btn">
-            <a href="{{ url('/') }}" class="btn btn-dark"><i class="fa-solid fa-arrow-left"></i> Back</a>
-        </div> -->
-
+     
         <div class="row mt-3">
             <div class="col-md-4">
                 <div class="card">
@@ -48,6 +45,8 @@
                             <hr>
                             <small>You Selected : </small></br>
 
+                            <small class="text-success fs-6 fw-bold">{{ucwords(str_replace('_', ' ',$form_data['item']['room_category']))}} Room</small><br>
+
                             <span class="room d-none">{{ $form_data['item']['room'] }}</span>
                             <span class="guest d-none">{{ $form_data['item']['guest'] }}</span>
                             <span class="per_room_childrens_allowed" style="display:none;">@if($per_room_childrens_allowed) {{$per_room_childrens_allowed->value}} @else 0 @endif</span>
@@ -57,7 +56,7 @@
                             <hr>
                             <span>Country : {{ $form_data['item']['country']}}</span></br>
                             @if($form_data['item']['arrival_time'] != 0)<span>Arrival Time : {{ $form_data['item']['arrival_time']}}</span></br>@endif
-                            <span>preference : {{ ($form_data['item']['preference'] == 1) ? 'High Preference' : 'Ground Preference'}}</span>
+                            <span>preference : {{ ($form_data['item']['preference'] == 1) ? 'High Preference' : (($form_data['item']['preference'] == 2) ? 'Ground Preference' : 'No Preference')}}</span>
                         </div>
 
                         <a href="{{ url('/') }}" class="text-primary text-decoration-none">Change Your Selection</a>
@@ -203,11 +202,6 @@
                                                     <option value="10">Pay at Hotel (min: 10% required)</option>
                                                     <option value="25">Partial Booking (min: 25% required)</option>
 
-
-
-                                                    <option value="100">Pay at Service</option>
-                                                    <option value="10">Pay at Hotel <small>(min: 10% required)</small></option>
-                                                    <option value="25">Partial Booking</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -224,14 +218,6 @@
 
                                         <input type="hidden" class="calculate_grand_total_amount" name="subtotal_taxes" id="subtotal_taxes" value="0">
 
-                                        <!-- <input type="hidden" class="calculate_grand_total_amount" name="subtotal_meal_amt" id="subtotal_meal_amt" value="<?php //echo ((float)$form_data['item']['guest']); ?>"> -->
-
-                                        <!-- <input type="hidden" class="calculate_grand_total_amount" name="subtotal_meal_tax" id="subtotal_meal_tax" value="<?php //echo (((float)$form_data['item']['guest']) * env('DEFAULT_MEAL_TAX_RATE')) / 100; ?>"> -->
-
-                                        <!-- <input type="hidden" class="minus_grand_total_amount" name="subtotal_tti_credit" id="subtotal_tti_credit" value="0"> -->
-
-                                        <!-- <input type="hidden" class="minus_grand_total_amount" name="subtotal_tti_rewardpoint" id="subtotal_tti_rewardpoint" value="0"> -->
-
                                         <input type="hidden" class="net_total_amt" name="net_total_amt" id="net_total_amt" value="0">
 
                                         <input type="hidden" class="grand_total_amt" name="grand_total_amt" id="grand_total_amt" value="0">
@@ -246,14 +232,7 @@
                                         <dd id="subtotal"><i class="fa fa-rupee"></i>0.00</dd>
                                         <dt>Room Tax <small style="font-size: 12px;">(<?php echo env('DEFAULT_ROOM_TAX_RATE'); ?>% Tax)</small></dt>
                                         <dd id="total_taxes"><i class="fa fa-rupee"></i>0.00</dd>
-                                        <!-- <dt>Meal Total Amount</dt> -->
-                                        <!-- <dd id="meal_amt">
-                                            <i class="fa fa-rupee"></i><?php //echo //((float)$form_data['item']['guest']); ?>
-                                        </dd> -->
-                                        <!-- <dt>Meal Tax <small style="font-size: 12px;">(<?php //echo env('DEFAULT_MEAL_TAX_RATE'); ?>% Tax)</small></dt> -->
-                                        <!-- <dd id="meal_tax">
-                                            <i class="fa fa-rupee"></i>0
-                                        </dd> -->
+                                       
                                         <dt style="border-top:1px solid #c0c0c0; margin-top:1rem"><strong>Total</strong></dt>
                                         <dd class="net_total" style="border-top:1px solid #c0c0c0; margin-top:1rem"><i class="fa fa-rupee"></i>0.00</dd>
 
@@ -277,12 +256,6 @@
                                         </div>
                                         @endif
 
-
-                                        <!-- <dt style="border-top:1px solid #c0c0c0; margin-top:1rem">The Trade Fair Hotel Credit</dt>
-                                        <dd style="border-top:1px solid #c0c0c0; margin-top:1rem" id="tti_credit_amt">- <i class="fa fa-rupee"></i>0.00 <strong>P</strong></dd>
-
-                                        <dt>Reward Points</dt>
-                                        <dd id="tti_reward_amt">- <i class="fa fa-rupee"></i>0.00 <strong>P</strong></dd> -->
 
                                         <dt style="border-top:1px solid #c0c0c0; margin-top:1rem">Promocode</dt>
                                         <dd style="border-top:1px solid #c0c0c0; margin-top:1rem" id="promocode_amt">-<i class="fa fa-rupee"></i>0.00</dd>

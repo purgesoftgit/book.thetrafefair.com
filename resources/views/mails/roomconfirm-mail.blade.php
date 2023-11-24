@@ -28,7 +28,7 @@
             <tbody>
               <tr>
                 <td>
-                  <table style="background:url(https://www.thetradeinternational.com/public/img/email-bg.jpg) no-repeat 0 0; padding-left:12px;" width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
+                  <table style="background:url(http://localhost/book.thetradefair/public/img/email-bg.jpg) no-repeat 0 0; padding-left:12px;" width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
                     <tr>
                       <td align="center">
                         <table width="100%" cellspacing="0"
@@ -47,7 +47,7 @@
                                         <tbody>
                                           <tr>
                                             <td style="padding:0px 10px 0px 0" width="287" align="left">
-                                              <a href="{{ url('/') }}" target="_blank" rel="noopener noreferrer"><img src="{{asset('img/logo-img.png')}}" alt="img" moz-do-not-send="true"></a>
+                                              <a href="{{ url('/') }}" target="_blank" rel="noopener noreferrer"><img src="{{asset('img/logo.png')}}" alt="img" moz-do-not-send="true"></a>
                                             </td>
                                             <td style="padding-left:8px;text-align:right;" width="254" valign="middle" height="30px">
                                               <a href="tel:{{ $phone_number }}" style="white-space:nowrap;background:#f4d26e;color:#000;font-size:14px;line-height:32px;border-radius:6px;display:inline-block;padding:0 16px 0px 16px; vertical-align:middle; margin:0px; padding-bottom:2px; text-decoration:none;" moz-do-not-send="true">{{ $phone_number }}</a>
@@ -81,7 +81,7 @@
                                                       <table width="100%" cellspacing="0" cellpadding="0" border="0">
                                                         <tbody>
                                                           <tr>
-                                                            <td style="color:#9b9b9b;font-size:14px;font-family:Arial,'sans-serif';line-height:19px" valign="middle" align="left">Hello {{$checkout_form_data['customerName'] ?? 'Dear'}}, Thank you for choosing Hotel The Trade International. We’re all set to serve you hassle-free stays with Check-in Assured. </td>
+                                                            <td style="color:#9b9b9b;font-size:14px;font-family:Arial,'sans-serif';line-height:19px" valign="middle" align="left">Hello {{$checkout_form_data['customerName'] ?? 'Dear'}}, Thank you for choosing Hotel The Trade Fair. We’re all set to serve you hassle-free stays with Check-in Assured. </td>
                                                             <td width="30px" valign="top" align="left">
                                                               <img src="https://thetradeinternational.com/public/img/assured-img.png" alt="" style="display:block" class="CToWUd" moz-do-not-send="true" width="45" height="40">
                                                             </td>
@@ -91,7 +91,7 @@
                                                     </td>
                                                   </tr>
                                                   <tr>
-                                                    <td style="color:#9b9b9b;font-size:14px;font-family:Arial,'sans-serif';line-height:20px;padding:15px 15px 0px 0">In case you face issues with your check-in, contact us for immediate assistance and you may avail a free stay. To know more <a href="{{ url('contact-us') }}" style="text-decoration:underline;color:#f4d26e" target="_blank" rel="noopener noreferrer" moz-do-not-send="true"><strong>click here</strong></a>.
+                                                    <td style="color:#9b9b9b;font-size:14px;font-family:Arial,'sans-serif';line-height:20px;padding:15px 15px 0px 0">In case you face issues with your check-in, contact us for immediate assistance and you may avail a free stay. To know more <a href="{{ env('BACKEND_URL') }}" style="text-decoration:underline;color:#f4d26e" target="_blank" rel="noopener noreferrer" moz-do-not-send="true"><strong>click here</strong></a>.
                                                       <br>
                                                       <br>Check out our safety &amp; sanitisation measures.</td>
                                                     </tr>
@@ -159,7 +159,15 @@
                   <table width="536px" cellspacing="0" cellpadding="0" border="0" align="center">
                     <tbody>
                       <tr>
-                        <td style="color:#fff;font-size:20px;font-family:Arial,'sans-serif';line-height:25px"><strong>Booking details (ID: {{$txn_rec['txnid']}})</strong></td>
+                        <td style="color:#fff;font-size:20px;font-family:Arial,'sans-serif';line-height:25px">
+                            <strong>Booking details</strong>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="color:#fff;font-size:15px;font-family:Arial,'sans-serif';line-height:25px">
+                            <small>Txn ID : {{$txn_rec['txnid']}}</small><br>
+                            <small>PIN Number : {{$txn_rec['pin_code']}}</small>
+                        </td>
                       </tr>
                       <tr>
                         <td height="15px"></td>
@@ -176,7 +184,7 @@
                                         <td style="font-size:12px;line-height:1.5;color:#9b9b9b;font-family:Arial,'sans-serif'">Hotel address</td>
                                       </tr>
                                       <tr>
-                                        <td style="font-size:15px;color:#fff;margin-top:4px;font-family:Arial,'sans-serif'"><strong>Hotel The Trade International</strong></td>
+                                        <td style="font-size:15px;color:#fff;margin-top:4px;font-family:Arial,'sans-serif'"><strong>Hotel The Trade Fair</strong></td>
                                       </tr>
                                       <tr>
                                         <td style="margin-top:2px;color:#9b9b9b;font-family:Arial,'sans-serif';font-size:15px">{{ $address }}</td>
@@ -186,7 +194,7 @@
                                 </td>
                                 <td width="30px" valign="middle" align="left"></td>
                                 <td style="text-align:right" width="120px">
-                                  <a href="https://www.google.com/maps/place/THE+TRADE+INTERNATIONAL/@26.893741,75.739218,16z/data=!4m8!3m7!1s0x0:0x524a64d4535f2778!5m2!4m1!1i2!8m2!3d26.8937406!4d75.7392178?hl=en-GB" target="_blank" rel="noopener noreferrer" style="color:#e9cc57;font-weight:600;font-size:14px;line-height:24px;font-family:Arial,'sans-serif'" moz-do-not-send="true">Get directions</a>
+                                  <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.5512677070305!2d75.54117827606402!3d26.822413263964165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396be586c53972d9%3A0xf6f89699ad4b0fdc!2sAjmer-Jaipur%20Expy%2C%20RIICO%20Industrial%20Area%2C%20Bagru%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1699247216874!5m2!1sen!2sin" target="_blank" rel="noopener noreferrer" style="color:#e9cc57;font-weight:600;font-size:14px;line-height:24px;font-family:Arial,'sans-serif'" moz-do-not-send="true">Get directions</a>
                                 </td>
                               </tr>
                             </tbody>
@@ -294,46 +302,7 @@
                       <tr>
                         <td height="15px"></td>
                       </tr>
-                      <tr>
-                        <td>
-                          <table width="100%" cellspacing="0" cellpadding="0" border="0">
-                            <tbody>
-                              <tr style="background:#9b9b9b; color:#fff;">
-                                <td style="padding:5px 10px;">Meal</td>
-                                <td style="padding:5px 10px;"><br></td>
-                              </tr>
-                              <?php if(array_key_exists('food_items',$checkout_form_data)){
-																		foreach($checkout_form_data['food_items'] as $it_key => $it_value){
-															?>
-															<tr>
-																<td style="margin-top:2px;color:#fff;font-family:Arial,'sans-serif';font-size:15px; padding:5px 10px;">{{ $it_value['key'] }}</td>
-																<td style="padding:5px 10px;color:#fff;" align="right">₹{{ $it_value['value'] }}</td>
-															</tr>
-															<?php } } else{ ?>
-																<tr>
-                                  <td style="margin-top:2px;color:#fff;font-family:Arial,'sans-serif';font-size:15px; padding:5px 10px;">Not Selected</td>
-                                  <td style="padding:5px 10px;"><br></td>
-                                </tr>
-															<?php }  ?>
-
-                              
-                              <tr>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                <td style="border-top:1px solid #9b9b9b;"></td>
-                                <td style="border-top:1px solid #9b9b9b;"></td>
-                              </tr>
-                              <tr>
-                                <td></td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td height="40px"></td>
-                      </tr>
+                     
                       <tr>
                         <td>
                           <table width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
@@ -407,50 +376,11 @@
                                 <td style="border-top:1px solid #9b9b9b;height: 8px;">
                                 </td>
                               </tr>
+                             
                               <tr>
                                 <td></td>
                               </tr>
-                              <tr>
-                                <td>
-                                  <table style="margin-top:2px;color:#fff;font-family:Arial,'sans-serif';font-size:15px" width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
-                                    <tbody>
-                                      <tr>
-                                        <td width="200px" valign="middle" align="left">Meal Total Amount</td>
-                                        <td width="200px" valign="middle" align="left"><br></td>
-                                        <td width="130px" valign="middle" align="right">₹{{$checkout_form_data['subtotal_meal_amt'] ?? ''}}</td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td style="height: 8px;"></td>
-                              </tr>
-                              <tr>
-                                <td style="border-top:1px solid #9b9b9b; height: 8px;"></td>
-                              </tr>
-                              <tr>
-                                <td></td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <table style="margin-top:2px;color:#fff;font-family:Arial,'sans-serif';font-size:15px" width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
-                                    <tbody>
-                                      <tr>
-                                        <td width="200px" valign="middle" align="left">Meal Tax <small>({{ env('DEFAULT_MEAL_TAX_RATE') }}% Tax)</small></td>
-                                        <td width="200px" valign="middle" align="left"><br></td>
-                                        <td width="130px" valign="middle" align="right">₹{{$checkout_form_data['subtotal_meal_tax'] ?? ''}}</td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td style="height: 8px;"></td>
-                              </tr>
-                              <tr>
-                                <td style="border-top:1px solid #9b9b9b;height: 8px;"></td>
-                              </tr>
+                              
                               <tr>
                                 <td></td>
                               </tr>
@@ -494,48 +424,12 @@
                               <tr>
                                 <td style="border-top:1px solid #9b9b9b;height: 8px; "></td>
                               </tr>
-                              <tr>
-                                <td>
-                                  <table style="margin-top:2px;color:#fff;font-family:Arial,'sans-serif';font-size:15px" width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
-                                    <tbody>
-                                      <tr>
-                                        <td width="200px" valign="middle" align="left">Reward Points</td>
-                                        <td width="200px" valign="middle" align="left"><br></td>
-                                        <td width="130px" valign="middle" align="right">- {{$checkout_form_data['subtotal_tti_rewardpoint'] ?? ''}} P</td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td style="height: 8px;"></td>
-                              </tr>
-                              <tr>
-                                <td style="border-top:1px solid #9b9b9b;height: 8px;"></td>
-                              </tr>
+                             
                               <tr>
                                 <td></td>
                               </tr>
-                              <tr>
-                                <td>
-                                  <table style="margin-top:2px;color:#fff;font-family:Arial,'sans-serif';font-size:15px" width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
-                                    <tbody>
-                                      <tr>
-                                        <td width="200px" valign="middle" align="left">The Trade International Credit</td>
-                                        <td width="200px" valign="middle" align="left"><br>
-                                        </td>
-                                        <td width="130px" valign="middle" align="right">- {{$checkout_form_data['subtotal_tti_credit'] ?? ''}} P</td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td style="height: 8px;"></td>
-                              </tr>
-                              <tr>
-                                <td style="border-top:1px solid #9b9b9b;height: 8px;"></td>
-                              </tr>
+                               
+                              
                               <tr>
                                 <td></td>
                               </tr>
@@ -670,7 +564,7 @@
                                           <a href="https://instagram.com/TheTradeInternational/" style="display:inline-block" target="_blank" rel="noopener noreferrer" data-saferedirecturl="" moz-do-not-send="true"> <img style="height:18px;margin:0 10px" src="{{asset('img/NewInstagram-confirm.png')}}" class="CToWUd" moz-do-not-send="true">
                                           </a>
                                         </td>
-                                        <td style="color:#fff;font-size:14px;font-family:Arial,'sans-serif';line-height:24px" align="right">&copy;2023</td>
+                                        <td style="color:#fff;font-size:14px;font-family:Arial,'sans-serif';line-height:24px" align="right">&copy;{{date('Y')}}</td>
                                       </tr>
                                     </tbody>
                                   </table>

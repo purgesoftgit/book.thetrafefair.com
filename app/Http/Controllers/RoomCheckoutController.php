@@ -4,23 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\{RoomCategory, Setting, TempCheckout, UsedPromocode, Promocode, Book, Transaction, RefundUsers};
-// use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
-// use Storage;
 use Dompdf\Dompdf;
-use App\Jobs\RoomConfirmJob;
+use App\Jobs\{RoomConfirmJob,RoomConfirmAdminJob};
 
 class RoomCheckoutController extends Controller
 {
 
-  // public function testMail(){
-  //   $setting = Setting::whereIn('key',['phone_number','address'])->get();
-  //   $email = "leena.sharma@purgesoftwares.com";
-  //   $txn_rec = Transaction::where('txnid','b6bc8c14bd')->first();
-
-    
-  //    dispatch(new RoomConfirmJob($email,$txn_rec,$setting));
-  // }
   public function roomcart($order_id)
   {
 
@@ -83,12 +73,6 @@ class RoomCheckoutController extends Controller
 
       $available_price = (isset($rooms['avails_price'])) ? $rooms['avails_price'] : $rooms->price;
 
-      // $sum = 0;
-      // if (isset($request->food_items)) {
-      //     foreach ($request->food_items as $food_value) {
-      //         $sum = $sum + (int)$food_value['value'];
-      //     }
-      // }
       $data  = [];
 
       $data['txn_type'] = 'ROOM';
@@ -186,10 +170,11 @@ class RoomCheckoutController extends Controller
 
 
     $max_allowed_rooms = $guest;
-    $min_allowed_rooms = ceil($max_allowed_rooms / ($per_room_person->value + 1));
+    $min_allowed_rooms = (int)ceil($max_allowed_rooms / ($per_room_person->value + 1));
 
     $per_room_childrens_allowed = Setting::where('key', 'per_room_childrens_allowed')->first();
     $max_allowed_children = $per_room_childrens_allowed->value * $data['room'];
+
 
     //validation
     if ($data['checkin'] < date('Y-m-d') || $data['checkin'] > date('Y-m-d', strtotime(" +2 months"))) {
@@ -239,49 +224,6 @@ class RoomCheckoutController extends Controller
     }
   }
 
-
-  // public function registerUser($userdata, $randomString)
-  // {
-  //     if ($userdata) {
-  //         $first_name = explode(' ', $userdata['customerName'])[0];
-  //         $first_name = str_replace(" ", "-", $first_name);
-
-  //         $insert = new User();
-  //         $insert->username = strtolower($first_name) . '-' . random_int(100000, 999999);
-  //         $insert->first_name = ucfirst($first_name);
-  //         $insert->email = $userdata['customerEmail'];
-  //         $insert->phone_number = '+91' . $userdata['customerPhone'];
-  //         $insert->email_verifid_token = Str::random(20);
-  //         $insert->referral_code = strtolower(Str::random(6));
-  //         $insert->password =  bcrypt(env('AUTO_PASSWORD'));
-  //         $insert->save();
-
-  //         $wallet = new Wallet();
-  //         $wallet->user_id = $insert->id;
-  //         $wallet->amount = env('SELF_SIGNUP_AMOUNT');
-  //         $wallet->message = "Account Signup Amount";
-  //         $wallet->txn_type = 'credit';
-  //         $wallet->amount_type = 'TTI_REWARD';
-  //         $wallet->save();
-
-  //         $activity_array = ['reviews', 'follow', 'friends_join', 'up_tti', 'weeknesltr', 'prc_sett'];
-  //         $title_array = ['Activity on my reviews', 'Someone follows me', 'My friends join TTI', 'Important updates from TTI', 'Weekly Newsletter', 'Privacy Setting'];
-
-  //         foreach ($activity_array as $key => $value) {
-  //             $prference = new NotificationPreferece();
-  //             $prference->user_id = $insert->id;
-  //             $prference->activity = $value;
-  //             $prference->title = $title_array[$key];
-  //             $prference->is_email = 'Yes';
-  //             $prference->is_phone = 'Yes';
-  //             $prference->is_active = 'Yes';
-  //             $prference->save();
-  //         }
-
-  //         // Mail::to($insert['email'])->send(new UserRegisterDetailMail($insert,$randomString));
-
-  //     }
-  // }
 
   public function updateRoomTempData(Request $request)
   {
@@ -368,19 +310,6 @@ class RoomCheckoutController extends Controller
     //grand_tota
     $net_total_amount = $amount + $room_tax + $sum + $meal_tax;
 
-    // if ($request->subtotal_tti_rewardpoint > 0) {
-    //     $grand_total_amount = $net_total_amount - $request->subtotal_tti_rewardpoint;
-    // } else if ($request->subtotal_tti_credit > 0) {
-    //     $grand_total_amount = $net_total_amount - $request->subtotal_tti_credit;
-    // } else if ($request->subtotal_tti_rewardpoint > 0 && $request->subtotal_tti_credit > 0) {
-    //     $grand_total_amount = $net_total_amount - $request->subtotal_tti_rewardpoint - $request->subtotal_tti_credit;
-    // } else if ($request->promocode) {
-    //     $promocode = Promocode::where('code', trim(strtoupper($request->promocode)))->first();
-    //     $grand_total_amount = $net_total_amount - $promocode->max_discount;
-    // } else {
-    //     $grand_total_amount = (float)$net_total_amount;
-    // }
-
     if ($request->promocode) {
       $promocode = Promocode::where('code', trim(strtoupper($request->promocode)))->first();
       $grand_total_amount = $net_total_amount - $promocode->max_discount;
@@ -398,12 +327,7 @@ class RoomCheckoutController extends Controller
       if ($form_key == 'subtotal_taxes') {
         $checkout_form_data['subtotal_taxes'] =  number_format((float)$room_tax, 2, '.', '');
       }
-      // if ($form_key == 'subtotal_meal_amt') {
-      //     $checkout_form_data['subtotal_meal_amt'] = number_format((float)$sum, 2, '.', '');
-      // }
-      // if ($form_key == 'subtotal_meal_tax') {
-      //     $checkout_form_data['subtotal_meal_tax'] = $meal_tax;
-      // }
+   
       if ($form_key == 'net_total_amt') {
         $checkout_form_data['net_total_amt'] = $net_total_amount;
       }
@@ -433,10 +357,6 @@ class RoomCheckoutController extends Controller
       "roomid" => $request->roomid,
       "subtotal_amt" => $request->subtotal_amt,
       "subtotal_taxes" => $request->subtotal_taxes,
-      // "subtotal_meal_amt" => $request->subtotal_meal_amt,
-      // "subtotal_meal_tax" => $request->subtotal_meal_tax,
-      // "subtotal_tti_credit" => $request->subtotal_tti_credit,
-      // "subtotal_tti_rewardpoint" => $request->subtotal_tti_rewardpoint,
       "net_total_amt" => $request->net_total_amt,
       "grand_total_amt" => $request->grand_total_amt,
       "f_total_amt" => $request->f_total_amt,
@@ -452,12 +372,7 @@ class RoomCheckoutController extends Controller
       $postData = array_merge($postData, $add_wallet_amount_arr);
     }
 
-    // if (isset($request['add_reward_amount']) && !empty($request['add_reward_amount'])) {
-    //   $add_reward_amount_arr = array(
-    //     "add_reward_amount" => $request['add_reward_amount'],
-    //   );
-    //   $postData = array_merge($postData, $add_reward_amount_arr);
-    // }
+
 
     ksort($postData);
 
@@ -487,6 +402,8 @@ class RoomCheckoutController extends Controller
       $temp_checkout_inserted_id = trim($temp_checkout_inserted_data[1]);
       $checkout_records = TempCheckout::where('id', $temp_checkout_inserted_id)->first();
       $checkout_form_data = !empty($checkout_records) ? json_decode($checkout_records['formData'], true) : array();
+
+      $setting = Setting::whereIn('key',['phone_number','address'])->get();
 
       if ($checkout_form_data) {
         $book = new Book();
@@ -541,30 +458,6 @@ class RoomCheckoutController extends Controller
         $txn_rec->save();
       }
 
-      // if (!empty($checkout_form_data) && ($checkout_form_data['subtotal_tti_credit'] > 0)) {
-      //     $wallet = new Wallet();
-      //     $wallet->user_id  = $checkout_form_data['user_id'];
-      //     $wallet->amount   = $checkout_form_data['subtotal_tti_credit'];
-      //     $wallet->message  = 'Room Booked';
-      //     $wallet->txn_type = 'DEBIT';
-      //     $wallet->amount_type = 'TTI_CREDIT';
-      //     $wallet->txnid = $txnid;
-      //     $wallet->txn_data = '';
-      //     $wallet->save();
-      // }
-
-      // if (!empty($checkout_form_data) && ($checkout_form_data['subtotal_tti_rewardpoint'] > 0)) {
-      //     $wallet = new Wallet();
-      //     $wallet->user_id  = $checkout_form_data['user_id'];
-      //     $wallet->amount   = $checkout_form_data['subtotal_tti_rewardpoint'];
-      //     $wallet->message  = 'Room Booked';
-      //     $wallet->txn_type = 'DEBIT';
-      //     $wallet->amount_type = 'TTI_REWARD';
-      //     $wallet->txnid = $txnid;
-      //     $wallet->txn_data = '';
-      //     $wallet->save();
-      // }
-
       if (!empty($checkout_form_data) && $checkout_form_data['promocode'] != '') {
         $promocodeData = Promocode::with('usedpromo')->where('code', trim(strtoupper($checkout_form_data['promocode'])))->first();
 
@@ -581,35 +474,16 @@ class RoomCheckoutController extends Controller
       }
 
       $email = $checkout_form_data['customerEmail'];
-      // dispatch(new RoomConfirmAdminJob(env('MAIL_USERNAME'),$txn_rec));
-      // dispatch(new RoomConfirmJob($email,$txn_rec));
+      dispatch(new RoomConfirmAdminJob(env('MAIL_USERNAME'),$txn_rec));
+      dispatch(new RoomConfirmJob($email,$txn_rec,$setting));
 
-      $post = [
-        'txn_rec' => $txn_rec,
-        'email' => $email,
-      ];
-
-      //$url = "send-room-confirmation-mail";
-      //  (new TestController)->roomCurlMailFunction($url,$post);
-
-
-      //   $message = "Hello ".$checkout_form_data['customerName'].", Thank you for choosing Hotel The Trade International. We’re all set to serve you hassle-free stays with Check-in Assured. In case you face issues with your check-in, contact us for immediate assistance and you may avail a free stay, HAVE A GREAT TIME";
-      //   $this->sendMessageWhatsapp($checkout_form_data['customerPhone'],$message);
-
+      
+   
       TempCheckout::where('id', $temp_checkout_inserted_id)->delete();
-
-      // Auth::loginUsingId($checkout_form_data['user_id']);
-
-
+ 
       return redirect('room-payment-summary/' . $txnid);
     } else {
-      // if (!empty($data)) {
-      //     $temp_checkout_inserted_data = explode('-', $data['orderId']);
-      //     $temp_checkout_inserted_id = trim($temp_checkout_inserted_data[1]);
-      //     $checkout_records = TempCheckout::where('id', $temp_checkout_inserted_id)->first();
-      //     $user_id = $checkout_records['user_id'];
-      //     Auth::loginUsingId($user_id);
-      // }
+      
       return view('paymenterror');
     }
   }
@@ -702,11 +576,10 @@ class RoomCheckoutController extends Controller
               'referenceId' => $referenceId,
               'refundAmount' => $amount,
               'refundNote' => 'Cancelled Room Booking',
-              'refundAmount' => $amount
             ),
           ));
           $response = curl_exec($curl);
-
+ 
           curl_close($curl);
           $response_decode = json_decode($response, true);
 
@@ -735,152 +608,8 @@ class RoomCheckoutController extends Controller
           }
         }
 
-        $email = $checkout_data['customerEmail'];
-
-        $url = "cancel-room-confirmation";
-        $post = [
-          'email' => $email,
-          'trans_data' => $trans_data,
-        ];
-
-        // $this->cronFunMail($url, $post);
-
-        //  dispatch(new CancelRoomCofirmation($email,$trans_data));
-
-        $message = "Hello " . $checkout_data['customerName'] . ", Your booking has been cancelled. It's sad we won't be seeing you. We're listing the details for your cancellation below. Hope to see you in the future. HAVE A GREAT TIME";
-        $this->sendMessageWhatsapp($checkout_data['customerPhone'], $message);
+      
       }
-    }
-  }
-
-  public function room_checkout_payment_for_zero_amount(Request $request)
-  {
-    $data = $request->all();
-    if (!empty($data)) {
-      $temp_checkout_inserted_data = explode('-', $data['orderId']);
-      $temp_checkout_inserted_id = trim($temp_checkout_inserted_data[1]);
-      $checkout_records = TempCheckout::where('id', $temp_checkout_inserted_id)->first();
-      $checkout_form_data = !empty($checkout_records) ? json_decode($checkout_records['formData'], true) : array();
-      $payu_data = json_encode($data);
-
-      if ($checkout_form_data) {
-
-        //book table
-        $room_category = RoomCategory::with('roomadditionaldata')->where('room_category', $checkout_form_data['item']['room_category'])->first();
-        $how_many_rooms = 0;
-        if ($room_category->roomadditionaldata) {
-          foreach ($room_category->roomadditionaldata as $room_key => $room_value) {
-            if ($checkout_form_data['checkindate'] == $room_value['date']) {
-              if ($room_value['room_avail'] > 0) {
-                $how_many_rooms = "yes";
-                $room_value['room_avail'] = (int)$room_value['room_avail'] - $checkout_form_data['item']['room'];
-                $room_value->save();
-              }
-            }
-          }
-        }
-
-        //decrease value by 1 accoding to category
-        if ($how_many_rooms !== "yes" && $room_category->no_of_rooms != 0) {
-          $room_category->no_of_rooms = (int)$room_category['no_of_rooms'] - $checkout_form_data['item']['room'];
-          $room_category->save();
-        }
-
-        $book = new Book();
-        $book->user_id = $checkout_form_data['user_id'];
-        $book->room_id = $checkout_form_data['item']['room_id'];
-        $book->cin_date = $checkout_form_data['checkin'];
-        $book->cout_date = $checkout_form_data['checkout'];
-        $book->category = $checkout_form_data['item']['room_category'];
-        $book->room = $checkout_form_data['item']['room'];
-        $book->guests = $checkout_form_data['item']['guest'];
-        $book->name = $checkout_form_data['customerName'];
-        $book->email = $checkout_form_data['customerEmail'];
-        $book->phone_number = '+91' . $checkout_form_data['customerPhone'];
-        $book->save();
-      }
-
-      $txnid = substr(hash('sha256', mt_rand() . microtime()), 0, 10);
-      $txn_rec = new Transaction();
-      $txn_rec->user_id = $checkout_form_data['user_id'];
-      $txn_rec->txnid = $txnid;
-      $txn_rec->amount = $checkout_form_data['f_total_amt'];
-      $txn_rec->txn_type = $checkout_form_data['txn_type'];
-      $txn_rec->checkout_form_data = json_encode($checkout_form_data);
-      $txn_rec->payu_data =  json_encode($data);
-      $txn_rec->f_status =  'U';
-      $txn_rec->status =  'D';
-      $txn_rec->read_status =  'Unread';
-      $txn_rec->save();
-
-      // if (!empty($checkout_form_data) && ($checkout_form_data['subtotal_tti_credit'] > 0)) {
-      //   $wallet = new Wallet();
-      //   $wallet->user_id  = $checkout_form_data['user_id'];
-      //   $wallet->amount   = $checkout_form_data['subtotal_tti_credit'];
-      //   $wallet->message  = 'Room Booked';
-      //   $wallet->txn_type = 'DEBIT';
-      //   $wallet->amount_type = 'TTI_CREDIT';
-      //   $wallet->txnid = $txnid;
-      //   $wallet->txn_data = '';
-      //   $wallet->save();
-      // }
-
-      // if (!empty($checkout_form_data) && ($checkout_form_data['subtotal_tti_rewardpoint'] > 0)) {
-      //   $wallet = new Wallet();
-      //   $wallet->user_id  = $checkout_form_data['user_id'];
-      //   $wallet->amount   = $checkout_form_data['subtotal_tti_rewardpoint'];
-      //   $wallet->message  = 'Room Booked';
-      //   $wallet->txn_type = 'DEBIT';
-      //   $wallet->amount_type = 'TTI_REWARD';
-      //   $wallet->txnid = $txnid;
-      //   $wallet->txn_data = '';
-      //   $wallet->save();
-      // }
-
-
-      if (!empty($checkout_form_data) && $checkout_form_data['promocode'] != '') {
-        $promocodeData = Promocode::with('usedpromo')->where('code', trim(strtoupper($checkout_form_data['promocode'])))->first();
-
-        if (!empty($promocodeData)) {
-          $already_used = UsedPromocode::where('promocode_id', $promocodeData['id'])->where('phone_number', '+91' . $checkout_form_data['customerPhone'])->count();
-          if ($already_used == 0 && $checkout_form_data['item']['room_category'] == "deluxe") {
-            $used_promocode = new UsedPromocode();
-            $used_promocode->phone_number = '+91' . $checkout_form_data['customerPhone'];
-            $used_promocode->promocode_id = $promocodeData['id'];
-            $used_promocode->used_time += $checkout_form_data['item']['room'];
-            $used_promocode->save();
-          }
-        }
-      }
-
-      Auth::loginUsingId($checkout_form_data['user_id']);
-
-      $email = $checkout_form_data['customerEmail'];
-
-      //dispatch(new RoomConfirmAdminJob(env('MAIL_USERNAME'),$txn_rec));
-      // dispatch(new RoomConfirmJob($email,$txn_rec));
-
-      $post = [
-        'txn_rec' => $txn_rec,
-        'email' => $email,
-      ];
-      $url = "send-room-confirmation-mail";
-      // $this->roomCurlMailFunction($url,$post);
-
-      //   $message = "Hello ".$checkout_form_data['customerName'].", Thank you for choosing Hotel The Trade International. We’re all set to serve you hassle-free stays with Check-in Assured. In case you face issues with your check-in, contact us for immediate assistance and you may avail a free stay, HAVE A GREAT TIME";
-      //   $this->sendMessageWhatsapp($checkout_form_data['customerPhone'],$message);
-
-      TempCheckout::where('id', $temp_checkout_inserted_id)->delete();
-      echo json_encode(array('status' => 'success', 'txnid' => $txnid));
-    } else {
-      if (!empty($data)) {
-        $temp_checkout_inserted_data = explode('-', $data['orderId']);
-        $temp_checkout_inserted_id = trim($temp_checkout_inserted_data[1]);
-        $checkout_records = TempCheckout::where('id', $temp_checkout_inserted_id)->first();
-        $user_id = $checkout_records['user_id'];
-        Auth::loginUsingId($user_id);
-      }
-      return view('paymenterror');
     }
   }
 
@@ -938,25 +667,20 @@ class RoomCheckoutController extends Controller
           $add_on_peoples = $guest - $total_persons;
           $add_charges = $add_on_peoples * ((int)$deducted_price * $datediff);
           $payable_amount += $add_charges;
-          // $final_amount = $total_amount + $add_charges;
         } else {
           $payable_amount = $payable_amount;
-          //$final_amount = $total_amount;
         }
       } else {
         if ($guest < $total_persons) { //when we remove promocode
           $less_on_peoples = $total_persons - $guest;
           $less_charges = $less_on_peoples * ((int)$deducted_price * $datediff);
           $payable_amount -= $less_charges;
-          //$final_amount = $total_amount - $less_charges ;
         } else if ($guest > $total_persons) { //when we remove promocode
           $add_on_peoples =  $guest - $total_persons;
           $add_charges = $add_on_peoples * ((int)$deducted_price * $datediff);
           $payable_amount += $add_charges;
-          // $final_amount = $total_amount + $add_charges;
         } else {
           $payable_amount = $payable_amount;
-          // $final_amount = $total_amount;
         }
       }
       $promocode = Promocode::where('code', $request['coupon_code'])->first();
@@ -971,7 +695,6 @@ class RoomCheckoutController extends Controller
       else
         $promo_amount = 0;
 
-      //$payable_amount += ($reward_amount != 0) ? $tax_include_taxes - $reward_amount :  $tax_include_taxes - $promo_amount;
       $payable_amount += $tax_include_taxes - $promo_amount;
 
       return response()->json(['final_amount' => number_format(
@@ -998,7 +721,6 @@ class RoomCheckoutController extends Controller
     $current_user_id = (Auth::check()) ? Auth::user()->id : '';
     $checkin = ($data['checkin'] == 0) ? time() : $data['checkin'];
     $checkout = ($data['checkout'] == 0) ? time() : $data['checkout'];
-    // $subtotal_meal_amt = $data['subtotal_meal_amt'];
     $subtotal_meal_amt = 0;
     $order_id = $data['order_id'];
     $additional_amount = 0;
@@ -1021,11 +743,7 @@ class RoomCheckoutController extends Controller
         }
       }
     }
-
-    // if($roomcategory == "restaurant"){
-
-    //     $promodata = Promocode::where('code', $coupon_code)->where('category','Rastaurant')->first();
-    // }else{
+ 
     $room_category = str_replace(" ", "_", ucwords(str_replace("_", " ", $roomcategory))) . '_Room';
 
     //only for 1 night for deluxe Room conditions
@@ -1070,18 +788,14 @@ class RoomCheckoutController extends Controller
     $from_time = $promodata['from_time'];
     $to_time = $promodata['to_time'];
     $type_of_customer = $promodata['type_of_customer'];
-
-    //$time = time() + env('TIMEZONE');
-    //$date = date('d-m-Y H:i');
-
+ 
     $validity_start_date = strtotime(trim($validity_period[0] . ' 12:00 AM'));
     $validity_to_date = strtotime(trim($validity_period[1]) . ' 11:59:59 PM');
 
     $validity_start_time = strtotime(date('d-m-Y ') . $from_time);
     $validity_to_time = strtotime(date('d-m-Y ') . $to_time);
 
-    // if($validity_start_date <= time() && time() <= $validity_to_date){
-    //if(time() >= $validity_start_time && time() <= $validity_to_time){
+     
     if (($checkin >= $validity_start_date && $checkin <= $validity_to_date) || ($checkout >= $validity_start_date && $checkout <= $validity_to_date)) {
 
       if ((time() >= $validity_start_time && time() <= $validity_to_time) || (time() >= $validity_start_time && time() <= $validity_to_time)) {
@@ -1224,48 +938,6 @@ class RoomCheckoutController extends Controller
         $roomNumber = json_decode($getallData->room_number, true);
         $items_data = Transaction::where('room_number', 'like', '["%' . $roomNumber[0] . '"]')->whereBetween('created_at', [$checkout_form_data['checkin'] . ' 00:00:00', $checkout_form_data['checkout'] . ' 23:59:00'])->where('txn_type', 'ITEM')->get();
       }
-
-      // $service_arr = '';
-      // $service_arr1 = '';
-      // $service_final_arr = '';
-      // if (!empty($items_data) && $getallData['f_status'] == "C") {
-      //   $subtotal = 0;
-      //   $subtotal_taxes = 0;
-      //   $subtotal_donate = 0;
-      //   $subtotal_rider = 0;
-      //   $net_total_amt = 0;
-      //   $subtotal_tti_credit = 0;
-      //   $subtotal_tti_rewardpoint = 0;
-      //   $promocode_deduction = 0;
-      //   $grand_total_amt = 0;
-
-        // foreach ($items_data as $key1 => $value1) {
-        //   $itemcheckoutdata = json_decode($value1['checkout_form_data'], true);
-        //   foreach ($itemcheckoutdata['item'] as $it_key => $it_value) {
-        //     $service_arr = $service_arr . '<tr><td height="7"></td><td height="7"></td></tr> <tr><td valign="top" style=" width:80%"><div style="font-size: 12px; color: #fff; font-weight:400; font-family: "Raleway", sans-serif; margin:0; padding-bottom:5px;"><span style="width:58px; display:inline-block;">' . $it_value['quantity'] . 'x ' . $it_value['price'] . '</span><img src="' . env('APP_URL') . 'public/img/order-img.png"><span style="display:inline-block; padding-left:18px;">' . $it_value['name'] . '</span></div> </td><td valign="top" style="width:20%; text-align: right; font-size:12px; line-height:12px;"> Rs.' . number_format((float)$it_value['final_price'], 2, '.', '') . ' </td></tr>';
-        //   }
-
-        //   $subtotal += $itemcheckoutdata['subtotal_amt'];
-        //   $subtotal_taxes += $itemcheckoutdata['subtotal_taxes'];
-        //   $subtotal_donate += $itemcheckoutdata['subtotal_donate'];
-        //   $subtotal_rider += $itemcheckoutdata['subtotal_rider'];
-        //   $net_total_amt += $itemcheckoutdata['net_total_amt'];
-        //   $subtotal_tti_credit += $itemcheckoutdata['subtotal_tti_credit'];
-        //   $subtotal_tti_rewardpoint += $itemcheckoutdata['subtotal_tti_rewardpoint'];
-        //   $promocode_deduction += $itemcheckoutdata['promocode_deduction'];
-        //   $grand_total_amt += $itemcheckoutdata['grand_total_amt'];
-        // }
-
-      //   $service_arr1 = '<tr><td style="border-bottom: 1px solid #f1f1f1; padding-top:10px;"></td><td style="border-bottom: 1px solid #f1f1f1; padding-top:10px;"></td></tr><tr><td valign="middle" style="width:70%; padding:3px 0;"><div style="font-size: 13px; color: #fff; font-weight: 700; font-family: "Raleway", sans-serif; margin:0;">Sub Total:</div></td><td valign="middle" style="width:30%; padding:3px 0; text-align: right; font-size:13px; line-height:14px;">Rs. ' . number_format((float)$subtotal, 2, '.', '') . '</td></tr><tr><td valign="middle" style="width:70%; padding:3px 0;"><div style="font-size: 13px; color: #fff; font-weight: 700; font-family: "Raleway", sans-serif; margin:0;">Taxes:</div></td><td valign="middle" style="width:30%; padding:3px 0; text-align: right; font-size:13px; line-height:14px;">Rs. ' . number_format((float)$subtotal_taxes, 2, '.', '') . '</td></tr><tr><td valign="middle" style="width:70%; padding:3px 0;"><div style="font-size: 13px; color: #fff; font-weight: 700; font-family: "Raleway", sans-serif; margin:0;">Donation:</div></td><td valign="middle" style="width:30%; padding:3px 0; text-align: right; font-size:13px; line-height:14px;">Rs. ' . number_format((float)$subtotal_donate, 2, '.', '') . '</td></tr><tr><td valign="middle" style="width:70%; padding:3px 0;"><div style="font-size: 13px; color: #fff; font-weight: 700; font-family: "Raleway", sans-serif; margin:0;">Support Rider:</div></td><td valign="middle" style="width:30%; padding:3px 0; text-align: right; font-size:13px; line-height:14px;">Rs. ' . number_format((float)$subtotal_rider, 2, '.', '') . '</td></tr><tr><td valign="middle" height="3" style="width:70%; padding:3px 0;"></td><td valign="middle" height="3" style="width:30%; padding:3px 0; text-align: right; font-size:13px; line-height:14px;"></td></tr><tr><td valign="middle" style="width:70%; padding:4px 10px; background:#fff; "><div style="font-size:16px; color: #222; font-weight: 700; font-family: "Raleway", sans-serif; margin:0;">Total :</div></td><td valign="middle" style="width:30%; padding:4px 10px;  background:#fff; color:#222; font-weight: 700; text-align: right; font-size:16px; line-height:14px;">Rs. ' . number_format((float)$net_total_amt, 2, '.', '') . '</td></tr><tr><td valign="middle" height="3" style="width:70%; padding:3px 0;"></td><td valign="middle" height="3" style="width:30%; padding:3px 0; text-align: right;font-size:13px; line-height:14px;"></td></tr><tr><td valign="middle" style="width:70%; padding:3px 0;"><tr><td valign="middle" style="width:70%; padding:3px 0;"><tr><td valign="middle" style="width:70%; padding:3px 0;"><div style="font-size: 13px; color: #fff; font-weight: 700; font-family: "Raleway", sans-serif; margin:0;">Promocode :</div></td><td valign="middle" style="width:30%; padding:3px 0; text-align: right; font-size:13px; line-height:14px;">Rs. ' . number_format((float)$promocode_deduction, 2, '.', '') . '</td></tr><tr><td valign="middle" height="3" style="width:70%; padding:3px 0;"></td><td valign="middle" height="3" style="width:30%; padding:3px 0; text-align: right; font-size:13px; line-height:14px;"></td></tr><tr><td valign="middle" style="padding:4px 10px; width:70%;  background:#fff;"><strong style="text-transform: uppercase;font-size:16px; color: #222; font-weight: 700; display: block;">Payable Amount:</strong></td><td valign="middle" style="padding:4px 10px;  background:#fff; width:30%; text-align: right;"><strong style="text-transform: uppercase; font-size:16px; line-height:16px; color: #222; font-weight: 700; display: block;">Rs. ' . number_format((float)$grand_total_amt, 2, '.', '') . '</strong</td></tr>';
-      // }
-
-      // if ($service_arr != '') {
-      //   //$service_final_arr = $service_arr.''.$service_arr1;
-      //   $service_final_arr = '<tr><td><table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" style="background: #222; padding:10px 10px 5px; color:#fff;"><tr>
-      //           <td colspan="2" style="text-align:center;text-transform: uppercase; font-size:14px; line-height:16px; font-weight: 700; padding:8px 5px 8px 10px; background:#fae17c; color:#000;">Order Item List</td></tr><tr><td style="height:3px;"></td><td style="height:3px;"></td></tr>' . $service_arr . '' . $service_arr1  . '<tr><td style="height:10px;"></td><td style="height:10px;"></td></tr><tr><td style="border-top: 1px solid #f1f1f1; padding-top:10px;"></td><td style="border-top: 1px solid #f1f1f1; padding-top:10px;"></td></tr></table></td></tr>';
-      // } else {
-      //   $service_final_arr = '';
-      // }
 
       $additional_charges = '';
       if (array_key_exists('extra_charges', $checkout_form_data)) {

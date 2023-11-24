@@ -3,27 +3,66 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Session;
-use App\{Setting, RoomCategory, Country, UserAddress, Wallet, TempCheckout, UsedPromocode, Promocode, TempUserInfo};
+use App\{Setting, RoomCategory, Country, UserAddress, Wallet, TempCheckout, UsedPromocode, Promocode, TempUserInfo, FAQ, AskQuestion, NewsLetter};
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
     public function index()
     {
+        $faqs = FAQ::all();
+
         $room = RoomCategory::all();
         $myArr = [];
-        foreach($room as $value){
+        foreach ($room as $value) {
             $myArr[] = json_decode($value['image']);
         }
         $resultArray = call_user_func_array('array_merge', $myArr);
         $count = count($resultArray);
-        return view('index', compact('room','resultArray','count'));
+
+        return view('index', compact('room', 'resultArray', 'count', 'faqs'));
     }
 
+    public function submitAskQuestion(Request $request)
+    {
 
-    public function fetchSingleAdditionalRoomData($room_detail,$checkin)
+        $validator = Validator::make($request->all(), array(
+            'email' => 'required',
+            'question' => 'required',
+        ));
+
+        if ($validator->fails()) {
+            return redirect('/');
+        }
+
+        $askQuestion = new AskQuestion();
+        $askQuestion->email = $request->email;
+        $askQuestion->question = $request->question;
+        $askQuestion->save();
+
+        return redirect('/')->with('success', 'Successfully submit your Request. Team will contact you as soon as possible');
+    }
+
+    public function newsletter(Request $request)
+    {
+        $data = $request->all();
+        $validator = Validator::make($data, array(
+            'email' => 'unique:newsletters|required',
+        ));
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('newsletter-failure', 'You are already subscribed to our Newsletter.');
+        } else {
+
+            $newsletter = new NewsLetter();
+            $newsletter->email = $request->email;
+            $newsletter->save();
+        }
+        return redirect('/')->with('newsletter-success', 'Thank You for subscribing to our Newsletter, We will contact you shortly.');
+    }
+
+    public function fetchSingleAdditionalRoomData($room_detail, $checkin)
     {
         if ($room_detail) {
             if (count($room_detail->roomadditionaldata) > 0 && !empty($room_detail->roomadditionaldata)) {
@@ -123,16 +162,33 @@ class PageController extends Controller
                 }
             }
         }
+
         return view('room-reserve-table', compact('rooms'));
     }
 
     public function userInformation(Request $request)
     {
+      
+        if (isset($request->is_update) && $request->is_update) {
+            $temp_user_info = TempUserInfo::where('hash_id', $request->hash_id)->first();
+            $temp_user_info->room =  $request->room;
+            $temp_user_info->guest =  $request->guest;
+            $temp_user_info->room_id = $temp_user_info->room_id;
+            $temp_user_info->price = $temp_user_info->price;
+            $temp_user_info->with_tax_price = $temp_user_info->with_tax_price;
+            $temp_user_info->final_price = $temp_user_info->final_price;
+            $temp_user_info->hash_id = $request->hash_id;
+            $temp_user_info->save();
+
+            return response()->json(['status' => 200, "message" => "Succesfully Updated Data.", 'room' => $temp_user_info->room, 'guest' => $temp_user_info->guest]);
+        }
+
+
         $room_guest = explode(" - ", $request->room_guest);
 
-        $room = RoomCategory::with('roomadditionaldata')->where('id',$request->room_id)->first();
-        $room_data = $this->fetchSingleAdditionalRoomData($room,$request->checkin);
-        
+        $room = RoomCategory::with('roomadditionaldata')->where('id', $request->room_id)->first();
+        $room_data = $this->fetchSingleAdditionalRoomData($room, $request->checkin);
+
         $room_price = (isset($room_data->final_price) && !empty($room_data->final_price)) ? $room_data->final_price : $room_data->price;
 
         $avail_room = (isset($room_data->room_avail) && !empty($room_data->room_avail)) ? $room_data->room_avail : $room_data->no_of_rooms;
@@ -140,9 +196,10 @@ class PageController extends Controller
         $room_price_with_taxes = $room_price * env('DEFAULT_ROOM_TAX_RATE') / 100;
 
         $final_price = $room_price + $room_price_with_taxes;
- 
+
+
         $temp_user_info = new TempUserInfo();
-       
+
         $temp_user_info->room_id = $request->room_id;
         $temp_user_info->checkin = $request->checkin;
         $temp_user_info->checkout = $request->checkout;
@@ -155,17 +212,23 @@ class PageController extends Controller
 
         $temp_user_info->hash_id = md5($temp_user_info->id);
         $temp_user_info->save();
- 
-        return response()->json(['status' => 200, "message" => "Succesfully added Data.","hash_id" => $temp_user_info->hash_id]);
+
+
+        return response()->json(['status' => 200, "message" => "Succesfully added Data.", "hash_id" => $temp_user_info->hash_id]);
     }
-    public function checkoutInformation($slug,$hash)
+    public function checkoutInformation($slug, $hash)
     {
         $country = Country::get();
-        $temp_user_info = TempUserInfo::where('hash_id',$hash)->first();
+        $temp_user_info = TempUserInfo::where('hash_id', $hash)->first();
         $per_room_childrens_allowed = Setting::where('key', 'per_room_childrens_allowed')->first();
         $address = Setting::where('key', 'address')->first();
 
-        return view('checkout-info', compact('country','temp_user_info','per_room_childrens_allowed','address'));
+        $per_room_person = Setting::where('key', "per_room_person")->first();
+        $room_detail = RoomCategory::with('roomadditionaldata')->where('slug', $slug)->first();
+
+        $room = $this->fetchSingleAdditionalRoomData($room_detail, $temp_user_info->checkin);
+
+        return view('checkout-info', compact('country', 'temp_user_info', 'per_room_childrens_allowed', 'address', 'per_room_person', 'room'));
     }
 
     public function roomcart($order_id)

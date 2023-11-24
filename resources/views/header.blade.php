@@ -3,8 +3,8 @@
     <header class="header-section d-flex align-items-center justify-content-between">
       <a href="{{url('/')}}"><img src="{{asset('img/logo.png')}}" alt="Image"></a>
       <div class="head-end">
-        <a href="javascript:void(0)" class="btn btn-white text-uppercase">Login</a>
-        <a href="javascript:void(0)" class="btn btn-primary text-uppercase">Sign Up</a>
+        <!-- <a href="javascript:void(0)" class="btn btn-white text-uppercase">Login</a> -->
+        <!-- <a href="javascript:void(0)" class="btn btn-primary text-uppercase">Sign Up</a> -->
         <a href="javascript:void(0)" class="btn-secondary btn-circle"><img src="{{asset('img/question-icon.png')}}" alt="Images"></a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

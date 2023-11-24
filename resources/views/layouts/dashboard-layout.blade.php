@@ -50,6 +50,8 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+
 
     <script type="text/javascript">
       jQuery(function ($) {
@@ -65,19 +67,7 @@
         }
       });
       });
-
-      // document.addEventListener('contextmenu', function(e) {
-      //     e.preventDefault();
-      //   });
-      // $(document).keydown(function (event) {
-      //   if (event.keyCode == 123) {
-      //      return false;
-      //   } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {     
-      //     return false;
-      //   }else if (event.ctrlKey && event.keyCode == 85) {
-      //     return false;
-      //   }
-      // });    
+ 
     </script>
      
     
@@ -107,7 +97,6 @@
 <script src="{{asset('js/dashboard/popper.min.js')}}"></script>
 <script src="{{asset('js/dashboard/bootstrap.min.js')}}"></script>
 <script src="{{asset('js/dashboard/all.min.js')}}"></script>
-<script defer type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <!-- crop image cdns -->
