@@ -47,6 +47,13 @@
                 </li>
 
                 <li>
+                    <a href="{{url('facility')}}" class="{{ Request::is('facility') ? 'active' : '' }} not-show-icon">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Facility Management</span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="{{url('newsletters')}}" class="{{ Request::is('newsletters') ? 'active' : '' }} not-show-icon">
                         <i class="fas fa-newspaper"></i>
                         <span>Subscribe Management</span>

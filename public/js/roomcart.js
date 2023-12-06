@@ -211,7 +211,7 @@ $(document).ready(function () {
     $('.gr_total').html('<i class="fa fa-rupee"></i>' + new_amt);
     $('#payuprice').val(new_amt);
 
-    if (selected_val == 10 || selected_val == 25)
+    if (selected_val == 0 || selected_val == 25)
       $('.place-order-sec #item_place_order').text('Book Now & Pay at Hotel')
     else
       $('.place-order-sec #item_place_order').text('Book Now')

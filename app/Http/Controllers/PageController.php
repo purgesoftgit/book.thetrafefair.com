@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\{Setting, User, RoomCategory,RoomServiceCategory, Country, Transaction, Review, UserAddress, Wallet, TempCheckout, UsedPromocode, Promocode, TempUserInfo, FAQ, AskQuestion, NewsLetter,PhoneVerification};
+use App\{Setting, User, RoomCategory,GoogleReviews,BookingEngineFacility,RoomServiceCategory, Country, Transaction, Review, UserAddress, Wallet, TempCheckout, UsedPromocode, Promocode, TempUserInfo, FAQ, AskQuestion, NewsLetter,PhoneVerification};
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Storage;
+use Illuminate\Support\Facades\Session;
 
 class PageController extends Controller
 {
@@ -29,7 +31,6 @@ class PageController extends Controller
     }
 
     public function submitReviewsApi(Request $request){
-        
         $validator = Validator::make($request->all(),array(
             'name' => 'required',
             'description' => 'required',
@@ -98,7 +99,13 @@ class PageController extends Controller
         $resultArray = call_user_func_array('array_merge', $myArr);
         $count = count($resultArray);
 
-        return view('index', compact('room', 'resultArray', 'count', 'faqs'));
+        $facilities = BookingEngineFacility::all();
+
+        return view('index', compact('room', 'resultArray', 'count','facilities','faqs'));
+    }
+
+    public function Newindex(){
+        return view('newIndex');
     }
 
     public function submitAskQuestion(Request $request)
@@ -120,6 +127,38 @@ class PageController extends Controller
 
         return redirect('/')->with('success', 'Successfully submit your Request. Team will contact you as soon as possible');
     }
+
+    public function submitBookingEngineReviews(Request $request)
+    {
+        if ($request->hasFile('image')) {
+        $request->validate([
+            'image' => 'file|mimes:jpeg,png,jpg,gif',
+        ]);
+        }
+        $review = new GoogleReviews();
+        $review->name = $request->name;
+        $review->overall_rating = $request->rating;
+        $review->room_rating = $request->room_rating;
+        $review->service_rating = $request->service_rating;
+        $review->location_rating = $request->location_rating;
+        $review->experience = $request->description;
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $extension = uniqid() . '.' . $image->getClientOriginalExtension();
+            $review->image = $extension;
+            $image->storeAs('images', $extension, 'public');
+        }
+        $review->kind_trip = $request->kind_of_trip;
+        $review->travel = $request->travel;
+        $review->describe_hotel = $request->describe_hotel;
+        $review->more_about = $request->more_about;
+        $review->save();
+
+        return response()->json(['status'=>200, 'message'=>'Review submitted successfully!']);
+    }
+
+
 
     public function newsletter(Request $request)
     {
@@ -303,6 +342,9 @@ class PageController extends Controller
 
         $per_room_person = Setting::where('key', "per_room_person")->first();
         $room_detail = RoomCategory::with('roomadditionaldata')->where('slug', $slug)->first();
+
+        Session::put('room_category', $slug);
+        Session::put('user_info_hash', $hash);
 
         $room = $this->fetchSingleAdditionalRoomData($room_detail, $temp_user_info->checkin);
 
@@ -582,6 +624,33 @@ class PageController extends Controller
         } else {
             return redirect()->back()->with('success', 'Thank you for submitting your feedback.');
         }
+    }
+
+
+    public function facility(){
+        return view('facility');
+    }
+
+    public function saveFacility(Request $request)
+    {
+       $request->validate([
+            'title' => 'required|string|max:255',
+            'image' => 'required|file|mimes:jpeg,png,jpg,gif',
+            'data' => 'required',
+        ]);
+
+       $data = new BookingEngineFacility();
+       $data->title = $request->title;
+       $data->data = $request->data;    
+       if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $extention = uniqid() .'.'. $image->getClientOriginalExtension();
+            $data->image = $extention;
+            $image->storeAs('images', $extention, 'public');
+        }
+       $data->save();
+
+       return redirect('facility');
     }
 
 }

@@ -199,7 +199,7 @@
                                                 <select name="payment_options" id="payment_options" class="form-control">
 
                                                     <option value="100">Pay at Service (100%)</option>
-                                                    <option value="10">Pay at Hotel (min: 10% required)</option>
+                                                    <option value="0">Pay at Hotel</option>
                                                     <option value="25">Partial Booking (min: 25% required)</option>
 
                                                 </select>

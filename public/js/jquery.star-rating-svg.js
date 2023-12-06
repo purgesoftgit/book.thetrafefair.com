@@ -21,7 +21,7 @@
     emptyColor: 'lightgray',
     hoverColor: 'orange',
     activeColor: 'gold',
-    ratedColor: '#7c5199',
+    ratedColor: '#017337',
     useGradient: true,
     readOnly: false,
     disableAfterRate: true,
